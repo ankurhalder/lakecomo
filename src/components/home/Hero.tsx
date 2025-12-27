@@ -44,26 +44,11 @@ export default function Hero({ data }: { data: any }) {
   const features = data?.featuresGrid || []
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMuted, setIsMuted] = useState(true)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-    const savedPref = localStorage.getItem('videoSound')
-    if (savedPref === 'on') {
-      setIsMuted(false)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (mounted && videoRef.current) {
-      videoRef.current.muted = isMuted
-      localStorage.setItem('videoSound', isMuted ? 'off' : 'on')
-    }
-  }, [isMuted, mounted])
 
   const toggleSound = () => {
     if (videoRef.current) {
       videoRef.current.play().catch(() => {})
+      videoRef.current.muted = !isMuted
     }
     setIsMuted(prev => !prev)
   }
