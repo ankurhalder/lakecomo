@@ -6,6 +6,39 @@ import { useRef, useState, useEffect } from 'react'
 import { Volume2, VolumeX } from 'lucide-react'
 import FeaturesList from './FeaturesList'
 
+const textVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      delay,
+      ease: "easeOut" as const
+    }
+  })
+}
+
+const buttonVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      delay: 1.2,
+      ease: "easeOut" as const
+    }
+  },
+  hover: {
+    scale: 1.05,
+    boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.3)",
+    transition: { type: "spring" as const, stiffness: 400 }
+  },
+  tap: { scale: 0.95 }
+}
+
 export default function Hero({ data }: { data: any }) {
   const { preHeading, mainHeading, subHeading, ctaText, ctaLink, videoUrl } = data?.heroSection || {}
   const features = data?.featuresGrid || []
@@ -38,7 +71,12 @@ export default function Hero({ data }: { data: any }) {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black font-sans">
       
-      <div className="absolute inset-0 z-0">
+      <motion.div 
+        className="absolute inset-0 z-0"
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+      >
         {videoUrl && (
           <video
             ref={videoRef}
@@ -51,34 +89,42 @@ export default function Hero({ data }: { data: any }) {
             <source src={videoUrl} type="video/mp4" />
           </video>
         )}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
-      </div>
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        />
+      </motion.div>
 
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 h-full pt-24 pb-24 px-6 md:px-12">
         
         <div className="flex flex-col justify-center items-start text-left pl-4 lg:pl-10 max-w-2xl">
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            custom={0.3}
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
             className="text-white/90 text-xl md:text-2xl italic font-light mb-6 tracking-wide font-serif"
           >
             {preHeading}
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            custom={0.5}
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight mb-8 drop-shadow-xl"
           >
             {mainHeading}
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
+            custom={0.7}
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
             className="text-white/90 text-xl md:text-2xl font-light tracking-wide mb-12 italic"
           >
             {subHeading}
@@ -86,12 +132,12 @@ export default function Hero({ data }: { data: any }) {
 
           <Link href={ctaLink || '/contact'}>
             <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-12 py-4 bg-white text-black text-base font-bold uppercase tracking-widest rounded-full hover:bg-gray-100 transition-all shadow-2xl shadow-white/20"
+              variants={buttonVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover="hover"
+              whileTap="tap"
+              className="px-12 py-4 bg-white text-black text-base font-bold uppercase tracking-widest rounded-full transition-colors"
             >
               {ctaText}
             </motion.button>
@@ -105,14 +151,23 @@ export default function Hero({ data }: { data: any }) {
       </div>
 
       <motion.button
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.2 }}
+        initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
+        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        transition={{ delay: 1.5, type: "spring" as const, stiffness: 200 }}
+        whileHover={{ scale: 1.1, rotate: 10 }}
+        whileTap={{ scale: 0.9 }}
         onClick={toggleSound}
         className="fixed bottom-28 right-6 z-50 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
         aria-label={isMuted ? 'Unmute video' : 'Mute video'}
       >
-        {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+        <motion.div
+          key={isMuted ? 'muted' : 'unmuted'}
+          initial={{ scale: 0, rotate: -90 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ type: "spring" as const, stiffness: 300 }}
+        >
+          {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+        </motion.div>
       </motion.button>
     </div>
   )
