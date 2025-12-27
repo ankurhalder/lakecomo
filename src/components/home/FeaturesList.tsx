@@ -14,32 +14,32 @@ const LaurelBadge = ({ item }: { item: FeatureItemProps }) => {
     <a
       href={item.link || '#'}
       
-      className="group relative w-[280px] md:w-[320px] aspect-[4/3] flex items-center justify-center text-center text-white transition-transform duration-300 hover:scale-105"
+      className="group relative w-[200px] md:w-[240px] aspect-[4/3] flex items-center justify-center text-center text-white transition-transform duration-300 hover:scale-105"
     >
       {}
       <img
-        src="./assets/laurel-wreath.png"
+        src="/assets/laurel-wreath.png"
         alt=""
         className="absolute inset-0 w-full h-full object-contain opacity-90 pointer-events-none drop-shadow-sm"
       />
 
       {}
-      <div className="relative z-10 flex flex-col items-center justify-center gap-1 px-12 py-8">
+      <div className="relative z-10 flex flex-col items-center justify-center gap-1 px-8 py-6">
         {}
         {item.subtitle && (
-          <p className="text-[9px] md:text-[10px] uppercase tracking-wider font-light leading-tight text-gray-100 max-w-[160px]">
+          <p className="text-[8px] md:text-[9px] uppercase tracking-wider font-light leading-tight text-gray-100 max-w-[140px]">
             {item.subtitle}
           </p>
         )}
 
         {}
-        <h3 className="text-xl md:text-3xl font-extrabold uppercase tracking-tighter leading-none drop-shadow-lg text-white font-sans my-1">
+        <h3 className="text-lg md:text-xl font-extrabold uppercase tracking-tighter leading-none drop-shadow-lg text-white font-sans my-1">
           {item.title}
         </h3>
 
         {}
         {item.tag && (
-          <p className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-medium text-gray-200">
+          <p className="text-[11px] md:text-[12px] uppercase tracking-[0.2em] font-medium text-gray-200">
             {item.tag}
           </p>
         )}
