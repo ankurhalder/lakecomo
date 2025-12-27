@@ -46,7 +46,7 @@ const docs = [
         _type: 'featureCard',
         _key: 'feat2',
         title: 'VENUE SELECTION', 
-        subtitle: 'Discover Your Dream Location',
+        subtitle: 'Unlock Your Imagination',
         tag: '2026',
         link: '/process'
       },
@@ -54,6 +54,7 @@ const docs = [
         _type: 'featureCard',
         _key: 'feat3',
         title: 'GALLERY', 
+        subtitle: 'Discover Your Dream Location',
         tag: '2026',
         link: '/gallery'
       }
