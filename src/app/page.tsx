@@ -1,7 +1,12 @@
-export default function Home() {
+import { getHomePageData } from "@/sanity/lib/getHomePage"
+import Hero3D from "@/components/home/Hero3D"
+
+export default async function Home() {
+  const data = await getHomePageData()
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <h1>Hello World</h1>
-    </div>
-  );
+    <main className="min-h-screen bg-black">
+      <Hero3D data={data} />
+    </main>
+  )
 }
