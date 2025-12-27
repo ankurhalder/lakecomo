@@ -1,6 +1,9 @@
 import { client } from "./client";
+import { unstable_cache } from "next/cache";
 
-export async function getHomePageData() {
+const CACHE_REVALIDATE = 86400;
+
+const fetchHomePageData = async () => {
   const query = `
     *[_type == "homepage"][0] {
       title,
@@ -22,4 +25,10 @@ export async function getHomePageData() {
     }
   `;
   return await client.fetch(query);
-}
+};
+
+export const getHomePageData = unstable_cache(
+  fetchHomePageData,
+  ["homepage"],
+  { revalidate: CACHE_REVALIDATE, tags: ["homepage", "content"] }
+);

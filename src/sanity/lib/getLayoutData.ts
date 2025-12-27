@@ -1,6 +1,9 @@
 import { client } from "./client";
+import { unstable_cache } from "next/cache";
 
-export async function getLayoutData() {
+const CACHE_REVALIDATE = 86400;
+
+const fetchLayoutData = async () => {
   const query = `
     {
       "navbar": *[_type == "navbar"][0] {
@@ -19,4 +22,10 @@ export async function getLayoutData() {
     }
   `;
   return await client.fetch(query);
-}
+};
+
+export const getLayoutData = unstable_cache(
+  fetchLayoutData,
+  ["layout"],
+  { revalidate: CACHE_REVALIDATE, tags: ["layout", "content"] }
+);
