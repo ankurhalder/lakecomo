@@ -2,11 +2,38 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useRef, useState, useEffect } from 'react'
+import { Volume2, VolumeX } from 'lucide-react'
 import FeaturesList from './FeaturesList'
 
 export default function Hero({ data }: { data: any }) {
   const { preHeading, mainHeading, subHeading, ctaText, ctaLink, videoUrl } = data?.heroSection || {}
   const features = data?.featuresGrid || []
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isMuted, setIsMuted] = useState(true)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    const savedPref = localStorage.getItem('videoSound')
+    if (savedPref === 'on') {
+      setIsMuted(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (mounted && videoRef.current) {
+      videoRef.current.muted = isMuted
+      localStorage.setItem('videoSound', isMuted ? 'off' : 'on')
+    }
+  }, [isMuted, mounted])
+
+  const toggleSound = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {})
+    }
+    setIsMuted(prev => !prev)
+  }
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black font-sans">
@@ -14,6 +41,7 @@ export default function Hero({ data }: { data: any }) {
       <div className="absolute inset-0 z-0">
         {videoUrl && (
           <video
+            ref={videoRef}
             autoPlay
             muted
             loop
@@ -75,6 +103,17 @@ export default function Hero({ data }: { data: any }) {
         </div>
 
       </div>
+
+      <motion.button
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.2 }}
+        onClick={toggleSound}
+        className="fixed bottom-28 right-6 z-50 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+        aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+      >
+        {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+      </motion.button>
     </div>
   )
 }
