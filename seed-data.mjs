@@ -305,19 +305,53 @@ const docs = [
 async function seedData() {
   console.log(`🚀 Starting Seed... Target Project: ${projectId}`);
   
-  const transaction = client.transaction();
-
-  docs.forEach((doc) => {
-    transaction.createOrReplace(doc);
-    console.log(`Prepared: ${doc._type}`);
-  });
-
-  try {
-    const res = await transaction.commit();
-    console.log(`✅ Success! Created/Updated ${res.results.length} documents.`);
-  } catch (err) {
-    console.error('❌ Migration failed: ', err.message);
+  const assetFields = ['videoFile', 'posterImage', 'logoImage', 'icon', 'images', 'showcaseImages', 'teamMembers'];
+  
+  for (const doc of docs) {
+    try {
+      const existingDoc = await client.getDocument(doc._id);
+      
+      if (existingDoc) {
+        const patchData = { ...doc };
+        delete patchData._id;
+        delete patchData._type;
+        
+        if (patchData.heroSection && existingDoc.heroSection) {
+          assetFields.forEach(field => {
+            if (existingDoc.heroSection[field]) {
+              patchData.heroSection[field] = existingDoc.heroSection[field];
+            }
+          });
+        }
+        
+        assetFields.forEach(field => {
+          if (existingDoc[field]) {
+            patchData[field] = existingDoc[field];
+          }
+        });
+        
+        if (patchData.teamMembers && existingDoc.teamMembers) {
+          patchData.teamMembers = existingDoc.teamMembers.map((member, idx) => {
+            const seedMember = doc.teamMembers?.[idx];
+            if (seedMember && member.image) {
+              return { ...seedMember, image: member.image };
+            }
+            return seedMember || member;
+          });
+        }
+        
+        await client.patch(doc._id).set(patchData).commit();
+        console.log(`✅ Patched: ${doc._type} (preserved assets)`);
+      } else {
+        await client.createOrReplace(doc);
+        console.log(`✅ Created: ${doc._type}`);
+      }
+    } catch (err) {
+      console.error(`❌ Failed ${doc._type}: `, err.message);
+    }
   }
+  
+  console.log('🎉 Seed complete!');
 }
 
 seedData();
