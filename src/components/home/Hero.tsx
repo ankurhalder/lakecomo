@@ -97,9 +97,9 @@ export default function Hero({ data }: { data: any }) {
         />
       </motion.div>
 
-      <div className="relative z-10 flex items-center justify-center lg:justify-start min-h-screen pt-20 pb-32 md:pb-24 px-4 md:px-8 lg:px-12">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-screen pt-20 pb-32 md:pb-24 px-4 md:px-8 lg:px-12">
         
-        <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left lg:pl-6 xl:pl-10 max-w-2xl py-8 lg:py-0">
+        <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left lg:pl-6 xl:pl-10 max-w-2xl mx-auto lg:mx-0 py-8 lg:py-0">
           <motion.p
             custom={0.3}
             variants={textVariants}
