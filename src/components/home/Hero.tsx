@@ -69,7 +69,7 @@ export default function Hero({ data }: { data: any }) {
   }
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black font-sans">
+    <div className="relative w-full min-h-screen overflow-hidden bg-black font-sans">
       
       <motion.div 
         className="absolute inset-0 z-0"
@@ -90,22 +90,22 @@ export default function Hero({ data }: { data: any }) {
           </video>
         )}
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"
+          className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-black/80 via-black/50 to-black/30"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
         />
       </motion.div>
 
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 h-full pt-24 pb-24 px-6 md:px-12">
+      <div className="relative z-10 flex items-center justify-center lg:justify-start min-h-screen pt-20 pb-32 md:pb-24 px-4 md:px-8 lg:px-12">
         
-        <div className="flex flex-col justify-center items-start text-left pl-4 lg:pl-10 max-w-2xl">
+        <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left lg:pl-6 xl:pl-10 max-w-2xl py-8 lg:py-0">
           <motion.p
             custom={0.3}
             variants={textVariants}
             initial="hidden"
             animate="visible"
-            className="text-white/90 text-xl md:text-2xl italic font-light mb-6 tracking-wide font-serif"
+            className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl italic font-light mb-4 md:mb-6 tracking-wide font-serif"
           >
             {preHeading}
           </motion.p>
@@ -115,7 +115,7 @@ export default function Hero({ data }: { data: any }) {
             variants={textVariants}
             initial="hidden"
             animate="visible"
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight mb-8 drop-shadow-xl"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight mb-4 md:mb-8 drop-shadow-xl"
           >
             {mainHeading}
           </motion.h1>
@@ -125,7 +125,7 @@ export default function Hero({ data }: { data: any }) {
             variants={textVariants}
             initial="hidden"
             animate="visible"
-            className="text-white/90 text-xl md:text-2xl font-light tracking-wide mb-12 italic"
+            className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl font-light tracking-wide mb-8 md:mb-12 italic"
           >
             {subHeading}
           </motion.p>
@@ -137,27 +137,27 @@ export default function Hero({ data }: { data: any }) {
               animate="visible"
               whileHover="hover"
               whileTap="tap"
-              className="px-12 py-4 bg-white text-black text-base font-bold uppercase tracking-widest rounded-full transition-colors"
+              className="px-8 md:px-12 py-3 md:py-4 bg-white text-black text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors"
             >
               {ctaText}
             </motion.button>
           </Link>
         </div>
 
-        <div className="hidden lg:flex justify-end items-center">
+        <div className="hidden lg:flex lg:justify-end items-center">
           <FeaturesList features={features} />
         </div>
 
       </div>
 
       <motion.button
-        initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
-        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1.5, type: "spring" as const, stiffness: 200 }}
-        whileHover={{ scale: 1.1, rotate: 10 }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={toggleSound}
-        className="fixed bottom-28 right-6 z-50 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+        className="fixed bottom-24 md:bottom-28 right-4 md:right-6 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
         aria-label={isMuted ? 'Unmute video' : 'Mute video'}
       >
         <motion.div
@@ -166,7 +166,7 @@ export default function Hero({ data }: { data: any }) {
           animate={{ scale: 1, rotate: 0 }}
           transition={{ type: "spring" as const, stiffness: 300 }}
         >
-          {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+          {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
         </motion.div>
       </motion.button>
     </div>
