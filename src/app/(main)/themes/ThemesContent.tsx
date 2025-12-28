@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import { 
   Film, Sparkles, Heart, Star, Crown, 
   Glasses, Drama, Clapperboard, Camera, 
@@ -55,31 +55,45 @@ const getIcon = (iconName?: string) => {
 }
 
 function ThemeModal({ theme, onClose }: { theme: Theme; onClose: () => void }) {
+  const handleClose = useCallback(() => {
+    onClose()
+  }, [onClose])
+
   useEffect(() => {
+    const scrollY = window.scrollY
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.left = '0'
+    document.body.style.right = '0'
     document.body.style.overflow = 'hidden'
     
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+      if (e.key === 'Escape') handleClose()
     }
     window.addEventListener('keydown', handleEscape)
     
     return () => {
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
+      document.body.style.right = ''
       document.body.style.overflow = ''
+      window.scrollTo(0, scrollY)
       window.removeEventListener('keydown', handleEscape)
     }
-  }, [onClose])
+  }, [handleClose])
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={onClose}
+      transition={{ duration: 0.15 }}
+      onClick={handleClose}
     >
       <div 
-        className="absolute inset-0 backdrop-blur-md"
-        style={{ backgroundColor: 'var(--bg-primary)', opacity: 0.95 }}
+        className="absolute inset-0 bg-black/90"
       />
       
       <motion.div
@@ -88,14 +102,14 @@ function ThemeModal({ theme, onClose }: { theme: Theme; onClose: () => void }) {
           backgroundColor: 'var(--bg-secondary)',
           borderColor: 'color-mix(in srgb, var(--text-primary) 10%, transparent)'
         }}
-        initial={{ scale: 0.95, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        exit={{ scale: 0.95, y: 20 }}
-        transition={{ type: "spring" as const, damping: 25, stiffness: 300 }}
+        initial={{ scale: 0.98, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.98, opacity: 0 }}
+        transition={{ duration: 0.15 }}
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
           style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}
           aria-label="Close modal"
@@ -173,47 +187,20 @@ function ThemeModal({ theme, onClose }: { theme: Theme; onClose: () => void }) {
   )
 }
 
-
-function ProgressBar({ progress, themes, onThemeClick }: { 
-  progress: number; 
-  themes: Theme[];
-  onThemeClick: (index: number) => void;
-}) {
+function MiddleProgressBar({ progress }: { progress: number }) {
   return (
-    <div 
-      className="fixed left-4 lg:left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-2"
-    >
+    <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-1 z-10">
       <div 
-        className="relative w-1 rounded-full overflow-hidden"
+        className="absolute inset-0 rounded-full"
+        style={{ backgroundColor: 'var(--overlay)' }}
+      />
+      <motion.div
+        className="absolute top-0 left-0 w-full rounded-full"
         style={{ 
-          height: `${Math.min(themes.length * 60, 300)}px`,
-          backgroundColor: 'var(--overlay)'
+          backgroundColor: 'var(--accent)',
+          height: `${Math.min(progress * 100, 100)}%`
         }}
-      >
-        <motion.div
-          className="absolute top-0 left-0 w-full rounded-full"
-          style={{ 
-            backgroundColor: 'var(--accent)',
-            height: `${progress * 100}%`
-          }}
-        />
-      </div>
-      
-      <div className="flex flex-col gap-3 mt-4">
-        {themes.map((theme, index) => (
-          <button
-            key={theme.title}
-            onClick={() => onThemeClick(index)}
-            className="w-8 h-8 rounded-full flex items-center justify-center transition-all text-xs font-bold"
-            style={{ 
-              backgroundColor: progress > (index / themes.length) ? 'var(--accent)' : 'var(--overlay)',
-              color: progress > (index / themes.length) ? 'var(--bg-primary)' : 'var(--text-secondary)'
-            }}
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
+      />
     </div>
   )
 }
@@ -236,15 +223,15 @@ function ThemeCard({ theme, index, onReadMore }: { theme: Theme; index: number; 
       ref={cardRef}
       id={`theme-${index}`}
       style={{ skewY, y, opacity }}
-      className={`relative flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-6 lg:gap-12 items-center py-12 lg:py-20`}
+      className={`relative flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-6 lg:gap-8 items-center py-12 lg:py-20`}
     >
-      <div className="relative w-full lg:w-1/2 aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+      <div className="relative w-full lg:w-[calc(50%-2rem)] aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
         {theme.imageUrl ? (
           <Image
             src={theme.imageUrl}
             alt={theme.title}
             fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
+            sizes="(max-width: 1024px) 100vw, 45vw"
             className="object-cover object-top"
             priority={index < 2}
           />
@@ -282,7 +269,7 @@ function ThemeCard({ theme, index, onReadMore }: { theme: Theme; index: number; 
         </div>
       </div>
 
-      <div className={`w-full lg:w-1/2 space-y-4 ${isEven ? 'lg:pl-4' : 'lg:pr-4'}`}>
+      <div className={`w-full lg:w-[calc(50%-2rem)] space-y-4`}>
         <div>
           <span 
             className="text-xs uppercase tracking-[0.3em] font-light"
@@ -375,12 +362,21 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
   const hero = data?.hero || {}
   const themes = data?.themesList || []
   const containerRef = useRef<HTMLDivElement>(null)
+  const themesRef = useRef<HTMLDivElement>(null)
   const [selectedTheme, setSelectedTheme] = useState<Theme | null>(null)
+  const [progress, setProgress] = useState(0)
 
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
+    target: themesRef,
+    offset: ["start center", "end center"]
   })
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (v) => {
+      setProgress(v)
+    })
+    return () => unsubscribe()
+  }, [scrollYProgress])
 
   const defaultThemes: Theme[] = [
     {
@@ -411,24 +407,11 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
 
   const displayThemes = themes.length > 0 ? themes : defaultThemes
 
-  const scrollToTheme = (index: number) => {
-    const element = document.getElementById(`theme-${index}`)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    }
-  }
-
   return (
     <>
       <div ref={containerRef} className="relative min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <ProgressBar 
-          progress={scrollYProgress.get()} 
-          themes={displayThemes}
-          onThemeClick={scrollToTheme}
-        />
-
         <motion.div 
-          className="fixed top-0 left-0 right-0 h-1 z-50 origin-left" 
+          className="fixed top-0 left-0 right-0 h-1 z-50 origin-left lg:hidden" 
           style={{ scaleX: scrollYProgress, backgroundColor: 'var(--accent)' }} 
         />
         
@@ -497,7 +480,9 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
           </div>
         </section>
 
-        <section className="px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
+        <section ref={themesRef} className="relative px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
+          <MiddleProgressBar progress={progress} />
+          
           {displayThemes.map((theme, index) => (
             <ThemeCard 
               key={theme.title} 

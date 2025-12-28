@@ -368,6 +368,16 @@ async function seedData() {
           });
         }
         
+        if (patchData.themesList && existingDoc.themesList) {
+          patchData.themesList = patchData.themesList.map((seedTheme) => {
+            const existingTheme = existingDoc.themesList.find(t => t._key === seedTheme._key);
+            if (existingTheme && existingTheme.image) {
+              return { ...seedTheme, image: existingTheme.image };
+            }
+            return seedTheme;
+          });
+        }
+        
         await client.patch(doc._id).set(patchData).commit();
         console.log(`✅ Patched: ${doc._type} (preserved assets)`);
       } else {

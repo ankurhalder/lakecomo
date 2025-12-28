@@ -13,8 +13,8 @@ function ThemeCardSkeleton({ index }: { index: number }) {
   const isEven = index % 2 === 0
   
   return (
-    <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-6 lg:gap-12 items-center py-12 lg:py-20`}>
-      <div className="relative w-full lg:w-1/2 aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden">
+    <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-6 lg:gap-8 items-center py-12 lg:py-20`}>
+      <div className="relative w-full lg:w-[calc(50%-2rem)] aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden">
         <Skeleton className="w-full h-full rounded-2xl" />
         
         <div className="absolute bottom-4 left-4 flex items-center gap-3">
@@ -23,7 +23,7 @@ function ThemeCardSkeleton({ index }: { index: number }) {
         </div>
       </div>
 
-      <div className={`w-full lg:w-1/2 space-y-4 ${isEven ? 'lg:pl-4' : 'lg:pr-4'}`}>
+      <div className={`w-full lg:w-[calc(50%-2rem)] space-y-4`}>
         <div>
           <Skeleton className="w-20 h-2 mb-3" />
           <Skeleton className="w-full max-w-xs h-8 mb-2" />
@@ -62,18 +62,7 @@ function ThemeCardSkeleton({ index }: { index: number }) {
 export default function Loading() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
-      <div 
-        className="fixed left-4 lg:left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-2"
-      >
-        <Skeleton className="w-1 h-48 rounded-full" />
-        <div className="flex flex-col gap-3 mt-4">
-          {[1, 2, 3].map((i) => (
-            <Skeleton key={i} className="w-8 h-8 rounded-full" />
-          ))}
-        </div>
-      </div>
-
-      <Skeleton className="fixed top-0 left-0 right-0 h-1 z-50" />
+      <Skeleton className="fixed top-0 left-0 right-0 h-1 z-50 lg:hidden" />
       
       <section className="min-h-[80vh] flex items-center justify-center px-4 relative">
         <div 
@@ -98,7 +87,11 @@ export default function Loading() {
         </div>
       </section>
 
-      <section className="px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
+      <section className="relative px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
+        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-1 z-10">
+          <Skeleton className="w-full h-full rounded-full" />
+        </div>
+        
         <ThemeCardSkeleton index={0} />
         <ThemeCardSkeleton index={1} />
         <ThemeCardSkeleton index={2} />
