@@ -156,7 +156,24 @@ const docs = [
         vibe: 'Stylish, fun, romantic, sun-soaked Italian adventure.',
         story: 'Guests star in a story of romance, intrigue, and playful elegance in the heart of 1960s Rome. Think flowing dresses, sharp suits, chic sunglasses, and a cinematic, social-energy vibe.',
         feel: 'Romantic, stylish, lively, playful, cinematic charm.'
-      }
+      },
+      {
+        _key: 'theme4',
+        title: 'Pink Ladies & T-Birds',
+        genre: 'Retro Cool / Grease Movie Theme',
+        vibe: 'Pink Ladies–inspired retro glamour with Grease-era attitude. Think bubble-gum pink, black leather accents, cat-eye liner, soft curls, and confident, feminine rebellion.',
+        story: 'Guests become members of the iconic Pink Ladies & T-Birds, stepping into a playful cinematic fantasy inspired by Grease. It’s a stylish, story-driven night of sisterhood, sass, and star moments — where the bride is the leading lady and every woman is part of the cast, striking poses and owning the spotlight.',
+        feel: 'Fun, empowering, nostalgic, cinematic, stylish drama with attitude.'
+      }, 
+      {
+        _key: 'theme5',
+        title: 'Angels & Demons',
+        genre: 'Secret Societies / Mystery Adventure Theme',
+        vibe: 'Dark, intellectual cinematic drama — mystery, symbolism, and high-stakes elegance. Think Vatican grandeur, ancient secrets, candlelight, stone corridors, and a refined, suspenseful atmosphere.',
+        story: 'Guests step into a cinematic world inspired by Angels & Demons, where secret societies, hidden symbols, and the tension between faith and reason drive the night. As scenes from the film unfold around them, guests become part of the mystery — aligned as Angels or Demons — navigating a story of power, belief, and revelation, with the event’s hosts at the center of the unfolding narrative.',
+        feel: 'Mysterious, dramatic, cinematic, intellectual, suspense-driven elegance.'
+      },
+ 
     ]
   },
 

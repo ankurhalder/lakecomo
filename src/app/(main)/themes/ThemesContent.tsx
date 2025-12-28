@@ -93,7 +93,10 @@ function ThemeCard({ theme, index }: { theme: Theme; index: number }) {
             className="object-cover transition-transform duration-700 group-hover:scale-110"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-gray-800 via-gray-900 to-black flex items-center justify-center">
+          <div 
+            className="w-full h-full flex items-center justify-center"
+            style={{ background: 'linear-gradient(135deg, var(--bg-secondary), var(--bg-primary))' }}
+          >
             <motion.span 
               className="text-8xl opacity-30"
               animate={{ rotate: [0, 10, 0] }}
@@ -104,7 +107,10 @@ function ThemeCard({ theme, index }: { theme: Theme; index: number }) {
           </div>
         )}
         
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div 
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(to top, var(--bg-primary), transparent 50%)' }}
+        />
         
         <motion.div
           className="absolute bottom-6 left-6 flex items-center gap-3"
@@ -113,10 +119,20 @@ function ThemeCard({ theme, index }: { theme: Theme; index: number }) {
           transition={{ delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white">
+          <div 
+            className="w-12 h-12 rounded-full backdrop-blur-md border flex items-center justify-center"
+            style={{ 
+              backgroundColor: 'var(--overlay)', 
+              borderColor: 'var(--text-secondary)',
+              color: 'var(--text-primary)'
+            }}
+          >
             {getIcon(theme.icon)}
           </div>
-          <span className="text-sm text-white/80 font-medium uppercase tracking-wider">
+          <span 
+            className="text-sm font-medium uppercase tracking-wider"
+            style={{ color: 'var(--text-secondary)' }}
+          >
             {theme.genre}
           </span>
         </motion.div>
@@ -129,10 +145,16 @@ function ThemeCard({ theme, index }: { theme: Theme; index: number }) {
           transition={{ delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <span className="text-sm text-white/40 uppercase tracking-[0.3em] font-light">
+          <span 
+            className="text-sm uppercase tracking-[0.3em] font-light"
+            style={{ color: 'var(--text-secondary)', opacity: 0.5 }}
+          >
             Theme {String(index + 1).padStart(2, '0')}
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-2 tracking-tight leading-tight">
+          <h2 
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 tracking-tight leading-tight"
+            style={{ color: 'var(--text-primary)' }}
+          >
             {theme.title}
           </h2>
         </motion.div>
@@ -144,28 +166,46 @@ function ThemeCard({ theme, index }: { theme: Theme; index: number }) {
           transition={{ delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+          <div 
+            className="backdrop-blur-sm rounded-xl p-4 border transition-colors"
+            style={{ 
+              backgroundColor: 'var(--overlay)',
+              borderColor: 'color-mix(in srgb, var(--text-primary) 10%, transparent)'
+            }}
+          >
             <div className="flex items-center gap-2 mb-2">
-              <Sparkles size={14} className="text-white/50" />
-              <p className="text-xs uppercase tracking-wider text-white/50">Vibe</p>
+              <Sparkles size={14} style={{ color: 'var(--text-secondary)' }} />
+              <p className="text-xs uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>Vibe</p>
             </div>
-            <p className="text-sm text-white/90 leading-relaxed">{theme.vibe}</p>
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)', opacity: 0.9 }}>{theme.vibe}</p>
           </div>
 
-          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+          <div 
+            className="backdrop-blur-sm rounded-xl p-4 border transition-colors"
+            style={{ 
+              backgroundColor: 'var(--overlay)',
+              borderColor: 'color-mix(in srgb, var(--text-primary) 10%, transparent)'
+            }}
+          >
             <div className="flex items-center gap-2 mb-2">
-              <Film size={14} className="text-white/50" />
-              <p className="text-xs uppercase tracking-wider text-white/50">Story</p>
+              <Film size={14} style={{ color: 'var(--text-secondary)' }} />
+              <p className="text-xs uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>Story</p>
             </div>
-            <p className="text-sm text-white/90 leading-relaxed line-clamp-4">{theme.story}</p>
+            <p className="text-sm leading-relaxed line-clamp-4" style={{ color: 'var(--text-primary)', opacity: 0.9 }}>{theme.story}</p>
           </div>
 
-          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+          <div 
+            className="backdrop-blur-sm rounded-xl p-4 border transition-colors"
+            style={{ 
+              backgroundColor: 'var(--overlay)',
+              borderColor: 'color-mix(in srgb, var(--text-primary) 10%, transparent)'
+            }}
+          >
             <div className="flex items-center gap-2 mb-2">
-              <Heart size={14} className="text-white/50" />
-              <p className="text-xs uppercase tracking-wider text-white/50">Feel</p>
+              <Heart size={14} style={{ color: 'var(--text-secondary)' }} />
+              <p className="text-xs uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>Feel</p>
             </div>
-            <p className="text-sm text-white/90 leading-relaxed italic">{theme.feel}</p>
+            <p className="text-sm leading-relaxed italic" style={{ color: 'var(--text-primary)', opacity: 0.9 }}>{theme.feel}</p>
           </div>
         </motion.div>
 
@@ -177,9 +217,13 @@ function ThemeCard({ theme, index }: { theme: Theme; index: number }) {
         >
           <Link href={theme.ctaLink || '/contact'}>
             <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -15px rgba(255, 255, 255, 0.2)" }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group flex items-center gap-3 px-8 py-4 bg-white text-black font-bold uppercase tracking-widest rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="group flex items-center gap-3 px-8 py-4 font-bold uppercase tracking-widest rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+              style={{ 
+                backgroundColor: 'var(--accent)',
+                color: 'var(--bg-primary)',
+              }}
             >
               <span>{theme.ctaText || 'Book This Theme'}</span>
               <motion.span
@@ -240,7 +284,7 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
   const displayThemes = themes.length > 0 ? themes : defaultThemes
 
   return (
-    <div ref={containerRef} className="relative min-h-screen">
+    <div ref={containerRef} className="relative min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <motion.section 
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{ opacity: heroOpacity, scale: heroScale }}
@@ -254,11 +298,16 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-black/60" />
+            <div className="absolute inset-0" style={{ backgroundColor: 'var(--bg-primary)', opacity: 0.6 }} />
           </div>
         )}
         
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none" />
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{ 
+            background: `linear-gradient(to bottom, var(--bg-primary), transparent 30%, transparent 70%, var(--bg-primary))` 
+          }}
+        />
         
         <div className="relative z-10 text-center px-4 md:px-8 max-w-5xl mx-auto pt-32 pb-20">
           <motion.div
@@ -267,7 +316,8 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
             transition={{ duration: 0.8 }}
           >
             <motion.p
-              className="text-white/50 text-sm md:text-base uppercase tracking-[0.4em] mb-6"
+              className="text-sm md:text-base uppercase tracking-[0.4em] mb-6"
+              style={{ color: 'var(--text-secondary)', opacity: 0.6 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -276,7 +326,8 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
             </motion.p>
 
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-8 tracking-tight leading-[0.9]"
+              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-[0.9]"
+              style={{ color: 'var(--text-primary)' }}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, type: "spring" as const }}
@@ -285,7 +336,8 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
             </motion.h1>
 
             <motion.p
-              className="text-xl md:text-2xl lg:text-3xl text-white/70 font-light italic mb-6"
+              className="text-xl md:text-2xl lg:text-3xl font-light italic mb-6"
+              style={{ color: 'var(--text-secondary)' }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
@@ -295,7 +347,8 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
 
             {hero.description && (
               <motion.p
-                className="text-white/50 max-w-3xl mx-auto leading-relaxed text-lg"
+                className="max-w-3xl mx-auto leading-relaxed text-lg"
+                style={{ color: 'var(--text-secondary)', opacity: 0.7 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
@@ -312,23 +365,36 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
             transition={{ delay: 1 }}
           >
             <motion.div
-              className="w-6 h-10 border-2 border-white/30 rounded-full mx-auto flex justify-center"
+              className="w-6 h-10 border-2 rounded-full mx-auto flex justify-center"
+              style={{ borderColor: 'var(--text-secondary)', opacity: 0.3 }}
               animate={{ y: [0, 8, 0] }}
               transition={{ repeat: Infinity, duration: 2 }}
             >
               <motion.div 
-                className="w-1.5 h-3 bg-white/50 rounded-full mt-2"
-                animate={{ opacity: [0.5, 1, 0.5] }}
+                className="w-1.5 h-3 rounded-full mt-2"
+                style={{ backgroundColor: 'var(--text-secondary)', opacity: 0.5 }}
+                animate={{ opacity: [0.3, 0.7, 0.3] }}
                 transition={{ repeat: Infinity, duration: 2 }}
               />
             </motion.div>
-            <p className="text-white/30 text-xs uppercase tracking-widest mt-4">Scroll to explore</p>
+            <p 
+              className="text-xs uppercase tracking-widest mt-4"
+              style={{ color: 'var(--text-secondary)', opacity: 0.4 }}
+            >
+              Scroll to explore
+            </p>
           </motion.div>
         </div>
       </motion.section>
 
       <section className="relative px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent hidden lg:block" />
+        <div 
+          className="absolute left-1/2 top-0 bottom-0 w-px hidden lg:block"
+          style={{ 
+            background: `linear-gradient(to bottom, transparent, var(--text-secondary), transparent)`,
+            opacity: 0.1
+          }}
+        />
         
         {displayThemes.map((theme, index) => (
           <ThemeCard key={theme.title} theme={theme} index={index} />
@@ -336,7 +402,12 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
       </section>
 
       <section className="relative py-32 px-4">
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-gray-900/50 to-transparent" />
+        <div 
+          className="absolute inset-0"
+          style={{ 
+            background: `linear-gradient(to top, var(--bg-primary), var(--bg-secondary), transparent)` 
+          }}
+        />
         
         <motion.div 
           className="relative z-10 text-center max-w-3xl mx-auto"
@@ -344,22 +415,32 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <Wand2 className="w-12 h-12 text-white/30 mx-auto mb-6" />
+          <Wand2 className="w-12 h-12 mx-auto mb-6" style={{ color: 'var(--text-secondary)', opacity: 0.4 }} />
           
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 
+            className="text-3xl md:text-4xl font-bold mb-4"
+            style={{ color: 'var(--text-primary)' }}
+          >
             Create Your Own Theme
           </h2>
           
-          <p className="text-white/50 text-lg mb-10 leading-relaxed">
+          <p 
+            className="text-lg mb-10 leading-relaxed"
+            style={{ color: 'var(--text-secondary)' }}
+          >
             Don't see what you're looking for? We can design a completely custom theme 
             tailored to your vision, from concept to costume.
           </p>
           
           <Link href="/contact">
             <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.25)" }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-12 py-5 bg-white text-black text-lg font-bold uppercase tracking-widest rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="px-12 py-5 text-lg font-bold uppercase tracking-widest rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+              style={{ 
+                backgroundColor: 'var(--accent)',
+                color: 'var(--bg-primary)',
+              }}
             >
               Start Your Custom Theme
             </motion.button>
