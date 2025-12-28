@@ -8,3 +8,5 @@ export const client = createClient({
   apiVersion,
   useCdn: true,
 })
+
+export const DEFAULT_REVALIDATE = 86400;

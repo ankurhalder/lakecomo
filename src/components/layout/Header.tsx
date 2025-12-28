@@ -6,7 +6,19 @@ import { Sun, Moon, X, Menu } from 'lucide-react'
 import { useState } from 'react'
 import { useTheme } from '@/components/providers/ThemeProvider'
 
-export default function Header({ data }: { data: any }) {
+interface NavLink {
+  label: string;
+  url: string;
+}
+
+interface HeaderData {
+  logoText?: string;
+  links?: NavLink[];
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+export default function Header({ data }: { data: HeaderData }) {
   const { theme, toggleTheme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   
@@ -54,7 +66,7 @@ export default function Header({ data }: { data: any }) {
         
         <div className="flex items-center gap-4 md:gap-8">
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-            {links.map((link: any, idx: number) => (
+            {links.map((link: NavLink, idx: number) => (
               <Link 
                 key={idx} 
                 href={link.url} 
@@ -100,7 +112,7 @@ export default function Header({ data }: { data: any }) {
             style={{ backgroundColor: 'var(--bg-primary)' }}
           >
             <nav className="flex flex-col items-center gap-6">
-              {links.map((link: any, idx: number) => (
+              {links.map((link: NavLink, idx: number) => (
                 <motion.div
                   key={idx}
                   custom={idx}

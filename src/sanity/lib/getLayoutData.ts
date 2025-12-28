@@ -1,7 +1,5 @@
-import { client } from "./client";
+import { client, DEFAULT_REVALIDATE } from "./client";
 import { unstable_cache } from "next/cache";
-
-const CACHE_REVALIDATE = 86400;
 
 const query = `
   {
@@ -28,7 +26,7 @@ const fetchLayoutData = async () => {
 const cachedFetch = unstable_cache(
   fetchLayoutData,
   ["layout"],
-  { revalidate: CACHE_REVALIDATE, tags: ["layout", "content"] }
+  { revalidate: DEFAULT_REVALIDATE, tags: ["layout", "content"] }
 );
 
 export async function getLayoutData() {

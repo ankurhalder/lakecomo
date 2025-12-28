@@ -9,8 +9,14 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 const token = process.env.SANITY_WRITE_TOKEN; 
 
-if (!token) {
-  console.error("❌ Missing SANITY_WRITE_TOKEN. Please add it to your .env.local file.");
+const missingVars = [];
+if (!projectId) missingVars.push("NEXT_PUBLIC_SANITY_PROJECT_ID");
+if (!dataset) missingVars.push("NEXT_PUBLIC_SANITY_DATASET");
+if (!token) missingVars.push("SANITY_WRITE_TOKEN");
+
+if (missingVars.length > 0) {
+  console.error(`❌ Missing environment variables: ${missingVars.join(", ")}`);
+  console.error("Please add them to your .env.local file.");
   process.exit(1);
 }
 

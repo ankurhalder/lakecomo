@@ -39,7 +39,27 @@ const buttonVariants = {
   tap: { scale: 0.95 }
 }
 
-export default function Hero({ data }: { data: any }) {
+interface FeatureItem {
+  title: string;
+  subtitle?: string;
+  tag?: string;
+  link?: string;
+  iconUrl?: string;
+}
+
+interface HeroData {
+  heroSection?: {
+    preHeading?: string;
+    mainHeading?: string;
+    subHeading?: string;
+    ctaText?: string;
+    ctaLink?: string;
+    videoUrl?: string;
+  };
+  featuresGrid?: FeatureItem[];
+}
+
+export default function Hero({ data }: { data: HeroData }) {
   const { preHeading, mainHeading, subHeading, ctaText, ctaLink, videoUrl } = data?.heroSection || {}
   const features = data?.featuresGrid || []
   const videoRef = useRef<HTMLVideoElement>(null)

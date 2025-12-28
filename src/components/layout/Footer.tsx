@@ -5,7 +5,19 @@ import { Instagram, Facebook, Clapperboard } from 'lucide-react'
 import Link from 'next/link'
 import { useTheme } from '@/components/providers/ThemeProvider'
 
-export default function Footer({ data }: { data: any }) {
+interface SocialLink {
+  platform: string;
+  url: string;
+}
+
+interface FooterData {
+  copyright?: string;
+  email?: string;
+  footerTagline?: string;
+  socialLinks?: SocialLink[];
+}
+
+export default function Footer({ data }: { data: FooterData }) {
   const { theme } = useTheme()
   const socialLinks = data?.socialLinks || [];
 
@@ -41,7 +53,7 @@ export default function Footer({ data }: { data: any }) {
       </div>
 
       <div className="flex gap-4 md:gap-6 order-1 md:order-3">
-        {socialLinks.map((social: any, idx: number) => (
+        {socialLinks.map((social: SocialLink, idx: number) => (
           <Link 
             key={idx} 
             href={social.url} 

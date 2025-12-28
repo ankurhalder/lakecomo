@@ -1,6 +1,9 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
+
+const MotionLink = motion(Link);
 
 interface FeatureItemProps {
   title: string;
@@ -36,7 +39,7 @@ const itemVariants = {
 
 const LaurelBadge = ({ item, index }: { item: FeatureItemProps; index: number }) => {
   return (
-    <motion.a
+    <MotionLink
       href={item.link || '#'}
       variants={itemVariants}
       whileHover={{ 
@@ -88,7 +91,7 @@ const LaurelBadge = ({ item, index }: { item: FeatureItemProps; index: number })
           </motion.p>
         )}
       </div>
-    </motion.a>
+    </MotionLink>
   );
 };
 
