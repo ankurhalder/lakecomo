@@ -13,8 +13,8 @@ function ThemeCardSkeleton({ index }: { index: number }) {
   const isEven = index % 2 === 0
   
   return (
-    <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-6 lg:gap-8 items-center py-12 lg:py-20`}>
-      <div className="relative w-full lg:w-[calc(50%-2rem)] aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden">
+    <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-32 items-center py-16 lg:py-24 px-4 lg:px-12`}>
+      <div className="relative w-full lg:w-[45%] aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden">
         <Skeleton className="w-full h-full rounded-2xl" />
         
         <div className="absolute bottom-4 left-4 flex items-center gap-3">
@@ -23,7 +23,7 @@ function ThemeCardSkeleton({ index }: { index: number }) {
         </div>
       </div>
 
-      <div className={`w-full lg:w-[calc(50%-2rem)] space-y-4`}>
+      <div className={`w-full lg:w-[45%] space-y-4`}>
         <div>
           <Skeleton className="w-20 h-2 mb-3" />
           <Skeleton className="w-full max-w-xs h-8 mb-2" />
@@ -88,8 +88,8 @@ export default function Loading() {
       </section>
 
       <section className="relative px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
-        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-1 z-10">
-          <Skeleton className="w-full h-full rounded-full" />
+        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px z-10">
+          <Skeleton className="w-full h-full" />
         </div>
         
         <ThemeCardSkeleton index={0} />

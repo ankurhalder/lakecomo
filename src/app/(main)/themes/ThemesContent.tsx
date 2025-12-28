@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence, useSpring, type MotionValue } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState, useEffect, useCallback } from 'react'
@@ -9,6 +9,7 @@ import {
   Glasses, Drama, Clapperboard, Camera, 
   PartyPopper, Wand2, Theater, X, ChevronDown
 } from 'lucide-react'
+import { useLenis } from '@/components/providers/SmoothScroll'
 
 interface Theme {
   title: string
@@ -55,17 +56,23 @@ const getIcon = (iconName?: string) => {
 }
 
 function ThemeModal({ theme, onClose }: { theme: Theme; onClose: () => void }) {
+  const { stop: stopLenis, start: startLenis } = useLenis()
+  
   const handleClose = useCallback(() => {
     onClose()
   }, [onClose])
 
   useEffect(() => {
-    const scrollY = window.scrollY
-    document.body.style.position = 'fixed'
-    document.body.style.top = `-${scrollY}px`
-    document.body.style.left = '0'
-    document.body.style.right = '0'
+    stopLenis()
+    
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    const originalStyle = {
+      overflow: document.body.style.overflow,
+      paddingRight: document.body.style.paddingRight
+    }
+    
     document.body.style.overflow = 'hidden'
+    document.body.style.paddingRight = `${scrollbarWidth}px`
     
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') handleClose()
@@ -73,15 +80,12 @@ function ThemeModal({ theme, onClose }: { theme: Theme; onClose: () => void }) {
     window.addEventListener('keydown', handleEscape)
     
     return () => {
-      document.body.style.position = ''
-      document.body.style.top = ''
-      document.body.style.left = ''
-      document.body.style.right = ''
-      document.body.style.overflow = ''
-      window.scrollTo(0, scrollY)
+      startLenis()
+      document.body.style.overflow = originalStyle.overflow
+      document.body.style.paddingRight = originalStyle.paddingRight
       window.removeEventListener('keydown', handleEscape)
     }
-  }, [handleClose])
+  }, [handleClose, stopLenis, startLenis])
 
   return (
     <motion.div
@@ -89,28 +93,31 @@ function ThemeModal({ theme, onClose }: { theme: Theme; onClose: () => void }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.15 }}
+      transition={{ duration: 0.2 }}
       onClick={handleClose}
     >
       <div 
-        className="absolute inset-0 bg-black/90"
+        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
       />
       
       <motion.div
-        className="relative w-full max-w-xl max-h-[90vh] sm:max-h-[85vh] overflow-y-auto overflow-x-hidden rounded-xl sm:rounded-2xl border shadow-2xl"
+        className="relative w-full max-w-xl max-h-[75vh] sm:max-h-[70vh] overflow-y-auto overflow-x-hidden rounded-xl sm:rounded-2xl border shadow-2xl"
         style={{ 
           backgroundColor: 'var(--bg-secondary)',
-          borderColor: 'color-mix(in srgb, var(--text-primary) 10%, transparent)'
+          borderColor: 'color-mix(in srgb, var(--text-primary) 10%, transparent)',
+          overscrollBehavior: 'contain'
         }}
-        initial={{ scale: 0.98, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.98, opacity: 0 }}
-        transition={{ duration: 0.15 }}
+        initial={{ scale: 0.95, opacity: 0, y: 10 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.95, opacity: 0, y: 10 }}
+        transition={{ type: "spring", duration: 0.4, bounce: 0 }}
         onClick={(e) => e.stopPropagation()}
+        onWheel={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
       >
         <button
           onClick={handleClose}
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 hover:bg-black/10"
           style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}
           aria-label="Close modal"
         >
@@ -187,20 +194,94 @@ function ThemeModal({ theme, onClose }: { theme: Theme; onClose: () => void }) {
   )
 }
 
-function MiddleProgressBar({ progress }: { progress: number }) {
+function AnimatedSVGTrail({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
+  const springProgress = useSpring(scrollYProgress, { stiffness: 40, damping: 25, restDelta: 0.001 })
+  
+  const y = useTransform(springProgress, [0, 1], ["0%", "100%"])
+  
+  const x = useTransform(
+    springProgress,
+    [0, 0.15, 0.3, 0.5, 0.7, 0.85, 1],
+    ["0px", "25px", "-20px", "15px", "-25px", "10px", "0px"]
+  )
+
+  const iconOpacity = useTransform(springProgress, [0, 0.02, 0.98, 1], [0, 0.9, 0.9, 0])
+  const progressHeight = useTransform(springProgress, [0, 1], ["0%", "100%"])
+  const glowScale = useTransform(springProgress, [0, 0.5, 1], [1, 1.1, 1])
+
   return (
-    <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-1 z-10">
+    <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-[120px] pointer-events-none z-20">
       <div 
-        className="absolute inset-0 rounded-full"
-        style={{ backgroundColor: 'var(--overlay)' }}
-      />
-      <motion.div
-        className="absolute top-0 left-0 w-full rounded-full"
+        className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2"
         style={{ 
-          backgroundColor: 'var(--accent)',
-          height: `${Math.min(progress * 100, 100)}%`
+          background: 'linear-gradient(to bottom, transparent 5%, var(--text-secondary) 15%, var(--text-secondary) 85%, transparent 95%)',
+          opacity: 0.08
         }}
       />
+      
+      <motion.div 
+        className="absolute left-1/2 top-0 w-px -translate-x-1/2 rounded-full"
+        style={{ 
+          height: progressHeight,
+          background: 'linear-gradient(to bottom, var(--accent), transparent)',
+          opacity: 0.15
+        }}
+      />
+      
+      {[0.2, 0.4, 0.6, 0.8].map((pos, i) => (
+        <motion.div
+          key={i}
+          className="absolute left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full"
+          style={{
+            top: `${pos * 100}%`,
+            backgroundColor: 'var(--accent)',
+            opacity: useTransform(springProgress, 
+              [pos - 0.1, pos, pos + 0.1], 
+              [0, 0.4, 0]
+            ),
+            scale: useTransform(springProgress,
+              [pos - 0.1, pos, pos + 0.1],
+              [0.5, 1, 0.5]
+            )
+          }}
+        />
+      ))}
+      
+      <motion.div
+        style={{ top: y, x, opacity: iconOpacity }}
+        className="absolute left-1/2 -translate-x-1/2 -mt-4"
+      >
+        <motion.div 
+          className="relative w-8 h-8 flex items-center justify-center"
+          style={{ scale: glowScale }}
+        >
+          <motion.div 
+            className="absolute inset-[-4px] rounded-full"
+            style={{ 
+              backgroundColor: 'var(--accent)', 
+              opacity: 0.1 
+            }}
+          />
+          <motion.div 
+            className="relative z-10 w-8 h-8 rounded-full flex items-center justify-center border"
+            style={{ 
+              backgroundColor: 'var(--bg-primary)',
+              borderColor: 'color-mix(in srgb, var(--accent) 50%, transparent)',
+              color: 'var(--accent)'
+            }}
+          >
+            <Sparkles size={14} />
+          </motion.div>
+        </motion.div>
+        
+        <motion.div 
+          className="absolute top-full left-1/2 -translate-x-1/2 w-px h-12 rounded-full"
+          style={{ 
+            background: 'linear-gradient(to bottom, var(--accent), transparent)',
+            opacity: 0.2
+          }}
+        />
+      </motion.div>
     </div>
   )
 }
@@ -212,9 +293,10 @@ function ThemeCard({ theme, index, onReadMore }: { theme: Theme; index: number; 
     offset: ["start end", "end start"]
   })
 
-  const skewY = useTransform(scrollYProgress, [0, 0.5], [3, 0])
-  const y = useTransform(scrollYProgress, [0, 0.5], [80, 0])
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1])
+  const skewY = useTransform(scrollYProgress, [0, 0.4, 0.6], [4, 0, -1])
+  const y = useTransform(scrollYProgress, [0, 0.5], [120, 0])
+  const opacity = useTransform(scrollYProgress, [0, 0.25], [0, 1])
+  const scale = useTransform(scrollYProgress, [0, 0.5], [0.95, 1])
 
   const isEven = index % 2 === 0
 
@@ -222,10 +304,10 @@ function ThemeCard({ theme, index, onReadMore }: { theme: Theme; index: number; 
     <motion.div
       ref={cardRef}
       id={`theme-${index}`}
-      style={{ skewY, y, opacity }}
-      className={`relative flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-6 lg:gap-8 items-center py-12 lg:py-20`}
+      style={{ skewY, y, opacity, scale }}
+      className={`relative flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-32 items-center py-16 lg:py-24 px-4 lg:px-12`}
     >
-      <div className="relative w-full lg:w-[calc(50%-2rem)] aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+      <div className="relative w-full lg:w-[45%] aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
         {theme.imageUrl ? (
           <Image
             src={theme.imageUrl}
@@ -251,7 +333,7 @@ function ThemeCard({ theme, index, onReadMore }: { theme: Theme; index: number; 
         
         <div className="absolute bottom-4 left-4 flex items-center gap-3">
           <div 
-            className="w-10 h-10 rounded-full backdrop-blur-md border flex items-center justify-center"
+            className="w-10 h-10 rounded-full border flex items-center justify-center"
             style={{ 
               backgroundColor: 'var(--overlay)', 
               borderColor: 'var(--text-secondary)',
@@ -269,7 +351,7 @@ function ThemeCard({ theme, index, onReadMore }: { theme: Theme; index: number; 
         </div>
       </div>
 
-      <div className={`w-full lg:w-[calc(50%-2rem)] space-y-4`}>
+      <div className={`w-full lg:w-[45%] space-y-4`}>
         <div>
           <span 
             className="text-xs uppercase tracking-[0.3em] font-light"
@@ -287,7 +369,7 @@ function ThemeCard({ theme, index, onReadMore }: { theme: Theme; index: number; 
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div 
-            className="backdrop-blur-sm rounded-xl p-3 border transition-colors"
+            className="rounded-xl p-3 border transition-colors"
             style={{ 
               backgroundColor: 'var(--overlay)',
               borderColor: 'color-mix(in srgb, var(--text-primary) 10%, transparent)'
@@ -301,7 +383,7 @@ function ThemeCard({ theme, index, onReadMore }: { theme: Theme; index: number; 
           </div>
 
           <div 
-            className="backdrop-blur-sm rounded-xl p-3 border transition-colors"
+            className="rounded-xl p-3 border transition-colors"
             style={{ 
               backgroundColor: 'var(--overlay)',
               borderColor: 'color-mix(in srgb, var(--text-primary) 10%, transparent)'
@@ -315,7 +397,7 @@ function ThemeCard({ theme, index, onReadMore }: { theme: Theme; index: number; 
           </div>
 
           <div 
-            className="backdrop-blur-sm rounded-xl p-3 border transition-colors"
+            className="rounded-xl p-3 border transition-colors"
             style={{ 
               backgroundColor: 'var(--overlay)',
               borderColor: 'color-mix(in srgb, var(--text-primary) 10%, transparent)'
@@ -364,19 +446,12 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const themesRef = useRef<HTMLDivElement>(null)
   const [selectedTheme, setSelectedTheme] = useState<Theme | null>(null)
-  const [progress, setProgress] = useState(0)
+
 
   const { scrollYProgress } = useScroll({
     target: themesRef,
     offset: ["start center", "end center"]
   })
-
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (v) => {
-      setProgress(v)
-    })
-    return () => unsubscribe()
-  }, [scrollYProgress])
 
   const defaultThemes: Theme[] = [
     {
@@ -481,7 +556,7 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
         </section>
 
         <section ref={themesRef} className="relative px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
-          <MiddleProgressBar progress={progress} />
+          <AnimatedSVGTrail scrollYProgress={scrollYProgress} />
           
           {displayThemes.map((theme, index) => (
             <ThemeCard 
