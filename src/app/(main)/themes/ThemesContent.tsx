@@ -81,7 +81,7 @@ function ThemeCard({ theme, index }: { theme: Theme; index: number }) {
       className={`relative flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-16 items-center py-16 lg:py-24`}
     >
       <motion.div 
-        className="relative w-full lg:w-1/2 aspect-[16/10] rounded-2xl overflow-hidden group"
+        className="relative w-full lg:w-1/2 aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden group shadow-2xl"
         whileHover={{ scale: 1.02 }}
         transition={{ type: "spring" as const, stiffness: 300 }}
       >
@@ -90,7 +90,9 @@ function ThemeCard({ theme, index }: { theme: Theme; index: number }) {
             src={theme.imageUrl}
             alt={theme.title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover object-top transition-transform duration-700 group-hover:scale-110"
+            priority={index < 2}
           />
         ) : (
           <div 

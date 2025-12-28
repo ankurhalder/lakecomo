@@ -14,7 +14,7 @@ function ThemeCardSkeleton({ index }: { index: number }) {
   
   return (
     <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-16 items-center py-16 lg:py-24`}>
-      <div className="relative w-full lg:w-1/2 aspect-[16/10] rounded-2xl overflow-hidden">
+      <div className="relative w-full lg:w-1/2 aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden">
         <Skeleton className="w-full h-full rounded-2xl" />
         
         <div className="absolute bottom-6 left-6 flex items-center gap-3">
