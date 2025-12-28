@@ -8,8 +8,7 @@ const query = `
       mainTitle,
       highlightTitle,
       secondaryTitle,
-      description,
-      "backgroundImageUrl": backgroundImage.asset->url
+      description
     },
     themesList[] {
       title,

@@ -20,7 +20,6 @@ export default defineType({
         defineField({ name: 'highlightTitle', title: 'Highlight Title', type: 'string', initialValue: 'Best 2026 Theme is YOU DECIDE' }),
         defineField({ name: 'secondaryTitle', title: 'Secondary Title', type: 'string', initialValue: 'Themes Designed to Make Every Guest a Star' }),
         defineField({ name: 'description', title: 'Intro Description', type: 'text', rows: 4 }),
-        defineField({ name: 'backgroundImage', title: 'Hero Background Image', type: 'image', options: { hotspot: true } }),
       ]
     }),
     defineField({
