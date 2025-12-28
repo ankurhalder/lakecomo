@@ -130,7 +130,7 @@ const docs = [
       mainTitle: '2026 Themes',
       highlightTitle: 'Best 2026 Theme is YOU DECIDE',
       secondaryTitle: 'Themes Designed to Make Every Guest a Star',
-      description: 'With three main themes and an extensive inventory of over 3,000 costumes and props, we provide the ultimate immersive cinematic party service for rehearsal dinners, pool parties, bachelorette/bachelor gatherings, hotel-hosted theme nights and corporate events.'
+      description: 'With an extensive inventory of over 3,000 costumes and props, we provide the ultimate immersive cinematic experience for rehearsal dinners, pool parties, bachelorette/bachelor gatherings, hotel themed events, group tour experiences,  honeymoon memorabilia and corporate events. We are not only the only firm but the #1 leader in immersive experiences based on Lake Como but servicing all of Italy.'
     },
     themesList: [
       {
