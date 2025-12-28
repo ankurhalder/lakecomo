@@ -142,7 +142,7 @@ export default function Hero({ data }: { data: HeroData }) {
               animate="visible"
               whileHover="hover"
               whileTap="tap"
-              className="px-8 md:px-12 py-3 md:py-4 bg-white text-black text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors"
+              className="px-8 md:px-12 py-3 md:py-4 bg-white text-black text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               {ctaText}
             </motion.button>
@@ -162,7 +162,7 @@ export default function Hero({ data }: { data: HeroData }) {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={toggleSound}
-        className="fixed bottom-24 md:bottom-28 right-4 md:right-6 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+        className="fixed bottom-24 md:bottom-28 right-4 md:right-6 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
         aria-label={isMuted ? 'Unmute video' : 'Mute video'}
       >
         <motion.div

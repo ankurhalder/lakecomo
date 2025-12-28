@@ -51,7 +51,7 @@ const LaurelBadge = ({ item, index }: { item: FeatureItemProps; index: number })
       className="group relative w-[140px] sm:w-[160px] md:w-[200px] lg:w-[220px] aspect-[4/3] flex items-center justify-center text-center text-white"
     >
       <motion.img
-        src="./assets/laurel-wreath.png"
+        src="/assets/laurel-wreath.png"
         alt=""
         className="absolute inset-0 w-full h-full object-contain opacity-90 pointer-events-none"
         initial={{ rotate: -5, opacity: 0 }}

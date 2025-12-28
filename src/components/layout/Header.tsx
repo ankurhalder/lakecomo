@@ -84,7 +84,7 @@ export default function Header({ data }: { data: HeaderData }) {
 
           <button 
             onClick={toggleTheme}
-            className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full transition-colors"
+            className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
             aria-label="Toggle theme"
           >
@@ -92,7 +92,7 @@ export default function Header({ data }: { data: HeaderData }) {
           </button>
 
           <button 
-            className="lg:hidden flex items-center justify-center w-9 h-9 md:w-10 md:h-10 z-50"
+            className="lg:hidden flex items-center justify-center w-9 h-9 md:w-10 md:h-10 z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-full"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -137,7 +137,7 @@ export default function Header({ data }: { data: HeaderData }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="mt-8 flex items-center gap-3 px-6 py-3 rounded-full transition-colors"
+              className="mt-8 flex items-center gap-3 px-6 py-3 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
             >
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
