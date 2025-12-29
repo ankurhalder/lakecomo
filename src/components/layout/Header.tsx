@@ -3,8 +3,9 @@
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sun, Moon, X, Menu } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTheme } from '@/components/providers/ThemeProvider'
+import { useLenis } from '@/components/providers/SmoothScroll'
 
 interface NavLink {
   label: string;
@@ -20,30 +21,47 @@ interface HeaderData {
 
 export default function Header({ data }: { data: HeaderData }) {
   const { theme, toggleTheme } = useTheme()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { stop: stopLenis, start: startLenis } = useLenis()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   
   const logoText = data?.logoText || "Lake Como Style";
   const links = data?.links || [];
 
-  const menuVariants = {
+  useEffect(() => {
+    if (isSidebarOpen) {
+      stopLenis()
+      document.body.style.overflow = 'hidden'
+    } else {
+      startLenis()
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isSidebarOpen, stopLenis, startLenis])
+
+  const sidebarVariants = {
     closed: { 
-      opacity: 0, 
       x: "100%",
-      transition: { duration: 0.3, ease: "easeInOut" as const }
+      transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }
     },
     open: { 
-      opacity: 1, 
       x: 0,
-      transition: { duration: 0.3, ease: "easeInOut" as const }
+      transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }
     }
   }
 
+  const overlayVariants = {
+    closed: { opacity: 0 },
+    open: { opacity: 1 }
+  }
+
   const linkVariants = {
-    closed: { opacity: 0, x: 20 },
+    closed: { opacity: 0, x: 30 },
     open: (i: number) => ({
       opacity: 1,
       x: 0,
-      transition: { delay: 0.1 + i * 0.05 }
+      transition: { delay: 0.2 + i * 0.08, duration: 0.4, ease: "easeOut" as const }
     })
   }
 
@@ -64,27 +82,10 @@ export default function Header({ data }: { data: HeaderData }) {
           {logoText}
         </Link>
         
-        <div className="flex items-center gap-4 md:gap-8">
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-            {links.map((link: NavLink, idx: number) => (
-              <Link 
-                key={idx} 
-                href={link.url} 
-                className="text-xs xl:text-sm font-light uppercase tracking-widest transition-colors relative group"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                {link.label}
-                <span 
-                  className="absolute -bottom-1 left-0 w-0 h-px transition-all duration-300 group-hover:w-full"
-                  style={{ backgroundColor: 'var(--accent)' }}
-                />
-              </Link>
-            ))}
-          </nav>
-
+        <div className="flex items-center gap-4">
           <button 
             onClick={toggleTheme}
-            className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+            className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full transition-colors"
             style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
             aria-label="Toggle theme"
           >
@@ -92,60 +93,96 @@ export default function Header({ data }: { data: HeaderData }) {
           </button>
 
           <button 
-            className="lg:hidden flex items-center justify-center w-9 h-9 md:w-10 md:h-10 z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-full"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
+            className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full transition-colors"
+            style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
+            onClick={() => setIsSidebarOpen(true)}
+            aria-label="Open menu"
           >
-            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            <Menu size={20} />
           </button>
         </div>
       </motion.header>
 
       <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            variants={menuVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-6"
-            style={{ backgroundColor: 'var(--bg-primary)' }}
-          >
-            <nav className="flex flex-col items-center gap-6">
-              {links.map((link: NavLink, idx: number) => (
-                <motion.div
-                  key={idx}
-                  custom={idx}
-                  variants={linkVariants}
-                  initial="closed"
-                  animate="open"
-                >
-                  <Link 
-                    href={link.url}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-2xl font-light uppercase tracking-widest transition-colors hover:opacity-70"
-                    style={{ color: 'var(--text-primary)' }}
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
+        {isSidebarOpen && (
+          <>
+            <motion.div
+              variants={overlayVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
+              onClick={() => setIsSidebarOpen(false)}
+            />
 
-            <motion.button 
-              onClick={toggleTheme}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="mt-8 flex items-center gap-3 px-6 py-3 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-              style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
+            <motion.aside
+              variants={sidebarVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              className="fixed top-0 right-0 h-full w-full max-w-md z-[70] flex flex-col border-l"
+              style={{ 
+                backgroundColor: 'var(--bg-primary)',
+                borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'
+              }}
             >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-              <span className="text-sm uppercase tracking-wider">
-                {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-              </span>
-            </motion.button>
-          </motion.div>
+              <div className="flex items-center justify-between p-6 border-b" style={{ borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
+                <span className="text-xs uppercase tracking-[0.3em] font-light" style={{ color: 'var(--text-secondary)' }}>
+                  Menu
+                </span>
+                <button 
+                  onClick={() => setIsSidebarOpen(false)}
+                  className="flex items-center justify-center w-10 h-10 rounded-full transition-colors"
+                  style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
+                  aria-label="Close menu"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <nav className="flex-1 flex flex-col justify-center px-8 py-12 gap-1">
+                {links.map((link: NavLink, idx: number) => (
+                  <motion.div
+                    key={link.label}
+                    custom={idx}
+                    variants={linkVariants}
+                    initial="closed"
+                    animate="open"
+                  >
+                    <Link 
+                      href={link.url}
+                      onClick={() => setIsSidebarOpen(false)}
+                      className="block py-4 text-3xl md:text-4xl font-light tracking-tight transition-all hover:translate-x-2 hover:opacity-70"
+                      style={{ color: 'var(--text-primary)' }}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+
+              <div className="p-8 border-t" style={{ borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
+                <motion.button 
+                  onClick={toggleTheme}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="w-full flex items-center justify-center gap-3 px-6 py-4 rounded-full transition-colors"
+                  style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
+                >
+                  {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                  <span className="text-sm uppercase tracking-wider">
+                    {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                  </span>
+                </motion.button>
+
+                <p className="mt-6 text-center text-xs" style={{ color: 'var(--text-secondary)', opacity: 0.6 }}>
+                  Cinematic Event Experiences
+                </p>
+              </div>
+            </motion.aside>
+          </>
         )}
       </AnimatePresence>
     </>
