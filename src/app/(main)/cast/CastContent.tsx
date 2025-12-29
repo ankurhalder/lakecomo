@@ -62,8 +62,13 @@ export default function CastContent({ hero, heroFeature, showcaseImages, content
               transition={{ duration: 0.8 }}
             >
               <motion.h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-2"
-                style={{ color: 'var(--text-primary)' }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-[-0.03em] mb-3 uppercase"
+                style={{ 
+                  background: 'linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
+                }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -71,14 +76,27 @@ export default function CastContent({ hero, heroFeature, showcaseImages, content
                 {hero?.title || "Become the Cast"}
               </motion.h1>
 
+              <motion.div
+                className="flex items-center justify-center lg:justify-start gap-3 mb-3"
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                transition={{ delay: 0.35 }}
+              >
+                <div className="h-px w-8 md:w-12" style={{ backgroundColor: 'var(--text-secondary)', opacity: 0.3 }} />
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-light" style={{ color: 'var(--text-secondary)', opacity: 0.6 }}>
+                  A Cinematic Experience
+                </span>
+                <div className="h-px w-8 md:w-12" style={{ backgroundColor: 'var(--text-secondary)', opacity: 0.3 }} />
+              </motion.div>
+
               <motion.p
-                className="text-base md:text-lg lg:text-xl font-light italic"
+                className="text-xs sm:text-sm md:text-base uppercase tracking-[0.15em] font-medium"
                 style={{ color: 'var(--text-secondary)' }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                {hero?.subtitle || "Lights, Camera, Action - Your Time to Shine"}
+                {hero?.subtitle || "Lights · Camera · Action — Your Time to Shine"}
               </motion.p>
             </motion.div>
 
@@ -104,7 +122,7 @@ export default function CastContent({ hero, heroFeature, showcaseImages, content
           </div>
 
           <motion.div 
-            className="flex flex-col items-center gap-1 pb-4"
+            className="flex flex-col items-center gap-1 pb-4 mt-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
