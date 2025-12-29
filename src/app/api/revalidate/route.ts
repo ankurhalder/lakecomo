@@ -20,12 +20,10 @@ export async function POST(request: NextRequest) {
     const secret = request.headers.get("x-sanity-secret");
 
     if (!process.env.SANITY_REVALIDATE_SECRET) {
-      revalidatePath("/", "layout");
-      return NextResponse.json({ 
-        revalidated: true, 
-        message: "Revalidated all (no secret configured)",
-        now: Date.now() 
-      });
+      return NextResponse.json(
+        { error: "Revalidation secret not configured" },
+        { status: 500 }
+      );
     }
 
     if (secret !== process.env.SANITY_REVALIDATE_SECRET) {
@@ -71,7 +69,6 @@ export async function GET(request: NextRequest) {
   }
 
   return NextResponse.json({ 
-    message: "Revalidation endpoint. Use POST with Sanity webhook or GET with ?secret=",
-    supportedTypes: Object.keys(PATH_MAP)
+    message: "Revalidation endpoint. Use POST with Sanity webhook or GET with ?secret="
   });
 }

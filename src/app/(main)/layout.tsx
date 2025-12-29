@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getLayoutData } from "@/sanity/lib/getLayoutData";
+import { SanityLive } from "@/sanity/lib/live";
 
 export default async function MainLayout({
   children,
@@ -18,6 +19,7 @@ export default async function MainLayout({
         {children}
         <Footer data={layoutData?.footer} />
       </SmoothScroll>
+      <SanityLive />
     </ThemeProvider>
   );
 }

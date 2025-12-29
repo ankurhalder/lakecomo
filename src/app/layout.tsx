@@ -1,14 +1,51 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "@/components/ui/CustomCursor";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Lake Como Style",
-  description: "Cinematic Event Experiences",
+  description: "Transform your celebration into an unforgettable cinematic experience. Themed parties, professional videography, and custom movie trailers in Lake Como, Italy.",
+  keywords: ["Lake Como", "cinematic events", "themed parties", "movie trailers", "Italy events", "wedding videography"],
+  authors: [{ name: "Lake Como Style" }],
+  openGraph: {
+    title: "Lake Como Style | Cinematic Event Experiences",
+    description: "Transform your celebration into an unforgettable cinematic experience in Lake Como, Italy.",
+    url: "https://lakecomostyle.it",
+    siteName: "Lake Como Style",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=630&fit=crop",
+        width: 1200,
+        height: 630,
+        alt: "Lake Como Style - Cinematic Event Experiences",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lake Como Style | Cinematic Event Experiences",
+    description: "Transform your celebration into an unforgettable cinematic experience in Lake Como, Italy.",
+    images: ["https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=630&fit=crop"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
+
+const themeScript = `
+  (function() {
+    try {
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {}
+  })();
+`;
 
 export default function RootLayout({
   children,
@@ -17,8 +54,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className={`${inter.className} overflow-x-hidden`}>
-        <CustomCursor />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-md focus:font-semibold"
+        >
+          Skip to main content
+        </a>
         {children}
       </body>
     </html>

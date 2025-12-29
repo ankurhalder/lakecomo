@@ -1,16 +1,16 @@
 'use client'
 
-import { createContext, useContext, useEffect, useRef } from 'react'
+import { createContext, useContext, useEffect, useRef, type MutableRefObject } from 'react'
 import Lenis from 'lenis'
 
 interface LenisContextType {
-  lenis: Lenis | null
+  lenisRef: MutableRefObject<Lenis | null>
   stop: () => void
   start: () => void
 }
 
 const LenisContext = createContext<LenisContextType>({
-  lenis: null,
+  lenisRef: { current: null },
   stop: () => {},
   start: () => {},
 })
@@ -52,7 +52,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   }
 
   return (
-    <LenisContext.Provider value={{ lenis: lenisRef.current, stop, start }}>
+    <LenisContext.Provider value={{ lenisRef, stop, start }}>
       {children}
     </LenisContext.Provider>
   )

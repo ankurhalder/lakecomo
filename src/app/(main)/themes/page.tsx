@@ -16,7 +16,7 @@ export default async function ThemesPage() {
   const data = await getThemesPageData()
 
   return (
-    <main className="min-h-screen bg-black">
+    <main id="main-content" className="min-h-screen bg-black">
       <ThemesContent data={data} />
     </main>
   )

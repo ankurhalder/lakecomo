@@ -16,7 +16,7 @@ export default async function Home() {
   const data = await getHomePageData()
 
   return (
-    <main className="min-h-screen bg-black">
+    <main id="main-content" className="min-h-screen bg-black">
       <Hero data={data} />
     </main>
   )

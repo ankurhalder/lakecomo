@@ -1,9 +1,10 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 interface FeatureItemProps {
   title: string;
@@ -50,14 +51,20 @@ const LaurelBadge = ({ item, index }: { item: FeatureItemProps; index: number })
       whileTap={{ scale: 0.95 }}
       className="group relative w-[140px] sm:w-[160px] md:w-[200px] lg:w-[220px] aspect-[4/3] flex items-center justify-center text-center text-white"
     >
-      <motion.img
-        src="/assets/laurel-wreath.png"
-        alt=""
-        className="absolute inset-0 w-full h-full object-contain opacity-90 pointer-events-none"
+      <motion.div
+        className="absolute inset-0 w-full h-full"
         initial={{ rotate: -5, opacity: 0 }}
         animate={{ rotate: 0, opacity: 0.9 }}
         transition={{ delay: 0.8 + index * 0.2, duration: 0.6 }}
-      />
+      >
+        <Image
+          src="/assets/laurel-wreath.png"
+          alt="Laurel wreath decoration"
+          fill
+          sizes="220px"
+          className="object-contain pointer-events-none"
+        />
+      </motion.div>
 
       <div className="relative z-10 flex flex-col items-center justify-center gap-0.5 md:gap-1 px-4 sm:px-6 md:px-8 py-4 md:py-6">
         {item.subtitle && (
@@ -129,7 +136,7 @@ export default function LaurelFeatureList({ features: resultFeatures }: { featur
       animate="visible"
     >
       {features.map((item, index) => (
-        <LaurelBadge key={index} item={item} index={index} />
+        <LaurelBadge key={item.title} item={item} index={index} />
       ))}
     </motion.div>
   );

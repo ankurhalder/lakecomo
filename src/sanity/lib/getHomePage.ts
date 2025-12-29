@@ -23,7 +23,7 @@ const query = `
 `;
 
 const fetchHomePageData = async () => {
-  return await client.fetch(query, {}, { next: { revalidate: 0 } });
+  return await client.fetch(query);
 };
 
 const cachedFetch = unstable_cache(
@@ -34,7 +34,7 @@ const cachedFetch = unstable_cache(
 
 export async function getHomePageData() {
   if (process.env.NODE_ENV === "development") {
-    return await client.fetch(query, {}, { next: { revalidate: 0 } });
+    return await client.fetch(query);
   }
   return await cachedFetch();
 }

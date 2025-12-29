@@ -48,7 +48,7 @@ export default function Error({
           className="mb-8 leading-relaxed"
           style={{ color: 'var(--text-secondary)' }}
         >
-          We couldn't load the themes right now. 
+          We couldn&apos;t load the themes right now. 
           Our crew is working behind the scenes to fix this.
         </p>
         
