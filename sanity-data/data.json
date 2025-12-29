@@ -239,33 +239,43 @@
       },
       {
         "_key": "nav2",
-        "label": "Process",
+        "label": "The Movie Process",
         "url": "/process"
       },
       {
         "_key": "nav3",
-        "label": "Themes",
+        "label": "Select Your Theme",
         "url": "/themes"
       },
       {
         "_key": "nav4",
-        "label": "Cast",
+        "label": "Become the Cast",
         "url": "/cast"
       },
       {
         "_key": "nav5",
-        "label": "Your Movie",
-        "url": "/movie"
+        "label": "Our Venue",
+        "url": "/venue"
       },
       {
         "_key": "nav6",
-        "label": "Crew",
-        "url": "/about"
+        "label": "Your Final Cut",
+        "url": "/movie"
       },
       {
         "_key": "nav7",
+        "label": "About Your Crew",
+        "url": "/about"
+      },
+      {
+        "_key": "nav8",
         "label": "Gallery",
         "url": "/gallery"
+      },
+      {
+        "_key": "nav9",
+        "label": "Contact",
+        "url": "/contact"
       }
     ],
     "logoText": "LAKE COMO STYLE",
