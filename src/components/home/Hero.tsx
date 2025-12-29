@@ -54,14 +54,13 @@ interface HeroData {
     subHeading?: string;
     ctaText?: string;
     ctaLink?: string;
-    videoUrl?: string;
     posterImage?: string;
   };
   featuresGrid?: FeatureItem[];
 }
 
 export default function Hero({ data }: { data: HeroData }) {
-  const { preHeading, mainHeading, subHeading, ctaText, ctaLink, videoUrl } = data?.heroSection || {}
+  const { preHeading, mainHeading, subHeading, ctaText, ctaLink } = data?.heroSection || {}
   const features = data?.featuresGrid || []
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMuted, setIsMuted] = useState(true)
@@ -83,19 +82,17 @@ export default function Hero({ data }: { data: HeroData }) {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        {videoUrl && (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={data?.heroSection?.posterImage || "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1920&q=80"}
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src={videoUrl} type="video/mp4" />
-          </video>
-        )}
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={data?.heroSection?.posterImage || "/assets/home/poster.jpg"}
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/assets/home/Lakecomostyle_2026_Promo.mp4" type="video/mp4" />
+        </video>
         <motion.div 
           className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-black/80 via-black/50 to-black/30"
           initial={{ opacity: 0 }}

@@ -14,10 +14,15 @@ export default defineType({
       name: 'heroSection',
       title: 'Hero Section',
       type: 'object',
+      description: '⚠️ Note: The background video is now served from local files to optimize bandwidth usage and reduce Sanity CDN costs. The video file is located at /public/assets/home/ and can only be changed by the development team.',
       options: { collapsible: true, collapsed: false },
       fields: [
-        defineField({ name: 'videoFile', title: 'Background Video (MP4)', type: 'file', options: { accept: 'video/mp4' } }),
-        defineField({ name: 'posterImage', title: 'Video Poster Image', type: 'image' }),
+        defineField({ 
+          name: 'posterImage', 
+          title: 'Video Poster Image', 
+          type: 'image',
+          description: 'This image is shown while the video is loading. Recommended: 1920x1080px.'
+        }),
         defineField({ name: 'preHeading', title: 'Pre-Heading', type: 'string', initialValue: 'Presenting Our Guests With' }),
         defineField({ name: 'mainHeading', title: 'Main Heading', type: 'text', rows: 3, initialValue: 'A one-of-a-kind cinematic immersive experience transforming celebrations into unforgettable movie trailers.' }),
         defineField({ name: 'subHeading', title: 'Sub Heading', type: 'string', initialValue: 'Your Party, Your Theme, Your Movie Trailer' }),
