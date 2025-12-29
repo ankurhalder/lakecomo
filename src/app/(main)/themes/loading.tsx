@@ -59,30 +59,42 @@ function ThemeCardSkeleton({ index }: { index: number }) {
   )
 }
 
+function LaurelBadgeSkeleton() {
+  return (
+    <div className="w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] xl:w-[200px] aspect-[4/3] flex items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-2 px-4">
+        <Skeleton className="w-16 h-2" />
+        <Skeleton className="w-24 h-4" />
+        <Skeleton className="w-12 h-2" />
+      </div>
+    </div>
+  )
+}
+
 export default function Loading() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <Skeleton className="fixed top-0 left-0 right-0 h-1 z-50 lg:hidden" />
       
-      <section className="min-h-[80vh] flex items-center justify-center px-4 relative">
+      <section className="min-h-[80vh] flex items-center px-4 md:px-8 lg:px-12 relative">
         <div 
           className="absolute inset-0"
           style={{ background: 'linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary) 50%, var(--bg-primary))' }}
         />
         
-        <div className="relative z-10 text-center max-w-4xl mx-auto pt-24 pb-16">
-          <Skeleton className="w-40 h-3 mx-auto mb-6" />
-          
-          <Skeleton className="w-full max-w-xl h-12 mx-auto mb-3" />
-          <Skeleton className="w-3/4 max-w-lg h-12 mx-auto mb-8" />
-          
-          <Skeleton className="w-2/3 max-w-md h-6 mx-auto mb-6" />
-          
-          <Skeleton className="w-full max-w-lg h-4 mx-auto mb-2" />
-          <Skeleton className="w-2/3 max-w-sm h-4 mx-auto" />
+        <div className="relative z-10 w-full max-w-7xl mx-auto pt-24 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="text-center md:text-left">
+            <Skeleton className="w-40 h-3 mb-6 mx-auto md:mx-0" />
+            <Skeleton className="w-full max-w-md h-12 mb-3 mx-auto md:mx-0" />
+            <Skeleton className="w-3/4 max-w-sm h-6 mb-6 mx-auto md:mx-0" />
+            <Skeleton className="w-full max-w-lg h-4 mb-2 mx-auto md:mx-0" />
+            <Skeleton className="w-2/3 max-w-sm h-4 mx-auto md:mx-0" />
+          </div>
 
-          <div className="mt-12 flex justify-center">
-            <Skeleton className="w-8 h-8 rounded-full" />
+          <div className="hidden lg:flex lg:flex-col gap-3 items-end">
+            <LaurelBadgeSkeleton />
+            <LaurelBadgeSkeleton />
+            <LaurelBadgeSkeleton />
           </div>
         </div>
       </section>

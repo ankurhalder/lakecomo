@@ -18,6 +18,7 @@
   --accent: #000000;
   --header-bg: rgba(255, 255, 255, 0.5);
   --overlay: rgba(255, 255, 255, 0.3);
+  --laurel-filter: invert(1);
 }
 
 body {

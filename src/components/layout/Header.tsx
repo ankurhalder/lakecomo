@@ -121,11 +121,14 @@ export default function Header({ data }: { data: HeaderData }) {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed top-0 right-0 h-full w-full max-w-md z-[70] flex flex-col border-l"
+              className="fixed top-0 right-0 h-full w-full max-w-md z-[70] flex flex-col border-l overflow-y-auto"
               style={{ 
                 backgroundColor: 'var(--bg-primary)',
-                borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'
+                borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                overscrollBehavior: 'contain'
               }}
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between p-6 border-b" style={{ borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
                 <span className="text-xs uppercase tracking-[0.3em] font-light" style={{ color: 'var(--text-secondary)' }}>
@@ -141,7 +144,7 @@ export default function Header({ data }: { data: HeaderData }) {
                 </button>
               </div>
 
-              <nav className="flex-1 flex flex-col justify-center px-8 py-12 gap-1">
+              <nav className="flex-1 flex flex-col justify-start px-8 py-8 gap-1 overflow-y-auto">
                 {links.map((link: NavLink, idx: number) => (
                   <motion.div
                     key={link.label}
@@ -153,7 +156,7 @@ export default function Header({ data }: { data: HeaderData }) {
                     <Link 
                       href={link.url}
                       onClick={() => setIsSidebarOpen(false)}
-                      className="block py-4 text-3xl md:text-4xl font-light tracking-tight transition-all hover:translate-x-2 hover:opacity-70"
+                      className="block py-3 text-2xl md:text-3xl font-light tracking-tight transition-all hover:translate-x-2 hover:opacity-70"
                       style={{ color: 'var(--text-primary)' }}
                     >
                       {link.label}
@@ -163,21 +166,7 @@ export default function Header({ data }: { data: HeaderData }) {
               </nav>
 
               <div className="p-8 border-t" style={{ borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}>
-                <motion.button 
-                  onClick={toggleTheme}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="w-full flex items-center justify-center gap-3 px-6 py-4 rounded-full transition-colors"
-                  style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
-                >
-                  {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                  <span className="text-sm uppercase tracking-wider">
-                    {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-                  </span>
-                </motion.button>
-
-                <p className="mt-6 text-center text-xs" style={{ color: 'var(--text-secondary)', opacity: 0.6 }}>
+                <p className="text-center text-xs" style={{ color: 'var(--text-secondary)', opacity: 0.6 }}>
                   Cinematic Event Experiences
                 </p>
               </div>

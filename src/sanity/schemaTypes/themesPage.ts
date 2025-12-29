@@ -23,6 +23,13 @@ export default defineType({
       ]
     }),
     defineField({
+      name: 'featuresGrid',
+      title: 'Hero Features Grid',
+      description: 'Add 3 feature badges that appear on the right side of the hero section.',
+      type: 'array',
+      of: [{ type: 'featureCard' }],
+    }),
+    defineField({
       name: 'themesList',
       title: 'Themes List',
       description: 'Add as many themes as you want. Each theme will be displayed with parallax animations.',

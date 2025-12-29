@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { 
   Film, Sparkles, Heart, Star, Crown, 
   Glasses, Drama, Clapperboard, Camera, 
@@ -52,12 +52,23 @@ interface ThemeCardProps {
 export default function ThemeCard({ theme, index, onReadMore }: ThemeCardProps) {
   const isEven = index % 2 === 0
   const cardRef = useRef<HTMLDivElement>(null)
+  const [isDesktop, setIsDesktop] = useState(false)
+  
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 769)
+    }
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
+  
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "end start"]
   })
 
-  const skewY = useTransform(scrollYProgress, [0, 0.4, 0.6], isEven ? [5, 0, -5] : [-5, 0, 5])
+  const skewY = useTransform(scrollYProgress, [0, 0.4, 0.6], isDesktop ? (isEven ? [5, 0, -5] : [-5, 0, 5]) : [0, 0, 0])
   const y = useTransform(scrollYProgress, [0, 0.5], [120, 0])
   const opacity = useTransform(scrollYProgress, [0, 0.25], [0, 1])
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.95, 1])

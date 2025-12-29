@@ -151,7 +151,7 @@ export default function Hero({ data }: { data: HeroData }) {
           </Link>
         </div>
 
-        <div className="hidden lg:flex lg:justify-end items-center">
+        <div className="hidden md:flex md:justify-center lg:justify-end items-center">
           <FeaturesList features={features} />
         </div>
 

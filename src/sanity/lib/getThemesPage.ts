@@ -10,6 +10,12 @@ const query = `
       secondaryTitle,
       description
     },
+    featuresGrid[] {
+      title,
+      subtitle,
+      tag,
+      link
+    },
     themesList[] {
       title,
       genre,

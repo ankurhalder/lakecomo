@@ -28,6 +28,12 @@ interface ThemesData {
     secondaryTitle?: string
     description?: string
   }
+  featuresGrid?: {
+    title: string
+    subtitle?: string
+    tag?: string
+    link?: string
+  }[]
   themesList?: Theme[]
 }
 
@@ -60,6 +66,7 @@ const defaultThemes: Theme[] = [
 
 export default function ThemesContent({ data }: { data: ThemesData }) {
   const hero = data?.hero || {}
+  const featuresGrid = data?.featuresGrid || []
   const themes = data?.themesList || []
   const containerRef = useRef<HTMLDivElement>(null)
   const [selectedTheme, setSelectedTheme] = useState<Theme | null>(null)
@@ -69,7 +76,7 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
   return (
     <>
       <div ref={containerRef} className="relative min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <ThemesHero hero={hero} />
+        <ThemesHero hero={hero} featuresGrid={featuresGrid} />
 
         <section className="relative px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
           {displayThemes.map((theme, index) => (
