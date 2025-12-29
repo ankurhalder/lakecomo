@@ -56,7 +56,7 @@ export default function ThemeCard({ theme, index, onReadMore }: ThemeCardProps) 
     offset: ["start end", "end start"]
   })
 
-  const skewY = useTransform(scrollYProgress, [0, 0.4, 0.6], [4, 0, -1])
+  const skewY = useTransform(scrollYProgress, [0, 0.4, 0.6], [5, 0, -5])
   const y = useTransform(scrollYProgress, [0, 0.5], [120, 0])
   const opacity = useTransform(scrollYProgress, [0, 0.25], [0, 1])
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.95, 1])
