@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useCallback, useRef } from 'react'
 import { Film, Sparkles, Heart, X } from 'lucide-react'
-import { useLenis } from '@/components/providers/SmoothScroll'
 import FocusTrap from 'focus-trap-react'
 
 interface Theme {
@@ -38,7 +37,6 @@ interface ThemeModalProps {
 }
 
 export default function ThemeModal({ theme, onClose }: ThemeModalProps) {
-  const { stop: stopLenis, start: startLenis } = useLenis()
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   
   const handleClose = useCallback(() => {
@@ -47,8 +45,6 @@ export default function ThemeModal({ theme, onClose }: ThemeModalProps) {
 
   useEffect(() => {
     if (!theme) return
-    
-    stopLenis()
     
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
     const originalStyle = {
@@ -65,12 +61,11 @@ export default function ThemeModal({ theme, onClose }: ThemeModalProps) {
     window.addEventListener('keydown', handleEscape)
     
     return () => {
-      startLenis()
       document.body.style.overflow = originalStyle.overflow
       document.body.style.paddingRight = originalStyle.paddingRight
       window.removeEventListener('keydown', handleEscape)
     }
-  }, [theme, handleClose, stopLenis, startLenis])
+  }, [theme, handleClose])
 
   return (
     <AnimatePresence>

@@ -1,4 +1,3 @@
-import SmoothScroll from "@/components/providers/SmoothScroll";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -14,11 +13,9 @@ export default async function MainLayout({
 
   return (
     <ThemeProvider>
-      <SmoothScroll>
-        <Header data={layoutData?.navbar} />
-        {children}
-        <Footer data={layoutData?.footer} />
-      </SmoothScroll>
+      <Header data={layoutData?.navbar} />
+      {children}
+      <Footer data={layoutData?.footer} />
       <SanityLive />
     </ThemeProvider>
   );
