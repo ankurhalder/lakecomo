@@ -10,6 +10,7 @@ const query = `
       subHeading,
       ctaText,
       ctaLink,
+      "videoUrl": videoFile.asset->url,
       "posterImage": posterImage.asset->url
     },
     featuresGrid[] {
