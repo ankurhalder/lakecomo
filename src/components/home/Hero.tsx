@@ -90,7 +90,7 @@ export default function Hero({ data }: { data: HeroData }) {
             muted
             loop
             playsInline
-            poster={data?.heroSection?.posterImage || "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1920&q=80"}
+            poster={data?.heroSection?.posterImage || undefined}
             className="absolute inset-0 w-full h-full object-cover"
           >
             <source src={videoUrl} type="video/mp4" />
