@@ -75,7 +75,7 @@ export default function Hero({ data }: { data: HeroData }) {
   }
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden bg-black font-sans">
+    <div className="relative w-full h-[100dvh] min-h-[600px] overflow-hidden bg-black font-sans flex flex-col">
       
       <motion.div 
         className="absolute inset-0 z-0"
@@ -104,15 +104,15 @@ export default function Hero({ data }: { data: HeroData }) {
         />
       </motion.div>
 
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-screen pt-20 pb-32 md:pb-24 px-4 md:px-8 lg:px-12">
+      <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 pt-16 pb-20 sm:pt-20 sm:pb-24 px-4 md:px-8 lg:px-12 overflow-hidden">
         
-        <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left lg:pl-6 xl:pl-10 max-w-2xl mx-auto lg:mx-0 py-8 lg:py-0">
+        <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left lg:pl-6 xl:pl-10 max-w-2xl mx-auto lg:mx-0 py-4 lg:py-0">
           <motion.p
             custom={0.3}
             variants={textVariants}
             initial="hidden"
             animate="visible"
-            className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl italic font-light mb-4 md:mb-6 tracking-wide font-serif"
+            className="text-white/90 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl italic font-light mb-2 sm:mb-4 md:mb-6 tracking-wide font-serif"
           >
             {preHeading}
           </motion.p>
@@ -122,7 +122,7 @@ export default function Hero({ data }: { data: HeroData }) {
             variants={textVariants}
             initial="hidden"
             animate="visible"
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight mb-4 md:mb-8 drop-shadow-xl"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-[1.15] tracking-tight mb-2 sm:mb-4 md:mb-6 drop-shadow-xl"
           >
             {mainHeading}
           </motion.h1>
@@ -132,7 +132,7 @@ export default function Hero({ data }: { data: HeroData }) {
             variants={textVariants}
             initial="hidden"
             animate="visible"
-            className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl font-light tracking-wide mb-8 md:mb-12 italic"
+            className="text-white/90 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-light tracking-wide mb-4 sm:mb-6 md:mb-8 italic"
           >
             {subHeading}
           </motion.p>
@@ -144,7 +144,7 @@ export default function Hero({ data }: { data: HeroData }) {
               animate="visible"
               whileHover="hover"
               whileTap="tap"
-              className="px-8 md:px-12 py-3 md:py-4 bg-white text-black text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 bg-white text-black text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               {ctaText}
             </motion.button>

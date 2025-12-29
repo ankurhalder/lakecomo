@@ -49,7 +49,7 @@ const LaurelBadge = ({ item, index }: { item: FeatureItemProps; index: number })
         transition: { type: "spring" as const, stiffness: 300 }
       }}
       whileTap={{ scale: 0.95 }}
-      className="group relative w-[140px] sm:w-[160px] md:w-[200px] lg:w-[220px] aspect-[4/3] flex items-center justify-center text-center text-white"
+      className="group relative w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] xl:w-[200px] aspect-[4/3] flex items-center justify-center text-center text-white"
     >
       <motion.div
         className="absolute inset-0 w-full h-full"
