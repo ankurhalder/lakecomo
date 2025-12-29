@@ -1,0 +1,429 @@
+[
+  {
+    "_id": "aboutPage",
+    "_type": "aboutPage",
+    "hero": {
+      "subtitle": "From the Big Apple to the heart of Milan — our team brings international talent to your celebration",
+      "title": "Your Film Crew"
+    },
+    "heroSection": null,
+    "mission": "Our passion for creating unforgettable cinematic experiences led us to establish Lake Como Style, the premier provider of themed cinematic experiences in Italy. We are an international crew dedicated to bringing the magic of fashion and cinema to life, offering a range of themes and settings to cater to every client's unique vision. Our team is delivers exceptional movie trailers and ensures that every event is a spectacular and memorable occasion for all.",
+    "teamMembers": [
+      {
+        "_key": "tm1",
+        "bio": "Our founder, Dee Lasprogata has over 30 years of experience in fashion, working in New York, Los Angeles, Rome, Milan, and Lake Como, where she resides. She has worked with celebrities including Stevie Wonder and Giada DeLaurentiis, pioneering fashion ventures and collections. With Dee’s expert styling, you don’t simply wear a costume- you embody the timeless elegance and sophistication that movies are made of.",
+        "name": "Dee Lasprogata",
+        "role": "Founder / Stylist"
+      },
+      {
+        "_key": "tm2",
+        "bio": "Stefano has over x years of experience",
+        "name": "Stefano",
+        "role": "Videography Lead"
+      }
+    ],
+    "title": "About Page"
+  },
+  {
+    "_id": "castPage",
+    "_type": "castPage",
+    "content": {
+      "paragraphs": [
+        {
+          "_key": "p1",
+          "_type": "text",
+          "text": "The theme is set. The venue is chosen. Now it’s time for your guests to shine."
+        },
+        {
+          "_key": "p2",
+          "_type": "text",
+          "text": "Upon arrival, every guest receives a QR code that unlocks their story and sets the stage for the experience. As guests mingle, sip cocktails, and enjoy the atmosphere, we invite volunteers to step into the main character roles."
+        },
+        {
+          "_key": "p3",
+          "_type": "text",
+          "text": "For weddings, we recommend featuring the Bride, Groom, Best Man, Best Woman, and select members of the wedding party as the main cast. For corporate parties, we suggest spotlighting key leaders such as the CEO, CFO, COO, and other Senior Vice Presidents to take on the leading roles."
+        },
+        {
+          "_key": "p4",
+          "_type": "text",
+          "text": "Before the big day, lead roles are chosen so our stars can be styled and camera-ready right when they arrive. Guests should arrive dressed to match the selected vibe — think creative, on-theme, and camera-ready."
+        },
+        {
+          "_key": "p5",
+          "_type": "text",
+          "text": "To turn up the fun, we provide plenty of props and accessories for background actors and actresses, including hats, masks, and other fashion-forward pieces to spice up every look."
+        },
+        {
+          "_key": "p6",
+          "_type": "text",
+          "text": "No prior acting experience is necessary. Our team provides hands-on direction for the main characters — guiding stances, expressions, stares, and enactments — while background guests play a key role in making each scene feel full, energetic, and authentic."
+        },
+        {
+          "_key": "p7",
+          "_type": "text",
+          "text": "In between scenes, guests can enjoy photos in front of our step-and-repeat backdrops, cocktails, dancing, and mingling until it’s time for their moment on camera."
+        },
+        {
+          "_key": "p8",
+          "_type": "text",
+          "text": "Every role matters. Every moment counts. Together, you create a movie-worthy experience your guests will never forget."
+        },
+        {
+          "_key": "p9",
+          "_type": "text",
+          "text": "Your trailer. Your story. Your spotlight. Become the cast today!"
+        }
+      ]
+    },
+    "hero": {
+      "subtitle": "Lights, Camera, Action - Your Time to Shine",
+      "title": "Become the Cast"
+    },
+    "heroSection": null,
+    "showcaseImages": [],
+    "title": "Cast Page"
+  },
+  {
+    "_id": "contactPage",
+    "_type": "contactPage",
+    "formConfig": {
+      "submitButtonText": "Be A Star",
+      "successMessage": "Thank you! We will be in touch shortly."
+    },
+    "hero": {
+      "subtitle": "The Spotlight Awaits in Italy",
+      "title": "Get in Touch"
+    },
+    "heroSection": null,
+    "title": "Contact Page"
+  },
+  {
+    "_id": "footer",
+    "_type": "footer",
+    "copyright": "© 2025 by Lake Como Style",
+    "email": "info@lakecomostyle.it",
+    "footerTagline": "Your Adventure in Style Awaits",
+    "heroSection": null,
+    "socialLinks": [
+      {
+        "_key": "soc1",
+        "platform": "Instagram",
+        "url": "https://instagram.com"
+      },
+      {
+        "_key": "soc2",
+        "platform": "Facebook",
+        "url": "https://facebook.com"
+      },
+      {
+        "_key": "soc3",
+        "platform": "TikTok",
+        "url": "https://tiktok.com"
+      }
+    ],
+    "title": "Global Footer"
+  },
+  {
+    "_id": "galleryPage",
+    "_type": "galleryPage",
+    "hero": {
+      "subtitle": "A Star is Born",
+      "title": "BEHIND THE MAGIC"
+    },
+    "heroSection": null,
+    "images": [],
+    "title": "Gallery Page"
+  },
+  {
+    "_id": "homepage",
+    "_system": {
+      "base": {
+        "id": "homepage",
+        "rev": "mt1cTqOxi4IifpOwCjSAYF"
+      }
+    },
+    "_type": "homepage",
+    "featuresGrid": [
+      {
+        "_key": "feat1",
+        "_type": "featureCard",
+        "link": "/themes",
+        "subtitle": "Dive into the World of Cinematic Creativity. Choose Your Theme. Unlock Your Imagination",
+        "title": "THEMED CINEMATIC PARTIES"
+      },
+      {
+        "_key": "feat2",
+        "_type": "featureCard",
+        "link": "/process",
+        "subtitle": "Unlock Your Imagination",
+        "tag": "2026",
+        "title": "VENUE SELECTION"
+      },
+      {
+        "_key": "feat3",
+        "_type": "featureCard",
+        "link": "/gallery",
+        "subtitle": "Discover Your Dream Location",
+        "tag": "2026",
+        "title": "GALLERY"
+      }
+    ],
+    "heroSection": {
+      "ctaLink": "/contact",
+      "ctaText": "Book Now",
+      "mainHeading": "A one-of-a-kind cinematic immersive experience transforming celebrations into unforgettable movie trailers.",
+      "preHeading": "Presenting Our Guests With",
+      "subHeading": "Your Party, Your Theme, Your Movie Trailer",
+      "videoFile": {
+        "_type": "file",
+        "asset": {
+          "_ref": "file-476136c148217d2ae2ab03a40617a165e97310ac-mp4",
+          "_type": "reference"
+        }
+      },
+      "videoUrl": null
+    },
+    "title": "Home Page"
+  },
+  {
+    "_id": "moviePage",
+    "_type": "moviePage",
+    "deliverables": [
+      {
+        "_key": "d1",
+        "details": [
+          "A fully edited trailer up to 3 minutes in length",
+          "Includes your choice of music to match the tone and style",
+          "Features custom title and cast names",
+          "Enhanced with special effects to elevate the cinematic impact"
+        ],
+        "title": "3-Minute Movie Trailer"
+      },
+      {
+        "_key": "d2",
+        "details": [
+          "Shorter versions optimized for social media platforms",
+          "Perfect for Instagram, TikTok, YouTube, or Facebook",
+          "Designed to grab attention and drive engagement"
+        ],
+        "title": "Social Media Ready Cuts"
+      },
+      {
+        "_key": "d3",
+        "details": [
+          "Delivered within 3–4 weeks from event date"
+        ],
+        "title": "Timeline"
+      }
+    ],
+    "hero": {
+      "description": "In just 3–4 weeks, you’ll get a 3-minute cinematic trailer with your music, titles, cast names, and special effects — plus social media-ready cuts to share with the world.",
+      "subtitle": "Ready for its Premiere, Bring Your Popcorn",
+      "title": "Your Movie"
+    },
+    "heroSection": null,
+    "title": "Movie Page"
+  },
+  {
+    "_id": "navbar",
+    "_type": "navbar",
+    "ctaLink": "/contact",
+    "ctaText": "Book Now",
+    "heroSection": null,
+    "links": [
+      {
+        "_key": "nav1",
+        "label": "Home",
+        "url": "/"
+      },
+      {
+        "_key": "nav2",
+        "label": "Process",
+        "url": "/process"
+      },
+      {
+        "_key": "nav3",
+        "label": "Themes",
+        "url": "/themes"
+      },
+      {
+        "_key": "nav4",
+        "label": "Cast",
+        "url": "/cast"
+      },
+      {
+        "_key": "nav5",
+        "label": "Your Movie",
+        "url": "/movie"
+      },
+      {
+        "_key": "nav6",
+        "label": "Crew",
+        "url": "/about"
+      },
+      {
+        "_key": "nav7",
+        "label": "Gallery",
+        "url": "/gallery"
+      }
+    ],
+    "logoText": "LAKE COMO STYLE",
+    "title": "Main Navigation"
+  },
+  {
+    "_id": "processPage",
+    "_type": "processPage",
+    "hero": {
+      "description": "Dive into the World of Cinematic Creativity. THEMED CINEMATIC PARTIES. Lake Como Style offers unique cinematic experiences.",
+      "subtitle": "From Concept to Cinema - Your Story Unfolds",
+      "title": "The Process"
+    },
+    "heroSection": null,
+    "steps": [
+      {
+        "_key": "step1",
+        "description": "Select from our signature themes: 007 Agents of Style, Hollywood Hussle, or La Dolce Vita or create a custom theme. With over 3,000 costumes and props, your celebration can be uniquely tailored to your group.",
+        "stepNumber": "1-SELECT",
+        "stepTitle": "YOUR THEME",
+        "tagline": "BOND TO STARWARS"
+      },
+      {
+        "_key": "step2",
+        "description": "Decide where your cinematic experience will take place: Our Private Palace, Luxury Hotel, or Your Chosen Venue.",
+        "stepNumber": "2-SELECT",
+        "stepTitle": "YOUR VENUE",
+        "tagline": "YOU NAME IT"
+      },
+      {
+        "_key": "step3",
+        "description": "Our team curates every detail to bring your theme to life. From custom step & repeat backdrops and curated props to music and atmosphere.",
+        "stepNumber": "3-WE DESIGN",
+        "stepTitle": "YOUR EVENT",
+        "tagline": "PROPS & COSTUMES"
+      },
+      {
+        "_key": "step4",
+        "description": "On the day of your event, guests step into the story. With guidance from our production team, everyone gets to act out key scenes from your chosen theme.",
+        "stepNumber": "4-CELEBRATE",
+        "stepTitle": "IN STYLE",
+        "tagline": "TIME TO SHINE"
+      },
+      {
+        "_key": "step5",
+        "description": "Within 3–4 weeks, we deliver a beautifully produced 3-minute cinematic trailer, along with social media-ready clips.",
+        "stepNumber": "5-YOUR MOVIE &",
+        "stepTitle": "SOCIAL MEDIA CLIPS",
+        "tagline": "YOUR SILVER SCREEN"
+      },
+      {
+        "_key": "step6",
+        "description": "Your personalized movie trailer can be treasured for years to come — the perfect way to relive the magic of your celebration.",
+        "stepNumber": "6-RELIVE",
+        "stepTitle": "THE EXPERIENCE",
+        "tagline": "POPCORN TIME"
+      }
+    ],
+    "title": "Process Page"
+  },
+  {
+    "_id": "themesPage",
+    "_system": {
+      "base": {
+        "id": "themesPage",
+        "rev": "q5BezjA9UC5Bbr8ZvwJ1rx"
+      }
+    },
+    "_type": "themesPage",
+    "hero": {
+      "description": "With an extensive inventory of over 3,000 costumes and props, we provide the ultimate immersive cinematic experience for rehearsal dinners, pool parties, bachelorette/bachelor gatherings, hotel themed events, group tour experiences,  honeymoon memorabilia and corporate events. We are not only the only firm but the #1 leader in immersive experiences based on Lake Como but servicing all of Italy.",
+      "highlightTitle": "Best 2026 Theme is YOU DECIDE",
+      "mainTitle": "2026 Themes",
+      "secondaryTitle": "Themes Designed to Make Every Guest a Star"
+    },
+    "heroSection": null,
+    "themesList": [
+      {
+        "_key": "theme1",
+        "feel": "Sophisticated, adventurous, playful suspense.",
+        "genre": "Spy / Action Theme",
+        "icon": "glasses",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-0145c1fd40790ab252c728ae16cd3bd1657159ca-800x600-jpg",
+            "_type": "reference"
+          }
+        },
+        "story": "Guests step into the world of secret agents, daring missions, and intrigue. Think tuxedos, glamorous dresses, clever props, and action-packed poses.",
+        "title": "International Agents of Style",
+        "vibe": "Sleek, stylish, high-stakes, espionage."
+      },
+      {
+        "_key": "theme2",
+        "feel": "Elegant, nostalgic, cinematic, story-driven, stylish drama.",
+        "genre": "Old Hollywood / Glamour Theme",
+        "icon": "star",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-dc0af06ce4243f9c56b92b4d8dc10ff9fc358c8f-517x866-png",
+            "_type": "reference"
+          }
+        },
+        "story": "Guests become stars of a vintage cinematic caper, full of red carpets, flashing cameras, and silver-screen drama. Think Marilyn Monroe–style gowns, sharp tuxedos, and iconic poses.",
+        "title": "The Hollywood Hussle",
+        "vibe": "Classic 1940s–1960s Tinseltown glamour."
+      },
+      {
+        "_key": "theme3",
+        "feel": "Romantic, stylish, lively, playful, cinematic charm.",
+        "genre": "Italian / Romantic Glamour Theme",
+        "icon": "heart",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-e21e5018d845c91ea36101aa8ef4f81055fbf767-491x887-png",
+            "_type": "reference"
+          }
+        },
+        "story": "Guests star in a story of romance, intrigue, and playful elegance in the heart of 1960s Rome. Think flowing dresses, sharp suits, chic sunglasses, and a cinematic, social-energy vibe.",
+        "title": "La Dolce Vita",
+        "vibe": "Stylish, fun, romantic, sun-soaked Italian adventure."
+      },
+      {
+        "_key": "theme4",
+        "feel": "Fun, empowering, nostalgic, cinematic, stylish drama with attitude.",
+        "genre": "Retro Cool / Grease Movie Theme",
+        "icon": "sparkles",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-8db658c9b899b45c152619e9c4075c582cf9d1e5-2048x2048-webp",
+            "_type": "reference"
+          }
+        },
+        "story": "Guests become members of the iconic Pink Ladies and step into a playful cinematic fantasy inspired by Grease and other famous Hollywood stars. It’s a stylish, story-driven night of sisterhood, sass, and star moments — where the bride is the leading lady and every woman is part of the cast, striking poses and owning the spotlight.",
+        "title": "Pink Ladies - Bachelorette or Girls Night Out",
+        "vibe": "Pink Ladies–inspired retro glamour with Grease-era attitude. Think bubble-gum pink, black leather accents, cat-eye liner, soft curls, and confident, feminine rebellion."
+      },
+      {
+        "_key": "theme5",
+        "feel": "Mysterious, dramatic, cinematic, intellectual, suspense-driven elegance.",
+        "genre": "Secret Societies / Mystery Adventure Theme",
+        "icon": "drama",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-12d70afef478c920a37bea749512c080addd8681-692x1154-jpg",
+            "_type": "reference"
+          }
+        },
+        "story": "Guests step into a cinematic world inspired by Angels & Demons, where secret societies, hidden symbols, and the tension between faith and reason drive the night. As scenes from the film unfold around them, guests become part of the mystery — aligned as Angels or Demons — navigating a story of power, belief, and revelation, with the event’s hosts at the center of the unfolding narrative.",
+        "title": "Angels & Demons",
+        "vibe": "Dark, intellectual cinematic drama — mystery, symbolism, and high-stakes elegance. Think Vatican grandeur, ancient secrets, candlelight, stone corridors, and a refined, suspenseful atmosphere."
+      }
+    ],
+    "title": "Themes Page"
+  }
+]
