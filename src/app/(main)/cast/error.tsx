@@ -1,7 +1,6 @@
 'use client'
 
 import PageError from '@/components/shared/PageError'
-import { useEffect } from 'react'
 
 export default function Error({
   error,
@@ -10,14 +9,10 @@ export default function Error({
   error: Error & { digest?: string }
   reset: () => void
 }) {
-  useEffect(() => {
-    console.error('Themes page error:', error)
-  }, [error])
-
   return (
     <PageError
-      title="Couldn't load Themes"
-      message="Something went wrong while loading the themes. Please try again."
+      title="Couldn't load Cast page"
+      message="Something went wrong while loading the cast showcase. Please try again."
       showRetry={true}
       showHome={true}
       onRetry={reset}

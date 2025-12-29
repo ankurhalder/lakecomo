@@ -1,13 +1,6 @@
 'use client'
 
-function Skeleton({ className }: { className?: string }) {
-  return (
-    <div 
-      className={`animate-pulse rounded ${className}`}
-      style={{ backgroundColor: 'var(--text-secondary)', opacity: 0.08 }}
-    />
-  )
-}
+import PageLoading, { Skeleton } from '@/components/shared/PageLoading'
 
 function LaurelBadgeSkeleton() {
   return (
