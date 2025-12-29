@@ -11,25 +11,29 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType>({ theme: 'dark', toggleTheme: () => {} })
 
-function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'dark'
-  try {
-    const saved = localStorage.getItem('theme') as Theme
-    return saved || 'dark'
-  } catch {
-    return 'dark'
-  }
-}
-
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme)
+  const [theme, setTheme] = useState<Theme>('dark')
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
+    setMounted(true)
     try {
-      localStorage.setItem('theme', theme)
+      const saved = localStorage.getItem('theme') as Theme
+      if (saved && (saved === 'light' || saved === 'dark')) {
+        setTheme(saved)
+        document.documentElement.setAttribute('data-theme', saved)
+      }
     } catch {}
-  }, [theme])
+  }, [])
+
+  useEffect(() => {
+    if (mounted) {
+      document.documentElement.setAttribute('data-theme', theme)
+      try {
+        localStorage.setItem('theme', theme)
+      } catch {}
+    }
+  }, [theme, mounted])
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark')
