@@ -18,7 +18,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     setMounted(true)
     try {
-      const saved = localStorage.getItem('theme') as Theme
+      const saved = sessionStorage.getItem('theme') as Theme
       if (saved && (saved === 'light' || saved === 'dark')) {
         setTheme(saved)
         document.documentElement.setAttribute('data-theme', saved)
@@ -30,7 +30,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (mounted) {
       document.documentElement.setAttribute('data-theme', theme)
       try {
-        localStorage.setItem('theme', theme)
+        sessionStorage.setItem('theme', theme)
       } catch {}
     }
   }, [theme, mounted])

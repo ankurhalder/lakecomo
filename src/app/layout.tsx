@@ -40,8 +40,8 @@ export const metadata: Metadata = {
 const themeScript = `
   (function() {
     try {
-      var saved = localStorage.getItem('theme');
-      var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      var saved = sessionStorage.getItem('theme');
+      var theme = saved || 'dark';
       document.documentElement.setAttribute('data-theme', theme);
     } catch (e) {}
   })();
