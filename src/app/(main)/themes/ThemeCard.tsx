@@ -50,18 +50,17 @@ interface ThemeCardProps {
 }
 
 export default function ThemeCard({ theme, index, onReadMore }: ThemeCardProps) {
+  const isEven = index % 2 === 0
   const cardRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "end start"]
   })
 
-  const skewY = useTransform(scrollYProgress, [0, 0.4, 0.6], [5, 0, -5])
+  const skewY = useTransform(scrollYProgress, [0, 0.4, 0.6], isEven ? [5, 0, -5] : [-5, 0, 5])
   const y = useTransform(scrollYProgress, [0, 0.5], [120, 0])
   const opacity = useTransform(scrollYProgress, [0, 0.25], [0, 1])
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.95, 1])
-
-  const isEven = index % 2 === 0
 
   return (
     <motion.div
