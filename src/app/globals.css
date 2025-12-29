@@ -61,8 +61,3 @@ body {
   scrollbar-color: var(--text-secondary) var(--bg-secondary);
 }
 
-@media (min-width: 1024px) {
-  * {
-    cursor: none !important;
-  }
-}
