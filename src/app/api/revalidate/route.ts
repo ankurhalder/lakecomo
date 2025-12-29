@@ -1,17 +1,17 @@
-import { revalidateTag, revalidatePath } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
-const TAG_MAP: Record<string, { tags: string[]; paths: string[] }> = {
-  homepage: { tags: ["homepage", "content"], paths: ["/"] },
-  navbar: { tags: ["layout", "content"], paths: ["/"] },
-  footer: { tags: ["layout", "content"], paths: ["/"] },
-  themesPage: { tags: ["themesPage", "content"], paths: ["/themes"] },
-  processPage: { tags: ["processPage", "content"], paths: ["/process"] },
-  castPage: { tags: ["castPage", "content"], paths: ["/cast"] },
-  moviePage: { tags: ["moviePage", "content"], paths: ["/movie"] },
-  aboutPage: { tags: ["aboutPage", "content"], paths: ["/about"] },
-  galleryPage: { tags: ["galleryPage", "content"], paths: ["/gallery"] },
-  contactPage: { tags: ["contactPage", "content"], paths: ["/contact"] },
+const PATH_MAP: Record<string, string[]> = {
+  homepage: ["/"],
+  navbar: ["/"],
+  footer: ["/"],
+  themesPage: ["/themes"],
+  processPage: ["/process"],
+  castPage: ["/cast"],
+  moviePage: ["/movie"],
+  aboutPage: ["/about"],
+  galleryPage: ["/gallery"],
+  contactPage: ["/contact"],
 };
 
 export async function POST(request: NextRequest) {
@@ -20,7 +20,6 @@ export async function POST(request: NextRequest) {
     const secret = request.headers.get("x-sanity-secret");
 
     if (!process.env.SANITY_REVALIDATE_SECRET) {
-      console.log("SANITY_REVALIDATE_SECRET not configured");
       revalidatePath("/", "layout");
       return NextResponse.json({ 
         revalidated: true, 
@@ -34,13 +33,9 @@ export async function POST(request: NextRequest) {
     }
 
     const type = body?._type as string;
-    const config = TAG_MAP[type] || { tags: ["content"], paths: ["/"] };
+    const paths = PATH_MAP[type] || ["/"];
     
-    for (const tag of config.tags) {
-      revalidateTag(tag);
-    }
-
-    for (const path of config.paths) {
+    for (const path of paths) {
       revalidatePath(path);
     }
 
@@ -49,8 +44,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ 
       revalidated: true, 
       type,
-      tags: config.tags,
-      paths: config.paths,
+      paths,
       now: Date.now() 
     });
   } catch (error) {
@@ -58,7 +52,7 @@ export async function POST(request: NextRequest) {
     revalidatePath("/", "layout");
     return NextResponse.json({ 
       revalidated: true,
-      error: "Error but revalidated anyway",
+      message: "Fallback revalidation",
       now: Date.now()
     });
   }
@@ -78,6 +72,6 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({ 
     message: "Revalidation endpoint. Use POST with Sanity webhook or GET with ?secret=",
-    supportedTypes: Object.keys(TAG_MAP)
+    supportedTypes: Object.keys(PATH_MAP)
   });
 }
