@@ -5,28 +5,64 @@ import React, { useEffect, useRef, useState } from 'react'
 interface Star {
   x: number
   y: number
-  z: number
-  vx: number
-  vy: number
   size: number
+  rotation: number
+  rotationSpeed: number
+  speed: number
   alpha: number
-  tail: { x: number; y: number }[]
-  color: string
 }
 
 interface FallingStarsProps {
   count?: number
+  mobileCount?: number
+  minSize?: number
+  maxSize?: number
+  minSpeed?: number
+  maxSpeed?: number
   color?: string
   className?: string
 }
 
+function drawStar(ctx: CanvasRenderingContext2D, cx: number, cy: number, size: number, rotation: number) {
+  const spikes = 5
+  const outerRadius = size
+  const innerRadius = size * 0.4
+  
+  ctx.save()
+  ctx.translate(cx, cy)
+  ctx.rotate(rotation)
+  ctx.beginPath()
+  
+  for (let i = 0; i < spikes * 2; i++) {
+    const radius = i % 2 === 0 ? outerRadius : innerRadius
+    const angle = (i * Math.PI) / spikes - Math.PI / 2
+    const x = Math.cos(angle) * radius
+    const y = Math.sin(angle) * radius
+    
+    if (i === 0) {
+      ctx.moveTo(x, y)
+    } else {
+      ctx.lineTo(x, y)
+    }
+  }
+  
+  ctx.closePath()
+  ctx.restore()
+}
+
 export default function FallingStars({
-  count = 50,
+  count = 20,
+  mobileCount = 8,
+  minSize = 8,
+  maxSize = 28,
+  minSpeed = 1.5,
+  maxSpeed = 4,
   color,
   className = ''
 }: FallingStarsProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,6 +71,7 @@ export default function FallingStars({
           width: window.innerWidth,
           height: window.innerHeight
         })
+        setIsMobile(window.innerWidth < 768)
       }
     }
     
@@ -43,9 +80,13 @@ export default function FallingStars({
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  const activeCount = isMobile ? mobileCount : count
+  const sizeRange = maxSize - minSize
+  const speedRange = maxSpeed - minSpeed
+
   useEffect(() => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas || dimensions.width === 0) return
 
     const ctx = canvas.getContext('2d')
     if (!ctx) return
@@ -84,36 +125,21 @@ export default function FallingStars({
     canvas.style.height = `${dimensions.height}px`
 
     const stars: Star[] = []
-    
-    const GRAVITY = 0.05
-    const MAX_VELOCITY = 15
-    const TAIL_LENGTH = 10
 
-    const spawnStar = (yOverride?: number): Star => {
-      const side = Math.random() > 0.5 ? 'left' : 'right'
-      const xPercent = side === 'left' 
-        ? Math.random() * 0.2 
-        : 0.8 + Math.random() * 0.2
-      
-      const x = xPercent * dimensions.width
-      const y = yOverride ?? -50
-      const z = 0.5 + Math.random() * 1.5
-      
+    const spawnStar = (randomY = false): Star => {
       return {
-        x,
-        y,
-        z,
-        vx: (Math.random() - 0.5) * 0.5 * z,
-        vy: (2 + Math.random() * 5) * z,
-        size: (0.5 + Math.random() * 1.5) * z,
-        alpha: 0.4 + Math.random() * 0.6,
-        tail: [],
-        color: activeColor
+        x: Math.random() * dimensions.width,
+        y: randomY ? Math.random() * dimensions.height : -50 - Math.random() * 100,
+        size: minSize + Math.random() * sizeRange,
+        rotation: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() - 0.5) * 0.04,
+        speed: minSpeed + Math.random() * speedRange,
+        alpha: 0.6 + Math.random() * 0.4
       }
     }
 
-    for (let i = 0; i < count; i++) {
-        stars.push(spawnStar(Math.random() * dimensions.height))
+    for (let i = 0; i < activeCount; i++) {
+      stars.push(spawnStar(true))
     }
 
     let animationFrameId: number
@@ -122,44 +148,23 @@ export default function FallingStars({
       ctx.clearRect(0, 0, dimensions.width, dimensions.height)
       
       stars.forEach((star, index) => {
-        star.vy = Math.min(star.vy + GRAVITY * star.z, MAX_VELOCITY)
-        star.x += star.vx
-        star.y += star.vy
+        star.y += star.speed
+        star.rotation += star.rotationSpeed
 
-        star.tail.unshift({ x: star.x, y: star.y })
-        if (star.tail.length > TAIL_LENGTH) {
-          star.tail.pop()
+        if (star.y > dimensions.height + star.size * 2) {
+          stars[index] = spawnStar(false)
         }
 
-        if (star.y > dimensions.height + 100) {
-          stars[index] = spawnStar()
-        }
-
-        if (star.tail.length > 1) {
-            ctx.beginPath()
-            ctx.moveTo(star.tail[0].x, star.tail[0].y)
-            for (let i = 1; i < star.tail.length; i++) {
-                ctx.lineTo(star.tail[i].x, star.tail[i].y)
-            }
-            
-            ctx.save()
-            ctx.globalAlpha = star.alpha * 0.5
-            ctx.strokeStyle = activeColor
-            ctx.lineWidth = star.size
-            ctx.lineCap = 'round'
-            ctx.stroke()
-            ctx.restore()
-        }
-
-        ctx.beginPath()
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2)
-        ctx.fillStyle = activeColor
+        ctx.save()
         ctx.globalAlpha = star.alpha
-        ctx.shadowBlur = star.size * 2
+        ctx.fillStyle = activeColor
+        ctx.shadowBlur = star.size * 0.5
         ctx.shadowColor = activeColor
+        
+        drawStar(ctx, star.x, star.y, star.size, star.rotation)
         ctx.fill()
-        ctx.shadowBlur = 0
-        ctx.globalAlpha = 1.0
+        
+        ctx.restore()
       })
 
       animationFrameId = requestAnimationFrame(render)
@@ -169,14 +174,15 @@ export default function FallingStars({
 
     return () => {
       cancelAnimationFrame(animationFrameId)
+      observer.disconnect()
     }
-  }, [dimensions, count, color])
+  }, [dimensions, activeCount, minSize, sizeRange, minSpeed, speedRange, color])
 
   return (
     <canvas 
       ref={canvasRef}
       className={`fixed inset-0 pointer-events-none z-[1] ${className}`}
-      style={{ opacity: 0.8 }}
+      style={{ opacity: 0.9 }}
     />
   )
 }

@@ -21,6 +21,16 @@ interface Theme {
   ctaLink?: string
 }
 
+interface FallingStarsSettings {
+  enabled?: boolean
+  count?: number
+  mobileCount?: number
+  minSize?: number
+  maxSize?: number
+  minSpeed?: number
+  maxSpeed?: number
+}
+
 interface ThemesData {
   title?: string
   hero?: {
@@ -35,6 +45,7 @@ interface ThemesData {
     tag?: string
     link?: string
   }[]
+  fallingStars?: FallingStarsSettings
   themesList?: Theme[]
 }
 
@@ -69,15 +80,27 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
   const hero = data?.hero || {}
   const featuresGrid = data?.featuresGrid || []
   const themes = data?.themesList || []
+  const stars = data?.fallingStars || {}
   const containerRef = useRef<HTMLDivElement>(null)
   const [selectedTheme, setSelectedTheme] = useState<Theme | null>(null)
 
   const displayThemes = themes.length > 0 ? themes : defaultThemes
+  const showStars = stars.enabled !== false
 
   return (
     <>
       <div ref={containerRef} className="relative min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
-        <FallingStars count={10} color="var(--text-primary)" />
+        {showStars && (
+          <FallingStars 
+            count={stars.count ?? 20}
+            mobileCount={stars.mobileCount ?? 8}
+            minSize={stars.minSize ?? 8}
+            maxSize={stars.maxSize ?? 28}
+            minSpeed={stars.minSpeed ?? 1.5}
+            maxSpeed={stars.maxSpeed ?? 4}
+            color="var(--text-primary)" 
+          />
+        )}
         <ThemesHero hero={hero} featuresGrid={featuresGrid} />
 
         <section className="relative px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
