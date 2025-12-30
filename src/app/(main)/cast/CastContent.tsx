@@ -6,6 +6,7 @@ import { useRef } from 'react'
 import LaurelBadge from '@/components/shared/LaurelBadge'
 import CastCarousel from './CastCarousel'
 import FallingStars from '@/components/shared/FallingStars'
+import { DEFAULT_CAST_HERO_FEATURE, DEFAULT_CAST_HERO, DEFAULT_FALLING_STARS } from '@/lib/constants'
 
 interface CastImage {
   url: string
@@ -51,25 +52,18 @@ export default function CastContent({ hero, heroFeature, fallingStars, showcaseI
   const stars = fallingStars || {}
   const showStars = stars.enabled !== false
 
-  const defaultFeature = {
-    title: "BECOME A STAR",
-    subtitle: "Step into the spotlight",
-    tag: "2026",
-    link: "/contact"
-  }
-
-  const feature = heroFeature || defaultFeature
+  const feature = heroFeature || DEFAULT_CAST_HERO_FEATURE
 
   return (
     <div ref={contentRef} className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
       {showStars && (
         <FallingStars 
-          count={stars.count ?? 20}
-          mobileCount={stars.mobileCount ?? 8}
-          minSize={stars.minSize ?? 8}
-          maxSize={stars.maxSize ?? 28}
-          minSpeed={stars.minSpeed ?? 1.5}
-          maxSpeed={stars.maxSpeed ?? 4}
+          count={stars.count ?? DEFAULT_FALLING_STARS.count}
+          mobileCount={stars.mobileCount ?? DEFAULT_FALLING_STARS.mobileCount}
+          minSize={stars.minSize ?? DEFAULT_FALLING_STARS.minSize}
+          maxSize={stars.maxSize ?? DEFAULT_FALLING_STARS.maxSize}
+          minSpeed={stars.minSpeed ?? DEFAULT_FALLING_STARS.minSpeed}
+          maxSpeed={stars.maxSpeed ?? DEFAULT_FALLING_STARS.maxSpeed}
           sidesOnly={true}
           sideWidth={0.15}
           color="var(--text-primary)" 
@@ -101,7 +95,7 @@ export default function CastContent({ hero, heroFeature, fallingStars, showcaseI
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                {hero?.title || "Become the Cast"}
+                {hero?.title || DEFAULT_CAST_HERO.title}
               </motion.h1>
 
               <motion.div
@@ -124,7 +118,7 @@ export default function CastContent({ hero, heroFeature, fallingStars, showcaseI
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                {hero?.subtitle || "Lights · Camera · Action — Your Time to Shine"}
+                {hero?.subtitle || DEFAULT_CAST_HERO.subtitle}
               </motion.p>
             </motion.div>
 

@@ -7,6 +7,7 @@ import { Wand2 } from 'lucide-react'
 import ThemesHero from './ThemesHero'
 import ThemeCard from './ThemeCard'
 import ThemeModal from './ThemeModal'
+import { DEFAULT_THEMES } from '@/lib/constants'
 
 interface Theme {
   title: string
@@ -37,32 +38,7 @@ interface ThemesData {
   themesList?: Theme[]
 }
 
-const defaultThemes: Theme[] = [
-  {
-    title: "007 Agents of Style",
-    genre: "Spy / Action Theme",
-    icon: "glasses",
-    vibe: "Sleek, stylish, high-stakes, espionage.",
-    story: "Guests step into the world of secret agents, daring missions, and intrigue. Think tuxedos, glamorous dresses, and action-packed poses.",
-    feel: "Sophisticated, adventurous, playful suspense."
-  },
-  {
-    title: "The Hollywood Hussle",
-    genre: "Old Hollywood / Glamour Theme",
-    icon: "star",
-    vibe: "Classic 1940s–1960s Tinseltown glamour.",
-    story: "Guests become stars of a vintage cinematic caper, full of red carpets, flashing cameras, and silver-screen drama.",
-    feel: "Elegant, nostalgic, cinematic, stylish drama."
-  },
-  {
-    title: "La Dolce Vita",
-    genre: "Italian / Romantic Glamour Theme",
-    icon: "heart",
-    vibe: "Stylish, fun, romantic, sun-soaked Italian adventure.",
-    story: "Guests star in a story of romance, intrigue, and playful elegance in the heart of 1960s Rome.",
-    feel: "Romantic, stylish, lively, playful charm."
-  }
-]
+
 
 export default function ThemesContent({ data }: { data: ThemesData }) {
   const hero = data?.hero || {}
@@ -71,7 +47,7 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [selectedTheme, setSelectedTheme] = useState<Theme | null>(null)
 
-  const displayThemes = themes.length > 0 ? themes : defaultThemes
+  const displayThemes = themes.length > 0 ? themes : [...DEFAULT_THEMES]
 
   return (
     <>

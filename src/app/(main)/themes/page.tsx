@@ -1,6 +1,8 @@
 import { getThemesPageData } from "@/sanity/lib/getThemesPage"
 import ThemesContent from "./ThemesContent"
 import type { Metadata } from "next"
+import { Suspense } from "react"
+import PageLoading from "@/components/shared/PageLoading"
 
 export const metadata: Metadata = {
   title: "Themes | Lake Como Style",
@@ -12,12 +14,17 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function ThemesPage() {
+async function ThemesPageContent() {
   const data = await getThemesPageData()
+  return <ThemesContent data={data} />
+}
 
+export default async function ThemesPage() {
   return (
     <main id="main-content" className="min-h-screen bg-black">
-      <ThemesContent data={data} />
+      <Suspense fallback={<PageLoading />}>
+        <ThemesPageContent />
+      </Suspense>
     </main>
   )
 }
