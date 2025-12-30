@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import { 
   Film, Sparkles, Heart, Star, Crown, 
   Glasses, Drama, Clapperboard, Camera, 
@@ -52,23 +52,13 @@ interface ThemeCardProps {
 export default function ThemeCard({ theme, index, onReadMore }: ThemeCardProps) {
   const isEven = index % 2 === 0
   const cardRef = useRef<HTMLDivElement>(null)
-  const [isDesktop, setIsDesktop] = useState(false)
-  
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsDesktop(window.innerWidth >= 769)
-    }
-    checkScreenSize()
-    window.addEventListener('resize', checkScreenSize)
-    return () => window.removeEventListener('resize', checkScreenSize)
-  }, [])
   
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "end start"]
   })
 
-  const skewY = useTransform(scrollYProgress, [0, 0.4, 0.6], isDesktop ? (isEven ? [5, 0, -5] : [-5, 0, 5]) : [0, 0, 0])
+  const skewY = useTransform(scrollYProgress, [0, 1], [0, 0])
   const y = useTransform(scrollYProgress, [0, 0.5], [120, 0])
   const opacity = useTransform(scrollYProgress, [0, 0.25], [0, 1])
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.95, 1])
@@ -78,9 +68,9 @@ export default function ThemeCard({ theme, index, onReadMore }: ThemeCardProps) 
       ref={cardRef}
       id={`theme-${index}`}
       style={{ skewY, y, opacity, scale }}
-      className={`relative flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-32 items-center py-16 lg:py-24 px-4 lg:px-12`}
+      className={`relative flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-6 md:gap-8 lg:gap-16 items-center py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-12`}
     >
-      <div className="relative w-full lg:w-[45%] aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+      <div className="relative w-full md:w-[80%] lg:w-[45%] aspect-[16/10] md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
         {theme.imageUrl ? (
           <Image
             src={theme.imageUrl}
