@@ -5,11 +5,22 @@ import { ChevronDown } from 'lucide-react'
 import { useRef } from 'react'
 import LaurelBadge from '@/components/shared/LaurelBadge'
 import CastCarousel from './CastCarousel'
+import FallingStars from '@/components/shared/FallingStars'
 
 interface CastImage {
   url: string
   title?: string
   role?: string
+}
+
+interface FallingStarsSettings {
+  enabled?: boolean
+  count?: number
+  mobileCount?: number
+  minSize?: number
+  maxSize?: number
+  minSpeed?: number
+  maxSpeed?: number
 }
 
 interface CastContentProps {
@@ -23,18 +34,22 @@ interface CastContentProps {
     tag?: string
     link?: string
   }
+  fallingStars?: FallingStarsSettings
   showcaseImages: CastImage[]
   content?: {
     paragraphs?: string[]
   }
 }
 
-export default function CastContent({ hero, heroFeature, showcaseImages, content }: CastContentProps) {
+export default function CastContent({ hero, heroFeature, fallingStars, showcaseImages, content }: CastContentProps) {
   const contentRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: contentRef,
     offset: ["start end", "end start"]
   })
+
+  const stars = fallingStars || {}
+  const showStars = stars.enabled !== false
 
   const defaultFeature = {
     title: "BECOME A STAR",
@@ -47,6 +62,19 @@ export default function CastContent({ hero, heroFeature, showcaseImages, content
 
   return (
     <div ref={contentRef} className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
+      {showStars && (
+        <FallingStars 
+          count={stars.count ?? 20}
+          mobileCount={stars.mobileCount ?? 8}
+          minSize={stars.minSize ?? 8}
+          maxSize={stars.maxSize ?? 28}
+          minSpeed={stars.minSpeed ?? 1.5}
+          maxSpeed={stars.maxSpeed ?? 4}
+          sidesOnly={true}
+          sideWidth={0.15}
+          color="var(--text-primary)" 
+        />
+      )}
       <section className="h-[calc(100dvh-60px)] min-h-[600px] flex flex-col px-4 md:px-8 lg:px-12 relative">
         <div 
           className="absolute inset-0"

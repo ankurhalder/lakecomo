@@ -16,15 +16,6 @@ const query = `
       tag,
       link
     },
-    fallingStars {
-      enabled,
-      count,
-      mobileCount,
-      minSize,
-      maxSize,
-      minSpeed,
-      maxSpeed
-    },
     themesList[] {
       title,
       genre,

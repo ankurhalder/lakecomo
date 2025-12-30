@@ -19,6 +19,8 @@ interface FallingStarsProps {
   maxSize?: number
   minSpeed?: number
   maxSpeed?: number
+  sidesOnly?: boolean
+  sideWidth?: number
   color?: string
   className?: string
 }
@@ -57,6 +59,8 @@ export default function FallingStars({
   maxSize = 28,
   minSpeed = 1.5,
   maxSpeed = 4,
+  sidesOnly = false,
+  sideWidth = 0.15,
   color,
   className = ''
 }: FallingStarsProps) {
@@ -127,8 +131,23 @@ export default function FallingStars({
     const stars: Star[] = []
 
     const spawnStar = (randomY = false): Star => {
+      let x: number
+      
+      if (sidesOnly) {
+        const leftZoneWidth = dimensions.width * sideWidth
+        const rightZoneStart = dimensions.width * (1 - sideWidth)
+        
+        if (Math.random() > 0.5) {
+          x = Math.random() * leftZoneWidth
+        } else {
+          x = rightZoneStart + Math.random() * leftZoneWidth
+        }
+      } else {
+        x = Math.random() * dimensions.width
+      }
+
       return {
-        x: Math.random() * dimensions.width,
+        x,
         y: randomY ? Math.random() * dimensions.height : -50 - Math.random() * 100,
         size: minSize + Math.random() * sizeRange,
         rotation: Math.random() * Math.PI * 2,
@@ -176,7 +195,7 @@ export default function FallingStars({
       cancelAnimationFrame(animationFrameId)
       observer.disconnect()
     }
-  }, [dimensions, activeCount, minSize, sizeRange, minSpeed, speedRange, color])
+  }, [dimensions, activeCount, minSize, sizeRange, minSpeed, speedRange, sidesOnly, sideWidth, color])
 
   return (
     <canvas 
@@ -186,3 +205,4 @@ export default function FallingStars({
     />
   )
 }
+

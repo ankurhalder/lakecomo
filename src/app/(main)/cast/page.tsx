@@ -13,6 +13,16 @@ interface CastImage {
   role?: string;
 }
 
+interface FallingStarsSettings {
+  enabled?: boolean;
+  count?: number;
+  mobileCount?: number;
+  minSize?: number;
+  maxSize?: number;
+  minSpeed?: number;
+  maxSpeed?: number;
+}
+
 interface CastPageData {
   title: string;
   hero: {
@@ -25,6 +35,7 @@ interface CastPageData {
     tag?: string;
     link?: string;
   };
+  fallingStars?: FallingStarsSettings;
   showcaseImages: any[];
   content?: {
     paragraphs: string[];
@@ -43,6 +54,15 @@ async function getCastPageData(): Promise<CastPageData | null> {
         subtitle,
         tag,
         link
+      },
+      fallingStars {
+        enabled,
+        count,
+        mobileCount,
+        minSize,
+        maxSize,
+        minSpeed,
+        maxSpeed
       },
       "showcaseImages": showcaseImages[] {
         "url": coalesce(image.asset->url, asset->url),
@@ -65,7 +85,7 @@ export default async function CastPage() {
     );
   }
 
-  const { hero, heroFeature, showcaseImages, content } = data;
+  const { hero, heroFeature, fallingStars, showcaseImages, content } = data;
 
   const images: CastImage[] = (showcaseImages || [])
     .filter((img: any) => img?.url)
@@ -79,8 +99,10 @@ export default async function CastPage() {
     <CastContent 
       hero={hero} 
       heroFeature={heroFeature}
+      fallingStars={fallingStars}
       showcaseImages={images} 
       content={content}
     />
   );
 }
+

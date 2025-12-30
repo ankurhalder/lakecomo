@@ -34,6 +34,22 @@ export default defineType({
       ]
     }),
     defineField({
+      name: 'fallingStars',
+      title: 'Falling Stars Effect',
+      description: 'Configure the animated stars that fall on the sides of the page.',
+      type: 'object',
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({ name: 'enabled', title: 'Enable Falling Stars', type: 'boolean', initialValue: true }),
+        defineField({ name: 'count', title: 'Star Count (Desktop)', type: 'number', initialValue: 20, validation: Rule => Rule.min(1).max(100) }),
+        defineField({ name: 'mobileCount', title: 'Star Count (Mobile)', type: 'number', initialValue: 8, validation: Rule => Rule.min(1).max(50) }),
+        defineField({ name: 'minSize', title: 'Min Size (px)', type: 'number', initialValue: 8, validation: Rule => Rule.min(2).max(50) }),
+        defineField({ name: 'maxSize', title: 'Max Size (px)', type: 'number', initialValue: 28, validation: Rule => Rule.min(5).max(80) }),
+        defineField({ name: 'minSpeed', title: 'Min Speed', type: 'number', initialValue: 1.5, validation: Rule => Rule.min(0.1).max(10) }),
+        defineField({ name: 'maxSpeed', title: 'Max Speed', type: 'number', initialValue: 4, validation: Rule => Rule.min(0.5).max(15) }),
+      ]
+    }),
+    defineField({
       name: 'showcaseImages',
       title: 'Showcase Images (Carousel)',
       description: 'Add 4-6 images for the 3D carousel. Each image can have a character title and role.',
