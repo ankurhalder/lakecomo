@@ -7,6 +7,7 @@ import { Wand2 } from 'lucide-react'
 import ThemesHero from './ThemesHero'
 import ThemeCard from './ThemeCard'
 import ThemeModal from './ThemeModal'
+import FallingStars from '@/components/shared/FallingStars'
 
 interface Theme {
   title: string
@@ -76,6 +77,7 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
   return (
     <>
       <div ref={containerRef} className="relative min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
+        <FallingStars count={40} color="var(--text-primary)" />
         <ThemesHero hero={hero} featuresGrid={featuresGrid} />
 
         <section className="relative px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
