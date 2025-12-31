@@ -1,5 +1,6 @@
 import { client, DEFAULT_REVALIDATE } from "./client";
 import { unstable_cache } from "next/cache";
+import { urlFor } from "./image";
 
 const query = `
   *[_type == "themesPage"][0] {
@@ -20,7 +21,7 @@ const query = `
       title,
       genre,
       icon,
-      "imageUrl": image.asset->url,
+      image,
       vibe,
       story,
       feel,
@@ -31,7 +32,23 @@ const query = `
 `;
 
 const fetchThemesPageData = async () => {
-  return await client.fetch(query);
+  try {
+    const data = await client.fetch(query);
+    
+    if (!data) return null;
+
+    if (data.themesList) {
+      data.themesList = data.themesList.map((theme: any) => ({
+        ...theme,
+        imageUrl: theme.image ? urlFor(theme.image).auto('format').url() : null
+      }));
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching themes page data:", error);
+    return null;
+  }
 };
 
 const cachedFetch = unstable_cache(
@@ -42,8 +59,7 @@ const cachedFetch = unstable_cache(
 
 export async function getThemesPageData() {
   if (process.env.NODE_ENV === "development") {
-    return await client.fetch(query);
+    return await fetchThemesPageData();
   }
   return await cachedFetch();
 }
-

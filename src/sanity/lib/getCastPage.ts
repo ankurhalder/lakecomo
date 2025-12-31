@@ -1,5 +1,6 @@
 import { client, DEFAULT_REVALIDATE } from "./client";
 import { unstable_cache } from "next/cache";
+import { urlFor } from "./image";
 
 export interface CastImage {
   url: string;
@@ -63,7 +64,7 @@ const query = `
       maxSpeed
     },
     "showcaseImages": showcaseImages[] {
-      "url": coalesce(image.asset->url, asset->url),
+      image,
       "title": title,
       "role": role
     },
@@ -72,7 +73,24 @@ const query = `
 `;
 
 const fetchCastPageData = async (): Promise<CastPageData | null> => {
-  return await client.fetch(query);
+  try {
+    const data = await client.fetch(query);
+    
+    if (!data) return null;
+
+    if (data.showcaseImages) {
+      data.showcaseImages = data.showcaseImages.map((item: any) => ({
+        url: item.image ? urlFor(item.image).auto('format').url() : "",
+        title: item.title,
+        role: item.role
+      }));
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching cast page data:", error);
+    return null;
+  }
 };
 
 const cachedFetch = unstable_cache(
@@ -83,7 +101,7 @@ const cachedFetch = unstable_cache(
 
 export async function getCastPageData(): Promise<CastPageData | null> {
   if (process.env.NODE_ENV === "development") {
-    return await client.fetch(query);
+    return await fetchCastPageData();
   }
   return await cachedFetch();
 }

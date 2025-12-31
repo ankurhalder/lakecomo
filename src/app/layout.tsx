@@ -5,6 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lakecomostyle.it"),
   title: "Lake Como Style",
   description: "Transform your celebration into an unforgettable cinematic experience. Themed parties, professional videography, and custom movie trailers in Lake Como, Italy.",
   keywords: ["Lake Como", "cinematic events", "themed parties", "movie trailers", "Italy events", "wedding videography"],
