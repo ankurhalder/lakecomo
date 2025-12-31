@@ -7,6 +7,7 @@ const SCHEMA_TYPES = [
   'themesPage',
   'castPage',
   'processPage',
+  'moviePage',
 ]
 
 export const structure: StructureResolver = (S) =>
