@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import LaurelBadge, { LaurelBadgeProps } from '../shared/LaurelBadge'
+import LaurelBadge from '../shared/LaurelBadge'
 
 interface FeatureItemProps {
   title: string;

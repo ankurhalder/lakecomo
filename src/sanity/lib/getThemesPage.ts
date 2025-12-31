@@ -38,7 +38,7 @@ const fetchThemesPageData = async () => {
     if (!data) return null;
 
     if (data.themesList) {
-      data.themesList = data.themesList.map((theme: any) => ({
+      data.themesList = data.themesList.map((theme: { image?: unknown; [key: string]: unknown }) => ({
         ...theme,
         imageUrl: theme.image ? urlFor(theme.image).auto('format').url() : null
       }));

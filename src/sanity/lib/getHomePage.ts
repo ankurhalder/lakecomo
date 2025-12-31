@@ -37,7 +37,7 @@ const fetchHomePageData = async () => {
     }
 
     if (data.featuresGrid) {
-      data.featuresGrid = data.featuresGrid.map((item: any) => ({
+      data.featuresGrid = data.featuresGrid.map((item: { icon?: unknown; [key: string]: unknown }) => ({
         ...item,
         iconUrl: item.icon ? urlFor(item.icon).auto('format').url() : null,
       }));

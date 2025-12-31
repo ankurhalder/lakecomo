@@ -79,7 +79,7 @@ const fetchCastPageData = async (): Promise<CastPageData | null> => {
     if (!data) return null;
 
     if (data.showcaseImages) {
-      data.showcaseImages = data.showcaseImages.map((item: any) => ({
+      data.showcaseImages = data.showcaseImages.map((item: { image?: unknown; title?: string; role?: string }) => ({
         url: item.image ? urlFor(item.image).auto('format').url() : "",
         title: item.title,
         role: item.role

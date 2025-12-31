@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { useRef } from 'react'
 import LaurelBadge from '@/components/shared/LaurelBadge'
@@ -44,10 +44,6 @@ interface CastContentProps {
 
 export default function CastContent({ hero, heroFeature, fallingStars, showcaseImages, content }: CastContentProps) {
   const contentRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: contentRef,
-    offset: ["start end", "end start"]
-  })
 
   const stars = fallingStars || {}
   const showStars = stars.enabled !== false
@@ -178,7 +174,7 @@ export default function CastContent({ hero, heroFeature, fallingStars, showcaseI
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ delay: idx * 0.1, duration: 0.6 }}
               >
-                {typeof paragraph === 'string' ? paragraph : (paragraph as any).text || ''}
+                {typeof paragraph === 'string' ? paragraph : (paragraph as { text?: string }).text || ''}
               </motion.p>
             ))}
           </div>

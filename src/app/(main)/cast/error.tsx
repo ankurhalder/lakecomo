@@ -3,12 +3,13 @@
 import PageError from '@/components/shared/PageError'
 
 export default function Error({
-  error,
+  error: _error,
   reset,
 }: {
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  void _error
   return (
     <PageError
       title="Couldn't load Cast page"

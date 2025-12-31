@@ -12,18 +12,23 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType>({ theme: 'dark', toggleTheme: () => {} })
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark')
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = sessionStorage.getItem('theme') as Theme
+        if (saved && (saved === 'light' || saved === 'dark')) {
+          return saved
+        }
+      } catch {}
+    }
+    return 'dark'
+  })
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-    try {
-      const saved = sessionStorage.getItem('theme') as Theme
-      if (saved && (saved === 'light' || saved === 'dark')) {
-        setTheme(saved)
-        document.documentElement.setAttribute('data-theme', saved)
-      }
-    } catch {}
+    document.documentElement.setAttribute('data-theme', theme)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

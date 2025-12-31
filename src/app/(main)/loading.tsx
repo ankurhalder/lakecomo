@@ -1,6 +1,6 @@
 'use client'
 
-import PageLoading, { Skeleton } from '@/components/shared/PageLoading'
+import { Skeleton } from '@/components/shared/PageLoading'
 
 function LaurelBadgeSkeleton() {
   return (
