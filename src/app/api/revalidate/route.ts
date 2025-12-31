@@ -6,12 +6,7 @@ const PATH_MAP: Record<string, string[]> = {
   navbar: ["/"],
   footer: ["/"],
   themesPage: ["/themes"],
-  processPage: ["/process"],
   castPage: ["/cast"],
-  moviePage: ["/movie"],
-  aboutPage: ["/about"],
-  galleryPage: ["/gallery"],
-  contactPage: ["/contact"],
 };
 
 export async function POST(request: NextRequest) {
