@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useMemo, useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Send, Sparkles, Check, AlertCircle, Mail, Phone, Users, Calendar, User, MessageSquare } from 'lucide-react'
 import ContactCharacter, { CharacterExpression } from './ContactCharacter'
 
@@ -29,6 +29,9 @@ export default function ContactContent() {
   const [submitted, setSubmitted] = useState(false)
   const [focusedField, setFocusedField] = useState<string | null>(null)
   const [countryCode, setCountryCode] = useState('+1')
+
+  const { scrollY } = useScroll()
+  const textY = useTransform(scrollY, [0, 500], [0, 50])
 
   const countryCodes = [
     { code: '+1', country: 'US/CA' },
@@ -160,16 +163,17 @@ export default function ContactContent() {
         style={{ background: 'linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary) 50%, var(--bg-primary))' }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-28 md:pt-32 pb-20 overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-28 md:pt-32 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start relative">
           <motion.div
-            className="lg:sticky lg:top-32 flex flex-col items-center lg:items-start"
+            className="lg:sticky lg:top-32 flex flex-col items-center lg:h-[calc(100vh-160px)] lg:justify-center"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
+            style={{ y: textY }}
           >
             <motion.div 
-              className="text-center lg:text-left mb-8"
+              className="text-center lg:text-center mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -189,7 +193,7 @@ export default function ContactContent() {
               </motion.h1>
               
               <motion.div
-                className="flex items-center justify-center lg:justify-start gap-3 mb-4"
+                className="flex items-center justify-center gap-3 mb-4"
               >
                 <div className="h-px w-8 md:w-12" style={{ backgroundColor: 'var(--text-secondary)', opacity: 0.3 }} />
                 <Sparkles size={16} style={{ color: 'var(--accent)' }} />
@@ -197,17 +201,24 @@ export default function ContactContent() {
               </motion.div>
               
               <p 
-                className="text-sm max-w-sm"
+                className="text-sm max-w-sm mx-auto leading-relaxed"
                 style={{ color: 'var(--text-secondary)', opacity: 0.8 }}
               >
                 Ready to create your unforgettable cinematic experience? Fill out the form and we&apos;ll be in touch soon.
               </p>
             </motion.div>
-            
-            <ContactCharacter 
-              expression={getExpression()} 
-              focusedField={focusedField} 
-            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 }}
+              className="relative z-10 hidden lg:block"
+            >
+              <ContactCharacter 
+                focusedField={focusedField} 
+                expression={getExpression()} 
+              />
+            </motion.div>
           </motion.div>
 
           <motion.div
