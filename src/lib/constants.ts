@@ -45,3 +45,17 @@ export const DEFAULT_FALLING_STARS = {
   minSpeed: 1.5,
   maxSpeed: 4
 } as const;
+
+export const DEFAULT_PROCESS_HERO = {
+  heading: "The Process",
+  subHeading: "From Concept to Cinema - Your Story Unfolds",
+  details: "Lake Como Style offers unique cinematic experiences where groups and couples can create their own movie trailers against the stunning backdrop of Lake Como. It's a perfect place for people to immerse themselves in the art of filmmaking while enjoying the beauty of Italy."
+} as const;
+
+export const DEFAULT_PROCESS_HERO_FEATURE = {
+  title: "THEMED CINEMATIC PARTIES",
+  subtitle: "Dive into the World of Cinematic Creativity",
+  tag: "2026",
+  link: "/contact"
+} as const;
+
