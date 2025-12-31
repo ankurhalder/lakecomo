@@ -8,6 +8,15 @@
   --accent: #ffffff;
   --header-bg: rgba(0, 0, 0, 0.5);
   --overlay: rgba(0, 0, 0, 0.3);
+  
+  /* Fonts */
+  --font-limelight: 'Limelight', cursive;
+  --font-courier: 'Courier Prime', monospace;
+}
+
+@theme {
+  --font-limelight: var(--font-limelight);
+  --font-courier: var(--font-courier);
 }
 
 [data-theme="light"] {

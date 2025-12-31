@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Limelight, Courier_Prime } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
+const limelight = Limelight({ 
+  weight: "400",
+  subsets: ["latin"],
+  variable: '--font-limelight'
+});
+const courierPrime = Courier_Prime({ 
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: '--font-courier'
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://lakecomostyle.it"),
@@ -58,7 +68,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${inter.className} overflow-x-hidden`}>
+      <body className={`${inter.variable} ${limelight.variable} ${courierPrime.variable} font-sans overflow-x-hidden`}>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-md focus:font-semibold"
