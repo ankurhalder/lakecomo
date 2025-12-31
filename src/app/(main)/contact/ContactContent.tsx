@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { Send, Sparkles } from 'lucide-react'
+import { Send, Sparkles, Check, AlertCircle, Mail, Phone, Users, Calendar, User, MessageSquare } from 'lucide-react'
 import ContactCharacter, { CharacterExpression } from './ContactCharacter'
 
 interface FormData {
@@ -28,10 +28,65 @@ export default function ContactContent() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [focusedField, setFocusedField] = useState<string | null>(null)
+  const [countryCode, setCountryCode] = useState('+1')
+
+  const countryCodes = [
+    { code: '+1', country: 'US/CA' },
+    { code: '+44', country: 'UK' },
+    { code: '+39', country: 'IT' },
+    { code: '+33', country: 'FR' },
+    { code: '+49', country: 'DE' },
+    { code: '+34', country: 'ES' },
+    { code: '+41', country: 'CH' },
+    { code: '+31', country: 'NL' },
+    { code: '+32', country: 'BE' },
+    { code: '+43', country: 'AT' },
+    { code: '+351', country: 'PT' },
+    { code: '+353', country: 'IE' },
+    { code: '+45', country: 'DK' },
+    { code: '+46', country: 'SE' },
+    { code: '+47', country: 'NO' },
+    { code: '+358', country: 'FI' },
+    { code: '+48', country: 'PL' },
+    { code: '+420', country: 'CZ' },
+    { code: '+36', country: 'HU' },
+    { code: '+30', country: 'GR' },
+    { code: '+7', country: 'RU' },
+    { code: '+81', country: 'JP' },
+    { code: '+82', country: 'KR' },
+    { code: '+86', country: 'CN' },
+    { code: '+91', country: 'IN' },
+    { code: '+61', country: 'AU' },
+    { code: '+64', country: 'NZ' },
+    { code: '+55', country: 'BR' },
+    { code: '+52', country: 'MX' },
+    { code: '+54', country: 'AR' },
+    { code: '+971', country: 'UAE' },
+    { code: '+966', country: 'SA' },
+    { code: '+972', country: 'IL' },
+    { code: '+27', country: 'ZA' },
+    { code: '+65', country: 'SG' },
+    { code: '+60', country: 'MY' },
+    { code: '+66', country: 'TH' },
+  ]
+
+  const emailValidation = useMemo(() => {
+    if (!formData.email) return { valid: false, message: '' }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (emailRegex.test(formData.email)) {
+      return { valid: true, message: 'Valid email' }
+    }
+    if (formData.email.includes('@')) {
+      return { valid: false, message: 'Complete the domain' }
+    }
+    return { valid: false, message: 'Add @ and domain' }
+  }, [formData.email])
 
   const getExpression = (): CharacterExpression => {
     if (submitted) return 'happy'
     if (isSubmitting) return 'attentive'
+    if (focusedField === 'email' && formData.email && !emailValidation.valid) return 'concerned'
+    if (focusedField === 'email' && emailValidation.valid) return 'happy'
     if (focusedField === 'password') return 'privacy'
     if (focusedField) return 'attentive'
     return 'idle'
@@ -105,7 +160,7 @@ export default function ContactContent() {
         style={{ background: 'linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary) 50%, var(--bg-primary))' }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-28 md:pt-32 pb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-28 md:pt-32 pb-20 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           <motion.div
             className="lg:sticky lg:top-32 flex flex-col items-center lg:items-start"
@@ -176,9 +231,10 @@ export default function ContactContent() {
               <div>
                 <label 
                   htmlFor="firstName" 
-                  className="block text-sm font-medium mb-2"
+                  className="flex items-center gap-2 text-sm font-medium mb-2"
                   style={{ color: 'var(--text-secondary)' }}
                 >
+                  <User size={14} />
                   First Name
                 </label>
                 <input
@@ -202,9 +258,10 @@ export default function ContactContent() {
               <div>
                 <label 
                   htmlFor="lastName" 
-                  className="block text-sm font-medium mb-2"
+                  className="flex items-center gap-2 text-sm font-medium mb-2"
                   style={{ color: 'var(--text-secondary)' }}
                 >
+                  <User size={14} />
                   Last Name
                 </label>
                 <input
@@ -230,52 +287,97 @@ export default function ContactContent() {
               <div>
                 <label 
                   htmlFor="email" 
-                  className="block text-sm font-medium mb-2"
+                  className="flex items-center gap-2 text-sm font-medium mb-2"
                   style={{ color: 'var(--text-secondary)' }}
                 >
+                  <Mail size={14} />
                   Email <span style={{ color: 'var(--accent)' }}>*</span>
                 </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField('email')}
-                  onBlur={() => setFocusedField(null)}
-                  required
-                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
-                  style={{ 
-                    backgroundColor: 'var(--bg-secondary)',
-                    color: 'var(--text-primary)'
-                  }}
-                  placeholder="john@example.com"
-                />
+                <div className="relative">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField('email')}
+                    onBlur={() => setFocusedField(null)}
+                    required
+                    className="w-full px-4 py-3 pr-10 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
+                    style={{ 
+                      backgroundColor: 'var(--bg-secondary)',
+                      color: 'var(--text-primary)',
+                      borderColor: formData.email ? (emailValidation.valid ? '#22c55e' : '#ef4444') : undefined
+                    }}
+                    placeholder="john@example.com"
+                  />
+                  {formData.email && (
+                    <motion.div 
+                      className="absolute right-3 top-1/2 -translate-y-1/2"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: 'spring', damping: 15 }}
+                    >
+                      {emailValidation.valid ? (
+                        <Check size={18} className="text-green-500" />
+                      ) : (
+                        <AlertCircle size={18} className="text-red-400" />
+                      )}
+                    </motion.div>
+                  )}
+                </div>
+                {formData.email && !emailValidation.valid && (
+                  <motion.p 
+                    className="text-xs mt-1.5 text-red-400"
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    {emailValidation.message}
+                  </motion.p>
+                )}
               </div>
 
               <div>
                 <label 
                   htmlFor="phone" 
-                  className="block text-sm font-medium mb-2"
+                  className="flex items-center gap-2 text-sm font-medium mb-2"
                   style={{ color: 'var(--text-secondary)' }}
                 >
+                  <Phone size={14} />
                   Phone
                 </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField('phone')}
-                  onBlur={() => setFocusedField(null)}
-                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
-                  style={{ 
-                    backgroundColor: 'var(--bg-secondary)',
-                    color: 'var(--text-primary)'
-                  }}
-                  placeholder="+1 (555) 123-4567"
-                />
+                <div className="flex gap-2 min-w-0">
+                  <select
+                    value={countryCode}
+                    onChange={(e) => setCountryCode(e.target.value)}
+                    className="w-[85px] px-2 py-3 rounded-lg text-xs md:text-sm transition-all focus:outline-none focus:ring-2 border border-white/20 shrink-0"
+                    style={{ 
+                      backgroundColor: 'var(--bg-secondary)',
+                      color: 'var(--text-primary)'
+                    }}
+                  >
+                    {countryCodes.map((c) => (
+                      <option key={c.code} value={c.code}>
+                        {c.code}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField('phone')}
+                    onBlur={() => setFocusedField(null)}
+                    className="min-w-0 flex-1 px-3 md:px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
+                    style={{ 
+                      backgroundColor: 'var(--bg-secondary)',
+                      color: 'var(--text-primary)'
+                    }}
+                    placeholder="555 123-4567"
+                  />
+                </div>
               </div>
             </div>
 
@@ -283,9 +385,10 @@ export default function ContactContent() {
               <div>
                 <label 
                   htmlFor="groupSize" 
-                  className="block text-sm font-medium mb-2"
+                  className="flex items-center gap-2 text-sm font-medium mb-2"
                   style={{ color: 'var(--text-secondary)' }}
                 >
+                  <Users size={14} />
                   How many will you be?
                 </label>
                 <select
@@ -313,9 +416,10 @@ export default function ContactContent() {
               <div>
                 <label 
                   htmlFor="eventDate" 
-                  className="block text-sm font-medium mb-2"
+                  className="flex items-center gap-2 text-sm font-medium mb-2"
                   style={{ color: 'var(--text-secondary)' }}
                 >
+                  <Calendar size={14} />
                   Date of Event
                 </label>
                 <input
@@ -326,10 +430,11 @@ export default function ContactContent() {
                   onChange={handleChange}
                   onFocus={() => setFocusedField('eventDate')}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
+                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20 dark-date-picker"
                   style={{ 
                     backgroundColor: 'var(--bg-secondary)',
-                    color: 'var(--text-primary)'
+                    color: 'var(--text-primary)',
+                    colorScheme: 'dark'
                   }}
                 />
               </div>
@@ -338,9 +443,10 @@ export default function ContactContent() {
             <div>
               <label 
                 htmlFor="message" 
-                className="block text-sm font-medium mb-2"
+                className="flex items-center gap-2 text-sm font-medium mb-2"
                 style={{ color: 'var(--text-secondary)' }}
               >
+                <MessageSquare size={14} />
                 Tell us about your vision
               </label>
               <textarea
