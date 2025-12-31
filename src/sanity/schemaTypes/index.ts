@@ -5,6 +5,7 @@ import navbar from './navbar'
 import featureCard from './objects/featureCard'
 import themesPage from './themesPage'
 import castPage from './castPage'
+import processPage from './processPage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -14,5 +15,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     featureCard,
     themesPage,
     castPage,
+    processPage,
   ],
 }
