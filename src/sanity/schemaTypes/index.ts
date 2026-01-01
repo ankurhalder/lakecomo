@@ -7,6 +7,7 @@ import themesPage from './themesPage'
 import castPage from './castPage'
 import processPage from './processPage'
 import moviePage from './moviePage'
+import crewPage from './crewPage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -18,5 +19,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     castPage,
     processPage,
     moviePage,
+    crewPage,
   ],
 }
