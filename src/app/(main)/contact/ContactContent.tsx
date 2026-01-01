@@ -4,6 +4,7 @@ import { useState, useMemo, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Send, Sparkles, Check, AlertCircle, Mail, Phone, Users, Calendar, User, MessageSquare } from 'lucide-react'
 import ContactCharacter, { CharacterExpression } from './ContactCharacter'
+import { useTheme } from '@/components/providers/ThemeProvider'
 
 interface FormData {
   firstName: string
@@ -16,6 +17,7 @@ interface FormData {
 }
 
 export default function ContactContent() {
+  const { theme } = useTheme()
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -361,7 +363,7 @@ export default function ContactContent() {
                   <select
                     value={countryCode}
                     onChange={(e) => setCountryCode(e.target.value)}
-                    className="w-[85px] px-2 py-3 rounded-lg text-xs md:text-sm transition-all focus:outline-none focus:ring-2 border border-white/20 shrink-0"
+                    className="w-[100px] px-2 min-h-[44px] rounded-lg text-xs md:text-sm transition-all focus:outline-none focus:ring-2 border border-white/20 shrink-0"
                     style={{ 
                       backgroundColor: 'var(--bg-secondary)',
                       color: 'var(--text-primary)'
@@ -381,7 +383,7 @@ export default function ContactContent() {
                     onChange={handleChange}
                     onFocus={() => setFocusedField('phone')}
                     onBlur={() => setFocusedField(null)}
-                    className="min-w-0 flex-1 px-3 md:px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
+                    className="min-w-0 flex-1 px-3 md:px-4 min-h-[44px] rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
                     style={{ 
                       backgroundColor: 'var(--bg-secondary)',
                       color: 'var(--text-primary)'
@@ -441,11 +443,11 @@ export default function ContactContent() {
                   onChange={handleChange}
                   onFocus={() => setFocusedField('eventDate')}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20 dark-date-picker"
+                  className="w-full px-4 min-h-[44px] rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
                   style={{ 
                     backgroundColor: 'var(--bg-secondary)',
                     color: 'var(--text-primary)',
-                    colorScheme: 'dark'
+                    colorScheme: theme === 'dark' ? 'dark' : 'light'
                   }}
                 />
               </div>

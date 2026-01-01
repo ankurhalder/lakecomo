@@ -98,7 +98,7 @@ export default function ProcessStep({ step, index }: ProcessStepProps) {
              <div className="text-left flex-1 min-w-0 flex flex-col">
                 <h3 className="font-limelight text-xs sm:text-sm md:text-base leading-tight mb-0.5 sm:mb-1">{step.heading}</h3>
                 <div 
-                  className="overflow-y-auto pr-1 sm:pr-2 custom-scrollbar max-h-[50px] sm:max-h-[55px] md:max-h-[60px] overscroll-contain"
+                  className="overflow-y-auto pr-1 sm:pr-2 custom-scrollbar max-h-[80px] sm:max-h-[90px] md:max-h-[100px] overscroll-contain"
                   data-lenis-prevent
                   onWheel={(e) => e.stopPropagation()}
                   onTouchMove={(e) => e.stopPropagation()}
@@ -127,17 +127,6 @@ export default function ProcessStep({ step, index }: ProcessStepProps) {
       
       <div className={`sm:hidden absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-black rounded-full z-20`} />
       <div className={`sm:hidden absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-black rounded-full z-20`} />
-      
-      <style jsx global>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 0px;
-          background: transparent;
-        }
-        .custom-scrollbar {
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-      `}</style>
     </motion.div>
   )
 }

@@ -135,8 +135,17 @@ export default function Header({ data }: { data: HeaderData }) {
                   Menu
                 </span>
                 <button 
-                  onClick={() => setIsSidebarOpen(false)}
-                  className="flex items-center justify-center w-10 h-10 rounded-full transition-colors"
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setIsSidebarOpen(false)
+                  }}
+                  onTouchEnd={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    setIsSidebarOpen(false)
+                  }}
+                  className="flex items-center justify-center w-10 h-10 rounded-full transition-colors touch-manipulation"
                   style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
                   aria-label="Close menu"
                 >
