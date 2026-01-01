@@ -20,7 +20,7 @@ interface HeaderData {
 }
 
 export default function Header({ data }: { data: HeaderData }) {
-  const { theme, toggleTheme } = useTheme()
+  const { theme, toggleTheme, mounted } = useTheme()
   const { stop: stopLenis, start: startLenis } = useLenis()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   
@@ -75,7 +75,7 @@ export default function Header({ data }: { data: HeaderData }) {
         style={{ 
           backgroundColor: 'var(--header-bg)',
           color: 'var(--text-primary)',
-          borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'
+          borderColor: (!mounted || theme === 'dark') ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'
         }}
       >
         <Link href="/" className="text-base md:text-xl font-bold tracking-wide font-sans z-10">
@@ -86,15 +86,15 @@ export default function Header({ data }: { data: HeaderData }) {
           <button 
             onClick={toggleTheme}
             className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full transition-colors"
-            style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
+            style={{ backgroundColor: (!mounted || theme === 'dark') ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
             aria-label="Toggle theme"
           >
-            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            {mounted ? (theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />) : <Sun size={16} />}
           </button>
 
           <button 
             className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full transition-colors"
-            style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
+            style={{ backgroundColor: (!mounted || theme === 'dark') ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
             onClick={() => setIsSidebarOpen(true)}
             aria-label="Open menu"
           >
@@ -124,7 +124,7 @@ export default function Header({ data }: { data: HeaderData }) {
               className="fixed top-0 right-0 h-full w-full max-w-md z-[70] flex flex-col border-l overflow-y-auto"
               style={{ 
                 backgroundColor: 'var(--bg-primary)',
-                borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                borderColor: (!mounted || theme === 'dark') ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
                 overscrollBehavior: 'contain'
               }}
               onWheel={(e) => e.stopPropagation()}

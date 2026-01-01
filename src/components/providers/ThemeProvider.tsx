@@ -7,28 +7,23 @@ type Theme = 'light' | 'dark'
 interface ThemeContextType {
   theme: Theme
   toggleTheme: () => void
+  mounted: boolean
 }
 
-const ThemeContext = createContext<ThemeContextType>({ theme: 'dark', toggleTheme: () => {} })
+const ThemeContext = createContext<ThemeContextType>({ theme: 'dark', toggleTheme: () => {}, mounted: false })
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== 'undefined') {
-      try {
-        const saved = sessionStorage.getItem('theme') as Theme
-        if (saved && (saved === 'light' || saved === 'dark')) {
-          return saved
-        }
-      } catch {}
-    }
-    return 'dark'
-  })
+  const [theme, setTheme] = useState<Theme>('dark')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem('theme') as Theme
+      if (saved && (saved === 'light' || saved === 'dark')) {
+        setTheme(saved)
+      }
+    } catch {}
     setMounted(true)
-    document.documentElement.setAttribute('data-theme', theme)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -45,7 +40,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, mounted }}>
       {children}
     </ThemeContext.Provider>
   )

@@ -18,7 +18,7 @@ interface FooterData {
 }
 
 export default function Footer({ data }: { data: FooterData }) {
-  const { theme } = useTheme()
+  const { theme, mounted } = useTheme()
   const socialLinks = data?.socialLinks || [];
 
   const getIcon = (platform: string) => {
@@ -37,7 +37,7 @@ export default function Footer({ data }: { data: FooterData }) {
       style={{ 
         backgroundColor: 'var(--header-bg)',
         color: 'var(--text-primary)',
-        borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'
+        borderColor: (!mounted || theme === 'dark') ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'
       }}
     >
       <div className="flex flex-col items-center md:items-start gap-0.5 md:gap-1 order-2 md:order-1">
