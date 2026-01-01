@@ -9,6 +9,7 @@ import processPage from './processPage'
 import moviePage from './moviePage'
 import crewPage from './crewPage'
 import venuePage from './venuePage'
+import galleryPage from './galleryPage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -22,5 +23,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     moviePage,
     crewPage,
     venuePage,
+    galleryPage,
   ],
 }
