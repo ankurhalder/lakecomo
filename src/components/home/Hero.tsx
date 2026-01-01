@@ -90,6 +90,8 @@ export default function Hero({ data }: { data: HeroData }) {
             muted
             loop
             playsInline
+            preload="auto"
+            crossOrigin="anonymous"
             poster={data?.heroSection?.posterImage || undefined}
             className="absolute inset-0 w-full h-full object-cover"
           >
