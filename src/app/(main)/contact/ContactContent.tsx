@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useRef } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Send, Sparkles, Check, AlertCircle, Mail, Phone, Users, Calendar, User, MessageSquare } from 'lucide-react'
 import ContactCharacter, { CharacterExpression } from './ContactCharacter'

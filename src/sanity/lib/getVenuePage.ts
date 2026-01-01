@@ -1,6 +1,6 @@
 import { client, DEFAULT_REVALIDATE } from "./client";
 import { unstable_cache } from "next/cache";
-import { urlFor } from "./image";
+
 
 export interface GalleryImage {
   url: string;

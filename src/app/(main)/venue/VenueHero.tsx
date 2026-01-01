@@ -60,12 +60,7 @@ export default function VenueHero({ hero, heroFeature, galleryImages }: VenueHer
     return () => clearInterval(interval)
   }, [isAutoPlaying, nextImage, validImages.length])
 
-  useEffect(() => {
-    if (hasImages) {
-      const randomStart = Math.floor(Math.random() * validImages.length)
-      setCurrentIndex(randomStart)
-    }
-  }, [hasImages, validImages.length])
+
 
   return (
     <section 

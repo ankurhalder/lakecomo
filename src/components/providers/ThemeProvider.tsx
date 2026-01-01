@@ -20,6 +20,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     try {
       const saved = sessionStorage.getItem('theme') as Theme
       if (saved && (saved === 'light' || saved === 'dark')) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setTheme(saved)
       }
     } catch {}

@@ -68,7 +68,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${inter.variable} ${limelight.variable} ${courierPrime.variable} font-sans overflow-x-hidden`}>
+      <body className={`${inter.variable} ${limelight.variable} ${courierPrime.variable} font-sans overflow-x-hidden relative`}>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-md focus:font-semibold"
