@@ -11,6 +11,7 @@ const SCHEMA_TYPES = [
   'crewPage',
   'venuePage',
   'galleryPage',
+  'contactPage',
 ]
 
 export const structure: StructureResolver = (S) =>

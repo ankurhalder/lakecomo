@@ -10,6 +10,7 @@ import moviePage from './moviePage'
 import crewPage from './crewPage'
 import venuePage from './venuePage'
 import galleryPage from './galleryPage'
+import contactPage from './contactPage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -24,5 +25,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     crewPage,
     venuePage,
     galleryPage,
+    contactPage,
   ],
 }

@@ -16,7 +16,11 @@ interface FormData {
   message: string
 }
 
-export default function ContactContent() {
+interface ContactContentProps {
+  cameraImageUrl?: string | null
+}
+
+export default function ContactContent({ cameraImageUrl }: ContactContentProps) {
   const { theme } = useTheme()
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
@@ -211,6 +215,7 @@ export default function ContactContent() {
               <InteractiveCamera 
                 focusedField={focusedField} 
                 isSubmitting={isSubmitting}
+                cameraImageUrl={cameraImageUrl}
               />
             </motion.div>
           </motion.div>

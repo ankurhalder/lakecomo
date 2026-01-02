@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import ContactContent from "./ContactContent"
+import { getContactPageData } from "@/sanity/lib/getContactPage"
 
 export const metadata: Metadata = {
   title: "Contact | Lake Como Style",
@@ -11,10 +12,12 @@ export const metadata: Metadata = {
   },
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const data = await getContactPageData()
+  
   return (
     <main id="main-content" className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
-      <ContactContent />
+      <ContactContent cameraImageUrl={data?.cameraImageUrl ? data.cameraImageUrl : null} />
     </main>
   )
 }
