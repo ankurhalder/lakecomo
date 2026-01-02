@@ -65,28 +65,97 @@ export default function Hero({ data }: { data: HeroData }) {
   const features = data?.featuresGrid || []
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMuted, setIsMuted] = useState(true)
+  const hasPlayedRef = useRef(false)
+  const interactionListenerAddedRef = useRef(false)
 
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
 
-    const playVideo = async () => {
+    let rafId: number
+    let lastAttempt = 0
+
+    const forcePlay = async () => {
+      if (hasPlayedRef.current) return true
       try {
         video.muted = true
         await video.play()
-      } catch (error) {
-        console.log('Autoplay prevented:', error)
+        hasPlayedRef.current = true
+        return true
+      } catch {
+        return false
       }
     }
 
-    if (video.readyState >= 3) {
-      playVideo()
-    } else {
-      video.addEventListener('canplay', playVideo, { once: true })
+    const throttledPlay = (timestamp: number) => {
+      if (hasPlayedRef.current) return
+      if (timestamp - lastAttempt > 250) {
+        lastAttempt = timestamp
+        forcePlay()
+      }
+      rafId = requestAnimationFrame(throttledPlay)
     }
 
+    const handleInteraction = () => {
+      if (!hasPlayedRef.current) {
+        forcePlay()
+      }
+    }
+
+    const addInteractionListeners = () => {
+      if (interactionListenerAddedRef.current) return
+      interactionListenerAddedRef.current = true
+      
+      const docEvents = ['touchstart', 'touchend', 'touchmove', 'click', 'mousedown', 'mouseup', 'mousemove', 
+        'scroll', 'wheel', 'keydown', 'keyup', 'pointerdown', 'pointerup', 'pointermove', 'contextmenu']
+      const winEvents = ['focus', 'blur', 'resize', 'orientationchange', 'popstate', 'hashchange']
+      
+      docEvents.forEach(event => {
+        document.addEventListener(event, handleInteraction, { once: true, passive: true, capture: true })
+      })
+      
+      winEvents.forEach(event => {
+        window.addEventListener(event, handleInteraction, { once: true })
+      })
+      
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') forcePlay()
+      })
+      
+      window.addEventListener('pageshow', () => forcePlay())
+      window.addEventListener('pagehide', () => forcePlay())
+      
+      if (typeof DeviceMotionEvent !== 'undefined') {
+        window.addEventListener('devicemotion', handleInteraction, { once: true, passive: true })
+        window.addEventListener('deviceorientation', handleInteraction, { once: true, passive: true })
+      }
+      
+      document.body?.addEventListener('touchstart', handleInteraction, { once: true, passive: true })
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) forcePlay()
+        })
+      },
+      { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
+    )
+
+    const videoEvents = ['loadstart', 'loadeddata', 'loadedmetadata', 'canplay', 'canplaythrough', 'progress', 'suspend', 'stalled']
+    videoEvents.forEach(event => {
+      video.addEventListener(event, () => forcePlay())
+    })
+    
+    forcePlay()
+    requestAnimationFrame(throttledPlay)
+    
+    observer.observe(video)
+    addInteractionListeners()
+
     return () => {
-      video.removeEventListener('canplay', playVideo)
+      cancelAnimationFrame(rafId)
+      observer.disconnect()
     }
   }, [videoUrl])
 
