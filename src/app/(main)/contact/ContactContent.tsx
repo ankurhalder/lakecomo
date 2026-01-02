@@ -67,6 +67,7 @@ export default function ContactContent({ data }: ContactContentProps) {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [focusedField, setFocusedField] = useState<string | null>(null)
   const [countryCode, setCountryCode] = useState('+1')
 
@@ -138,11 +139,32 @@ export default function ContactContent({ data }: ContactContentProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
     
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    setIsSubmitting(false)
-    setSubmitted(true)
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          countryCode,
+        }),
+      })
+      
+      const data = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+      
+      setSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const groupSizeOptions = form.groupSizeOptions || ['2-5 people', '6-10 people', '11-20 people', '21-50 people', '50+ people']
@@ -509,6 +531,18 @@ export default function ContactContent({ data }: ContactContentProps) {
                 placeholder={form.messagePlaceholder || 'Describe your dream cinematic event...'}
               />
             </div>
+
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-3 p-4 rounded-lg border border-red-500/30"
+                style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)' }}
+              >
+                <AlertCircle size={20} className="text-red-400 flex-shrink-0" />
+                <p className="text-sm text-red-400">{error}</p>
+              </motion.div>
+            )}
 
             <div className="text-center pt-4">
               <motion.button
