@@ -20,7 +20,7 @@ interface GalleryCarouselProps {
 
 export default function GalleryCarousel({ images }: GalleryCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [direction, setDirection] = useState(0)
   const thumbnailsRef = useRef<HTMLDivElement>(null)
@@ -115,7 +115,7 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
   return (
     <>
       <section className="py-16 md:py-24 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="relative aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden mb-4" style={{ backgroundColor: 'var(--bg-secondary)' }}>
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
@@ -125,7 +125,7 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+                transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
                 className="absolute inset-0"
               >
                 <Image
@@ -220,8 +220,7 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
               <button
                 key={idx}
                 onClick={() => goToSlide(idx)}
-                className={`relative flex-shrink-0 w-20 h-14 md:w-28 md:h-20 rounded-lg overflow-hidden transition-all ${idx === currentIndex ? 'ring-2' : 'opacity-50 hover:opacity-80'}`}
-                style={{ ringColor: 'var(--accent)' }}
+                className={`relative flex-shrink-0 w-20 h-14 md:w-28 md:h-20 rounded-lg overflow-hidden transition-all ${idx === currentIndex ? 'ring-2 ring-[var(--accent)]' : 'opacity-50 hover:opacity-80'}`}
               >
                 <Image
                   src={img.imageUrl}
