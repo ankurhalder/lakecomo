@@ -3,7 +3,6 @@
 import { useRef } from 'react'
 import MovieHero from './MovieHero'
 import DeliverablesSection from './DeliverablesSection'
-import ParallaxPopcorn from './ParallaxPopcorn'
 
 interface DeliverableItem {
   title: string
@@ -28,10 +27,6 @@ interface MovieData {
   timeline?: string
   popcornSection?: {
     imageUrl?: string
-    heading?: string
-    description?: string
-    ctaText?: string
-    ctaLink?: string
   }
 }
 
@@ -83,13 +78,15 @@ export default function MovieContent({ data }: { data: MovieData | null }) {
   const hero = data?.hero || DEFAULT_HERO
   const heroFeature = data?.heroFeature || DEFAULT_FEATURE
   const deliverables = data?.deliverables?.length ? data.deliverables : DEFAULT_DELIVERABLES
-  const popcornSection = data?.popcornSection
+  const popcornImageUrl = data?.popcornSection?.imageUrl
 
   return (
     <div ref={containerRef} className="relative min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
-      <MovieHero hero={hero} heroFeature={heroFeature} />
-      
-      <ParallaxPopcorn popcornSection={popcornSection} />
+      <MovieHero 
+        hero={hero} 
+        heroFeature={heroFeature} 
+        popcornImageUrl={popcornImageUrl}
+      />
       
       <DeliverablesSection deliverables={deliverables} />
     </div>
