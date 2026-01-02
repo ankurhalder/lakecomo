@@ -23,6 +23,7 @@ const schemaTypes = [
   'moviePage',
   'crewPage',
   'venuePage',
+  'galleryPage'
 ]
 
 async function fetchAllData() {

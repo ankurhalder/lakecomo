@@ -6,9 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "sanity:pull": "node scripts/sync-from-sanity.mjs",
-    "sanity:push": "node scripts/push-to-sanity.mjs"
+    "lint": "eslint"
+
   },
   "dependencies": {
     "@sanity/image-url": "^1.2.0",

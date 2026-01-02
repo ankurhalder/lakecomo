@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import { useRef } from 'react'
+import { Film, Clapperboard, Camera } from 'lucide-react'
 
 interface CrewMemberCardProps {
   name: string
@@ -13,6 +14,8 @@ interface CrewMemberCardProps {
   isReversed?: boolean
 }
 
+const decorativeIcons = [Film, Clapperboard, Camera]
+
 export default function CrewMemberCard({ 
   name, 
   role, 
@@ -22,132 +25,117 @@ export default function CrewMemberCard({
   isReversed = false 
 }: CrewMemberCardProps) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const isInView = useInView(ref, { once: true, margin: "-50px" })
   
-  const imageDirection = isReversed ? 1 : -1
-  const textDirection = isReversed ? -1 : 1
+  const IconComponent = decorativeIcons[index % decorativeIcons.length]
   
   return (
     <motion.article 
       ref={ref}
-      className="relative py-12 md:py-16 lg:py-20 overflow-hidden"
+      className="relative py-12 md:py-16 overflow-hidden"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5 }}
     >
-      <div className={`max-w-7xl mx-auto px-4 md:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center ${isReversed ? 'lg:grid-flow-dense' : ''}`}>
-        <motion.div 
-          className={`relative aspect-[3/4] max-w-[280px] sm:max-w-[320px] md:max-w-[360px] mx-auto lg:mx-0 overflow-hidden rounded-xl ${isReversed ? 'lg:col-start-2' : ''}`}
-          initial={{ 
-            opacity: 0, 
-            x: imageDirection * 100,
-            clipPath: isReversed 
-              ? 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' 
-              : 'polygon(0 0, 0 0, 0 100%, 0 100%)'
-          }}
-          animate={isInView ? { 
-            opacity: 1, 
-            x: 0,
-            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)'
-          } : {}}
-          transition={{ 
-            duration: 0.8, 
-            delay: 0.2,
-            ease: [0.25, 0.1, 0.25, 1]
-          }}
-        >
-          {imageUrl ? (
-            <Image
-              src={imageUrl}
-              alt={name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 280px, (max-width: 1024px) 320px, 360px"
-            />
-          ) : (
+      <motion.div
+        className={`absolute top-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none ${isReversed ? 'right-8 lg:right-16' : 'left-8 lg:left-16'}`}
+        initial={{ scale: 0, rotate: -30 }}
+        animate={isInView ? { scale: 1, rotate: 0 } : {}}
+        transition={{ delay: 0.8, duration: 0.6, type: 'spring' }}
+      >
+        <IconComponent size={160} style={{ color: 'var(--text-primary)' }} strokeWidth={0.5} />
+      </motion.div>
+
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+        <div className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-16 items-center`}>
+          <motion.div 
+            className="relative aspect-[3/4] w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] flex-shrink-0 overflow-hidden rounded-xl"
+            initial={{ opacity: 0, x: isReversed ? 60 : -60 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            {imageUrl ? (
+              <Image
+                src={imageUrl}
+                alt={name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 280px, (max-width: 1024px) 320px, 360px"
+              />
+            ) : (
+              <div 
+                className="w-full h-full flex items-center justify-center"
+                style={{ backgroundColor: 'var(--bg-secondary)' }}
+              >
+                <span 
+                  className="text-5xl md:text-6xl font-bold opacity-20"
+                  style={{ color: 'var(--text-primary)' }}
+                >
+                  {name.charAt(0)}
+                </span>
+              </div>
+            )}
+            
             <div 
-              className="w-full h-full flex items-center justify-center"
-              style={{ backgroundColor: 'var(--bg-secondary)' }}
+              className="absolute inset-0 opacity-20"
+              style={{ 
+                background: isReversed 
+                  ? 'linear-gradient(to left, transparent 70%, var(--bg-primary))' 
+                  : 'linear-gradient(to right, transparent 70%, var(--bg-primary))'
+              }}
+            />
+
+            <motion.div
+              className="absolute -bottom-2 -right-2 w-14 h-14 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: 'var(--accent)' }}
+              initial={{ scale: 0 }}
+              animate={isInView ? { scale: 1 } : {}}
+              transition={{ delay: 0.8, type: 'spring', stiffness: 200 }}
             >
-              <span 
-                className="text-5xl md:text-6xl font-bold opacity-20"
+              <span className="text-lg font-bold" style={{ color: 'var(--bg-primary)' }}>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+            </motion.div>
+          </motion.div>
+
+          <motion.div 
+            className={`flex-1 space-y-4 ${isReversed ? 'lg:text-right' : ''}`}
+            initial={{ opacity: 0, x: isReversed ? -60 : 60 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <div>
+              <div className={`flex items-center gap-2 mb-2 ${isReversed ? 'justify-end' : ''}`}>
+                <IconComponent size={14} style={{ color: 'var(--accent)' }} />
+                <span
+                  className="text-xs md:text-sm uppercase tracking-[0.3em] font-medium"
+                  style={{ color: 'var(--accent)' }}
+                >
+                  {role}
+                </span>
+              </div>
+              
+              <h2
+                className="text-2xl md:text-3xl lg:text-4xl font-bold"
                 style={{ color: 'var(--text-primary)' }}
               >
-                {name.charAt(0)}
-              </span>
+                {name}
+              </h2>
             </div>
-          )}
-          
-          <motion.div 
-            className="absolute inset-0"
-            style={{ 
-              background: isReversed 
-                ? 'linear-gradient(to left, transparent 60%, var(--bg-primary))' 
-                : 'linear-gradient(to right, transparent 60%, var(--bg-primary))'
-            }}
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 0.3 } : { opacity: 0 }}
-            transition={{ delay: 0.6 }}
-          />
-        </motion.div>
 
-        <motion.div 
-          className={`space-y-4 md:space-y-5 ${isReversed ? 'lg:col-start-1 lg:text-right' : ''}`}
-          initial={{ 
-            opacity: 0, 
-            x: textDirection * 100,
-            clipPath: isReversed 
-              ? 'polygon(0 0, 0 0, 0 100%, 0 100%)' 
-              : 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)'
-          }}
-          animate={isInView ? { 
-            opacity: 1, 
-            x: 0,
-            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)'
-          } : {}}
-          transition={{ 
-            duration: 0.8, 
-            delay: 0.4,
-            ease: [0.25, 0.1, 0.25, 1]
-          }}
-        >
-          <div>
-            <motion.span
-              className="text-xs md:text-sm uppercase tracking-[0.3em] font-medium"
-              style={{ color: 'var(--accent)' }}
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              {role}
-            </motion.span>
-            
-            <motion.h2
-              className="text-2xl md:text-3xl lg:text-4xl font-bold mt-1 md:mt-2"
-              style={{ color: 'var(--text-primary)' }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 0.7 }}
-            >
-              {name}
-            </motion.h2>
-          </div>
-
-          <div className="space-y-3 md:space-y-4">
-            {bio.map((paragraph, idx) => (
-              <motion.p
-                key={idx}
-                className="text-sm md:text-base leading-relaxed"
-                style={{ color: 'var(--text-secondary)' }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.8 + idx * 0.1 }}
-              >
-                {paragraph}
-              </motion.p>
-            ))}
-          </div>
-        </motion.div>
+            <div className="space-y-3">
+              {bio.map((paragraph, idx) => (
+                <p
+                  key={idx}
+                  className="text-sm md:text-base leading-relaxed"
+                  style={{ color: 'var(--text-secondary)' }}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       <motion.div
@@ -155,7 +143,7 @@ export default function CrewMemberCard({
         style={{ backgroundColor: 'var(--text-secondary)', opacity: 0.1 }}
         initial={{ scaleX: 0 }}
         animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
+        transition={{ delay: 1, duration: 0.6 }}
       />
     </motion.article>
   )
