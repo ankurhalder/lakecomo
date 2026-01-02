@@ -17,17 +17,8 @@ export default function CrewContent({ data }: CrewContentProps) {
       <CrewHero hero={hero} heroFeature={heroFeature} />
 
       <section className="relative">
-        <motion.div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24"
-          style={{ backgroundColor: 'var(--text-secondary)', opacity: 0.2 }}
-          initial={{ scaleY: 0, transformOrigin: 'top' }}
-          whileInView={{ scaleY: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        />
-
         {crewMembers && crewMembers.length > 0 ? (
-          <div className="pt-12">
+          <div>
             {crewMembers.map((member, index) => (
               <CrewMemberCard
                 key={member.name}
@@ -35,7 +26,6 @@ export default function CrewContent({ data }: CrewContentProps) {
                 role={member.role}
                 imageUrl={member.imageUrl}
                 bio={member.bio}
-                socials={member.socials}
                 index={index}
                 isReversed={index % 2 === 1}
               />

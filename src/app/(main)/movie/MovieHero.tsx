@@ -43,14 +43,65 @@ export default function MovieHero({ hero, heroFeature, popcornImageUrl }: MovieH
   const imageUrl = popcornImageUrl || '/images/popcorn.webp'
 
   return (
-    <section ref={containerRef} className="min-h-screen flex items-center px-4 md:px-8 lg:px-12 relative overflow-hidden">
+    <section ref={containerRef} className="min-h-[85vh] flex items-center px-4 md:px-8 lg:px-12 relative overflow-hidden">
       <div 
         className="absolute inset-0"
         style={{ background: 'linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary) 50%, var(--bg-primary))' }}
       />
+
+      <motion.div 
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
+      >
+        <motion.div 
+          className="relative w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px]"
+          style={{ y: popcornY, rotate: popcornRotate, scale: popcornScale }}
+        >
+          <div className="relative w-full h-full flex items-center justify-center opacity-35">
+            <Image
+              src={imageUrl}
+              alt="Popcorn"
+              width={320}
+              height={320}
+              className="object-contain drop-shadow-2xl"
+              priority
+            />
+          </div>
+
+          <motion.div
+            className="absolute -top-2 -right-2 w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 rounded-full opacity-40"
+            style={{ 
+              y: kernelY1, 
+              rotate: kernelRotate1,
+              backgroundColor: '#F5DEB3',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
+            }}
+          />
+          <motion.div
+            className="absolute top-4 sm:top-6 -left-3 sm:-left-4 w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 md:w-5 md:h-5 rounded-full opacity-40"
+            style={{ 
+              y: kernelY2, 
+              rotate: kernelRotate2,
+              backgroundColor: '#FFF8DC',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
+            }}
+          />
+          <motion.div
+            className="absolute -bottom-1 right-2 w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 rounded-full opacity-40"
+            style={{ 
+              y: kernelY3, 
+              rotate: kernelRotate3,
+              backgroundColor: '#FFFACD',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
+            }}
+          />
+        </motion.div>
+      </motion.div>
       
       <div className="relative z-10 w-full max-w-7xl mx-auto pt-24 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-        <div className="text-center lg:text-left order-2 lg:order-1">
+        <div className="text-center md:text-left">
           <motion.p
             className="text-xs md:text-sm uppercase tracking-[0.4em] mb-4"
             style={{ color: 'var(--text-secondary)', opacity: 0.6 }}
@@ -83,7 +134,7 @@ export default function MovieHero({ hero, heroFeature, popcornImageUrl }: MovieH
 
           {hero.subSubHeading && (
             <motion.p
-              className="max-w-xl leading-relaxed text-sm md:text-base mx-auto lg:mx-0"
+              className="max-w-xl leading-relaxed text-sm md:text-base mx-auto md:mx-0"
               style={{ color: 'var(--text-secondary)', opacity: 0.8 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -94,7 +145,7 @@ export default function MovieHero({ hero, heroFeature, popcornImageUrl }: MovieH
           )}
 
           <motion.div 
-            className="mt-8 flex flex-col items-center lg:items-start gap-2"
+            className="mt-8 flex flex-col items-center md:items-start gap-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
@@ -112,89 +163,26 @@ export default function MovieHero({ hero, heroFeature, popcornImageUrl }: MovieH
               <ChevronDown size={28} style={{ color: 'var(--text-secondary)', opacity: 0.4 }} />
             </motion.div>
           </motion.div>
-
-          {heroFeature && (
-            <motion.div 
-              className="mt-8 flex justify-center lg:justify-start"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
-            >
-              <LaurelBadge 
-                title={heroFeature.title}
-                subtitle={heroFeature.subtitle}
-                tag={heroFeature.tag}
-                link={heroFeature.link}
-                themeAware={true}
-                index={0} 
-              />
-            </motion.div>
-          )}
         </div>
 
-        <motion.div 
-          className="relative order-1 lg:order-2 flex items-center justify-center"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
-        >
+        {heroFeature && (
           <motion.div 
-            className="relative w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] lg:w-[350px] lg:h-[350px]"
-            style={{ y: popcornY, rotate: popcornRotate, scale: popcornScale }}
+            className="hidden lg:flex lg:flex-col gap-2 md:gap-3 items-center lg:items-end justify-center lg:justify-start"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
           >
-            <div 
-              className="absolute inset-0 rounded-full blur-3xl opacity-20"
-              style={{ background: 'radial-gradient(circle, var(--accent), transparent)' }}
-            />
-            
-            <div className="relative w-full h-full flex items-center justify-center">
-              <Image
-                src={imageUrl}
-                alt="Popcorn"
-                width={350}
-                height={350}
-                className="object-contain drop-shadow-2xl"
-                priority
-              />
-            </div>
-
-            <motion.div
-              className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full"
-              style={{ 
-                y: kernelY1, 
-                rotate: kernelRotate1,
-                backgroundColor: '#F5DEB3',
-                boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
-              }}
-            />
-            <motion.div
-              className="absolute top-6 sm:top-8 -left-4 sm:-left-6 w-3 h-3 sm:w-5 sm:h-5 md:w-7 md:h-7 rounded-full"
-              style={{ 
-                y: kernelY2, 
-                rotate: kernelRotate2,
-                backgroundColor: '#FFF8DC',
-                boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
-              }}
-            />
-            <motion.div
-              className="absolute -bottom-1 sm:-bottom-2 right-2 sm:right-4 w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 rounded-full"
-              style={{ 
-                y: kernelY3, 
-                rotate: kernelRotate3,
-                backgroundColor: '#FFFACD',
-                boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
-              }}
+            <LaurelBadge 
+              title={heroFeature.title}
+              subtitle={heroFeature.subtitle}
+              tag={heroFeature.tag}
+              link={heroFeature.link}
+              themeAware={true}
+              index={0} 
             />
           </motion.div>
-        </motion.div>
+        )}
       </div>
-
-      <div 
-        className="absolute inset-0 opacity-5 pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle at 70% 30%, var(--accent) 0%, transparent 40%)`
-        }}
-      />
     </section>
   )
 }

@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Send, Sparkles, Check, AlertCircle, Mail, Phone, Users, Calendar, User, MessageSquare } from 'lucide-react'
-import ContactCharacter, { CharacterExpression } from './ContactCharacter'
+import InteractiveCamera from './InteractiveCamera'
 import { useTheme } from '@/components/providers/ThemeProvider'
 
 interface FormData {
@@ -87,15 +87,7 @@ export default function ContactContent() {
     return { valid: false, message: 'Add @ and domain' }
   }, [formData.email])
 
-  const getExpression = (): CharacterExpression => {
-    if (submitted) return 'happy'
-    if (isSubmitting) return 'attentive'
-    if (focusedField === 'email' && formData.email && !emailValidation.valid) return 'concerned'
-    if (focusedField === 'email' && emailValidation.valid) return 'happy'
-    if (focusedField === 'password') return 'privacy'
-    if (focusedField) return 'attentive'
-    return 'idle'
-  }
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({
@@ -216,9 +208,9 @@ export default function ContactContent() {
               transition={{ delay: 0.4 }}
               className="relative z-10 hidden lg:block"
             >
-              <ContactCharacter 
+              <InteractiveCamera 
                 focusedField={focusedField} 
-                expression={getExpression()} 
+                isSubmitting={isSubmitting}
               />
             </motion.div>
           </motion.div>

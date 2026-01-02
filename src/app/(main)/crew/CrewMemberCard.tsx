@@ -3,21 +3,12 @@
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import { useRef } from 'react'
-import { Globe, Instagram, Linkedin, Twitter } from 'lucide-react'
-
-interface CrewMemberSocials {
-  website?: string
-  instagram?: string
-  linkedin?: string
-  twitter?: string
-}
 
 interface CrewMemberCardProps {
   name: string
   role: string
   imageUrl?: string
   bio: string[]
-  socials?: CrewMemberSocials
   index: number
   isReversed?: boolean
 }
@@ -27,7 +18,6 @@ export default function CrewMemberCard({
   role, 
   imageUrl, 
   bio, 
-  socials, 
   index,
   isReversed = false 
 }: CrewMemberCardProps) {
@@ -40,14 +30,14 @@ export default function CrewMemberCard({
   return (
     <motion.article 
       ref={ref}
-      className="relative py-16 md:py-24 overflow-hidden"
+      className="relative py-12 md:py-16 lg:py-20 overflow-hidden"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <div className={`max-w-7xl mx-auto px-4 md:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${isReversed ? 'lg:grid-flow-dense' : ''}`}>
+      <div className={`max-w-7xl mx-auto px-4 md:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center ${isReversed ? 'lg:grid-flow-dense' : ''}`}>
         <motion.div 
-          className={`relative aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-2xl ${isReversed ? 'lg:col-start-2' : ''}`}
+          className={`relative aspect-[3/4] max-w-[280px] sm:max-w-[320px] md:max-w-[360px] mx-auto lg:mx-0 overflow-hidden rounded-xl ${isReversed ? 'lg:col-start-2' : ''}`}
           initial={{ 
             opacity: 0, 
             x: imageDirection * 100,
@@ -72,7 +62,7 @@ export default function CrewMemberCard({
               alt={name}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 768px) 280px, (max-width: 1024px) 320px, 360px"
             />
           ) : (
             <div 
@@ -80,7 +70,7 @@ export default function CrewMemberCard({
               style={{ backgroundColor: 'var(--bg-secondary)' }}
             >
               <span 
-                className="text-6xl font-bold opacity-20"
+                className="text-5xl md:text-6xl font-bold opacity-20"
                 style={{ color: 'var(--text-primary)' }}
               >
                 {name.charAt(0)}
@@ -102,7 +92,7 @@ export default function CrewMemberCard({
         </motion.div>
 
         <motion.div 
-          className={`space-y-6 ${isReversed ? 'lg:col-start-1 lg:text-right' : ''}`}
+          className={`space-y-4 md:space-y-5 ${isReversed ? 'lg:col-start-1 lg:text-right' : ''}`}
           initial={{ 
             opacity: 0, 
             x: textDirection * 100,
@@ -133,7 +123,7 @@ export default function CrewMemberCard({
             </motion.span>
             
             <motion.h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mt-1 md:mt-2"
               style={{ color: 'var(--text-primary)' }}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -143,7 +133,7 @@ export default function CrewMemberCard({
             </motion.h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             {bio.map((paragraph, idx) => (
               <motion.p
                 key={idx}
@@ -157,85 +147,15 @@ export default function CrewMemberCard({
               </motion.p>
             ))}
           </div>
-
-          {socials && Object.values(socials).some(Boolean) && (
-            <motion.div 
-              className={`flex gap-4 pt-4 ${isReversed ? 'justify-end' : 'justify-start'}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 1.2 }}
-            >
-              {socials.website && (
-                <a 
-                  href={socials.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                  style={{ 
-                    backgroundColor: 'var(--bg-secondary)',
-                    color: 'var(--text-primary)'
-                  }}
-                  aria-label={`${name}'s website`}
-                >
-                  <Globe size={18} />
-                </a>
-              )}
-              {socials.instagram && (
-                <a 
-                  href={socials.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                  style={{ 
-                    backgroundColor: 'var(--bg-secondary)',
-                    color: 'var(--text-primary)'
-                  }}
-                  aria-label={`${name}'s Instagram`}
-                >
-                  <Instagram size={18} />
-                </a>
-              )}
-              {socials.linkedin && (
-                <a 
-                  href={socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                  style={{ 
-                    backgroundColor: 'var(--bg-secondary)',
-                    color: 'var(--text-primary)'
-                  }}
-                  aria-label={`${name}'s LinkedIn`}
-                >
-                  <Linkedin size={18} />
-                </a>
-              )}
-              {socials.twitter && (
-                <a 
-                  href={socials.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                  style={{ 
-                    backgroundColor: 'var(--bg-secondary)',
-                    color: 'var(--text-primary)'
-                  }}
-                  aria-label={`${name}'s Twitter`}
-                >
-                  <Twitter size={18} />
-                </a>
-              )}
-            </motion.div>
-          )}
         </motion.div>
       </div>
 
       <motion.div
-        className="absolute left-0 right-0 bottom-0 h-px"
+        className="absolute left-4 right-4 md:left-8 md:right-8 lg:left-12 lg:right-12 bottom-0 h-px"
         style={{ backgroundColor: 'var(--text-secondary)', opacity: 0.1 }}
         initial={{ scaleX: 0 }}
         animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-        transition={{ delay: 1.4, duration: 0.8 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
       />
     </motion.article>
   )
