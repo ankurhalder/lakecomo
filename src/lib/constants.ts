@@ -7,6 +7,7 @@ export const DEFAULT_THEMES = [
     story: "Guests step into the world of secret agents, daring missions, and intrigue. Think tuxedos, glamorous dresses, and action-packed poses.",
     feel: "Sophisticated, adventurous, playful suspense."
   },
+  
   {
     title: "The Hollywood Hussle",
     genre: "Old Hollywood / Glamour Theme",
