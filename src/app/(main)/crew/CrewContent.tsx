@@ -69,7 +69,6 @@ export default function CrewContent({ data }: CrewContentProps) {
                 imageUrl={member.imageUrl}
                 bio={member.bio}
                 index={index}
-                isReversed={index % 2 === 1}
               />
             ))}
           </div>
