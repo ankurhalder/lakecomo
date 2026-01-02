@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "exportedAt": "2026-01-02T08:53:25.219Z",
+    "exportedAt": "2026-01-02T11:54:53.011Z",
     "projectId": "c20abca7",
     "dataset": "production"
   },
@@ -8,15 +8,15 @@
     {
       "_createdAt": "2025-12-27T05:23:56Z",
       "_id": "homepage",
-      "_rev": "mt1cTqOxi4IifpOwCrg65Z",
+      "_rev": "zuW1OHkqCQ2Sn593fM3nRz",
       "_system": {
         "base": {
           "id": "homepage",
-          "rev": "mt1cTqOxi4IifpOwCrRoTL"
+          "rev": "3d2JLpUTPM5qppQf8FBOwg"
         }
       },
       "_type": "homepage",
-      "_updatedAt": "2025-12-29T08:30:00Z",
+      "_updatedAt": "2026-01-02T11:07:10Z",
       "featuresGrid": [
         {
           "_key": "feat1",
@@ -276,15 +276,15 @@
     {
       "_createdAt": "2025-12-27T05:23:56Z",
       "_id": "castPage",
-      "_rev": "zuW1OHkqCQ2Sn593fIqqax",
+      "_rev": "zuW1OHkqCQ2Sn593fM6s1X",
       "_system": {
         "base": {
           "id": "castPage",
-          "rev": "zuW1OHkqCQ2Sn593fIRYbv"
+          "rev": "zuW1OHkqCQ2Sn593fM6ogN"
         }
       },
       "_type": "castPage",
-      "_updatedAt": "2025-12-31T14:19:04Z",
+      "_updatedAt": "2026-01-02T11:37:43Z",
       "content": {
         "paragraphs": [
           "The theme is set. The venue is chosen. Now it’s time for your guests to shine.",
@@ -301,7 +301,7 @@
       },
       "hero": {
         "subtitle": "Lights, Camera, Action - Your Time to Shine",
-        "title": "Become the Cast"
+        "title": "Become the Cast "
       },
       "showcaseImages": [
         {
@@ -340,6 +340,46 @@
             "_type": "image",
             "asset": {
               "_ref": "image-83f852bf0ffdc72040801e81414ef1acd49e52af-1280x714-png",
+              "_type": "reference"
+            }
+          }
+        },
+        {
+          "_key": "13098861832a",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-dc8bd6fbfeedb9ad0dfcf1cbbc5313530aafb6c0-2816x1504-png",
+              "_type": "reference"
+            }
+          }
+        },
+        {
+          "_key": "0f903a0bf946",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-2133e974fa195be689fb6e06f4b4d1d7665e0988-1280x832-png",
+              "_type": "reference"
+            }
+          }
+        },
+        {
+          "_key": "766b413da9a0",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-0b9249bb0d5a777c40823d7d576d8026cd868610-1280x832-png",
+              "_type": "reference"
+            }
+          }
+        },
+        {
+          "_key": "cc3c5c81e59e",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-8728785dff985175c6cd1d0eea0bb042e1158b9f-1312x816-png",
               "_type": "reference"
             }
           }
@@ -515,24 +555,24 @@
     {
       "_createdAt": "2026-01-01T08:32:51Z",
       "_id": "3d2JLpUTPM5qppQf883Uxu",
-      "_rev": "unIo2UW65gB1PasuKEAs1g",
+      "_rev": "zuW1OHkqCQ2Sn593fM6JbP",
       "_system": {
         "base": {
           "id": "3d2JLpUTPM5qppQf883Uxu",
-          "rev": "3d2JLpUTPM5qppQf883Uta"
+          "rev": "zuW1OHkqCQ2Sn593fM6I8h"
         }
       },
       "_type": "crewPage",
-      "_updatedAt": "2026-01-01T08:39:09Z",
+      "_updatedAt": "2026-01-02T11:33:07Z",
       "crewMembers": [
         {
           "_key": "dee-lasprogata",
           "bio": [
-            "Our founder, Dee Lasprogata has over 30 years of experience in fashion, working in New York, Los Angeles, Rome, Milan, and Lake Como, where she resides. She has worked with celebrities including Stevie Wonder and Giada DeLaurentiis, pioneering fashion ventures and collections. With Dee's expert styling, you don't simply wear a costume — you embody the timeless elegance and sophistication that movies are made of.",
+            "Our founder, Dee Lasprogata has over 30 years of experience in fashion, working in New York, Los Angeles, Rome, Milan, and Lake Como. She arrived to the shores of Lake Como 20 years ago and has been back and forth ever since.",
             "With roots in Philadelphia, Dee grew up surrounded by couture as her grandmother operated a custom gown atelier. Later, she graduated from both Vanderbilt University and the Fashion Institute of Design in New York City.",
-            "She arrived on the shores of Lake Como over 20 years ago for a fashion textile show in Cernobbio and has been back and forth ever since.",
-            "During her New York years, she launched a pioneering fashion collection working with celebrities including Stevie Wonder and Giada De Laurentiis. Over the years, her pieces have been featured in major publications in both the USA and Italy, including People, Glamour, Io Donna, Women's Wear Daily (WWD), Fox & Friends, TG5, and Entrepreneur.",
-            "Today, Dee combines her fashion-forward sensibilities with cinematic flair to craft an unforgettable experience; she curates the wardrobe, props, and look for every guest."
+            "In New York, she launched a pioneering fashion collection working with celebrities including Stevie Wonder and Giada De Laurentiis. Over the years, her pieces have been featured in major publications in both the USA and Italy, including People, Glamour, Io Donna, Women's Wear Daily (WWD), Fox & Friends, TG5, and Entrepreneur.",
+            "Today, Dee combines her fashion-forward sensibilities with cinematic flair to craft an unforgettable experience; she curates the wardrobe, props, and look for every guest. ",
+            ""
           ],
           "image": {
             "_type": "image",
@@ -571,7 +611,7 @@
         }
       ],
       "hero": {
-        "description": "Our passion for creating unforgettable cinematic experiences led us to establish Lake Como Style, the premier provider of themed cinematic experiences in Italy. We are an international crew dedicated to bringing the magic of fashion and cinema to life, offering a range of themes and settings to cater to every client's unique vision. Our team delivers exceptional movie trailers and ensures that every event is a spectacular and memorable occasion for all.",
+        "description": "Our passion for creating unforgettable cinematic experiences led us to establish Lake Como Style, the premier provider of themed cinematic experiences in Italy. We are an international crew dedicated to bringing the magic of fashion and cinema to life, offering a range of themes and settings to cater to every client's unique vision. Our team delivers exceptional movie trailers, ensuring that every event is a spectacular and memorable occasion for all.",
         "heading": "Your Film Crew",
         "subHeading": "From the Big Apple to the heart of Milan — our team brings international talent to your celebration"
       },
@@ -881,6 +921,29 @@
       "title": "Gallery"
     }
   ],
+  "contactPage": [
+    {
+      "_createdAt": "2025-12-27T05:23:56Z",
+      "_id": "contactPage",
+      "_rev": "3d2JLpUTPM5qppQf8FLuKY",
+      "_system": {
+        "base": {
+          "id": "contactPage",
+          "rev": "3d2JLpUTPM5qppQf8F69uo"
+        }
+      },
+      "_type": "contactPage",
+      "_updatedAt": "2026-01-02T11:33:51Z",
+      "cameraImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-4960178bc8c3bd178c38ade5259ac61467f65a2d-512x512-png",
+          "_type": "reference"
+        }
+      },
+      "title": "Contact Page"
+    }
+  ],
   "_assets": [
     {
       "_id": "file-476136c148217d2ae2ab03a40617a165e97310ac-mp4",
@@ -972,6 +1035,79 @@
       "originalFilename": "spy.jpg",
       "size": 99429,
       "url": "https://cdn.sanity.io/images/c20abca7/production/0145c1fd40790ab252c728ae16cd3bd1657159ca-800x600.jpg"
+    },
+    {
+      "_id": "image-0b9249bb0d5a777c40823d7d576d8026cd868610-1280x832-png",
+      "_type": "sanity.imageAsset",
+      "metadata": {
+        "_type": "sanity.imageMetadata",
+        "blurHash": "V36%~G~V?a-o^k~V-p-9M{EMNbni569ZIUcE%MxukWX8",
+        "dimensions": {
+          "_type": "sanity.imageDimensions",
+          "aspectRatio": 1.5384615384615385,
+          "height": 832,
+          "width": 1280
+        },
+        "hasAlpha": false,
+        "isOpaque": true,
+        "lqip": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAAsTAAALEwEAmpwYAAACkElEQVR4nC2LSW/bRgBGeanEZUjOcIYcDskhh+IuiRS1yxZtWU4sx3DVNkFSBz0EORjIAvheoNcec8wPLmT34d3e90mF8C8Xo4dD9/l4/dfd7rZbrGfjaV2s2mrTVm0epdz2KaLExJaOIDANDSMjC93lMJbOmvzDTff1/d3Tx+Pju7vjq27frXdni+vt8mo9nRQiCWzhE+Hh0EURRZFrxZ5dp8F5k0jXs/LdxfzjfvWwX/12Md9Mytko3dTZepRM8qiI3Iw79cCbJv5U0KWgZ1mwrsRZk+7npfTnbvZ2276ZFYc2346TUeKPB955ES4TLwtIEjjjmG2HYjcSF3mwz/1XZdgNRdfmN+ta+nLffbiaH+bl67aYZmEW0mbAVllQCzflzjD2JmmwzPg89ZuYLWK2EG4Ts02dvjlvpe/Hyz8upjfz8qrJqogNPDIMacmdkOHYI83AL0OXU8t3EHetMqQVp+OI7dvi124q/fPt0/vX290kX5UiDehp5CBOEadW6ttNzATDGBkugQPfrgRrBv4qD+8W1fF8Iv388e/D77ezKi5jL/RsjAxoAkpMwUjOnYI7jJgI6pGLR5FbhrQWbFOEN5PssKikv58eb682VcpjTl3HMg2g6xq2DI9agYs9B1kQIBMMGBlFlFPkEpgw3MTeNOPSus7rQmSxz32bYFMHGgCqYWgW1G1LJ0g3DQ2aIKJW5hMb6aeqqxjqBBkShoDayHOxQ6BpAk1TnlUdCNoAjz2MTaDrKsMmtyEyNFVVFEV+UZLlviLLmvr/RzlxChEx3jbR/ThklqGpig2BA3WgKf0TPVVRgKZJ/X7vl2d6vd5z6MvySY6N+0l8qGPXMhSlbwLVAIos91+WQNMQhP8B8NJlSJIfqWYAAAAASUVORK5CYII=",
+        "palette": {
+          "_type": "sanity.imagePalette",
+          "darkMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#463025",
+            "foreground": "#fff",
+            "population": 12.23,
+            "title": "#fff"
+          },
+          "darkVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#5c1c0c",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+          },
+          "dominant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#463025",
+            "foreground": "#fff",
+            "population": 12.23,
+            "title": "#fff"
+          },
+          "lightMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#c3b6a9",
+            "foreground": "#000",
+            "population": 0.1,
+            "title": "#fff"
+          },
+          "lightVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#dab29f",
+            "foreground": "#000",
+            "population": 0,
+            "title": "#fff"
+          },
+          "muted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#94544c",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+          },
+          "vibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#ad6542",
+            "foreground": "#fff",
+            "population": 0.31,
+            "title": "#fff"
+          }
+        }
+      },
+      "mimeType": "image/png",
+      "originalFilename": "co-cast-3.png",
+      "size": 258690,
+      "url": "https://cdn.sanity.io/images/c20abca7/production/0b9249bb0d5a777c40823d7d576d8026cd868610-1280x832.png"
     },
     {
       "_id": "image-12137308f892847fe13dfd7e42f5d52cfbc5f490-1600x900-jpg",
@@ -1337,6 +1473,79 @@
       "originalFilename": "cast-2.png",
       "size": 381271,
       "url": "https://cdn.sanity.io/images/c20abca7/production/1efb491db0cad7642c09721f9ab81ea514f78e1d-1595x868.png"
+    },
+    {
+      "_id": "image-2133e974fa195be689fb6e06f4b4d1d7665e0988-1280x832-png",
+      "_type": "sanity.imageAsset",
+      "metadata": {
+        "_type": "sanity.imageMetadata",
+        "blurHash": "VTGbed~poHW=W=I^E4t7xtnh?bf,E1R+ofxtxaoLjZRj",
+        "dimensions": {
+          "_type": "sanity.imageDimensions",
+          "aspectRatio": 1.5384615384615385,
+          "height": 832,
+          "width": 1280
+        },
+        "hasAlpha": false,
+        "isOpaque": true,
+        "lqip": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAAsTAAALEwEAmpwYAAADJElEQVR4nAEZA+b8AKqmnqqpp6ers6Kuv56yzJmwzZmjsqOck7WnkLStn6GosJKdroqWqY+SmaKWhKGRepOEcYp7aHBiU0c7NACempakpqujrLqaqLyTp8CRp8OTnKiclImvoIqwqp2dprCPmquIlKeOkZahk4GllHucjneNfmluXk9ENy8Ah4F9l5ylmqa7iZSld4KQdIGTdXmBfXNqkoRxo56SkJuld4KTdX+QeXyCiHxtmYhxnYxzj35nbVxLQDIrAHx2boiLkIeQn3l9hWdlZlZWWFZSUGNWTXZnWY+KgnyDi1VaZVJXX0xOU09JQ3hqV5eDaZF9Y2taSDsuJwCPiHiMiX98enhvbGtqZmNTT0xTSUNkU0ZqWUxyamRfX2JCP0FDPj01MTAnJCNVSz6Ld16NeF1lVUI2KiMAqqCGraSKmJKAfHdvc3BuZWJhWVNNVUlATUA3Rj04NjIxMSooPzMsMykkHBkYPTUtd2ZRhG9WY1JANysjALurisnBnsK9n5+ciYuIgIN/eW5nYEtEPi0pJiEeHBgXFiAaGDsrJDgqIyUfHTAqJlNJPGdYRlhJOjotJQDCr4bSyKHUz6a8tpOqo4yjmIKShG5oXlA3NC8gHRwdGRckHBk6KSJGMipFNi8xKicmIyAuKSMzKyQsIx0At6V8xbeO0b+Oxa+AtqSBt6iCtqd/mI50Z19TRzs0QTIpQjEnSDUrVkA0V0M3LycjERAQDg0MFBEPGxcUAJ2Gaa6YdsWmeMakdLieeL6of8e7jLezkpaPfXdqX15RSFdIPGRRQnFeTFlKPCQeGxAODQsKCQwKCRkXFQCfhWm3pILKvJPSwpTSs4PUpnPTuYTIxJ27uqWsqp+RkY12dHB4bmB+cV5VTEEgHBoUEhAQDg0PDgwgHRoAtaeHw8Gcyc+n1dWn4suU4bJ61rOB0sWi19fC1tnLwsa/np6bfnZsbWFTTUQ8LScjJyIfHhwbFxUUJSEeAMW/o7u9obC1l7u/ndPQqNjHnMy5ksvCp9nYxdPSwLawoZWIfHhoW2dXS1lJPU5ANUlAODMwLR0bGiIeHG7wVTP0XmjpAAAAAElFTkSuQmCC",
+        "palette": {
+          "_type": "sanity.imagePalette",
+          "darkMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#503d35",
+            "foreground": "#fff",
+            "population": 5.08,
+            "title": "#fff"
+          },
+          "darkVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#885c36",
+            "foreground": "#fff",
+            "population": 2.17,
+            "title": "#fff"
+          },
+          "dominant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#503d35",
+            "foreground": "#fff",
+            "population": 5.08,
+            "title": "#fff"
+          },
+          "lightMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#c4cda5",
+            "foreground": "#000",
+            "population": 1.92,
+            "title": "#fff"
+          },
+          "lightVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#e5cd91",
+            "foreground": "#000",
+            "population": 1.32,
+            "title": "#000"
+          },
+          "muted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#967b60",
+            "foreground": "#fff",
+            "population": 2.95,
+            "title": "#fff"
+          },
+          "vibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#e6af66",
+            "foreground": "#000",
+            "population": 1.31,
+            "title": "#fff"
+          }
+        }
+      },
+      "mimeType": "image/png",
+      "originalFilename": "co-cast-2.png",
+      "size": 520836,
+      "url": "https://cdn.sanity.io/images/c20abca7/production/2133e974fa195be689fb6e06f4b4d1d7665e0988-1280x832.png"
     },
     {
       "_id": "image-22784bec3bba82a77e33848e5d2b74ba90ffb4ff-1612x898-png",
@@ -1994,6 +2203,79 @@
       "originalFilename": "venue-6.webp",
       "size": 182150,
       "url": "https://cdn.sanity.io/images/c20abca7/production/47b0ba5a4d00ea301f0998ccd3089ba48f1899b9-1920x1280.webp"
+    },
+    {
+      "_id": "image-4960178bc8c3bd178c38ade5259ac61467f65a2d-512x512-png",
+      "_type": "sanity.imageAsset",
+      "metadata": {
+        "_type": "sanity.imageMetadata",
+        "blurHash": "e009jvfQfQfQfQfQfQfQfQfQfQfQfQfQfQfQfQfQfQfQfQfQfQfQfQ",
+        "dimensions": {
+          "_type": "sanity.imageDimensions",
+          "aspectRatio": 1,
+          "height": 512,
+          "width": 512
+        },
+        "hasAlpha": true,
+        "isOpaque": false,
+        "lqip": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAABVLAAAVSwGzfKg3AAACTUlEQVR4nJ3UX2gWVBgG8J+bLaSZidAfkKQSwciL8Kq6SAIvRCwjBaEu1C7E0sAbq4suYkhBIiqKihCZuKGmqKilISILpZoumlNrFP5riqYiSmibGmc8G5+fbkUHXr7vO+c7z3nf53neFwZhCB7DM3gaI1CXs1rUYyRGYxSGYbB+1nC8iPewGJ9gNsZhKJ7AJHyIJfgY0/FUHr1nTcZqHEY7juEgGvAy3sRmtOWsxLeYl2xrqwHX4yiOYAO24Bf8gBXYig40Yx2+we/YmcwfCjV961QuLMUETMFXOB3gP/Lg+3gBM/EdfsK7eBQ1laAXA9gQ3l5KJmcCdgmtmBNRXsW+ULAAj1cDHsBv2IuP8Cl+xHFsD5/lwSYsxKpkXrKcEcXvApyPXflTW4RpT5ZvRd3mnP+ch1ry8HN4IGC9YQzmYlMu7kcjPsAbmIVl2J2sSiWfxQH1AamJL3tsVIz8Dtbii0RTVNwTVYvyX1acF6++Ep/WhcfxEdXE+KwjZf0aQa7iBv7ChfB8IueHwuezeD4VFoq+FmK/RzduJ25VfL9dtd8d9Ys4b4eO1rjhunRCS8WlOxWf1dELWgA34vN0zk10pZo+wIGAqgE7Y6kdOJe9v0PT/wbcFtDO0FCyvHK/kgeKWxUlN6bXW3AtAl4ugNPSDV0VF/qL7sTZ9P7r6fHizeKCkwWwzMLirfKj9PWfA0Q5Px+DF6s8mbk4NbNgZQEs0+I1LIoV1vxLLE+7lkHyYObhwwEuvuzZeCQbY/9DlFYtU7yA9a7Sej0D4h8DYuWBMkLofAAAAABJRU5ErkJggg==",
+        "palette": {
+          "_type": "sanity.imagePalette",
+          "darkMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#040404",
+            "foreground": "#fff",
+            "population": 100,
+            "title": "#fff"
+          },
+          "darkVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#424242",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+          },
+          "dominant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#040404",
+            "foreground": "#fff",
+            "population": 100,
+            "title": "#fff"
+          },
+          "lightMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#4c4c4c",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+          },
+          "lightVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#bcbcbc",
+            "foreground": "#000",
+            "population": 0,
+            "title": "#fff"
+          },
+          "muted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#4c4c4c",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+          },
+          "vibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#7f7f7f",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+          }
+        }
+      },
+      "mimeType": "image/png",
+      "originalFilename": "video-camera.png",
+      "size": 14963,
+      "url": "https://cdn.sanity.io/images/c20abca7/production/4960178bc8c3bd178c38ade5259ac61467f65a2d-512x512.png"
     },
     {
       "_id": "image-4b03b536843bf14076e0b8c758d36273511c8b89-1567x847-png",
@@ -3456,6 +3738,79 @@
       "url": "https://cdn.sanity.io/images/c20abca7/production/86f0076a0dd8429e565708b02192ab02f3293979-1738x892.png"
     },
     {
+      "_id": "image-8728785dff985175c6cd1d0eea0bb042e1158b9f-1312x816-png",
+      "_type": "sanity.imageAsset",
+      "metadata": {
+        "_type": "sanity.imageMetadata",
+        "blurHash": "VB8|IqozRjkC-o~VozV@oy-o%fkCM|t6xt-pbIRjs:j[",
+        "dimensions": {
+          "_type": "sanity.imageDimensions",
+          "aspectRatio": 1.607843137254902,
+          "height": 816,
+          "width": 1312
+        },
+        "hasAlpha": false,
+        "isOpaque": true,
+        "lqip": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsTAAALEwEAmpwYAAACl0lEQVR4nCWO20/TYADFmzhYt452vd++3rdeRhlru0s7WBmrG92ggFMYgYgRogg+KSEY4y1Ro09GX4xPJr74d5rFk/N0kt85B3p9Mft8/fTm4nR/O+3HvWSjN042s9Hg/Hj6/eOrv7++/vnx/svN+WyrG7napm8eDPzLLLp+EN8c9KE3F4dvnz882U87gRd59d215ulo42w7OZ+mH14++f3t3c9P11eztOsoFl82BcI3+KxtXe6Et0cD6Pbx7ovTrN+uyxzdUPitmnq/6RxFqwdxcDkbv7s6vpqliW/WRdxhMYst+woz8aqPkuBZ1oXOJtHZbhw4ukiggUQPqsLQAtmKsdd0ZhvBNPZCW3b4ssthKwIeSPTQUWahexI39js1KHGkvU6tYQCFRLsqN7al1AI7rjb1rd2m3VtWHZE0qJLDonUeX1OZcU2ZBtZh6E48E/I4LLGldhVUOGK+bHCbOju0wE7dSFzNM3hHJKsM5vJ4JFNDg5vYUrZq3Gs5o4YJ2WRpTWNSr7Lu6oHGRTLVU+mBCWJLdiQGUJjGYDaP+4DcUOmRwY4tMavrW3WjVRHncChT09CZxY1BTe5IZFel+ybwFE4iUUCgFRZfFclQJmOZ7CvkyBSyVT1xZA+QkI4jNbYcmSCt63dNIZLJUGPWq2JLYVsK26uAUBdChd7UmERnegrVVdn1KmirrMtiEInkcaRALiEGhTVFIlSoSOdCnV1Tme2aMlmptDQhAFTf4FIb9CvCMk8AAmXQEoUUoMWFuXK5BSSf51CkQpdrPGFzmC8QQxO0NZHHURZFTJZoKlxT4QCBFuE8DMPFQhG6k1v471xu3lKE4fmRUkEjlnxAGzRehOF5XoDJJYTBSqUCvLC4WERKZRz/B7WSfZuafOrcAAAAAElFTkSuQmCC",
+        "palette": {
+          "_type": "sanity.imagePalette",
+          "darkMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#5f4433",
+            "foreground": "#fff",
+            "population": 1.08,
+            "title": "#fff"
+          },
+          "darkVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#543125",
+            "foreground": "#fff",
+            "population": 16.39,
+            "title": "#fff"
+          },
+          "dominant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#543125",
+            "foreground": "#fff",
+            "population": 16.39,
+            "title": "#fff"
+          },
+          "lightMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#d4c2b8",
+            "foreground": "#000",
+            "population": 0.04,
+            "title": "#fff"
+          },
+          "lightVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#d3aca5",
+            "foreground": "#000",
+            "population": 0,
+            "title": "#fff"
+          },
+          "muted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#947360",
+            "foreground": "#fff",
+            "population": 0.11,
+            "title": "#fff"
+          },
+          "vibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#6c3c34",
+            "foreground": "#fff",
+            "population": 0.09,
+            "title": "#fff"
+          }
+        }
+      },
+      "mimeType": "image/png",
+      "originalFilename": "co-cast-4.png",
+      "size": 231847,
+      "url": "https://cdn.sanity.io/images/c20abca7/production/8728785dff985175c6cd1d0eea0bb042e1158b9f-1312x816.png"
+    },
+    {
       "_id": "image-89307f3fef09feb106360e6380de44b5e9bb536c-1582x821-png",
       "_type": "sanity.imageAsset",
       "metadata": {
@@ -4697,6 +5052,79 @@
       "url": "https://cdn.sanity.io/images/c20abca7/production/d32edc4082702a133fa253c00e5136ce6f2ccd9d-814x525.jpg"
     },
     {
+      "_id": "image-d910b9eb92ff147d5c9f099dcefb49cd5fe85f93-437x571-png",
+      "_type": "sanity.imageAsset",
+      "metadata": {
+        "_type": "sanity.imageMetadata",
+        "blurHash": "d01M4k%MWBRjt7j[ofxuRjt7ayxuxuofM{M{%Mj[ofM{",
+        "dimensions": {
+          "_type": "sanity.imageDimensions",
+          "aspectRatio": 0.7653239929947461,
+          "height": 571,
+          "width": 437
+        },
+        "hasAlpha": true,
+        "isOpaque": false,
+        "lqip": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAYAAAC3g3x9AAAACXBIWXMAAAsTAAALEwEAmpwYAAADb0lEQVR4nJWUa+jfYxjGr+/nup/v/kwYkWMOCaONOUU5JSOGIVLsjZRWZk4vppRDygt541AOtRwiL9BYw2bLYaSt5XwmlG1RFm8Qs43udv/02++/DU89/b6/nue57uu+r+u+JWlqRNwKvAV8DKywfbek4yUdAswBXrH9EfCe7Udtny1pZ0mdRldE3BIRy4DlXdfNB14GllWQa4AXgJW2HwcWAG/bvkfSlHyuUVDgVeAN4KWu6waPMsASYBHwOrDU9lPAM3V/ge1LJe2SEFuA2l5le77tp5Ml8Jzth4E3gVUZpALl2aI8K/CrJe05DrAiLq5UFwIvFrsVmV6dL6mzhXXvWeAySbuOAHbJ8PaIWAq81nXdQwX+JfBOsfosv7uue6RSTtHulTRNUl+Ag5011VElQKa4EvgC+A74tsA+B77O9IF3geclXVgqW9KOkvaSNDki0hnaB7g2LQH8Avxev7/W/rn+/wasy1pLOl3SQcnS9gzgetv32X5CrbWjbT8ArAU2AJuG9l9D3xsrwPIsk+07EoDNLsgsVgPfJMPDbN9ZaW0YAhrdm+p8XZUlS/JTZbSxMlijqsUlpej6EXajgLn/LJD1FWDjEODqBJwgaXqqDPwxdGEYdJBygnwPfFBOWFfgG4YZNkkn2X6sevnTUndtXU5GPwJfAe/bfhKYC8zLhmAzkazhmizDZjNKe9s+PyLmRERevKs8l4X+ob7nZXfUYDhA0n45WCSdC1xn+/4M9s+MqL7cPyJOi4jZOQCAD4FPgJskHSppj6p5KyNb0g7lwyMknTAA7GqPtdaOzMZPW1T7rYiIG4qRC2jwZvC7RacMLxeD7J6bs2dtPxgRc7MTitn4GagtwMetPllGxI0RcRtwOTArIk7Z5lDdzsrLkyLi1NbaVa21KyLiRNvTbc8sMfx/QC3pwOzPVN32ea21Ka21qbYvaq1NKxH+E2AnaWJEHJeAEXFy3/fnJGCqb/vMZLrVobqVNVAq/XhW1iuHRt/3M2sk7Zaes31B9n6Jo38DnCApLTND0uE5nhK8tXaMpJ1yzKWpS5xJ22PY1d49xbB9RqU1sQybj9NfE1trx1bAnIVZ720C5iifbPviGu2Dwg+zSICDU5ximZ21VZZZu0l936cQs/u+TwOPXhzUeN/W2qzW2pVjY2NpoXHrb3JN0WaNNxvwAAAAAElFTkSuQmCC",
+        "palette": {
+          "_type": "sanity.imagePalette",
+          "darkMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#040404",
+            "foreground": "#fff",
+            "population": 99.61,
+            "title": "#fff"
+          },
+          "darkVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#424242",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+          },
+          "dominant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#040404",
+            "foreground": "#fff",
+            "population": 99.61,
+            "title": "#fff"
+          },
+          "lightMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#4c4c4c",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+          },
+          "lightVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#bcbcbc",
+            "foreground": "#000",
+            "population": 0,
+            "title": "#fff"
+          },
+          "muted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#4c4c4c",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+          },
+          "vibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#7f7f7f",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+          }
+        }
+      },
+      "mimeType": "image/png",
+      "originalFilename": "camera-icon.png",
+      "size": 84139,
+      "url": "https://cdn.sanity.io/images/c20abca7/production/d910b9eb92ff147d5c9f099dcefb49cd5fe85f93-437x571.png"
+    },
+    {
       "_id": "image-dc0af06ce4243f9c56b92b4d8dc10ff9fc358c8f-517x866-png",
       "_type": "sanity.imageAsset",
       "metadata": {
@@ -4768,6 +5196,79 @@
       "originalFilename": "hollywoodtheme.png",
       "size": 98797,
       "url": "https://cdn.sanity.io/images/c20abca7/production/dc0af06ce4243f9c56b92b4d8dc10ff9fc358c8f-517x866.png"
+    },
+    {
+      "_id": "image-dc8bd6fbfeedb9ad0dfcf1cbbc5313530aafb6c0-2816x1504-png",
+      "_type": "sanity.imageAsset",
+      "metadata": {
+        "_type": "sanity.imageMetadata",
+        "blurHash": "MHEB$;D*5RD%t7~VSiVrRPNIF3oz-6nhSh",
+        "dimensions": {
+          "_type": "sanity.imageDimensions",
+          "aspectRatio": 1.872340425531915,
+          "height": 1504,
+          "width": 2816
+        },
+        "hasAlpha": false,
+        "isOpaque": true,
+        "lqip": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACqklEQVR4nAGfAmD9ADsrGEo3JFlDLmpVQXlrXoN/fZeYlqWloJSbnoaQmYODg3FlWWBMOW9VPIhpTZF0V4huU4VrTph9XrGYeQBFMh5ZRTFuVD56X0l6aluFfXWalI2noJWdm5eRlJWMhoB3Z1dlTjhuUjiGZ0uZfGCVel+NcVWagWSql30APysXTjchY0QqaEgvZE88fW9hoJOFrJuIk4V4hX95jIN6gmxZe1g8gVo8jW1RoodroYVpknVZj3ddjnxnADQhDjslEEktFUwwGVQ+KXppVqKQfq6Qd4VoUHBdTYVyYIZnT45fPp9rSKiBYq+SdKOHao5xVn5oUXRjUAAxHwwxHgs2IQ07JhFONiBwV0CTdFyvgGCaakqOY0Wabk6CWTx8UTOdakitg2KmiWySeF17YkluW0ZrXEsALxwKLBoJKxoJMR4MQCkUVzskglg6tHlTt3lSuXpRtHZMdU0vYEEnh10/jmdJfWNKc19Mbl1McF9MdWZVAC4bCS4bCS0aCTYgDUEoElAzHIVYOLR4UbBzTb97T7BxRmVBJVc8JXJTOGZKMVVAK1lNP3BnXIFwXoh0YQAtGQk2Hww9JA5MLhZPMBhTNiCCWj2PYkN/UjWlaUKSXThHLRhBLhxXQi5GNSI5KhhDOy9mYlqCeG6LgHYAKhcJMxwLPiQPRioUPCMRNiITTTUiSDAeSS4be04waEEnLBoMLiATSDgnOCsZKR4NMywfUlFMb3JyeoCDAC0ZCiUTByYVCCUUCB0PBhkNBR0RCBwPBiYWC0MpFzojEx8RBy8iFk09LTkrGiYbCywjFTw4Lk9PS1tfXgAwGwofEAUYDAMWCgIUCQMTCQIUCQMVCgMXCwQbDwUcDwUcDgQ1JxpVRTQ8Lh4lGgsoHQ0sIhM1LSBCPDN5Z8rmaP3bgAAAAABJRU5ErkJggg==",
+        "palette": {
+          "_type": "sanity.imagePalette",
+          "darkMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#473e2e",
+            "foreground": "#fff",
+            "population": 1.17,
+            "title": "#fff"
+          },
+          "darkVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#541c04",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+          },
+          "dominant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#ce8a5e",
+            "foreground": "#000",
+            "population": 7.55,
+            "title": "#fff"
+          },
+          "lightMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#c9b5a0",
+            "foreground": "#000",
+            "population": 1.79,
+            "title": "#fff"
+          },
+          "lightVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#ec9c6b",
+            "foreground": "#000",
+            "population": 0.39,
+            "title": "#fff"
+          },
+          "muted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#8a6a4c",
+            "foreground": "#fff",
+            "population": 6.21,
+            "title": "#fff"
+          },
+          "vibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#ce8a5e",
+            "foreground": "#000",
+            "population": 7.55,
+            "title": "#fff"
+          }
+        }
+      },
+      "mimeType": "image/png",
+      "originalFilename": "co-cast-1.png",
+      "size": 1574595,
+      "url": "https://cdn.sanity.io/images/c20abca7/production/dc8bd6fbfeedb9ad0dfcf1cbbc5313530aafb6c0-2816x1504.png"
     },
     {
       "_id": "image-dd12a0d30e28e91bb0f4d3d043f6ad9c017e2448-916x894-png",
