@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Volume2, VolumeX } from 'lucide-react'
 import FeaturesList from './FeaturesList'
 
@@ -66,6 +66,30 @@ export default function Hero({ data }: { data: HeroData }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMuted, setIsMuted] = useState(true)
 
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const playVideo = async () => {
+      try {
+        video.muted = true
+        await video.play()
+      } catch (error) {
+        console.log('Autoplay prevented:', error)
+      }
+    }
+
+    if (video.readyState >= 3) {
+      playVideo()
+    } else {
+      video.addEventListener('canplay', playVideo, { once: true })
+    }
+
+    return () => {
+      video.removeEventListener('canplay', playVideo)
+    }
+  }, [videoUrl])
+
   const toggleSound = () => {
     if (videoRef.current) {
       videoRef.current.play().catch(() => {})
@@ -76,34 +100,31 @@ export default function Hero({ data }: { data: HeroData }) {
 
   return (
     <div className="relative w-full h-[100dvh] min-h-[600px] overflow-hidden bg-black font-sans flex flex-col">
-      
+
+      {videoUrl && (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          webkit-playsinline="true"
+          x5-playsinline="true"
+          preload="auto"
+          poster={data?.heroSection?.posterImage || undefined}
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          style={{ objectFit: 'cover' }}
+        >
+          <source src={videoUrl} type="video/mp4" />
+        </video>
+      )}
+
       <motion.div 
-        className="absolute inset-0 z-0"
-        initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      >
-        {videoUrl && (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster={data?.heroSection?.posterImage || undefined}
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src={videoUrl} type="video/mp4" />
-          </video>
-        )}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-black/80 via-black/50 to-black/30"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        />
-      </motion.div>
+        className="absolute inset-0 z-[1] bg-gradient-to-b md:bg-gradient-to-r from-black/80 via-black/50 to-black/30"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      />
 
       <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 pt-16 pb-20 sm:pt-20 sm:pb-24 px-4 md:px-8 lg:px-12 overflow-hidden">
         
