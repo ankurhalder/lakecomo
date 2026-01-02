@@ -17,7 +17,7 @@ export default async function ContactPage() {
   
   return (
     <main id="main-content" className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
-      <ContactContent cameraImageUrl={data?.cameraImageUrl ? data.cameraImageUrl : null} />
+      <ContactContent data={data} />
     </main>
   )
 }

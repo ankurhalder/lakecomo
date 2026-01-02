@@ -5,7 +5,37 @@ import { urlFor } from "./image";
 const query = `
   *[_type == "contactPage"][0] {
     title,
-    cameraImage
+    hero {
+      preHeading,
+      mainHeading,
+      description
+    },
+    cameraImage,
+    form {
+      formTitle,
+      firstNameLabel,
+      firstNamePlaceholder,
+      lastNameLabel,
+      lastNamePlaceholder,
+      emailLabel,
+      emailPlaceholder,
+      phoneLabel,
+      phonePlaceholder,
+      groupSizeLabel,
+      groupSizeDefaultOption,
+      groupSizeOptions,
+      eventDateLabel,
+      messageLabel,
+      messagePlaceholder,
+      submitButtonText,
+      submitButtonLoadingText
+    },
+    success {
+      title,
+      message,
+      buttonText,
+      buttonLink
+    }
   }
 `;
 

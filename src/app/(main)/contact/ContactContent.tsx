@@ -16,11 +16,45 @@ interface FormData {
   message: string
 }
 
-interface ContactContentProps {
+interface ContactPageData {
+  hero?: {
+    preHeading?: string
+    mainHeading?: string
+    description?: string
+  }
+  form?: {
+    formTitle?: string
+    firstNameLabel?: string
+    firstNamePlaceholder?: string
+    lastNameLabel?: string
+    lastNamePlaceholder?: string
+    emailLabel?: string
+    emailPlaceholder?: string
+    phoneLabel?: string
+    phonePlaceholder?: string
+    groupSizeLabel?: string
+    groupSizeDefaultOption?: string
+    groupSizeOptions?: string[]
+    eventDateLabel?: string
+    messageLabel?: string
+    messagePlaceholder?: string
+    submitButtonText?: string
+    submitButtonLoadingText?: string
+  }
+  success?: {
+    title?: string
+    message?: string
+    buttonText?: string
+    buttonLink?: string
+  }
   cameraImageUrl?: string | null
 }
 
-export default function ContactContent({ cameraImageUrl }: ContactContentProps) {
+interface ContactContentProps {
+  data?: ContactPageData | null
+}
+
+export default function ContactContent({ data }: ContactContentProps) {
   const { theme } = useTheme()
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
@@ -38,6 +72,10 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
 
   const { scrollY } = useScroll()
   const textY = useTransform(scrollY, [0, 500], [0, 50])
+
+  const hero = data?.hero || {}
+  const form = data?.form || {}
+  const success = data?.success || {}
 
   const countryCodes = [
     { code: '+1', country: 'US/CA' },
@@ -91,8 +129,6 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
     return { valid: false, message: 'Add @ and domain' }
   }, [formData.email])
 
-
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({
       ...prev,
@@ -109,6 +145,8 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
     setIsSubmitting(false)
     setSubmitted(true)
   }
+
+  const groupSizeOptions = form.groupSizeOptions || ['2-5 people', '6-10 people', '11-20 people', '21-50 people', '50+ people']
 
   if (submitted) {
     return (
@@ -132,22 +170,22 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
             className="text-3xl md:text-4xl font-bold mb-4"
             style={{ color: 'var(--text-primary)' }}
           >
-            The Spotlight Awaits!
+            {success.title || 'The Spotlight Awaits!'}
           </h2>
           <p 
             className="text-base mb-8"
             style={{ color: 'var(--text-secondary)' }}
           >
-            Thank you for reaching out. We&apos;ll be in touch soon to help you create your unforgettable cinematic experience.
+            {success.message || "Thank you for reaching out. We'll be in touch soon to help you create your unforgettable cinematic experience."}
           </p>
           <motion.a
-            href="/"
+            href={success.buttonLink || '/'}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-block px-8 py-4 text-sm font-bold uppercase tracking-widest rounded-full"
             style={{ backgroundColor: 'var(--accent)', color: 'var(--bg-primary)' }}
           >
-            Back to Home
+            {success.buttonText || 'Back to Home'}
           </motion.a>
         </motion.div>
       </div>
@@ -180,14 +218,14 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                 className="text-xs md:text-sm uppercase tracking-[0.4em] mb-3"
                 style={{ color: 'var(--text-secondary)', opacity: 0.6 }}
               >
-                Get in Touch
+                {hero.preHeading || 'Get in Touch'}
               </motion.p>
               
               <motion.h1
                 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3"
                 style={{ color: 'var(--text-primary)' }}
               >
-                The Spotlight Awaits in Italy
+                {hero.mainHeading || 'The Spotlight Awaits in Italy'}
               </motion.h1>
               
               <motion.div
@@ -202,7 +240,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                 className="text-sm max-w-sm mx-auto leading-relaxed"
                 style={{ color: 'var(--text-secondary)', opacity: 0.8 }}
               >
-                Ready to create your unforgettable cinematic experience? Fill out the form and we&apos;ll be in touch soon.
+                {hero.description || "Ready to create your unforgettable cinematic experience? Fill out the form and we'll be in touch soon."}
               </p>
             </motion.div>
 
@@ -215,7 +253,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
               <InteractiveCamera 
                 focusedField={focusedField} 
                 isSubmitting={isSubmitting}
-                cameraImageUrl={cameraImageUrl}
+                cameraImageUrl={data?.cameraImageUrl}
               />
             </motion.div>
           </motion.div>
@@ -233,7 +271,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
               className="text-xl md:text-2xl font-bold mb-8 text-center"
               style={{ color: 'var(--text-primary)' }}
             >
-            Create Your Cinematic Event
+            {form.formTitle || 'Create Your Cinematic Event'}
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -245,7 +283,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                   style={{ color: 'var(--text-secondary)' }}
                 >
                   <User size={14} />
-                  First Name
+                  {form.firstNameLabel || 'First Name'}
                 </label>
                 <input
                   type="text"
@@ -261,7 +299,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                     backgroundColor: 'var(--bg-secondary)',
                     color: 'var(--text-primary)'
                   }}
-                  placeholder="John"
+                  placeholder={form.firstNamePlaceholder || 'John'}
                 />
               </div>
 
@@ -272,7 +310,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                   style={{ color: 'var(--text-secondary)' }}
                 >
                   <User size={14} />
-                  Last Name
+                  {form.lastNameLabel || 'Last Name'}
                 </label>
                 <input
                   type="text"
@@ -288,7 +326,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                     backgroundColor: 'var(--bg-secondary)',
                     color: 'var(--text-primary)'
                   }}
-                  placeholder="Doe"
+                  placeholder={form.lastNamePlaceholder || 'Doe'}
                 />
               </div>
             </div>
@@ -301,7 +339,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                   style={{ color: 'var(--text-secondary)' }}
                 >
                   <Mail size={14} />
-                  Email <span style={{ color: 'var(--accent)' }}>*</span>
+                  {form.emailLabel || 'Email'} <span style={{ color: 'var(--accent)' }}>*</span>
                 </label>
                 <div className="relative">
                   <input
@@ -319,7 +357,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                       color: 'var(--text-primary)',
                       borderColor: formData.email ? (emailValidation.valid ? '#22c55e' : '#ef4444') : undefined
                     }}
-                    placeholder="john@example.com"
+                    placeholder={form.emailPlaceholder || 'john@example.com'}
                   />
                   {formData.email && (
                     <motion.div 
@@ -354,7 +392,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                   style={{ color: 'var(--text-secondary)' }}
                 >
                   <Phone size={14} />
-                  Phone
+                  {form.phoneLabel || 'Phone'}
                 </label>
                 <div className="flex gap-2 min-w-0">
                   <select
@@ -385,7 +423,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                       backgroundColor: 'var(--bg-secondary)',
                       color: 'var(--text-primary)'
                     }}
-                    placeholder="555 123-4567"
+                    placeholder={form.phonePlaceholder || '555 123-4567'}
                   />
                 </div>
               </div>
@@ -399,7 +437,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                   style={{ color: 'var(--text-secondary)' }}
                 >
                   <Users size={14} />
-                  How many will you be?
+                  {form.groupSizeLabel || 'How many will you be?'}
                 </label>
                 <select
                   id="groupSize"
@@ -414,12 +452,10 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                     color: 'var(--text-primary)'
                   }}
                 >
-                  <option value="">Select group size</option>
-                  <option value="2-5">2-5 people</option>
-                  <option value="6-10">6-10 people</option>
-                  <option value="11-20">11-20 people</option>
-                  <option value="21-50">21-50 people</option>
-                  <option value="50+">50+ people</option>
+                  <option value="">{form.groupSizeDefaultOption || 'Select group size'}</option>
+                  {groupSizeOptions.map((option, index) => (
+                    <option key={index} value={option}>{option}</option>
+                  ))}
                 </select>
               </div>
 
@@ -430,7 +466,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                   style={{ color: 'var(--text-secondary)' }}
                 >
                   <Calendar size={14} />
-                  Date of Event
+                  {form.eventDateLabel || 'Date of Event'}
                 </label>
                 <input
                   type="date"
@@ -457,7 +493,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                 style={{ color: 'var(--text-secondary)' }}
               >
                 <MessageSquare size={14} />
-                Tell us about your vision
+                {form.messageLabel || 'Tell us about your vision'}
               </label>
               <textarea
                 id="message"
@@ -472,7 +508,7 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                   backgroundColor: 'var(--bg-secondary)',
                   color: 'var(--text-primary)'
                 }}
-                placeholder="Describe your dream cinematic event..."
+                placeholder={form.messagePlaceholder || 'Describe your dream cinematic event...'}
               />
             </div>
 
@@ -488,12 +524,12 @@ export default function ContactContent({ cameraImageUrl }: ContactContentProps) 
                 {isSubmitting ? (
                   <>
                     <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                    Sending...
+                    {form.submitButtonLoadingText || 'Sending...'}
                   </>
                 ) : (
                   <>
                     <Send size={18} />
-                    Be A Star
+                    {form.submitButtonText || 'Be A Star'}
                   </>
                 )}
               </motion.button>

@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "exportedAt": "2026-01-02T11:54:53.011Z",
+    "exportedAt": "2026-01-02T12:07:20.857Z",
     "projectId": "c20abca7",
     "dataset": "production"
   },
@@ -925,15 +925,9 @@
     {
       "_createdAt": "2025-12-27T05:23:56Z",
       "_id": "contactPage",
-      "_rev": "3d2JLpUTPM5qppQf8FLuKY",
-      "_system": {
-        "base": {
-          "id": "contactPage",
-          "rev": "3d2JLpUTPM5qppQf8F69uo"
-        }
-      },
+      "_rev": "zuW1OHkqCQ2Sn593fMBjSB",
       "_type": "contactPage",
-      "_updatedAt": "2026-01-02T11:33:51Z",
+      "_updatedAt": "2026-01-02T12:07:01Z",
       "cameraImage": {
         "_type": "image",
         "asset": {
@@ -941,7 +935,43 @@
           "_type": "reference"
         }
       },
-      "title": "Contact Page"
+      "form": {
+        "emailLabel": "Email",
+        "emailPlaceholder": "john@example.com",
+        "eventDateLabel": "Date of Event",
+        "firstNameLabel": "First Name",
+        "firstNamePlaceholder": "John",
+        "formTitle": "Create Your Cinematic Event",
+        "groupSizeDefaultOption": "Select group size",
+        "groupSizeLabel": "How many will you be?",
+        "groupSizeOptions": [
+          "2-5 people",
+          "6-10 people",
+          "11-20 people",
+          "21-50 people",
+          "50+ people"
+        ],
+        "lastNameLabel": "Last Name",
+        "lastNamePlaceholder": "Doe",
+        "messageLabel": "Tell us about your vision",
+        "messagePlaceholder": "Describe your dream cinematic event...",
+        "phoneLabel": "Phone",
+        "phonePlaceholder": "555 123-4567",
+        "submitButtonLoadingText": "Sending...",
+        "submitButtonText": "Be A Star"
+      },
+      "hero": {
+        "description": "Ready to create your unforgettable cinematic experience? Fill out the form and we'll be in touch soon.",
+        "mainHeading": "The Spotlight Awaits in Italy",
+        "preHeading": "Get in Touch"
+      },
+      "success": {
+        "buttonLink": "/",
+        "buttonText": "Back to Home",
+        "message": "Thank you for reaching out. We'll be in touch soon to help you create your unforgettable cinematic experience.",
+        "title": "The Spotlight Awaits!"
+      },
+      "title": "Contact Us"
     }
   ],
   "_assets": [
