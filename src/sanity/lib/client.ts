@@ -9,4 +9,4 @@ export const client = createClient({
   useCdn: false,
 })
 
-export const DEFAULT_REVALIDATE = 604800;
+export const DEFAULT_REVALIDATE = 0;
