@@ -71,7 +71,6 @@ export default function ContactContent({ data }: ContactContentProps) {
   const [countryCode, setCountryCode] = useState('+1')
 
   const { scrollY } = useScroll()
-  const textY = useTransform(scrollY, [0, 500], [0, 50])
 
   const hero = data?.hero || {}
   const form = data?.form || {}
@@ -206,7 +205,6 @@ export default function ContactContent({ data }: ContactContentProps) {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            style={{ y: textY }}
           >
             <motion.div 
               className="text-center lg:text-center mb-8"
