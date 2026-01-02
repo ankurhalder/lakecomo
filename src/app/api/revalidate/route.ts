@@ -37,9 +37,7 @@ export async function POST(request: NextRequest) {
       revalidatePath(path);
     }
     
-    // Also revalidate by tag if the fetching logic uses unstable_cache with tags matching the type
     if (type) {
-      // @ts-expect-error - Next.js 16.1.1 might require a second argument for revalidateTag in its type definition
       revalidateTag(type, { } as any);
     }
 
