@@ -8,10 +8,7 @@ export interface GalleryImage {
   caption?: string;
 }
 
-export interface VenueFeature {
-  title: string;
-  description?: string;
-}
+
 
 export interface VenuePageData {
   title: string;
@@ -27,10 +24,8 @@ export interface VenuePageData {
     link?: string;
   };
   description: string[];
-  features?: VenueFeature[];
   eventInfo?: string;
   galleryImages: GalleryImage[];
-  youtubeUrl?: string;
   externalLinks?: {
     palaceWebsite?: string;
     bookingLink?: string;
@@ -52,17 +47,12 @@ const query = `
       link
     },
     description,
-    features[] {
-      title,
-      description
-    },
     eventInfo,
     galleryImages[] {
       "url": asset->url,
       alt,
       caption
     },
-    youtubeUrl,
     externalLinks {
       palaceWebsite,
       bookingLink

@@ -1,7 +1,7 @@
 'use client'
 
 import GalleryHero from './GalleryHero'
-import GalleryCarousel from './GalleryCarousel'
+import GalleryParallax from './GalleryParallax'
 import type { GalleryPageData } from '@/sanity/lib/getGalleryPage'
 
 interface GalleryContentProps {
@@ -35,7 +35,8 @@ export default function GalleryContent({ data }: GalleryContentProps) {
         features={features}
       />
       
-      <GalleryCarousel images={images} />
+      <GalleryParallax images={images} />
     </div>
   )
 }
+

@@ -3,23 +3,15 @@
 import { motion } from 'framer-motion'
 import VenueHero from './VenueHero'
 import ParallaxGallery from './ParallaxGallery'
-import YouTubeEmbed from './YouTubeEmbed'
 import type { VenuePageData } from '@/sanity/lib/getVenuePage'
-import { ExternalLink, Users, Car, LayoutGrid, Landmark, Sparkles } from 'lucide-react'
+import { ExternalLink, Sparkles } from 'lucide-react'
 
 interface VenueContentProps {
   data: VenuePageData
 }
 
-const FEATURE_ICONS: Record<string, React.ReactNode> = {
-  'Capacity': <Users size={24} />,
-  'Accessibility': <Car size={24} />,
-  'Interior Spaces': <LayoutGrid size={24} />,
-  'Historic Heritage': <Landmark size={24} />,
-}
-
 export default function VenueContent({ data }: VenueContentProps) {
-  const { hero, heroFeature, description, features, eventInfo, galleryImages, youtubeUrl, externalLinks } = data
+  const { hero, heroFeature, description, eventInfo, galleryImages, externalLinks } = data
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
@@ -45,64 +37,7 @@ export default function VenueContent({ data }: VenueContentProps) {
             </div>
           )}
 
-          {features && features.length > 0 && (
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-            >
-              {features.map((feature, idx) => {
-                const icon = FEATURE_ICONS[feature.title] || <Sparkles size={24} />
-                
-                return (
-                  <motion.div
-                    key={feature.title}
-                    className="p-6 rounded-xl group cursor-default"
-                    style={{ backgroundColor: 'var(--bg-secondary)' }}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    whileHover={{ 
-                      scale: 1.02,
-                      transition: { duration: 0.2 }
-                    }}
-                  >
-                    <div className="flex items-start gap-4">
-                      <motion.div 
-                        className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center"
-                        style={{ 
-                          backgroundColor: 'var(--accent)',
-                          color: 'var(--bg-primary)'
-                        }}
-                        whileHover={{ rotate: [0, -5, 5, 0] }}
-                        transition={{ duration: 0.4 }}
-                      >
-                        {icon}
-                      </motion.div>
-                      <div className="flex-1">
-                        <h3 
-                          className="text-lg font-bold mb-2"
-                          style={{ color: 'var(--text-primary)' }}
-                        >
-                          {feature.title}
-                        </h3>
-                        {feature.description && (
-                          <p 
-                            className="text-sm leading-relaxed"
-                            style={{ color: 'var(--text-secondary)' }}
-                          >
-                            {feature.description}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </motion.div>
-          )}
+
 
           {eventInfo && (
             <motion.div
@@ -141,9 +76,7 @@ export default function VenueContent({ data }: VenueContentProps) {
 
       <ParallaxGallery images={galleryImages} />
 
-      {youtubeUrl && (
-        <YouTubeEmbed url={youtubeUrl} title="Explore Palazzo Odescalchi" />
-      )}
+
 
       <section className="px-4 md:px-8 lg:px-12 py-16 md:py-24">
         <motion.div 

@@ -85,17 +85,7 @@ export default function CrewMemberCard({
               }}
             />
 
-            <motion.div
-              className="absolute -bottom-2 -right-2 w-14 h-14 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: 'var(--accent)' }}
-              initial={{ scale: 0 }}
-              animate={isInView ? { scale: 1 } : {}}
-              transition={{ delay: 0.8, type: 'spring', stiffness: 200 }}
-            >
-              <span className="text-lg font-bold" style={{ color: 'var(--bg-primary)' }}>
-                {String(index + 1).padStart(2, '0')}
-              </span>
-            </motion.div>
+
           </motion.div>
 
           <motion.div 

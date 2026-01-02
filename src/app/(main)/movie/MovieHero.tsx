@@ -33,12 +33,7 @@ export default function MovieHero({ hero, heroFeature, popcornImageUrl }: MovieH
   const popcornRotate = useTransform(scrollYProgress, [0, 1], [-8, 15])
   const popcornScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.15, 0.95])
 
-  const kernelY1 = useTransform(scrollYProgress, [0, 1], [0, -80])
-  const kernelY2 = useTransform(scrollYProgress, [0, 1], [0, -60])
-  const kernelY3 = useTransform(scrollYProgress, [0, 1], [0, -100])
-  const kernelRotate1 = useTransform(scrollYProgress, [0, 1], [0, 180])
-  const kernelRotate2 = useTransform(scrollYProgress, [0, 1], [0, -135])
-  const kernelRotate3 = useTransform(scrollYProgress, [0, 1], [0, 225])
+
 
   const imageUrl = popcornImageUrl || '/images/popcorn.webp'
 
@@ -70,33 +65,7 @@ export default function MovieHero({ hero, heroFeature, popcornImageUrl }: MovieH
             />
           </div>
 
-          <motion.div
-            className="absolute -top-2 -right-2 w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 rounded-full opacity-40"
-            style={{ 
-              y: kernelY1, 
-              rotate: kernelRotate1,
-              backgroundColor: '#F5DEB3',
-              boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
-            }}
-          />
-          <motion.div
-            className="absolute top-4 sm:top-6 -left-3 sm:-left-4 w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 md:w-5 md:h-5 rounded-full opacity-40"
-            style={{ 
-              y: kernelY2, 
-              rotate: kernelRotate2,
-              backgroundColor: '#FFF8DC',
-              boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
-            }}
-          />
-          <motion.div
-            className="absolute -bottom-1 right-2 w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 rounded-full opacity-40"
-            style={{ 
-              y: kernelY3, 
-              rotate: kernelRotate3,
-              backgroundColor: '#FFFACD',
-              boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
-            }}
-          />
+
         </motion.div>
       </motion.div>
       

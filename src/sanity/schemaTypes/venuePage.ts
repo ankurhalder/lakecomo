@@ -40,21 +40,7 @@ export default defineType({
       of: [{ type: 'text', rows: 4 }],
       description: 'Main description paragraphs about the venue.'
     }),
-    defineField({
-      name: 'features',
-      title: 'Venue Features',
-      type: 'array',
-      of: [{
-        type: 'object',
-        fields: [
-          defineField({ name: 'title', title: 'Feature Title', type: 'string' }),
-          defineField({ name: 'description', title: 'Feature Description', type: 'text', rows: 2 }),
-        ],
-        preview: {
-          select: { title: 'title', subtitle: 'description' }
-        }
-      }]
-    }),
+
     defineField({
       name: 'eventInfo',
       title: 'Event Information',
@@ -79,12 +65,7 @@ export default defineType({
         layout: 'grid'
       }
     }),
-    defineField({
-      name: 'youtubeUrl',
-      title: 'YouTube Video URL',
-      type: 'url',
-      description: 'Embed a YouTube video at the end of the page.'
-    }),
+
     defineField({
       name: 'externalLinks',
       title: 'External Links',
