@@ -100,8 +100,5 @@ const cachedFetch = unstable_cache(
 );
 
 export async function getCastPageData(): Promise<CastPageData | null> {
-  if (process.env.NODE_ENV === "development") {
-    return await fetchCastPageData();
-  }
-  return await cachedFetch();
+  return await fetchCastPageData();
 }
