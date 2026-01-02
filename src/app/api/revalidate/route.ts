@@ -1,4 +1,4 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 const PATH_MAP: Record<string, string[]> = {
@@ -7,6 +7,11 @@ const PATH_MAP: Record<string, string[]> = {
   footer: ["/"],
   themesPage: ["/themes"],
   castPage: ["/cast"],
+  galleryPage: ["/gallery"],
+  crewPage: ["/crew"],
+  moviePage: ["/movie"],
+  processPage: ["/process"],
+  venuePage: ["/venue"],
 };
 
 export async function POST(request: NextRequest) {
@@ -30,6 +35,12 @@ export async function POST(request: NextRequest) {
     
     for (const path of paths) {
       revalidatePath(path);
+    }
+    
+    // Also revalidate by tag if the fetching logic uses unstable_cache with tags matching the type
+    if (type) {
+      // @ts-expect-error - Next.js 16.1.1 might require a second argument for revalidateTag in its type definition
+      revalidateTag(type, { } as any);
     }
 
     revalidatePath("/", "layout");
