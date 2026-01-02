@@ -10,6 +10,20 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/webmail',
+        destination: 'https://webmail.lakecomostyle.it',
+        permanent: true,
+      },
+      {
+        source: '/cpanel',
+        destination: 'https://lakecomostyle.it:2083',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 export default nextConfig;
