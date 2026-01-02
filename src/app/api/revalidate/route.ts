@@ -37,8 +37,10 @@ export async function POST(request: NextRequest) {
       revalidatePath(path);
     }
     
+    // Also revalidate by tag if the fetching logic uses unstable_cache with tags matching the type
     if (type) {
-      revalidateTag(type, { } as any);
+      // Next.js 16 requires a second argument. Passing an empty config complies with the CacheLifeConfig type.
+      revalidateTag(type, {});
     }
 
     revalidatePath("/", "layout");
