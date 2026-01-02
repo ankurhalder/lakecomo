@@ -141,7 +141,7 @@ export default function GalleryHero({ hero, heroFeature, features }: GalleryHero
                 className="text-xs uppercase tracking-widest mb-4 lg:text-right"
                 style={{ color: 'var(--text-secondary)', opacity: 0.6 }}
               >
-                What You'll Discover
+                What You&apos;ll Discover
               </h3>
               {features.map((feature, idx) => {
                 const IconComponent = featureIcons[idx % featureIcons.length]

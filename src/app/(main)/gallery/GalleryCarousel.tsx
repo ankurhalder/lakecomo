@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { ChevronLeft, ChevronRight, Play, Pause, Maximize2, X, ZoomIn } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Play, Pause, Maximize2, X } from 'lucide-react'
 import { useLenis } from '@/components/providers/SmoothScroll'
 import FocusTrap from 'focus-trap-react'
 
