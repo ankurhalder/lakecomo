@@ -92,5 +92,8 @@ const cachedFetch = unstable_cache(
 );
 
 export async function getCrewPageData(): Promise<CrewPageData | null> {
-  return await fetchCrewPageData();
+  if (process.env.NODE_ENV === "development") {
+    return await fetchCrewPageData();
+  }
+  return await cachedFetch();
 }

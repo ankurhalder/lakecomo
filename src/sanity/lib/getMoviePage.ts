@@ -87,5 +87,8 @@ const cachedFetch = unstable_cache(
 );
 
 export async function getMoviePageData(): Promise<MoviePageData | null> {
-  return await fetchMoviePageData();
+  if (process.env.NODE_ENV === "development") {
+    return await fetchMoviePageData();
+  }
+  return await cachedFetch();
 }

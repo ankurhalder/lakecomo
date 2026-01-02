@@ -57,5 +57,8 @@ const cachedFetch = unstable_cache(
 );
 
 export async function getHomePageData() {
-  return await fetchHomePageData();
+  if (process.env.NODE_ENV === "development") {
+    return await fetchHomePageData();
+  }
+  return await cachedFetch();
 }

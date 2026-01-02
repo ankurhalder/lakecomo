@@ -66,5 +66,8 @@ const cachedFetch = unstable_cache(
 );
 
 export async function getProcessPageData(): Promise<ProcessPageData | null> {
-  return await fetchProcessPageData();
+  if (process.env.NODE_ENV === "development") {
+    return await fetchProcessPageData();
+  }
+  return await cachedFetch();
 }

@@ -33,5 +33,8 @@ const cachedFetch = unstable_cache(
 );
 
 export async function getContactPageData() {
-  return await fetchContactPageData();
+  if (process.env.NODE_ENV === "development") {
+    return await fetchContactPageData();
+  }
+  return await cachedFetch();
 }

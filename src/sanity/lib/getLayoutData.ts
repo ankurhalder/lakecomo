@@ -30,5 +30,8 @@ const cachedFetch = unstable_cache(
 );
 
 export async function getLayoutData() {
-  return await fetchLayoutData();
+  if (process.env.NODE_ENV === "development") {
+    return await fetchLayoutData(); // careful here, getLayoutData used client.fetch in dev
+  }
+  return await cachedFetch();
 }

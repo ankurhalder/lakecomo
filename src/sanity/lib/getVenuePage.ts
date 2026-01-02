@@ -100,5 +100,8 @@ const cachedFetch = unstable_cache(
 );
 
 export async function getVenuePageData(): Promise<VenuePageData | null> {
-  return await fetchVenuePageData();
+  if (process.env.NODE_ENV === "development") {
+    return await fetchVenuePageData();
+  }
+  return await cachedFetch();
 }

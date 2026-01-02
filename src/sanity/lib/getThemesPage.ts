@@ -58,5 +58,8 @@ const cachedFetch = unstable_cache(
 );
 
 export async function getThemesPageData() {
-  return await fetchThemesPageData();
+  if (process.env.NODE_ENV === "development") {
+    return await fetchThemesPageData();
+  }
+  return await cachedFetch();
 }
