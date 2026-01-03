@@ -1,9 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { useRef, useState, useEffect } from 'react'
-import { Volume2, VolumeX } from 'lucide-react'
+import { useRef, useState, useEffect, useMemo } from 'react'
+import { Volume2, VolumeX, Play } from 'lucide-react'
 import FeaturesList from './FeaturesList'
 
 const textVariants = {
@@ -64,6 +64,19 @@ interface HeroData {
 export default function Hero({ data }: { data: HeroData }) {
   const { preHeading, mainHeading, subHeading, ctaText, ctaLink, videoUrl, mobileVideoUrl } = data?.heroSection || {}
   const [isMobile, setIsMobile] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [showPlayIndicator, setShowPlayIndicator] = useState(false)
+  const features = data?.featuresGrid || []
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isMuted, setIsMuted] = useState(true)
+  const hasPlayedRef = useRef(false)
+  const playCheckTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  const activeVideoUrl = useMemo(() => {
+    const url = isMobile && mobileVideoUrl ? mobileVideoUrl : videoUrl
+    if (!url) return undefined
+    return url.includes('#') ? url : `${url}#t=0.001`
+  }, [isMobile, mobileVideoUrl, videoUrl])
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
@@ -71,18 +84,10 @@ export default function Hero({ data }: { data: HeroData }) {
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
-  const features = data?.featuresGrid || []
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [isMuted, setIsMuted] = useState(true)
-  const hasPlayedRef = useRef(false)
-  const interactionListenerAddedRef = useRef(false)
 
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-
-    let rafId: number
-    let lastAttempt = 0
 
     const forcePlay = async () => {
       if (hasPlayedRef.current) return true
@@ -90,20 +95,34 @@ export default function Hero({ data }: { data: HeroData }) {
         video.muted = true
         await video.play()
         hasPlayedRef.current = true
+        setIsPlaying(true)
+        setShowPlayIndicator(false)
         return true
       } catch {
         return false
       }
     }
 
-    const throttledPlay = (timestamp: number) => {
-      if (hasPlayedRef.current) return
-      if (timestamp - lastAttempt > 250) {
-        lastAttempt = timestamp
-        forcePlay()
-      }
-      rafId = requestAnimationFrame(throttledPlay)
+    const handlePlaying = () => {
+      setIsPlaying(true)
+      setShowPlayIndicator(false)
+      hasPlayedRef.current = true
     }
+
+    const handlePause = () => {
+      if (!hasPlayedRef.current) {
+        setIsPlaying(false)
+      }
+    }
+
+    video.addEventListener('playing', handlePlaying)
+    video.addEventListener('pause', handlePause)
+
+    playCheckTimeoutRef.current = setTimeout(() => {
+      if (!hasPlayedRef.current && video.paused) {
+        setShowPlayIndicator(true)
+      }
+    }, 2500)
 
     const handleInteraction = () => {
       if (!hasPlayedRef.current) {
@@ -111,36 +130,10 @@ export default function Hero({ data }: { data: HeroData }) {
       }
     }
 
-    const addInteractionListeners = () => {
-      if (interactionListenerAddedRef.current) return
-      interactionListenerAddedRef.current = true
-      
-      const docEvents = ['touchstart', 'touchend', 'touchmove', 'click', 'mousedown', 'mouseup', 'mousemove', 
-        'scroll', 'wheel', 'keydown', 'keyup', 'pointerdown', 'pointerup', 'pointermove', 'contextmenu']
-      const winEvents = ['focus', 'blur', 'resize', 'orientationchange', 'popstate', 'hashchange']
-      
-      docEvents.forEach(event => {
-        document.addEventListener(event, handleInteraction, { once: true, passive: true, capture: true })
-      })
-      
-      winEvents.forEach(event => {
-        window.addEventListener(event, handleInteraction, { once: true })
-      })
-      
-      document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible') forcePlay()
-      })
-      
-      window.addEventListener('pageshow', () => forcePlay())
-      window.addEventListener('pagehide', () => forcePlay())
-      
-      if (typeof DeviceMotionEvent !== 'undefined') {
-        window.addEventListener('devicemotion', handleInteraction, { once: true, passive: true })
-        window.addEventListener('deviceorientation', handleInteraction, { once: true, passive: true })
-      }
-      
-      document.body?.addEventListener('touchstart', handleInteraction, { once: true, passive: true })
-    }
+    const docEvents = ['touchstart', 'touchend', 'click', 'mousedown', 'pointerdown']
+    docEvents.forEach(event => {
+      document.addEventListener(event, handleInteraction, { once: true, passive: true, capture: true })
+    })
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -148,25 +141,42 @@ export default function Hero({ data }: { data: HeroData }) {
           if (entry.isIntersecting) forcePlay()
         })
       },
-      { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
+      { threshold: [0.1, 0.5] }
     )
 
-    const videoEvents = ['loadstart', 'loadeddata', 'loadedmetadata', 'canplay', 'canplaythrough', 'progress', 'suspend', 'stalled']
+    const videoEvents = ['loadeddata', 'loadedmetadata', 'canplay', 'canplaythrough']
     videoEvents.forEach(event => {
       video.addEventListener(event, () => forcePlay())
     })
     
     forcePlay()
-    requestAnimationFrame(throttledPlay)
-    
     observer.observe(video)
-    addInteractionListeners()
 
     return () => {
-      cancelAnimationFrame(rafId)
+      if (playCheckTimeoutRef.current) {
+        clearTimeout(playCheckTimeoutRef.current)
+      }
       observer.disconnect()
+      video.removeEventListener('playing', handlePlaying)
+      video.removeEventListener('pause', handlePause)
     }
-  }, [videoUrl])
+  }, [activeVideoUrl])
+
+  const handlePlayClick = async () => {
+    const video = videoRef.current
+    if (!video) return
+    
+    try {
+      video.muted = true
+      await video.play()
+      hasPlayedRef.current = true
+      setIsPlaying(true)
+      setShowPlayIndicator(false)
+    } catch {
+      video.muted = true
+      video.play().catch(() => {})
+    }
+  }
 
   const toggleSound = () => {
     if (videoRef.current) {
@@ -179,9 +189,11 @@ export default function Hero({ data }: { data: HeroData }) {
   return (
     <div className="relative w-full h-[100dvh] min-h-[600px] overflow-hidden bg-black font-sans flex flex-col">
 
-      {videoUrl && (
+      {activeVideoUrl && (
         <video
           ref={videoRef}
+          key={activeVideoUrl}
+          src={activeVideoUrl}
           autoPlay
           muted
           loop
@@ -193,12 +205,86 @@ export default function Hero({ data }: { data: HeroData }) {
           poster={data?.heroSection?.posterImage || undefined}
           className="absolute inset-0 w-full h-full object-cover z-0"
           style={{ objectFit: 'cover' }}
-        >
-          {mobileVideoUrl && <source src={mobileVideoUrl} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" media="(max-width: 767px)" />}
-          {videoUrl && <source src={videoUrl} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" media="(min-width: 768px)" />}
-          <source src={isMobile && mobileVideoUrl ? mobileVideoUrl : videoUrl} type="video/mp4" />
-        </video>
+        />
       )}
+
+      <AnimatePresence>
+        {showPlayIndicator && !isPlaying && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0 z-[5] flex items-center justify-center cursor-pointer"
+            onClick={handlePlayClick}
+          >
+            <motion.div
+              className="relative flex flex-col items-center gap-4"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              <motion.div
+                className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full bg-white/10"
+                animate={{
+                  scale: [1, 1.5, 1.5],
+                  opacity: [0.5, 0, 0.5],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeOut"
+                }}
+              />
+              <motion.div
+                className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full bg-white/10"
+                animate={{
+                  scale: [1, 1.5, 1.5],
+                  opacity: [0.5, 0, 0.5],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeOut",
+                  delay: 0.5
+                }}
+              />
+              
+              <motion.button
+                className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl"
+                whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.3)" }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  boxShadow: [
+                    "0 0 20px rgba(255,255,255,0.2)",
+                    "0 0 40px rgba(255,255,255,0.4)",
+                    "0 0 20px rgba(255,255,255,0.2)"
+                  ]
+                }}
+                transition={{
+                  boxShadow: {
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }
+                }}
+              >
+                <Play size={32} className="ml-1" fill="white" />
+              </motion.button>
+
+              <motion.p
+                className="text-white/80 text-sm md:text-base font-light tracking-wide text-center"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                Tap to experience the magic
+              </motion.p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <motion.div 
         className="absolute inset-0 z-[1] bg-gradient-to-b md:bg-gradient-to-r from-black/80 via-black/50 to-black/30"
