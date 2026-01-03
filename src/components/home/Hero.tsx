@@ -55,13 +55,22 @@ interface HeroData {
     ctaText?: string;
     ctaLink?: string;
     videoUrl?: string;
+    mobileVideoUrl?: string;
     posterImage?: string;
   };
   featuresGrid?: FeatureItem[];
 }
 
 export default function Hero({ data }: { data: HeroData }) {
-  const { preHeading, mainHeading, subHeading, ctaText, ctaLink, videoUrl } = data?.heroSection || {}
+  const { preHeading, mainHeading, subHeading, ctaText, ctaLink, videoUrl, mobileVideoUrl } = data?.heroSection || {}
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
   const features = data?.featuresGrid || []
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMuted, setIsMuted] = useState(true)
@@ -176,15 +185,18 @@ export default function Hero({ data }: { data: HeroData }) {
           autoPlay
           muted
           loop
-          playsInline
-          webkit-playsinline="true"
-          x5-playsinline="true"
+          playsInline={true}
+          webkit-playsinline=""
+          x5-playsinline=""
+          x-webkit-airplay="allow"
           preload="auto"
           poster={data?.heroSection?.posterImage || undefined}
           className="absolute inset-0 w-full h-full object-cover z-0"
           style={{ objectFit: 'cover' }}
         >
-          <source src={videoUrl} type="video/mp4" />
+          {mobileVideoUrl && <source src={mobileVideoUrl} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" media="(max-width: 767px)" />}
+          {videoUrl && <source src={videoUrl} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" media="(min-width: 768px)" />}
+          <source src={isMobile && mobileVideoUrl ? mobileVideoUrl : videoUrl} type="video/mp4" />
         </video>
       )}
 

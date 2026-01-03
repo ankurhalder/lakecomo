@@ -16,7 +16,8 @@ export default defineType({
       type: 'object',
       options: { collapsible: true, collapsed: false },
       fields: [
-        defineField({ name: 'videoFile', title: 'Background Video (MP4)', type: 'file', options: { accept: 'video/mp4' } }),
+        defineField({ name: 'videoFile', title: 'Background Video (MP4) - Desktop', type: 'file', options: { accept: 'video/mp4' }, description: 'Video for desktop screens' }),
+        defineField({ name: 'mobileVideoFile', title: 'Background Video (MP4) - Mobile', type: 'file', options: { accept: 'video/mp4' }, description: 'Video for mobile/phone screens (optimized for iOS)' }),
         defineField({ name: 'posterImage', title: 'Video Poster Image', type: 'image' }),
         defineField({ name: 'preHeading', title: 'Pre-Heading', type: 'string', initialValue: 'Presenting Our Guests With' }),
         defineField({ name: 'mainHeading', title: 'Main Heading', type: 'text', rows: 3, initialValue: 'A one-of-a-kind cinematic immersive experience transforming celebrations into unforgettable movie trailers.' }),

@@ -12,6 +12,7 @@ const query = `
       ctaText,
       ctaLink,
       "videoUrl": videoFile.asset->url,
+      "mobileVideoUrl": mobileVideoFile.asset->url,
       posterImage
     },
     featuresGrid[] {
