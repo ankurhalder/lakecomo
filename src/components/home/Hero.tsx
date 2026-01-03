@@ -3,8 +3,10 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { useRef, useState, useEffect, useMemo } from 'react'
-import { Volume2, VolumeX, Play } from 'lucide-react'
+import { Volume2, VolumeX } from 'lucide-react'
 import FeaturesList from './FeaturesList'
+
+const SIMULATE_AUTOPLAY_FAIL = false
 
 const textVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -86,6 +88,16 @@ export default function Hero({ data }: { data: HeroData }) {
   }, [])
 
   useEffect(() => {
+    if (SIMULATE_AUTOPLAY_FAIL) {
+      const timer = setTimeout(() => {
+        setShowPlayIndicator(true)
+        setIsPlaying(false)
+      }, 500)
+      return () => clearTimeout(timer)
+    }
+  }, [])
+
+  useEffect(() => {
     const video = videoRef.current
     if (!video) return
 
@@ -104,8 +116,10 @@ export default function Hero({ data }: { data: HeroData }) {
     }
 
     const handlePlaying = () => {
-      setIsPlaying(true)
-      setShowPlayIndicator(false)
+      if (!SIMULATE_AUTOPLAY_FAIL) {
+        setIsPlaying(true)
+        setShowPlayIndicator(false)
+      }
       hasPlayedRef.current = true
     }
 
@@ -119,10 +133,10 @@ export default function Hero({ data }: { data: HeroData }) {
     video.addEventListener('pause', handlePause)
 
     playCheckTimeoutRef.current = setTimeout(() => {
-      if (!hasPlayedRef.current && video.paused) {
+      if (SIMULATE_AUTOPLAY_FAIL || (!hasPlayedRef.current && video.paused)) {
         setShowPlayIndicator(true)
       }
-    }, 2500)
+    }, 1000)
 
     const handleInteraction = () => {
       if (!hasPlayedRef.current) {
@@ -184,6 +198,8 @@ export default function Hero({ data }: { data: HeroData }) {
       videoRef.current.muted = !isMuted
     }
     setIsMuted(prev => !prev)
+    setShowPlayIndicator(false)
+    setIsPlaying(true)
   }
 
   return (
@@ -208,83 +224,6 @@ export default function Hero({ data }: { data: HeroData }) {
         />
       )}
 
-      <AnimatePresence>
-        {showPlayIndicator && !isPlaying && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="absolute inset-0 z-[5] flex items-center justify-center cursor-pointer"
-            onClick={handlePlayClick}
-          >
-            <motion.div
-              className="relative flex flex-col items-center gap-4"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-            >
-              <motion.div
-                className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full bg-white/10"
-                animate={{
-                  scale: [1, 1.5, 1.5],
-                  opacity: [0.5, 0, 0.5],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeOut"
-                }}
-              />
-              <motion.div
-                className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full bg-white/10"
-                animate={{
-                  scale: [1, 1.5, 1.5],
-                  opacity: [0.5, 0, 0.5],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeOut",
-                  delay: 0.5
-                }}
-              />
-              
-              <motion.button
-                className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white shadow-2xl"
-                whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.3)" }}
-                whileTap={{ scale: 0.95 }}
-                animate={{
-                  boxShadow: [
-                    "0 0 20px rgba(255,255,255,0.2)",
-                    "0 0 40px rgba(255,255,255,0.4)",
-                    "0 0 20px rgba(255,255,255,0.2)"
-                  ]
-                }}
-                transition={{
-                  boxShadow: {
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }
-                }}
-              >
-                <Play size={32} className="ml-1" fill="white" />
-              </motion.button>
-
-              <motion.p
-                className="text-white/80 text-sm md:text-base font-light tracking-wide text-center"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                Tap to experience the magic
-              </motion.p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <motion.div 
         className="absolute inset-0 z-[1] bg-gradient-to-b md:bg-gradient-to-r from-black/80 via-black/50 to-black/30"
@@ -346,25 +285,79 @@ export default function Hero({ data }: { data: HeroData }) {
 
       </div>
 
-      <motion.button
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.5, type: "spring" as const, stiffness: 200 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={toggleSound}
-        className="fixed bottom-24 md:bottom-28 right-4 md:right-6 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-        aria-label={isMuted ? 'Unmute video' : 'Mute video'}
-      >
-        <motion.div
-          key={isMuted ? 'muted' : 'unmuted'}
-          initial={{ scale: 0, rotate: -90 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: "spring" as const, stiffness: 300 }}
+      <div className="fixed bottom-24 md:bottom-28 right-4 md:right-6 z-50">
+        <AnimatePresence>
+          {showPlayIndicator && !isPlaying && (
+            <>
+              <motion.div
+                className="absolute inset-0 rounded-full bg-white/30"
+                initial={{ scale: 1, opacity: 0 }}
+                animate={{
+                  scale: [1, 2, 2],
+                  opacity: [0.6, 0, 0.6],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeOut"
+                }}
+              />
+              <motion.div
+                className="absolute inset-0 rounded-full bg-white/20"
+                initial={{ scale: 1, opacity: 0 }}
+                animate={{
+                  scale: [1, 2.5, 2.5],
+                  opacity: [0.4, 0, 0.4],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeOut",
+                  delay: 0.3
+                }}
+              />
+              <motion.div
+                className="absolute -top-12 right-0 whitespace-nowrap bg-white/90 text-black text-xs font-medium px-3 py-1.5 rounded-full shadow-lg"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ delay: 0.2 }}
+              >
+                Tap to see the magic ✨
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+        <motion.button
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ 
+            opacity: 1, 
+            scale: showPlayIndicator && !isPlaying ? [1, 1.1, 1] : 1,
+          }}
+          transition={{ 
+            opacity: { delay: 0.5 },
+            scale: showPlayIndicator && !isPlaying ? { duration: 0.8, repeat: Infinity, ease: "easeInOut" } : { type: "spring", stiffness: 200 }
+          }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={toggleSound}
+          className={`relative w-10 h-10 md:w-12 md:h-12 rounded-full backdrop-blur-md border flex items-center justify-center text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+            showPlayIndicator && !isPlaying 
+              ? 'bg-white/30 border-white/50 shadow-lg shadow-white/20' 
+              : 'bg-white/10 border-white/20 hover:bg-white/20'
+          }`}
+          aria-label={isMuted ? 'Unmute video' : 'Mute video'}
         >
-          {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-        </motion.div>
-      </motion.button>
+          <motion.div
+            key={isMuted ? 'muted' : 'unmuted'}
+            initial={{ scale: 0, rotate: -90 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring" as const, stiffness: 300 }}
+          >
+            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+          </motion.div>
+        </motion.button>
+      </div>
     </div>
   )
 }
