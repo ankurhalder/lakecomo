@@ -101,7 +101,7 @@ export default function FilmStrip({ steps }: FilmStripProps) {
   return (
     <section 
       ref={containerRef}
-      className="relative py-10 sm:py-14 md:py-16 px-4 sm:px-6 md:px-8"
+      className="relative py-10 sm:py-14 md:py-16 px-4 sm:px-6 md:px-8 overflow-hidden"
       style={{ backgroundColor: 'var(--bg-secondary)' }}
     >
       <div className="film-grain" />
