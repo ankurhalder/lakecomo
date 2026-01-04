@@ -273,16 +273,30 @@ export default function Hero({ data }: { data: HeroData }) {
             >
               {subHeading}
             </motion.p>
+
+            <Link href={ctaLink || '/contact'} className="md:inline-block hidden">
+              <motion.button
+                variants={buttonVariants}
+                initial="hidden"
+                animate="visible"
+                whileHover="hover"
+                whileTap="tap"
+                className="px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 bg-white text-black text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
+              >
+                {ctaText || 'Book your free consultation'}
+              </motion.button>
+            </Link>
           </motion.div>
 
-          <Link href={ctaLink || '/contact'}>
+          <Link href={ctaLink || '/contact'} className="md:hidden">
             <motion.button
               variants={buttonVariants}
               initial="hidden"
-              animate="visible"
+              animate={textHidden ? { opacity: 0, pointerEvents: 'none' as const } : "visible"}
               whileHover="hover"
               whileTap="tap"
-              className="px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 bg-white text-black text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              transition={{ duration: 0.5 }}
+              className="px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
             >
               {ctaText || 'Book your free consultation'}
             </motion.button>
@@ -294,6 +308,28 @@ export default function Hero({ data }: { data: HeroData }) {
         </div>
 
       </div>
+
+      <AnimatePresence>
+        {isMobile && textHidden && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="fixed bottom-24 left-0 right-0 z-45 flex justify-center px-4"
+          >
+            <Link href={ctaLink || '/contact'}>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-white text-black text-sm font-bold uppercase tracking-widest rounded-full shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                {ctaText || 'Book your free consultation'}
+              </motion.button>
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="fixed bottom-24 md:bottom-28 right-4 md:right-6 z-50">
         <AnimatePresence>
