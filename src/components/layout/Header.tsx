@@ -75,8 +75,9 @@ export default function Header({ data }: { data: HeaderData }) {
         style={{ 
           backgroundColor: 'var(--header-bg)',
           color: 'var(--text-primary)',
-          borderColor: (!mounted || theme === 'dark') ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'
+          borderColor: 'var(--border-color)'
         }}
+        suppressHydrationWarning
       >
         <Link href="/" className="text-base md:text-xl font-bold tracking-wide font-sans z-10">
           {logoText}

@@ -2,7 +2,8 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
+import GalleryLightbox from './GalleryLightbox'
 
 interface GalleryImage {
   imageUrl: string
@@ -18,10 +19,29 @@ interface ParallaxGalleryProps {
 export default function GalleryParallax({ images }: ParallaxGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isMounted, setIsMounted] = useState(false)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
 
   useEffect(() => {
     setIsMounted(true)
   }, [])
+
+  const openLightbox = useCallback((index: number) => {
+    setLightboxIndex(index)
+    setLightboxOpen(true)
+  }, [])
+
+  const closeLightbox = useCallback(() => {
+    setLightboxOpen(false)
+  }, [])
+
+  const nextImage = useCallback(() => {
+    setLightboxIndex((prev) => (prev + 1) % images.length)
+  }, [images.length])
+
+  const prevImage = useCallback(() => {
+    setLightboxIndex((prev) => (prev - 1 + images.length) % images.length)
+  }, [images.length])
 
   if (!images || images.length === 0) {
     return (
@@ -41,49 +61,66 @@ export default function GalleryParallax({ images }: ParallaxGalleryProps) {
   const columnSpeeds = [0.5, -0.35, 0.6]
 
   return (
-    <section ref={containerRef} className="relative py-24 pb-28 md:pb-24 overflow-hidden">
-      <motion.div
-        className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <motion.div className="text-center mb-16">
-          <motion.h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
-            style={{ color: 'var(--text-primary)' }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            Explore the Gallery
-          </motion.h2>
-          <motion.p
-            className="text-lg max-w-2xl mx-auto"
-            style={{ color: 'var(--text-secondary)' }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-          >
-            Discover moments captured behind the scenes
-          </motion.p>
-        </motion.div>
+    <>
+      <section ref={containerRef} className="relative py-24 pb-28 md:pb-24 overflow-hidden">
+        <motion.div
+          className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div className="text-center mb-16">
+            <motion.h2
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+              style={{ color: 'var(--text-primary)' }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Explore the Gallery
+            </motion.h2>
+            <motion.p
+              className="text-lg max-w-2xl mx-auto"
+              style={{ color: 'var(--text-secondary)' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              Click any image to view fullscreen
+            </motion.p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {columns.map((columnImages, colIdx) => (
-            <ParallaxColumn 
-              key={colIdx}
-              images={columnImages}
-              speed={columnSpeeds[colIdx]}
-              columnIndex={colIdx}
-              isMounted={isMounted}
-            />
-          ))}
-        </div>
-      </motion.div>
-    </section>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {columns.map((columnImages, colIdx) => (
+              <ParallaxColumn 
+                key={colIdx}
+                images={columnImages}
+                speed={columnSpeeds[colIdx]}
+                columnIndex={colIdx}
+                isMounted={isMounted}
+                onImageClick={(imgIdx) => {
+                  const globalIndex = images.findIndex(
+                    (img) => img.imageUrl === columnImages[imgIdx].imageUrl
+                  )
+                  openLightbox(globalIndex !== -1 ? globalIndex : 0)
+                }}
+              />
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      <GalleryLightbox
+        images={images}
+        currentIndex={lightboxIndex}
+        isOpen={lightboxOpen}
+        onClose={closeLightbox}
+        onNext={nextImage}
+        onPrevious={prevImage}
+      />
+    </>
   )
 }
 
@@ -92,9 +129,10 @@ interface ParallaxColumnProps {
   speed: number
   columnIndex: number
   isMounted: boolean
+  onImageClick: (index: number) => void
 }
 
-function ParallaxColumn({ images, speed, columnIndex, isMounted }: ParallaxColumnProps) {
+function ParallaxColumn({ images, speed, columnIndex, isMounted, onImageClick }: ParallaxColumnProps) {
   const columnRef = useRef<HTMLDivElement>(null)
   
   const { scrollYProgress } = useScroll({
@@ -115,6 +153,7 @@ function ParallaxColumn({ images, speed, columnIndex, isMounted }: ParallaxColum
           key={imgIdx} 
           image={image} 
           index={columnIndex * 10 + imgIdx}
+          onClick={() => onImageClick(imgIdx)}
         />
       ))}
     </motion.div>
@@ -124,9 +163,10 @@ function ParallaxColumn({ images, speed, columnIndex, isMounted }: ParallaxColum
 interface GalleryCardProps {
   image: GalleryImage
   index: number
+  onClick: () => void
 }
 
-function GalleryCard({ image, index }: GalleryCardProps) {
+function GalleryCard({ image, index, onClick }: GalleryCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -142,12 +182,13 @@ function GalleryCard({ image, index }: GalleryCardProps) {
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
     >
       <Image
         src={image.imageUrl}
         alt={image.alt || `Gallery image ${index + 1}`}
         fill
-        className="object-cover"
+        className="object-cover transition-transform duration-300 group-hover:scale-105"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
       />
 

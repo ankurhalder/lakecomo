@@ -37,8 +37,9 @@ export default function Footer({ data }: { data: FooterData }) {
       style={{ 
         backgroundColor: 'var(--header-bg)',
         color: 'var(--text-primary)',
-        borderColor: (!mounted || theme === 'dark') ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'
+        borderColor: 'var(--border-color)'
       }}
+      suppressHydrationWarning
     >
       <div className="flex flex-col items-center md:items-start gap-0.5 md:gap-1 order-2 md:order-1">
         <span style={{ color: 'var(--text-secondary)' }}>{data?.copyright || '© 2025 Lake Como Style'}</span>

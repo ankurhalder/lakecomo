@@ -91,7 +91,7 @@ export default function ThemeCard({ theme, index, onReadMore }: ThemeCardProps) 
         
         <div 
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(to top, var(--bg-primary), transparent 50%)' }}
+          style={{ background: 'linear-gradient(to top, var(--bg-primary), transparent 30%)' }}
         />
         
         <div className="absolute bottom-4 left-4 flex items-center gap-3">

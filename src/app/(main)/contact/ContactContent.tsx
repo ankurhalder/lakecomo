@@ -314,7 +314,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                   onFocus={() => setFocusedField('firstName')}
                   onBlur={() => setFocusedField(null)}
                   required
-                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
+                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/40"
                   style={{ 
                     backgroundColor: 'var(--bg-secondary)',
                     color: 'var(--text-primary)'
@@ -341,7 +341,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                   onFocus={() => setFocusedField('lastName')}
                   onBlur={() => setFocusedField(null)}
                   required
-                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
+                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/40"
                   style={{ 
                     backgroundColor: 'var(--bg-secondary)',
                     color: 'var(--text-primary)'
@@ -371,7 +371,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                     onFocus={() => setFocusedField('email')}
                     onBlur={() => setFocusedField(null)}
                     required
-                    className="w-full px-4 py-3 pr-10 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
+                    className="w-full px-4 py-3 pr-10 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/40"
                     style={{ 
                       backgroundColor: 'var(--bg-secondary)',
                       color: 'var(--text-primary)',
@@ -418,7 +418,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                   <select
                     value={countryCode}
                     onChange={(e) => setCountryCode(e.target.value)}
-                    className="w-[100px] px-2 min-h-[44px] rounded-lg text-xs md:text-sm transition-all focus:outline-none focus:ring-2 border border-white/20 shrink-0"
+                    className="w-[100px] px-2 min-h-[44px] rounded-lg text-xs md:text-sm transition-all focus:outline-none focus:ring-2 border border-white/40 shrink-0"
                     style={{ 
                       backgroundColor: 'var(--bg-secondary)',
                       color: 'var(--text-primary)'
@@ -438,7 +438,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                     onChange={handleChange}
                     onFocus={() => setFocusedField('phone')}
                     onBlur={() => setFocusedField(null)}
-                    className="min-w-0 flex-1 px-3 md:px-4 min-h-[44px] rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
+                    className="min-w-0 flex-1 px-3 md:px-4 min-h-[44px] rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/40"
                     style={{ 
                       backgroundColor: 'var(--bg-secondary)',
                       color: 'var(--text-primary)'
@@ -466,7 +466,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                   onChange={handleChange}
                   onFocus={() => setFocusedField('groupSize')}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
+                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/40"
                   style={{ 
                     backgroundColor: 'var(--bg-secondary)',
                     color: 'var(--text-primary)'
@@ -496,7 +496,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                   onChange={handleChange}
                   onFocus={() => setFocusedField('eventDate')}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full px-4 min-h-[44px] rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/20"
+                  className="w-full px-4 min-h-[44px] rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/40"
                   style={{ 
                     backgroundColor: 'var(--bg-secondary)',
                     color: 'var(--text-primary)',
@@ -523,7 +523,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                 onFocus={() => setFocusedField('message')}
                 onBlur={() => setFocusedField(null)}
                 rows={4}
-                className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 resize-none border border-white/20"
+                className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 resize-none border border-white/40"
                 style={{ 
                   backgroundColor: 'var(--bg-secondary)',
                   color: 'var(--text-primary)'
