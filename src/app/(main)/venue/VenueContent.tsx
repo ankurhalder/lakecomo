@@ -78,7 +78,7 @@ export default function VenueContent({ data }: VenueContentProps) {
 
 
 
-      <section className="px-4 md:px-8 lg:px-12 py-16 md:py-24">
+      <section className="px-4 md:px-8 lg:px-12 py-16 pb-28 md:py-24">
         <motion.div 
           className="max-w-4xl mx-auto text-center"
           initial={{ opacity: 0, y: 40 }}

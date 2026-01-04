@@ -41,7 +41,7 @@ export default function GalleryParallax({ images }: ParallaxGalleryProps) {
   const columnSpeeds = [0.5, -0.35, 0.6]
 
   return (
-    <section ref={containerRef} className="relative py-24 overflow-hidden">
+    <section ref={containerRef} className="relative py-24 pb-28 md:pb-24 overflow-hidden">
       <motion.div
         className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12"
         initial={{ opacity: 0 }}

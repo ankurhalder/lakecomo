@@ -21,7 +21,7 @@ const iconMap: { [key: string]: React.ReactNode } = {
 
 export default function DeliverablesSection({ deliverables }: DeliverablesSectionProps) {
   return (
-    <section className="relative py-20 md:py-28 px-4 md:px-8 lg:px-12">
+    <section className="relative py-20 pb-28 md:py-28 px-4 md:px-8 lg:px-12">
       <div 
         className="absolute inset-0"
         style={{ background: 'linear-gradient(to bottom, var(--bg-secondary), var(--bg-primary))' }}

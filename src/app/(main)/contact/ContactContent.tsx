@@ -220,7 +220,7 @@ export default function ContactContent({ data }: ContactContentProps) {
         style={{ background: 'linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary) 50%, var(--bg-primary))' }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-28 md:pt-32 pb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-28 md:pt-32 pb-28 md:pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start relative">
           <motion.div
             className="lg:sticky lg:top-32 flex flex-col items-center lg:h-[calc(100vh-160px)] lg:justify-center"

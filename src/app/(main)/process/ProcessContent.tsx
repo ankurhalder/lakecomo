@@ -22,7 +22,7 @@ export default function ProcessContent({ data }: ProcessContentProps) {
 
       <FilmStrip steps={steps} />
 
-      <section className="relative py-16 sm:py-20 md:py-24 px-4">
+      <section className="relative py-16 pb-28 sm:py-20 md:py-24 px-4">
         <div 
           className="absolute inset-0"
           style={{ background: 'linear-gradient(to top, var(--bg-primary), var(--bg-secondary), transparent)' }}

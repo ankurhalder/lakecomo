@@ -65,7 +65,7 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
           ))}
         </section>
 
-        <section className="relative py-24 px-4">
+        <section className="relative py-24 pb-28 md:pb-24 px-4">
           <div 
             className="absolute inset-0"
             style={{ background: 'linear-gradient(to top, var(--bg-primary), var(--bg-secondary), transparent)' }}
