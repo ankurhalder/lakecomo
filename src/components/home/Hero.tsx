@@ -67,7 +67,9 @@ export default function Hero({ data }: { data: HeroData }) {
   const { preHeading, mainHeading, subHeading, ctaText, ctaLink, videoUrl, mobileVideoUrl } = data?.heroSection || {}
   const [isMobile, setIsMobile] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [showPlayIndicator, setShowPlayIndicator] = useState(false)
+  const [showPlayIndicator, setShowPlayIndicator] = useState(true)
+  const [textHidden, setTextHidden] = useState(false)
+  const [userInteracted, setUserInteracted] = useState(false)
   const features = data?.featuresGrid || []
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMuted, setIsMuted] = useState(true)
@@ -88,14 +90,15 @@ export default function Hero({ data }: { data: HeroData }) {
   }, [])
 
   useEffect(() => {
-    if (SIMULATE_AUTOPLAY_FAIL) {
+    if (isMobile) {
       const timer = setTimeout(() => {
-        setShowPlayIndicator(true)
-        setIsPlaying(false)
-      }, 500)
+        setTextHidden(true)
+      }, 3500)
       return () => clearTimeout(timer)
     }
-  }, [])
+  }, [isMobile])
+
+
 
   useEffect(() => {
     const video = videoRef.current
@@ -108,7 +111,6 @@ export default function Hero({ data }: { data: HeroData }) {
         await video.play()
         hasPlayedRef.current = true
         setIsPlaying(true)
-        setShowPlayIndicator(false)
         return true
       } catch {
         return false
@@ -118,7 +120,6 @@ export default function Hero({ data }: { data: HeroData }) {
     const handlePlaying = () => {
       if (!SIMULATE_AUTOPLAY_FAIL) {
         setIsPlaying(true)
-        setShowPlayIndicator(false)
       }
       hasPlayedRef.current = true
     }
@@ -200,6 +201,7 @@ export default function Hero({ data }: { data: HeroData }) {
     setIsMuted(prev => !prev)
     setShowPlayIndicator(false)
     setIsPlaying(true)
+    setUserInteracted(true)
   }
 
   return (
@@ -235,35 +237,43 @@ export default function Hero({ data }: { data: HeroData }) {
       <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 pt-12 pb-16 sm:pt-16 sm:pb-20 md:pt-20 md:pb-24 px-4 md:px-8 lg:px-12 overflow-visible">
         
         <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left lg:pl-8 xl:pl-12 max-w-3xl mx-auto lg:mx-0 py-4 lg:py-0 gap-1 sm:gap-2">
-          <motion.p
-            custom={0.3}
-            variants={textVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl italic font-light mb-2 sm:mb-4 md:mb-6 tracking-wide font-serif"
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: isMobile && textHidden ? 0 : 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col items-center lg:items-start"
+            style={{ pointerEvents: isMobile && textHidden ? 'none' : 'auto' }}
           >
-            {preHeading}
-          </motion.p>
+            <motion.p
+              custom={0.3}
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+              className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl italic font-light mb-2 sm:mb-4 md:mb-6 tracking-wide font-serif"
+            >
+              {preHeading}
+            </motion.p>
 
-          <motion.h1
-            custom={0.5}
-            variants={textVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.15] tracking-tight mb-3 sm:mb-4 md:mb-6 drop-shadow-xl"
-          >
-            {mainHeading}
-          </motion.h1>
+            <motion.h1
+              custom={0.5}
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.15] tracking-tight mb-3 sm:mb-4 md:mb-6 drop-shadow-xl"
+            >
+              {mainHeading}
+            </motion.h1>
 
-          <motion.p
-            custom={0.7}
-            variants={textVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light tracking-wide mb-4 sm:mb-6 md:mb-8 italic"
-          >
-            {subHeading}
-          </motion.p>
+            <motion.p
+              custom={0.7}
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+              className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light tracking-wide mb-4 sm:mb-6 md:mb-8 italic"
+            >
+              {subHeading}
+            </motion.p>
+          </motion.div>
 
           <Link href={ctaLink || '/contact'}>
             <motion.button
@@ -287,7 +297,7 @@ export default function Hero({ data }: { data: HeroData }) {
 
       <div className="fixed bottom-24 md:bottom-28 right-4 md:right-6 z-50">
         <AnimatePresence>
-          {showPlayIndicator && !isPlaying && (
+          {showPlayIndicator && !userInteracted && (
             <>
               <motion.div
                 className="absolute inset-0 rounded-full bg-white/30"
@@ -332,17 +342,17 @@ export default function Hero({ data }: { data: HeroData }) {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ 
             opacity: 1, 
-            scale: showPlayIndicator && !isPlaying ? [1, 1.1, 1] : 1,
+            scale: showPlayIndicator && !userInteracted ? [1, 1.1, 1] : 1,
           }}
           transition={{ 
             opacity: { delay: 0.5 },
-            scale: showPlayIndicator && !isPlaying ? { duration: 0.8, repeat: Infinity, ease: "easeInOut" } : { type: "spring", stiffness: 200 }
+            scale: showPlayIndicator && !userInteracted ? { duration: 0.8, repeat: Infinity, ease: "easeInOut" } : { type: "spring", stiffness: 200 }
           }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggleSound}
           className={`relative w-10 h-10 md:w-12 md:h-12 rounded-full backdrop-blur-md border flex items-center justify-center text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
-            showPlayIndicator && !isPlaying 
+            showPlayIndicator && !userInteracted 
               ? 'bg-white/30 border-white/50 shadow-lg shadow-white/20' 
               : 'bg-white/10 border-white/20 hover:bg-white/20'
           }`}
