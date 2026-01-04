@@ -49,6 +49,13 @@ export default defineType({
               options: { hotspot: true },
               description: 'Upload a high-quality image for this theme. Recommended: 1200x800px or larger.'
             }),
+            defineField({ 
+              name: 'videoFile', 
+              title: 'Theme Video (Optional)', 
+              type: 'file',
+              options: { accept: 'video/mp4' },
+              description: 'Optional 5-second preview video. If provided, will be shown instead of the image.'
+            }),
             defineField({ name: 'vibe', title: 'Vibe', type: 'text', rows: 2, description: 'Short keywords describing the feel' }),
             defineField({ name: 'story', title: 'Story', type: 'text', rows: 4, description: 'What guests will experience' }),
             defineField({ name: 'feel', title: 'Feel', type: 'text', rows: 2, description: 'The emotional impact' }),

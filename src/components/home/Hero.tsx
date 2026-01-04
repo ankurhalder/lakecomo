@@ -203,7 +203,7 @@ export default function Hero({ data }: { data: HeroData }) {
   }
 
   return (
-    <div className="relative w-full h-[100dvh] min-h-[600px] overflow-hidden bg-black font-sans flex flex-col">
+    <div className="relative w-full min-h-[100dvh] overflow-y-auto overflow-x-hidden bg-black font-sans flex flex-col">
 
       {activeVideoUrl && (
         <video
@@ -232,15 +232,15 @@ export default function Hero({ data }: { data: HeroData }) {
         transition={{ duration: 1, delay: 0.5 }}
       />
 
-      <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 pt-16 pb-20 sm:pt-20 sm:pb-24 px-4 md:px-8 lg:px-12 overflow-hidden">
+      <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 pt-12 pb-16 sm:pt-16 sm:pb-20 md:pt-20 md:pb-24 px-4 md:px-8 lg:px-12 overflow-visible">
         
-        <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left lg:pl-8 xl:pl-12 max-w-3xl mx-auto lg:mx-0 py-6 lg:py-0 gap-2">
+        <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left lg:pl-8 xl:pl-12 max-w-3xl mx-auto lg:mx-0 py-4 lg:py-0 gap-1 sm:gap-2">
           <motion.p
             custom={0.3}
             variants={textVariants}
             initial="hidden"
             animate="visible"
-            className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl italic font-light mb-3 sm:mb-5 md:mb-8 tracking-wide font-serif"
+            className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl italic font-light mb-2 sm:mb-4 md:mb-6 tracking-wide font-serif"
           >
             {preHeading}
           </motion.p>
@@ -250,7 +250,7 @@ export default function Hero({ data }: { data: HeroData }) {
             variants={textVariants}
             initial="hidden"
             animate="visible"
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.2] tracking-tight mb-4 sm:mb-6 md:mb-8 drop-shadow-xl"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.15] tracking-tight mb-3 sm:mb-4 md:mb-6 drop-shadow-xl"
           >
             {mainHeading}
           </motion.h1>
@@ -260,7 +260,7 @@ export default function Hero({ data }: { data: HeroData }) {
             variants={textVariants}
             initial="hidden"
             animate="visible"
-            className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light tracking-wide mb-6 sm:mb-8 md:mb-10 italic"
+            className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light tracking-wide mb-4 sm:mb-6 md:mb-8 italic"
           >
             {subHeading}
           </motion.p>
@@ -274,7 +274,7 @@ export default function Hero({ data }: { data: HeroData }) {
               whileTap="tap"
               className="px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 bg-white text-black text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
-              {ctaText}
+              {ctaText || 'Book your free consultation'}
             </motion.button>
           </Link>
         </div>

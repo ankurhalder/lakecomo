@@ -15,6 +15,7 @@ interface Theme {
   genre: string
   icon?: string
   imageUrl?: string
+  videoUrl?: string
   vibe: string
   story: string
   feel: string
@@ -71,7 +72,16 @@ export default function ThemeCard({ theme, index, onReadMore }: ThemeCardProps) 
       className={`relative flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-6 md:gap-8 lg:gap-16 items-center py-12 md:py-16 lg:py-24 px-4 md:px-6 lg:px-12`}
     >
       <div className="relative w-full md:w-[80%] lg:w-[45%] aspect-[16/10] md:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-        {theme.imageUrl ? (
+        {theme.videoUrl ? (
+          <video
+            src={theme.videoUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover object-top"
+          />
+        ) : theme.imageUrl ? (
           <Image
             src={theme.imageUrl}
             alt={theme.title}

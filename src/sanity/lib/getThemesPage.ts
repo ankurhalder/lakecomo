@@ -22,6 +22,7 @@ const query = `
       genre,
       icon,
       image,
+      "videoUrl": videoFile.asset->url,
       vibe,
       story,
       feel,

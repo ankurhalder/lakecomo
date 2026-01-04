@@ -108,23 +108,6 @@ export default function VenueContent({ data }: VenueContentProps) {
             >
               Book Your Experience
             </motion.a>
-            {externalLinks?.palaceWebsite && (
-              <motion.a
-                href={externalLinks.palaceWebsite}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors border"
-                style={{ 
-                  borderColor: 'var(--text-secondary)',
-                  color: 'var(--text-primary)'
-                }}
-              >
-                Visit Palace Website
-                <ExternalLink size={16} />
-              </motion.a>
-            )}
           </div>
         </motion.div>
       </section>
