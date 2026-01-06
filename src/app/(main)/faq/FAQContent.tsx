@@ -93,7 +93,6 @@ const defaultFaqs: FAQItem[] = [
 export default function FAQContent({ data }: { data?: FAQPageData | null }) {
   const [searchQuery, setSearchQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState<string>('all')
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
 
   const hero = data?.hero || {}
   const categories = data?.categories?.length ? data.categories : defaultCategories
@@ -118,10 +117,6 @@ export default function FAQContent({ data }: { data?: FAQPageData | null }) {
 
     return results
   }, [faqs, activeCategory, searchQuery])
-
-  const handleToggle = useCallback((index: number) => {
-    setExpandedIndex((prev) => (prev === index ? null : index))
-  }, [])
 
   const clearSearch = () => {
     setSearchQuery('')
@@ -350,8 +345,6 @@ export default function FAQContent({ data }: { data?: FAQPageData | null }) {
                   index={index}
                   question={faq.question}
                   answer={faq.answer}
-                  isExpanded={expandedIndex === index}
-                  onToggle={() => handleToggle(index)}
                   searchQuery={searchQuery}
                   highlightText={highlightText}
                 />
