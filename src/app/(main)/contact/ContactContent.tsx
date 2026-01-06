@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Send, Sparkles, Check, AlertCircle, Mail, Phone, Users, Calendar, User, MessageSquare } from 'lucide-react'
 import InteractiveCamera from './InteractiveCamera'
 import { useTheme } from '@/components/providers/ThemeProvider'
@@ -70,8 +70,6 @@ export default function ContactContent({ data }: ContactContentProps) {
   const [error, setError] = useState<string | null>(null)
   const [focusedField, setFocusedField] = useState<string | null>(null)
   const [countryCode, setCountryCode] = useState('+1')
-
-  const { scrollY } = useScroll()
 
   const hero = data?.hero || {}
   const form = data?.form || {}
@@ -197,7 +195,7 @@ export default function ContactContent({ data }: ContactContentProps) {
             className="text-base mb-8"
             style={{ color: 'var(--text-secondary)' }}
           >
-            {success.message || "Thank you for reaching out. We'll be in touch soon to help you create your unforgettable cinematic experience."}
+            {success.message || "Thank you for reaching out. We&apos;ll be in touch soon to help you create your unforgettable cinematic experience."}
           </p>
           <motion.a
             href={success.buttonLink || '/'}

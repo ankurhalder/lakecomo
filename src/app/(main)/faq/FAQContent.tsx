@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Search, X, ChevronDown, MessageCircle, ArrowRight, HelpCircle } from 'lucide-react'
 import Link from 'next/link'
@@ -369,7 +369,7 @@ export default function FAQContent({ data }: { data?: FAQPageData | null }) {
                   className="text-sm mb-6"
                   style={{ color: 'var(--text-secondary)', opacity: 0.7 }}
                 >
-                  Try adjusting your search or filter to find what you're looking for.
+                  Try adjusting your search or filter to find what you&apos;re looking for.
                 </p>
                 <button
                   onClick={() => {

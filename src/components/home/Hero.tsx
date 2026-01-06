@@ -66,7 +66,6 @@ interface HeroData {
 export default function Hero({ data }: { data: HeroData }) {
   const { preHeading, mainHeading, subHeading, ctaText, ctaLink, videoUrl, mobileVideoUrl } = data?.heroSection || {}
   const [isMobile, setIsMobile] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(false)
   const [showPlayIndicator, setShowPlayIndicator] = useState(true)
   const [textHidden, setTextHidden] = useState(false)
   const [userInteracted, setUserInteracted] = useState(false)
@@ -110,7 +109,6 @@ export default function Hero({ data }: { data: HeroData }) {
         video.muted = true
         await video.play()
         hasPlayedRef.current = true
-        setIsPlaying(true)
         return true
       } catch {
         return false
@@ -119,14 +117,14 @@ export default function Hero({ data }: { data: HeroData }) {
 
     const handlePlaying = () => {
       if (!SIMULATE_AUTOPLAY_FAIL) {
-        setIsPlaying(true)
+        // hasPlayedRef.current logic remains
       }
       hasPlayedRef.current = true
     }
 
     const handlePause = () => {
       if (!hasPlayedRef.current) {
-        setIsPlaying(false)
+        // was setting isPlaying false
       }
     }
 
@@ -177,21 +175,7 @@ export default function Hero({ data }: { data: HeroData }) {
     }
   }, [activeVideoUrl])
 
-  const handlePlayClick = async () => {
-    const video = videoRef.current
-    if (!video) return
-    
-    try {
-      video.muted = true
-      await video.play()
-      hasPlayedRef.current = true
-      setIsPlaying(true)
-      setShowPlayIndicator(false)
-    } catch {
-      video.muted = true
-      video.play().catch(() => {})
-    }
-  }
+
 
   const toggleSound = () => {
     if (videoRef.current) {
@@ -200,7 +184,6 @@ export default function Hero({ data }: { data: HeroData }) {
     }
     setIsMuted(prev => !prev)
     setShowPlayIndicator(false)
-    setIsPlaying(true)
     setUserInteracted(true)
   }
 

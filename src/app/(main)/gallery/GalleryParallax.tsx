@@ -23,7 +23,10 @@ export default function GalleryParallax({ images }: ParallaxGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
   useEffect(() => {
-    setIsMounted(true)
+    const raf = requestAnimationFrame(() => {
+      setIsMounted(true)
+    })
+    return () => cancelAnimationFrame(raf)
   }, [])
 
   const openLightbox = useCallback((index: number) => {

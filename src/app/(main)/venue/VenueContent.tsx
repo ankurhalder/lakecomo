@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import VenueHero from './VenueHero'
 import ParallaxGallery from './ParallaxGallery'
 import type { VenuePageData } from '@/sanity/lib/getVenuePage'
-import { ExternalLink, Sparkles } from 'lucide-react'
+import { Sparkles } from 'lucide-react'
 
 interface VenueContentProps {
   data: VenuePageData

@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Instagram, Facebook, Clapperboard } from 'lucide-react'
 import Link from 'next/link'
-import { useTheme } from '@/components/providers/ThemeProvider'
+
 
 interface SocialLink {
   platform: string;
@@ -18,7 +18,6 @@ interface FooterData {
 }
 
 export default function Footer({ data }: { data: FooterData }) {
-  const { theme, mounted } = useTheme()
   const socialLinks = data?.socialLinks || [];
 
   const getIcon = (platform: string) => {

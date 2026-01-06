@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Film, Star, Sparkles } from 'lucide-react'
+import Image from 'next/image'
 import CrewHero from './CrewHero'
 import CrewMemberCard from './CrewMemberCard'
 import type { CrewPageData } from '@/sanity/lib/getCrewPage'
@@ -104,11 +105,15 @@ export default function CrewContent({ data }: CrewContentProps) {
                   className="flex items-center justify-center"
                 >
                   {logo.imageUrl && (
-                    <img 
-                      src={logo.imageUrl} 
-                      alt={logo.name || 'Logo'} 
-                      className="h-8 md:h-12 w-auto object-contain transition-all duration-500"
-                    />
+                    <div className="relative h-8 md:h-12">
+                      <Image 
+                        src={logo.imageUrl} 
+                        alt={logo.name || 'Logo'} 
+                        width={200}
+                        height={48}
+                        className="h-8 md:h-12 w-auto object-contain transition-all duration-500"
+                      />
+                    </div>
                   )}
                 </motion.div>
               ))}

@@ -78,7 +78,7 @@ const fetchCrewPageData = async (): Promise<CrewPageData | null> => {
     if (!data) return null;
 
     if (data.crewMembers) {
-      data.crewMembers = data.crewMembers.map((member: { image?: any; name: string; role: string; bio?: string[]; socials?: CrewMemberSocials }) => ({
+      data.crewMembers = data.crewMembers.map((member: { image?: object; name: string; role: string; bio?: string[]; socials?: CrewMemberSocials }) => ({
         name: member.name,
         role: member.role,
         imageUrl: member.image ? urlFor(member.image).auto('format').url() : undefined,
@@ -88,7 +88,7 @@ const fetchCrewPageData = async (): Promise<CrewPageData | null> => {
     }
 
     if (data.logos) {
-      data.logos = data.logos.map((logo: any) => ({
+      data.logos = data.logos.map((logo: { name?: string } & object) => ({
         name: logo.name,
         imageUrl: logo ? urlFor(logo).auto('format').url() : undefined,
       }));
