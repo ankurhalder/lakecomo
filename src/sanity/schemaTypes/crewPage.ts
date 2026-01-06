@@ -75,5 +75,43 @@ export default defineType({
         }
       }],
     }),
+    defineField({
+      name: 'logosTitle',
+      title: 'Logos Section Title',
+      type: 'string',
+      initialValue: 'AS SEEN IN & COLLABORATIONS',
+    }),
+    defineField({
+      name: 'logos',
+      title: 'Partner/Client Logos',
+      description: 'Add logos of partners or production companies. You can drag and drop multiple images at once.',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'name',
+              type: 'string',
+              title: 'Partner/Company Name',
+            },
+          ],
+          preview: {
+            select: {
+              title: 'name',
+              fileName: 'asset.originalFilename',
+              media: 'asset',
+            },
+            prepare({ title, fileName, media }) {
+              return {
+                title: title || fileName || 'Untitled Logo',
+                media,
+              }
+            },
+          },
+        },
+      ],
+    }),
   ]
 })

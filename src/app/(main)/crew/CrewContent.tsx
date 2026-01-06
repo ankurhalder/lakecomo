@@ -81,6 +81,42 @@ export default function CrewContent({ data }: CrewContentProps) {
         )}
       </section>
 
+      {data.logos && data.logos.length > 0 && (
+        <section className="relative py-12 px-4 md:px-8 lg:px-12 border-y border-white/5 bg-black/20">
+          <div className="max-w-7xl mx-auto">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.4, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center text-[10px] uppercase tracking-[0.3em] font-light mb-8"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              {data.logosTitle || 'AS SEEN IN & COLLABORATIONS'}
+            </motion.p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+              {data.logos.map((logo, index) => (
+                <motion.div
+                  key={`${logo.name}-${index}`}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  className="flex items-center justify-center"
+                >
+                  {logo.imageUrl && (
+                    <img 
+                      src={logo.imageUrl} 
+                      alt={logo.name || 'Logo'} 
+                      className="h-8 md:h-12 w-auto object-contain transition-all duration-500"
+                    />
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="relative px-4 md:px-8 lg:px-12 py-16 pb-28 md:py-24 overflow-hidden">
         <div 
           className="absolute inset-0"

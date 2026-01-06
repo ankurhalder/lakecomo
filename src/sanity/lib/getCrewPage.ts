@@ -17,6 +17,11 @@ export interface CrewMember {
   socials?: CrewMemberSocials;
 }
 
+export interface Logo {
+  name?: string;
+  imageUrl?: string;
+}
+
 export interface CrewPageData {
   title: string;
   hero: {
@@ -31,6 +36,8 @@ export interface CrewPageData {
     link?: string;
   };
   crewMembers: CrewMember[];
+  logosTitle?: string;
+  logos?: Logo[];
 }
 
 const query = `
@@ -58,7 +65,9 @@ const query = `
         linkedin,
         twitter
       }
-    }
+    },
+    logosTitle,
+    logos
   }
 `;
 
@@ -69,12 +78,19 @@ const fetchCrewPageData = async (): Promise<CrewPageData | null> => {
     if (!data) return null;
 
     if (data.crewMembers) {
-      data.crewMembers = data.crewMembers.map((member: { image?: unknown; name: string; role: string; bio?: string[]; socials?: CrewMemberSocials }) => ({
+      data.crewMembers = data.crewMembers.map((member: { image?: any; name: string; role: string; bio?: string[]; socials?: CrewMemberSocials }) => ({
         name: member.name,
         role: member.role,
         imageUrl: member.image ? urlFor(member.image).auto('format').url() : undefined,
         bio: member.bio || [],
         socials: member.socials,
+      }));
+    }
+
+    if (data.logos) {
+      data.logos = data.logos.map((logo: any) => ({
+        name: logo.name,
+        imageUrl: logo ? urlFor(logo).auto('format').url() : undefined,
       }));
     }
 
