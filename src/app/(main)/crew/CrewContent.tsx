@@ -105,13 +105,13 @@ export default function CrewContent({ data }: CrewContentProps) {
                   className="flex items-center justify-center"
                 >
                   {logo.imageUrl && (
-                    <div className="relative h-8 md:h-12">
+                    <div className="relative h-16 md:h-24">
                       <Image 
                         src={logo.imageUrl} 
                         alt={logo.name || 'Logo'} 
-                        width={200}
-                        height={48}
-                        className="h-8 md:h-12 w-auto object-contain transition-all duration-500"
+                        width={400}
+                        height={96}
+                        className="h-16 md:h-24 w-auto object-contain transition-all duration-500"
                       />
                     </div>
                   )}
