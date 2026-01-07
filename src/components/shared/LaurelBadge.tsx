@@ -50,7 +50,7 @@ export default function LaurelBadge({
         transition: { type: "spring" as const, stiffness: 300 }
       }}
       whileTap={{ scale: 0.95 }}
-      className="group relative w-[100px] sm:w-[110px] md:w-[120px] lg:w-[120px] xl:w-[130px] 2xl:w-[180px] aspect-[4/3] flex items-center justify-center text-center"
+      className="group relative w-[120px] sm:w-[130px] md:w-[140px] lg:w-[140px] xl:w-[150px] 2xl:w-[200px] aspect-[4/3] flex items-center justify-center text-center"
     >
       <motion.div
         className="absolute inset-0 w-full h-full"
@@ -68,10 +68,10 @@ export default function LaurelBadge({
         />
       </motion.div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center gap-0.5 md:gap-1 px-4 sm:px-6 md:px-8 py-4 md:py-6">
+      <div className="relative z-10 flex flex-col items-center justify-center gap-0.5 md:gap-0.5 px-5 sm:px-7 md:px-8 py-3 sm:py-4 md:py-5">
         {subtitle && (
           <motion.p 
-            className="text-[6px] sm:text-[7px] md:text-[8px] lg:text-[9px] uppercase tracking-wider font-light leading-tight max-w-[100px] md:max-w-[140px]"
+            className="text-[5.5px] sm:text-[6px] md:text-[7px] lg:text-[8px] uppercase tracking-wider font-light leading-tight max-w-[80px] sm:max-w-[90px] md:max-w-[100px]"
             style={{ color: subtitleColor }}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}

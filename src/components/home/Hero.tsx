@@ -265,7 +265,7 @@ export default function Hero({ data }: { data: HeroData }) {
                 animate="visible"
                 whileHover="hover"
                 whileTap="tap"
-                className="px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 bg-white text-black text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
+                className="px-5 sm:px-6 md:px-6 lg:px-8 xl:px-10 py-2 sm:py-2.5 md:py-2.5 lg:py-3 xl:py-3.5 bg-white text-black text-[10px] sm:text-xs md:text-xs lg:text-sm xl:text-base font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
               >
                 {ctaText || 'Book your free consultation'}
               </motion.button>
