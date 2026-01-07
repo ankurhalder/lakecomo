@@ -56,6 +56,7 @@ interface HeroData {
     subHeading?: string;
     ctaText?: string;
     ctaLink?: string;
+    playIndicatorText?: string;
     videoUrl?: string;
     mobileVideoUrl?: string;
     posterImage?: string;
@@ -64,7 +65,7 @@ interface HeroData {
 }
 
 export default function Hero({ data }: { data: HeroData }) {
-  const { preHeading, mainHeading, subHeading, ctaText, ctaLink, videoUrl, mobileVideoUrl } = data?.heroSection || {}
+  const { preHeading, mainHeading, subHeading, ctaText, ctaLink, playIndicatorText, videoUrl, mobileVideoUrl } = data?.heroSection || {}
   const [isMobile, setIsMobile] = useState(false)
   const [showPlayIndicator, setShowPlayIndicator] = useState(true)
   const [textHidden, setTextHidden] = useState(false)
@@ -352,7 +353,7 @@ export default function Hero({ data }: { data: HeroData }) {
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ delay: 0.2 }}
               >
-                Tap to see the magic ✨
+                {playIndicatorText || 'Tap to see the magic ✨'}
               </motion.div>
             </>
           )}

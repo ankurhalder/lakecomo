@@ -23,7 +23,8 @@ export default defineType({
         defineField({ name: 'mainHeading', title: 'Main Heading', type: 'text', rows: 3, initialValue: 'A one-of-a-kind cinematic immersive experience transforming celebrations into unforgettable movie trailers.' }),
         defineField({ name: 'subHeading', title: 'Sub Heading', type: 'string', initialValue: 'Your Party, Your Theme, Your Movie Trailer' }),
         defineField({ name: 'ctaText', title: 'Button Text', type: 'string', initialValue: 'Book Now' }),
-        defineField({ name: 'ctaLink', title: 'Button Link', type: 'string' })
+        defineField({ name: 'ctaLink', title: 'Button Link', type: 'string' }),
+        defineField({ name: 'playIndicatorText', title: 'Play Indicator Text', type: 'string', initialValue: 'Tap to see the magic ✨', description: 'Text shown next to the sound toggle button' })
       ]
     }),
     defineField({

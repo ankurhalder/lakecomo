@@ -13,6 +13,7 @@ interface SocialLink {
 interface FooterData {
   copyright?: string;
   email?: string;
+  phone?: string;
   footerTagline?: string;
   socialLinks?: SocialLink[];
 }
@@ -45,6 +46,11 @@ export default function Footer({ data }: { data: FooterData }) {
         <a href={`mailto:${data?.email}`} className="hover:opacity-70 transition-opacity hidden md:block">
           {data?.email || 'info@lakecomostyle.it'}
         </a>
+        {data?.phone && (
+          <a href={`tel:${data.phone}`} className="hover:opacity-70 transition-opacity hidden md:block">
+            {data.phone}
+          </a>
+        )}
       </div>
 
       <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">

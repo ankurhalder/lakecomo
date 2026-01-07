@@ -23,6 +23,12 @@ export default defineType({
       initialValue: 'info@lakecomostyle.it'
     }),
     defineField({
+      name: 'phone',
+      title: 'Contact Phone',
+      type: 'string',
+      description: 'Phone number with country code (e.g., +39 123 456 7890)'
+    }),
+    defineField({
       name: 'copyright',
       title: 'Copyright Text',
       type: 'string',

@@ -11,6 +11,7 @@ const query = `
       subHeading,
       ctaText,
       ctaLink,
+      playIndicatorText,
       "videoUrl": videoFile.asset->url,
       "mobileVideoUrl": mobileVideoFile.asset->url,
       posterImage

@@ -13,6 +13,7 @@ const query = `
     "footer": *[_type == "footer"][0] {
       footerTagline,
       email,
+      phone,
       copyright,
       socialLinks[] { platform, url }
     }

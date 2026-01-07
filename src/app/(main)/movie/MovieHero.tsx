@@ -136,7 +136,7 @@ export default function MovieHero({ hero, heroFeature, popcornImageUrl }: MovieH
 
         {heroFeature && (
           <motion.div 
-            className="hidden lg:flex lg:flex-col gap-2 md:gap-3 items-center lg:items-end justify-center lg:justify-start"
+            className="hidden xl:flex xl:flex-col gap-2 md:gap-3 items-center xl:items-end justify-center xl:justify-start"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
