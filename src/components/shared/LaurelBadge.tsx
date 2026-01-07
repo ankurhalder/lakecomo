@@ -50,7 +50,7 @@ export default function LaurelBadge({
         transition: { type: "spring" as const, stiffness: 300 }
       }}
       whileTap={{ scale: 0.95 }}
-      className="group relative w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] xl:w-[200px] aspect-[4/3] flex items-center justify-center text-center"
+      className="group relative w-[100px] sm:w-[110px] md:w-[120px] lg:w-[120px] xl:w-[130px] 2xl:w-[180px] aspect-[4/3] flex items-center justify-center text-center"
     >
       <motion.div
         className="absolute inset-0 w-full h-full"
@@ -82,7 +82,7 @@ export default function LaurelBadge({
         )}
 
         <motion.h3 
-          className="text-sm sm:text-base md:text-lg lg:text-xl font-extrabold uppercase tracking-tighter leading-none drop-shadow-lg font-sans my-0.5 md:my-1"
+          className="text-xs sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-xl font-extrabold uppercase tracking-tighter leading-none drop-shadow-lg font-sans my-0.5 md:my-1"
           style={{ color: textColor }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}

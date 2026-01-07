@@ -47,7 +47,7 @@ export default function LaurelFeatureList({ features: resultFeatures }: { featur
 
   return (
     <motion.div 
-      className="flex flex-row lg:flex-col gap-2 md:gap-3 items-center lg:items-end justify-center lg:justify-start p-2 sm:p-4 md:p-6 lg:p-10 overflow-x-auto lg:overflow-visible w-full lg:w-auto"
+      className="flex flex-row lg:flex-col gap-1 md:gap-2 2xl:gap-3 items-center lg:items-end justify-center lg:justify-start p-2 sm:p-3 md:p-4 lg:p-4 2xl:p-8 overflow-x-auto lg:overflow-visible w-full lg:w-auto"
       variants={containerVariants}
       initial="hidden"
       animate="visible"

@@ -26,13 +26,13 @@ const featureIcons = [Camera, Sparkles, Film, Star]
 
 export default function GalleryHero({ hero, heroFeature, features }: GalleryHeroProps) {
   return (
-    <section className="min-h-[85vh] flex items-center px-4 md:px-8 lg:px-12 relative overflow-hidden">
+    <section className="min-h-[70vh] flex items-center px-4 md:px-8 lg:px-12 relative overflow-hidden">
       <div 
         className="absolute inset-0"
         style={{ background: 'linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary) 50%, var(--bg-primary))' }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto pt-24 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto pt-20 pb-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div>
           <motion.p
             className="text-xs md:text-sm uppercase tracking-[0.4em] mb-4"
@@ -45,7 +45,7 @@ export default function GalleryHero({ hero, heroFeature, features }: GalleryHero
           </motion.p>
 
           <motion.h1
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 tracking-tight leading-[1.1]"
+            className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-3 tracking-tight leading-[1.1]"
             style={{ color: 'var(--text-primary)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

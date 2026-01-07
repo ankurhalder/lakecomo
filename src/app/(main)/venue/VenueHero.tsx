@@ -64,7 +64,7 @@ export default function VenueHero({ hero, heroFeature, galleryImages }: VenueHer
 
   return (
     <section 
-      className="relative min-h-[100vh] flex items-center overflow-hidden"
+      className="relative min-h-[85vh] flex items-center overflow-hidden"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
@@ -102,7 +102,7 @@ export default function VenueHero({ hero, heroFeature, galleryImages }: VenueHer
         }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-12 pt-24 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-12 pt-20 pb-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <div className="text-center lg:text-left">
           {hero?.location && (
             <motion.div
@@ -119,7 +119,7 @@ export default function VenueHero({ hero, heroFeature, galleryImages }: VenueHer
           )}
 
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 tracking-tight leading-[1.1] text-white"
+            className="text-4xl md:text-5xl lg:text-5xl xl:text-5xl 2xl:text-7xl font-bold mb-4 tracking-tight leading-[1.1] text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
