@@ -8,11 +8,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/cast',
     '/contact',
     '/crew',
+    '/faq',
     '/gallery',
     '/movie',
     '/process',
     '/themes',
     '/venue',
+  
+
   
   ]
   
