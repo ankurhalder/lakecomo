@@ -24,6 +24,8 @@ export default defineType({
         defineField({ name: 'subHeading', title: 'Sub Heading', type: 'string', initialValue: 'Your Party, Your Theme, Your Movie Trailer' }),
         defineField({ name: 'ctaText', title: 'Button Text', type: 'string', initialValue: 'Book Now' }),
         defineField({ name: 'ctaLink', title: 'Button Link', type: 'string' }),
+        defineField({ name: 'secondaryCtaText', title: 'Secondary Button Text (Movie)', type: 'string', initialValue: 'Watch Our Films' }),
+        defineField({ name: 'secondaryCtaLink', title: 'Secondary Button Link', type: 'string', initialValue: '/movie' }),
         defineField({ name: 'playIndicatorText', title: 'Play Indicator Text', type: 'string', initialValue: 'Tap to see the magic ✨', description: 'Text shown next to the sound toggle button' })
       ]
     }),

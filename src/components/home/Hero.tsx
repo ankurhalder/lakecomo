@@ -41,6 +41,26 @@ const buttonVariants = {
   tap: { scale: 0.95 }
 }
 
+const secondaryButtonVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      delay: 1.4,
+      ease: "easeOut" as const
+    }
+  },
+  hover: {
+    scale: 1.05,
+    backgroundColor: "rgba(255, 255, 255, 0.15)",
+    transition: { type: "spring" as const, stiffness: 400 }
+  },
+  tap: { scale: 0.95 }
+}
+
 interface FeatureItem {
   title: string;
   subtitle?: string;
@@ -56,6 +76,8 @@ interface HeroData {
     subHeading?: string;
     ctaText?: string;
     ctaLink?: string;
+    secondaryCtaText?: string;
+    secondaryCtaLink?: string;
     playIndicatorText?: string;
     videoUrl?: string;
     mobileVideoUrl?: string;
@@ -65,7 +87,7 @@ interface HeroData {
 }
 
 export default function Hero({ data }: { data: HeroData }) {
-  const { preHeading, mainHeading, subHeading, ctaText, ctaLink, playIndicatorText, videoUrl, mobileVideoUrl } = data?.heroSection || {}
+  const { preHeading, mainHeading, subHeading, ctaText, ctaLink, secondaryCtaText, secondaryCtaLink, playIndicatorText, videoUrl, mobileVideoUrl } = data?.heroSection || {}
   const [isMobile, setIsMobile] = useState(false)
   const [showPlayIndicator, setShowPlayIndicator] = useState(true)
   const [userInteracted, setUserInteracted] = useState(false)
@@ -210,9 +232,9 @@ export default function Hero({ data }: { data: HeroData }) {
         transition={{ duration: 1, delay: 0.5 }}
       />
 
-      <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 pt-12 pb-16 sm:pt-14 sm:pb-18 md:pt-16 md:pb-20 px-4 md:px-8 lg:px-12 overflow-visible">
+      <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 pt-12 pb-44 sm:pt-14 sm:pb-18 md:pt-16 md:pb-20 px-4 md:px-8 lg:px-12 overflow-visible">
         
-        <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left lg:pl-8 xl:pl-12 max-w-3xl mx-auto lg:mx-0 py-4 lg:py-0 gap-1 sm:gap-2">
+        <div className="flex flex-col justify-end md:justify-center items-center lg:items-start text-center lg:text-left lg:pl-8 xl:pl-12 max-w-3xl mx-auto lg:mx-0 py-4 lg:py-0 gap-1 sm:gap-2 pb-0 md:pb-0">
           <motion.div
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
@@ -249,32 +271,60 @@ export default function Hero({ data }: { data: HeroData }) {
               {subHeading}
             </motion.p>
 
-            <Link href={ctaLink || '/contact'} className="md:inline-block hidden">
+            <div className="md:flex hidden flex-row gap-3 items-center">
+              <Link href={ctaLink || '/contact'}>
+                <motion.button
+                  variants={buttonVariants}
+                  initial="hidden"
+                  animate="visible"
+                  whileHover="hover"
+                  whileTap="tap"
+                  className="px-5 sm:px-6 md:px-6 lg:px-6 xl:px-8 py-2 sm:py-2 md:py-2.5 lg:py-2.5 xl:py-3 bg-white text-black text-[10px] sm:text-[10px] md:text-xs lg:text-xs xl:text-sm font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
+                >
+                  {ctaText || 'Book your free consultation'}
+                </motion.button>
+              </Link>
+              <Link href={secondaryCtaLink || '/movie'}>
+                <motion.button
+                  variants={secondaryButtonVariants}
+                  initial="hidden"
+                  animate="visible"
+                  whileHover="hover"
+                  whileTap="tap"
+                  className="px-5 sm:px-6 md:px-6 lg:px-6 xl:px-8 py-2 sm:py-2 md:py-2.5 lg:py-2.5 xl:py-3 bg-transparent border-2 border-white/70 text-white text-[10px] sm:text-[10px] md:text-xs lg:text-xs xl:text-sm font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black backdrop-blur-sm"
+                >
+                  {secondaryCtaText || 'Watch Our Films'}
+                </motion.button>
+              </Link>
+            </div>
+          </motion.div>
+
+          <div className="md:hidden flex flex-col gap-2.5 items-center w-full max-w-xs">
+            <Link href={ctaLink || '/contact'} className="w-full">
               <motion.button
                 variants={buttonVariants}
                 initial="hidden"
                 animate="visible"
                 whileHover="hover"
                 whileTap="tap"
-                className="px-5 sm:px-6 md:px-6 lg:px-6 xl:px-8 py-2 sm:py-2 md:py-2.5 lg:py-2.5 xl:py-3 bg-white text-black text-[10px] sm:text-[10px] md:text-xs lg:text-xs xl:text-sm font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
+                className="w-full px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
               >
                 {ctaText || 'Book your free consultation'}
               </motion.button>
             </Link>
-          </motion.div>
-
-          <Link href={ctaLink || '/contact'} className="md:hidden">
-            <motion.button
-              variants={buttonVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover="hover"
-              whileTap="tap"
-              className="px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
-            >
-              {ctaText || 'Book your free consultation'}
-            </motion.button>
-          </Link>
+            <Link href={secondaryCtaLink || '/movie'} className="w-full">
+              <motion.button
+                variants={secondaryButtonVariants}
+                initial="hidden"
+                animate="visible"
+                whileHover="hover"
+                whileTap="tap"
+                className="w-full px-6 py-2 bg-transparent border border-white/60 text-white text-xs font-medium uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black backdrop-blur-sm"
+              >
+                {secondaryCtaText || 'Watch Our Films'}
+              </motion.button>
+            </Link>
+          </div>
         </div>
 
         <div className="hidden md:flex md:justify-center lg:justify-end items-center">
@@ -285,7 +335,7 @@ export default function Hero({ data }: { data: HeroData }) {
 
 
 
-      <div className="fixed bottom-24 md:bottom-28 right-4 md:right-6 z-50">
+      <div className="fixed bottom-20 md:bottom-28 right-4 md:right-6 z-50">
         <AnimatePresence>
           {showPlayIndicator && !userInteracted && (
             <>
@@ -317,7 +367,7 @@ export default function Hero({ data }: { data: HeroData }) {
                 }}
               />
               <motion.div
-                className="absolute -top-12 right-0 whitespace-nowrap bg-white/90 text-black text-xs font-medium px-3 py-1.5 rounded-full shadow-lg"
+                className="absolute -left-2 -translate-x-full top-1/2 -translate-y-1/2 md:-top-12 md:left-auto md:right-0 md:translate-x-0 md:translate-y-0 whitespace-nowrap bg-white/90 text-black text-xs font-medium px-3 py-1.5 rounded-full shadow-lg"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
