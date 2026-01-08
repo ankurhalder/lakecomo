@@ -68,7 +68,6 @@ export default function Hero({ data }: { data: HeroData }) {
   const { preHeading, mainHeading, subHeading, ctaText, ctaLink, playIndicatorText, videoUrl, mobileVideoUrl } = data?.heroSection || {}
   const [isMobile, setIsMobile] = useState(false)
   const [showPlayIndicator, setShowPlayIndicator] = useState(true)
-  const [textHidden, setTextHidden] = useState(false)
   const [userInteracted, setUserInteracted] = useState(false)
   const features = data?.featuresGrid || []
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -89,14 +88,7 @@ export default function Hero({ data }: { data: HeroData }) {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  useEffect(() => {
-    if (isMobile) {
-      const timer = setTimeout(() => {
-        setTextHidden(true)
-      }, 3500)
-      return () => clearTimeout(timer)
-    }
-  }, [isMobile])
+
 
 
 
@@ -223,10 +215,9 @@ export default function Hero({ data }: { data: HeroData }) {
         <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left lg:pl-8 xl:pl-12 max-w-3xl mx-auto lg:mx-0 py-4 lg:py-0 gap-1 sm:gap-2">
           <motion.div
             initial={{ opacity: 1 }}
-            animate={{ opacity: isMobile && textHidden ? 0 : 1 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col items-center lg:items-start"
-            style={{ pointerEvents: isMobile && textHidden ? 'none' : 'auto' }}
           >
             <motion.p
               custom={0.3}
@@ -276,10 +267,9 @@ export default function Hero({ data }: { data: HeroData }) {
             <motion.button
               variants={buttonVariants}
               initial="hidden"
-              animate={textHidden ? { opacity: 0, pointerEvents: 'none' as const } : "visible"}
+              animate="visible"
               whileHover="hover"
               whileTap="tap"
-              transition={{ duration: 0.5 }}
               className="px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
             >
               {ctaText || 'Book your free consultation'}
@@ -293,27 +283,7 @@ export default function Hero({ data }: { data: HeroData }) {
 
       </div>
 
-      <AnimatePresence>
-        {isMobile && textHidden && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="fixed bottom-24 left-0 right-0 z-45 flex justify-center px-4"
-          >
-            <Link href={ctaLink || '/contact'}>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-full shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-              >
-                {ctaText || 'Book your free consultation'}
-              </motion.button>
-            </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
 
       <div className="fixed bottom-24 md:bottom-28 right-4 md:right-6 z-50">
         <AnimatePresence>
