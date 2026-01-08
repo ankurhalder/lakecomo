@@ -16,7 +16,13 @@ const query = `
       playIndicatorText,
       "videoUrl": videoFile.asset->url,
       "mobileVideoUrl": mobileVideoFile.asset->url,
-      posterImage
+      posterImage,
+      eventShowcase {
+        title,
+        eventTypes,
+        link,
+        tagline
+      }
     },
     featuresGrid[] {
       title,

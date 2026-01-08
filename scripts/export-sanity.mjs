@@ -24,6 +24,7 @@ const schemaTypes = [
   'crewPage',
   'venuePage',
   'galleryPage',
+  "faqPage",
   'contactPage'
 ]
 

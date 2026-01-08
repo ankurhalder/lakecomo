@@ -26,7 +26,19 @@ export default defineType({
         defineField({ name: 'ctaLink', title: 'Button Link', type: 'string' }),
         defineField({ name: 'secondaryCtaText', title: 'Secondary Button Text (Movie)', type: 'string', initialValue: 'Watch Our Films' }),
         defineField({ name: 'secondaryCtaLink', title: 'Secondary Button Link', type: 'string', initialValue: '/movie' }),
-        defineField({ name: 'playIndicatorText', title: 'Play Indicator Text', type: 'string', initialValue: 'Tap to see the magic ✨', description: 'Text shown next to the sound toggle button' })
+        defineField({ name: 'playIndicatorText', title: 'Play Indicator Text', type: 'string', initialValue: 'Tap to see the magic ✨', description: 'Text shown next to the sound toggle button' }),
+        defineField({
+          name: 'eventShowcase',
+          title: 'Event Showcase Badge',
+          type: 'object',
+          options: { collapsible: true, collapsed: false },
+          fields: [
+            defineField({ name: 'title', title: 'Badge Title', type: 'string', initialValue: 'Perfect For' }),
+            defineField({ name: 'eventTypes', title: 'Event Types', type: 'array', of: [{ type: 'string' }] }),
+            defineField({ name: 'link', title: 'Badge Link', type: 'string', initialValue: '/themes' }),
+            defineField({ name: 'tagline', title: 'Bottom Tagline', type: 'string', initialValue: 'Your Event Awaits' })
+          ]
+        })
       ]
     }),
     defineField({

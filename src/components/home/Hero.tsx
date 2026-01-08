@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { Volume2, VolumeX } from 'lucide-react'
-import FeaturesList from './FeaturesList'
+import HeroEventShowcase from './HeroEventShowcase'
 
 const SIMULATE_AUTOPLAY_FAIL = false
 
@@ -61,12 +61,11 @@ const secondaryButtonVariants = {
   tap: { scale: 0.95 }
 }
 
-interface FeatureItem {
-  title: string;
-  subtitle?: string;
-  tag?: string;
+interface EventShowcaseData {
+  title?: string;
+  eventTypes?: string[];
   link?: string;
-  iconUrl?: string;
+  tagline?: string;
 }
 
 interface HeroData {
@@ -82,8 +81,8 @@ interface HeroData {
     videoUrl?: string;
     mobileVideoUrl?: string;
     posterImage?: string;
+    eventShowcase?: EventShowcaseData;
   };
-  featuresGrid?: FeatureItem[];
 }
 
 export default function Hero({ data }: { data: HeroData }) {
@@ -91,7 +90,6 @@ export default function Hero({ data }: { data: HeroData }) {
   const [isMobile, setIsMobile] = useState(false)
   const [showPlayIndicator, setShowPlayIndicator] = useState(true)
   const [userInteracted, setUserInteracted] = useState(false)
-  const features = data?.featuresGrid || []
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMuted, setIsMuted] = useState(true)
   const hasPlayedRef = useRef(false)
@@ -328,7 +326,7 @@ export default function Hero({ data }: { data: HeroData }) {
         </div>
 
         <div className="hidden md:flex md:justify-center lg:justify-end items-center">
-          <FeaturesList features={features} />
+          <HeroEventShowcase data={data?.heroSection?.eventShowcase} />
         </div>
 
       </div>
