@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/cpanel',
-        destination: 'https://lakecomostyle.it:2083',
+        destination: 'https://server322.web-hosting.com/cpanel',
         permanent: true,
       },
     ]
