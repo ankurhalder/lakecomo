@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/webmail',
-        destination: 'webmail.lakecomostyle.it',
+        destination: 'https://webmail.lakecomostyle.it',
         permanent: true,
       },
       {
