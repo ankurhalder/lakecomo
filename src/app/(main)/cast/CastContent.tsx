@@ -226,7 +226,7 @@ export default function CastContent({
           transition={{ duration: 0.6 }}
         >
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4"
+            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 tracking-tight leading-[1.1]"
             style={{ color: "var(--text-primary)" }}
           >
             Ready to Become a Star?

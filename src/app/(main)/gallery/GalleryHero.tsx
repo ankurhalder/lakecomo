@@ -66,7 +66,7 @@ export default function GalleryHero({
           </motion.h1>
 
           <motion.p
-            className="text-lg md:text-xl lg:text-2xl font-light italic mb-6"
+            className="text-base md:text-lg lg:text-xl font-light italic mb-6"
             style={{ color: "var(--text-secondary)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

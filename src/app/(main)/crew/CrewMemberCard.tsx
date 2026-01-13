@@ -121,7 +121,7 @@ export default function CrewMemberCard({
               </div>
 
               <h2
-                className="text-2xl md:text-3xl lg:text-4xl font-bold"
+                className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1] mb-4"
                 style={{ color: "var(--text-primary)" }}
               >
                 {name}

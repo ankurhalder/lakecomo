@@ -1,21 +1,35 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import VenueHero from './VenueHero'
-import ParallaxGallery from './ParallaxGallery'
-import type { VenuePageData } from '@/sanity/lib/getVenuePage'
-import { Sparkles } from 'lucide-react'
+import { motion } from "framer-motion";
+import VenueHero from "./VenueHero";
+import ParallaxGallery from "./ParallaxGallery";
+import type { VenuePageData } from "@/sanity/lib/getVenuePage";
+import { Sparkles } from "lucide-react";
 
 interface VenueContentProps {
-  data: VenuePageData
+  data: VenuePageData;
 }
 
 export default function VenueContent({ data }: VenueContentProps) {
-  const { hero, heroFeature, description, eventInfo, galleryImages, externalLinks } = data
+  const {
+    hero,
+    heroFeature,
+    description,
+    eventInfo,
+    galleryImages,
+    externalLinks,
+  } = data;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)' }}>
-      <VenueHero hero={hero} heroFeature={heroFeature} galleryImages={galleryImages} />
+    <div
+      className="min-h-screen"
+      style={{ backgroundColor: "var(--bg-primary)" }}
+    >
+      <VenueHero
+        hero={hero}
+        heroFeature={heroFeature}
+        galleryImages={galleryImages}
+      />
 
       <section className="py-16 md:py-24 px-4 md:px-8 lg:px-12">
         <div className="max-w-4xl mx-auto">
@@ -24,8 +38,8 @@ export default function VenueContent({ data }: VenueContentProps) {
               {description.map((paragraph, idx) => (
                 <motion.p
                   key={idx}
-                  className="text-lg md:text-xl leading-relaxed font-light"
-                  style={{ color: 'var(--text-secondary)' }}
+                  className="text-sm md:text-base leading-relaxed font-light"
+                  style={{ color: "var(--text-secondary)" }}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
@@ -37,14 +51,12 @@ export default function VenueContent({ data }: VenueContentProps) {
             </div>
           )}
 
-
-
           {eventInfo && (
             <motion.div
               className="p-8 rounded-2xl text-center relative overflow-hidden"
-              style={{ 
-                backgroundColor: 'var(--bg-secondary)',
-                border: '1px solid rgba(255,255,255,0.1)'
+              style={{
+                backgroundColor: "var(--bg-secondary)",
+                border: "1px solid rgba(255,255,255,0.1)",
               }}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -55,17 +67,17 @@ export default function VenueContent({ data }: VenueContentProps) {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <Sparkles size={60} style={{ color: 'var(--accent)' }} />
+                <Sparkles size={60} style={{ color: "var(--accent)" }} />
               </motion.div>
-              <h3 
+              <h3
                 className="text-xl font-bold mb-4"
-                style={{ color: 'var(--text-primary)' }}
+                style={{ color: "var(--text-primary)" }}
               >
                 The Experience
               </h3>
-              <p 
+              <p
                 className="text-base leading-relaxed max-w-2xl mx-auto"
-                style={{ color: 'var(--text-secondary)' }}
+                style={{ color: "var(--text-secondary)" }}
               >
                 {eventInfo}
               </p>
@@ -76,35 +88,36 @@ export default function VenueContent({ data }: VenueContentProps) {
 
       <ParallaxGallery images={galleryImages} />
 
-
-
       <section className="px-4 md:px-8 lg:px-12 py-16 pb-28 md:py-24">
-        <motion.div 
+        <motion.div
           className="max-w-4xl mx-auto text-center"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 
-            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4"
-            style={{ color: 'var(--text-primary)' }}
+          <h2
+            className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 tracking-tight leading-[1.1]"
+            style={{ color: "var(--text-primary)" }}
           >
             Host Your Event at the Palace
           </h2>
-          <p 
+          <p
             className="text-base md:text-lg mb-8"
-            style={{ color: 'var(--text-secondary)' }}
+            style={{ color: "var(--text-secondary)" }}
           >
             Create unforgettable memories in this historic setting.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <motion.a
-              href={externalLinks?.bookingLink || '/contact'}
+              href={externalLinks?.bookingLink || "/contact"}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="inline-block px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors"
-              style={{ backgroundColor: 'var(--accent)', color: 'var(--bg-primary)' }}
+              style={{
+                backgroundColor: "var(--accent)",
+                color: "var(--bg-primary)",
+              }}
             >
               Book Your Experience
             </motion.a>
@@ -112,5 +125,5 @@ export default function VenueContent({ data }: VenueContentProps) {
         </motion.div>
       </section>
     </div>
-  )
+  );
 }

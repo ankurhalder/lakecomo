@@ -1,76 +1,78 @@
-'use client'
+"use client";
 
-import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, MapPin } from 'lucide-react'
-import Image from 'next/image'
-import { useState, useEffect, useCallback } from 'react'
-import LaurelBadge from '@/components/shared/LaurelBadge'
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, MapPin } from "lucide-react";
+import Image from "next/image";
+import { useState, useEffect, useCallback } from "react";
+import LaurelBadge from "@/components/shared/LaurelBadge";
 
 interface GalleryImage {
-  url: string
-  alt?: string
+  url: string;
+  alt?: string;
 }
 
 interface VenueHeroProps {
   hero: {
-    heading?: string
-    subHeading?: string
-    location?: string
-  }
+    heading?: string;
+    subHeading?: string;
+    location?: string;
+  };
   heroFeature?: {
-    subtitle?: string
-    title: string
-    tag?: string
-    link?: string
-  }
-  galleryImages: GalleryImage[]
+    subtitle?: string;
+    title: string;
+    tag?: string;
+    link?: string;
+  };
+  galleryImages: GalleryImage[];
 }
 
 const DEFAULT_HERO = {
-  heading: 'Palazzo Odescalchi',
-  subHeading: 'Create Cinematic Magic in a Legendary Setting',
-  location: 'Como, Italy',
-}
+  heading: "Palazzo Odescalchi",
+  subHeading: "Create Cinematic Magic in a Legendary Setting",
+  location: "Como, Italy",
+};
 
 const DEFAULT_FEATURE = {
-  subtitle: 'Historic Palace',
-  title: 'EXCLUSIVE VENUE',
-  tag: '2026',
-  link: '/contact',
-}
+  subtitle: "Historic Palace",
+  title: "EXCLUSIVE VENUE",
+  tag: "2026",
+  link: "/contact",
+};
 
-export default function VenueHero({ hero, heroFeature, galleryImages }: VenueHeroProps) {
-  const feature = heroFeature || DEFAULT_FEATURE
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+export default function VenueHero({
+  hero,
+  heroFeature,
+  galleryImages,
+}: VenueHeroProps) {
+  const feature = heroFeature || DEFAULT_FEATURE;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  const validImages = galleryImages?.filter(img => img?.url) || []
-  const hasImages = validImages.length > 0
+  const validImages = galleryImages?.filter((img) => img?.url) || [];
+  const hasImages = validImages.length > 0;
 
   const nextImage = useCallback(() => {
     if (validImages.length > 1) {
-      setCurrentIndex(prev => (prev + 1) % validImages.length)
+      setCurrentIndex((prev) => (prev + 1) % validImages.length);
     }
-  }, [validImages.length])
+  }, [validImages.length]);
 
   useEffect(() => {
-    if (!isAutoPlaying || validImages.length <= 1) return
-    
-    const interval = setInterval(nextImage, 3000)
-    return () => clearInterval(interval)
-  }, [isAutoPlaying, nextImage, validImages.length])
+    if (!isAutoPlaying || validImages.length <= 1) return;
 
-
+    const interval = setInterval(nextImage, 3000);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, nextImage, validImages.length]);
 
   return (
-    <section 
+    <section
       className="relative min-h-[85vh] flex items-center overflow-hidden"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
       <AnimatePresence mode="wait">
         {hasImages && validImages[currentIndex] && (
-          <motion.div 
+          <motion.div
             key={currentIndex}
             className="absolute inset-0 z-0"
             initial={{ opacity: 0, scale: 1.1 }}
@@ -80,7 +82,7 @@ export default function VenueHero({ hero, heroFeature, galleryImages }: VenueHer
           >
             <Image
               src={validImages[currentIndex].url}
-              alt={validImages[currentIndex].alt || hero?.heading || 'Venue'}
+              alt={validImages[currentIndex].alt || hero?.heading || "Venue"}
               fill
               className="object-cover"
               priority={currentIndex === 0}
@@ -95,10 +97,11 @@ export default function VenueHero({ hero, heroFeature, galleryImages }: VenueHer
         )}
       </AnimatePresence>
 
-      <div 
+      <div
         className="absolute inset-0 z-[1]"
-        style={{ 
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.8) 100%)' 
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.8) 100%)",
         }}
       />
 
@@ -112,14 +115,14 @@ export default function VenueHero({ hero, heroFeature, galleryImages }: VenueHer
               transition={{ delay: 0.1 }}
             >
               <MapPin size={14} className="text-white/70" />
-              <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/70">
+              <span className="text-xs md:text-sm uppercase tracking-[0.4em] text-white/70">
                 {hero.location}
               </span>
             </motion.div>
           )}
 
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-5xl xl:text-5xl 2xl:text-7xl font-bold mb-4 tracking-tight leading-[1.1] text-white"
+            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 tracking-tight leading-[1.1] text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -128,7 +131,7 @@ export default function VenueHero({ hero, heroFeature, galleryImages }: VenueHer
           </motion.h1>
 
           <motion.p
-            className="text-lg md:text-xl lg:text-2xl font-light italic mb-6 text-white/90"
+            className="text-base md:text-lg lg:text-xl font-light italic mb-6 text-white/90"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -136,7 +139,7 @@ export default function VenueHero({ hero, heroFeature, galleryImages }: VenueHer
             {hero?.subHeading || DEFAULT_HERO.subHeading}
           </motion.p>
 
-          <motion.div 
+          <motion.div
             className="mt-8 flex flex-col items-center lg:items-start gap-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -154,13 +157,13 @@ export default function VenueHero({ hero, heroFeature, galleryImages }: VenueHer
           </motion.div>
         </div>
 
-        <motion.div 
+        <motion.div
           className="hidden lg:flex justify-center lg:justify-end items-center"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, type: "spring", stiffness: 100 }}
         >
-          <LaurelBadge 
+          <LaurelBadge
             title={feature.title}
             subtitle={feature.subtitle}
             tag={feature.tag}
@@ -171,5 +174,5 @@ export default function VenueHero({ hero, heroFeature, galleryImages }: VenueHer
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
