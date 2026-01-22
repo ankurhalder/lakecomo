@@ -22,6 +22,24 @@ export interface ProcessPageData {
     tag?: string;
     link?: string;
   };
+  videoSection?: {
+    enabled: boolean;
+    heading: string;
+    subHeading: string;
+    videoFile?: {
+      asset: {
+        _ref: string;
+        url?: string;
+      };
+    };
+    videoUrl?: string;
+    posterImage?: {
+      asset: {
+        _ref: string;
+      };
+    };
+    duration?: string;
+  };
   steps: ProcessStep[];
 }
 
@@ -38,6 +56,24 @@ const query = `
       title,
       tag,
       link
+    },
+    videoSection {
+      enabled,
+      heading,
+      subHeading,
+      videoFile {
+        asset-> {
+          _ref,
+          url
+        }
+      },
+      videoUrl,
+      posterImage {
+        asset-> {
+          _ref
+        }
+      },
+      duration
     },
     steps[] {
       stepNumber,
@@ -59,11 +95,10 @@ const fetchProcessPageData = async (): Promise<ProcessPageData | null> => {
   }
 };
 
-const cachedFetch = unstable_cache(
-  fetchProcessPageData,
-  ["processPage"],
-  { revalidate: DEFAULT_REVALIDATE, tags: ["processPage", "content"] }
-);
+const cachedFetch = unstable_cache(fetchProcessPageData, ["processPage"], {
+  revalidate: DEFAULT_REVALIDATE,
+  tags: ["processPage", "content"],
+});
 
 export async function getProcessPageData(): Promise<ProcessPageData | null> {
   if (process.env.NODE_ENV === "development") {
