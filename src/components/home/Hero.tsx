@@ -242,26 +242,96 @@ export default function Hero({ data }: { data: HeroData }) {
       )}
 
       <motion.div
-        className="absolute inset-0 z-[1] bg-gradient-to-b md:bg-gradient-to-r from-black/80 via-black/50 to-black/30"
+        className="absolute inset-0 z-[1] bg-gradient-to-b from-black/90 via-transparent to-black/90 md:bg-gradient-to-r md:from-black/80 md:via-black/50 md:to-black/30"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
       />
 
-      <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 pt-12 pb-44 sm:pt-14 sm:pb-18 md:pt-16 md:pb-20 px-4 md:px-8 lg:px-12 overflow-visible">
-        <div className="flex flex-col justify-end md:justify-center items-center lg:items-start text-center lg:text-left lg:pl-8 xl:pl-12 max-w-3xl mx-auto lg:mx-0 py-4 lg:py-0 gap-1 sm:gap-2 pb-0 md:pb-0">
+      {/* Mobile Layout: Text at top, buttons at bottom */}
+      <div className="md:hidden relative z-10 flex flex-col justify-between min-h-[100dvh] py-8 px-4">
+        {/* Top: Text Content */}
+        <motion.div
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex flex-col items-center text-center bg-gradient-to-b from-black via-black/95 to-transparent pt-8 pb-12"
+        >
+          <motion.p
+            custom={0.3}
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-white text-sm sm:text-base italic font-light mb-2 tracking-wide font-serif drop-shadow-lg"
+          >
+            {preHeading}
+          </motion.p>
+
+          <motion.h1
+            custom={0.5}
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-xl sm:text-2xl font-bold text-white leading-[1.15] tracking-tight mb-2 drop-shadow-2xl px-2"
+          >
+            {mainHeading}
+          </motion.h1>
+
+          <motion.p
+            custom={0.7}
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-white text-sm sm:text-base font-light tracking-wide italic drop-shadow-lg"
+          >
+            {subHeading}
+          </motion.p>
+        </motion.div>
+
+        {/* Bottom: Buttons */}
+        <div className="flex flex-col gap-2.5 items-center w-full max-w-xs mx-auto bg-gradient-to-t from-black via-black/95 to-transparent pb-8 pt-12">
+          <Link href={ctaLink || "/contact"} className="w-full">
+            <motion.button
+              variants={buttonVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover="hover"
+              whileTap="tap"
+              className="w-full px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
+            >
+              {ctaText || "Book your free consultation"}
+            </motion.button>
+          </Link>
+          <Link href={secondaryCtaLink || "/movie"} className="w-full">
+            <motion.button
+              variants={secondaryButtonVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover="hover"
+              whileTap="tap"
+              className="w-full px-6 py-2 bg-transparent border border-white/60 text-white text-xs font-medium uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black backdrop-blur-sm"
+            >
+              {secondaryCtaText || "Watch Our Films"}
+            </motion.button>
+          </Link>
+        </div>
+      </div>
+
+      {/* Desktop/Tablet Layout */}
+      <div className="hidden md:flex relative z-10 flex-1 md:grid md:grid-cols-1 lg:grid-cols-2 overflow-visible">
+        <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left md:pt-12 pb-8 md:pb-44 sm:md:pt-14 sm:md:pb-18 md:md:pt-16 md:md:pb-20 px-4 md:px-8 lg:px-12 lg:pl-8 xl:pl-12 max-w-3xl mx-auto lg:mx-0 md:py-4 lg:py-0 gap-1 sm:gap-2 pt-8">
           <motion.div
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col items-center lg:items-start"
+            className="flex flex-col items-center lg:items-start w-full"
           >
             <motion.p
               custom={0.3}
               variants={textVariants}
               initial="hidden"
               animate="visible"
-              className="text-white/90 text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl italic font-light mb-1 sm:mb-2 md:mb-3 2xl:mb-4 tracking-wide font-serif"
+              className="text-white text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl italic font-light mb-1 sm:mb-2 md:mb-3 2xl:mb-4 tracking-wide font-serif drop-shadow-lg"
             >
               {preHeading}
             </motion.p>
@@ -271,7 +341,7 @@ export default function Hero({ data }: { data: HeroData }) {
               variants={textVariants}
               initial="hidden"
               animate="visible"
-              className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-bold text-white leading-[1.15] tracking-tight mb-1 sm:mb-2 md:mb-3 2xl:mb-5 drop-shadow-xl"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-bold text-white leading-[1.15] tracking-tight mb-1 sm:mb-2 md:mb-3 2xl:mb-5 drop-shadow-2xl"
             >
               {mainHeading}
             </motion.h1>
@@ -281,12 +351,12 @@ export default function Hero({ data }: { data: HeroData }) {
               variants={textVariants}
               initial="hidden"
               animate="visible"
-              className="text-white/90 text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl font-light tracking-wide mb-2 sm:mb-3 md:mb-4 2xl:mb-6 italic"
+              className="text-white text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl font-light tracking-wide mb-2 sm:mb-3 md:mb-4 2xl:mb-6 italic drop-shadow-lg"
             >
               {subHeading}
             </motion.p>
 
-            <div className="md:flex hidden flex-row gap-3 items-center">
+            <div className="flex flex-row gap-3 items-center">
               <Link href={ctaLink || "/contact"}>
                 <motion.button
                   variants={buttonVariants}
@@ -313,36 +383,9 @@ export default function Hero({ data }: { data: HeroData }) {
               </Link>
             </div>
           </motion.div>
-
-          <div className="md:hidden flex flex-col gap-2.5 items-center w-full max-w-xs">
-            <Link href={ctaLink || "/contact"} className="w-full">
-              <motion.button
-                variants={buttonVariants}
-                initial="hidden"
-                animate="visible"
-                whileHover="hover"
-                whileTap="tap"
-                className="w-full px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
-              >
-                {ctaText || "Book your free consultation"}
-              </motion.button>
-            </Link>
-            <Link href={secondaryCtaLink || "/movie"} className="w-full">
-              <motion.button
-                variants={secondaryButtonVariants}
-                initial="hidden"
-                animate="visible"
-                whileHover="hover"
-                whileTap="tap"
-                className="w-full px-6 py-2 bg-transparent border border-white/60 text-white text-xs font-medium uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black backdrop-blur-sm"
-              >
-                {secondaryCtaText || "Watch Our Films"}
-              </motion.button>
-            </Link>
-          </div>
         </div>
 
-        <div className="hidden md:flex md:justify-center lg:justify-end items-center">
+        <div className="md:flex md:justify-center lg:justify-end items-center md:pt-12 md:pb-44 sm:md:pt-14 sm:md:pb-18 md:md:pt-16 md:md:pb-20">
           <HeroEventShowcase data={data?.heroSection?.eventShowcase} />
         </div>
       </div>
