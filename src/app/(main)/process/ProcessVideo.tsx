@@ -33,7 +33,7 @@ export default function ProcessVideo({ videoSection }: ProcessVideoProps) {
   const [isMuted, setIsMuted] = useState(true);
   const [showControls, setShowControls] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const hideControlsTimeoutRef = useRef<NodeJS.Timeout>();
+  const hideControlsTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const handlePlayPause = async () => {
     if (videoRef.current) {
