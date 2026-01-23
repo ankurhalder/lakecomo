@@ -267,7 +267,7 @@ export default function Hero({ data }: { data: HeroData }) {
         </motion.div>
 
         {/* Bottom: Button */}
-        <div className="flex flex-col gap-2.5 items-center w-full max-w-xs mx-auto bg-gradient-to-t from-black via-black/95 to-transparent pb-12 pt-16 sm:pt-20">
+        <div className="flex flex-col gap-2.5 items-center w-full max-w-xs mx-auto pb-12">
           <Link href={secondaryCtaLink || "/movie"} className="w-full">
             <motion.button
               variants={buttonVariants}
@@ -276,6 +276,10 @@ export default function Hero({ data }: { data: HeroData }) {
               whileHover="hover"
               whileTap="tap"
               className="w-full px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
+              style={{
+                backgroundColor: "white",
+                boxShadow: "0 0 30px rgba(0,0,0,0.5)",
+              }}
             >
               {secondaryCtaText || "Watch Our Films"}
             </motion.button>
@@ -317,12 +321,15 @@ export default function Hero({ data }: { data: HeroData }) {
               variants={textVariants}
               initial="hidden"
               animate="visible"
-              className="text-white text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl font-light tracking-wide mb-2 sm:mb-3 md:mb-4 2xl:mb-6 italic drop-shadow-lg"
+              className="text-white text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl font-light tracking-wide mb-4 sm:mb-5 md:mb-6 2xl:mb-8 italic drop-shadow-lg"
             >
               {subHeading}
             </motion.p>
 
-            <Link href={secondaryCtaLink || "/movie"}>
+            <Link
+              href={secondaryCtaLink || "/movie"}
+              className="md:translate-y-12"
+            >
               <motion.button
                 variants={buttonVariants}
                 initial="hidden"
