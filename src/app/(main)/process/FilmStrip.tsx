@@ -15,7 +15,7 @@ interface FilmStripProps {
   steps: Step[];
 }
 
-function FilmRollCard({ step, index }: { step: Step; index: number }) {
+function FilmRollCard({ step }: { step: Step }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -139,8 +139,8 @@ export default function FilmStrip({ steps }: FilmStripProps) {
       <div className="film-grain" />
 
       <div className="max-w-5xl mx-auto">
-        {steps.map((step, index) => (
-          <FilmRollCard key={step.stepNumber} step={step} index={index} />
+        {steps.map((step) => (
+          <FilmRollCard key={step.stepNumber} step={step} />
         ))}
       </div>
     </section>

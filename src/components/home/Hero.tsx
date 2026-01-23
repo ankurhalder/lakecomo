@@ -41,26 +41,6 @@ const buttonVariants = {
   tap: { scale: 0.95 },
 };
 
-const secondaryButtonVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.6,
-      delay: 1.4,
-      ease: "easeOut" as const,
-    },
-  },
-  hover: {
-    scale: 1.05,
-    backgroundColor: "rgba(255, 255, 255, 0.15)",
-    transition: { type: "spring" as const, stiffness: 400 },
-  },
-  tap: { scale: 0.95 },
-};
-
 interface EventShowcaseData {
   title?: string;
   eventTypes?: string[];
@@ -90,8 +70,6 @@ export default function Hero({ data }: { data: HeroData }) {
     preHeading,
     mainHeading,
     subHeading,
-    ctaText,
-    ctaLink,
     secondaryCtaText,
     secondaryCtaLink,
     playIndicatorText,
