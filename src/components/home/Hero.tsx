@@ -267,7 +267,7 @@ export default function Hero({ data }: { data: HeroData }) {
         </motion.div>
 
         {/* Bottom: Button */}
-        <div className="flex flex-col gap-2.5 items-center w-full max-w-xs mx-auto bg-gradient-to-t from-black via-black/95 to-transparent pb-8 pt-12">
+        <div className="flex flex-col gap-2.5 items-center w-full max-w-xs mx-auto bg-gradient-to-t from-black via-black/95 to-transparent pb-12 pt-16 sm:pt-20">
           <Link href={secondaryCtaLink || "/movie"} className="w-full">
             <motion.button
               variants={buttonVariants}

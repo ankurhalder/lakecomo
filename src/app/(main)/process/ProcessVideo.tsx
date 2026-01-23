@@ -22,6 +22,8 @@ interface VideoSectionData {
     };
   };
   duration?: string;
+  muteIndicatorText?: string;
+  audioPromptText?: string;
 }
 
 interface ProcessVideoProps {
@@ -247,7 +249,8 @@ export default function ProcessVideo({ videoSection }: ProcessVideoProps) {
                       <div className="bg-white/90 backdrop-blur-sm text-black px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
                         <VolumeX className="w-4 h-4" />
                         <span className="text-xs sm:text-sm font-medium">
-                          Press to hear the story
+                          {videoSection.audioPromptText ||
+                            "Press to hear the story"}
                         </span>
                       </div>
                     </motion.div>
@@ -338,7 +341,8 @@ export default function ProcessVideo({ videoSection }: ProcessVideoProps) {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: 5 }}
                             >
-                              Press
+                              {videoSection.muteIndicatorText ||
+                                "Press for the story"}
                             </motion.span>
                           )}
                         </div>

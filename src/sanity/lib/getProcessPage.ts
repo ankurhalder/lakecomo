@@ -39,6 +39,8 @@ export interface ProcessPageData {
       };
     };
     duration?: string;
+    muteIndicatorText?: string;
+    audioPromptText?: string;
   };
   steps: ProcessStep[];
 }
@@ -73,7 +75,9 @@ const query = `
           _ref
         }
       },
-      duration
+      duration,
+      muteIndicatorText,
+      audioPromptText
     },
     steps[] {
       stepNumber,

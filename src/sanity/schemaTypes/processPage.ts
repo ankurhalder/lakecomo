@@ -115,6 +115,22 @@ export default defineType({
           placeholder: "e.g., 2:30",
           description: "Display duration (optional)",
         }),
+        defineField({
+          name: "muteIndicatorText",
+          title: "Mute Button Label",
+          type: "string",
+          initialValue: "Press for the story",
+          description:
+            "Text shown above mute button when video is playing and muted",
+        }),
+        defineField({
+          name: "audioPromptText",
+          title: "Audio Prompt Message",
+          type: "string",
+          initialValue: "Press to hear the story",
+          description:
+            "Message shown at top when video starts playing while muted",
+        }),
       ],
     }),
     defineField({
