@@ -32,6 +32,7 @@ export default function ProcessVideo({ videoSection }: ProcessVideoProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [showControls, setShowControls] = useState(true);
+  const [showMuteIndicator, setShowMuteIndicator] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hideControlsTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
@@ -39,8 +40,14 @@ export default function ProcessVideo({ videoSection }: ProcessVideoProps) {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
+        setShowMuteIndicator(false);
       } else {
         await videoRef.current.play().catch(() => {});
+        // Show mute indicator when video starts playing and is muted
+        if (isMuted) {
+          setShowMuteIndicator(true);
+          setTimeout(() => setShowMuteIndicator(false), 3000);
+        }
       }
       setIsPlaying(!isPlaying);
     }
@@ -50,6 +57,10 @@ export default function ProcessVideo({ videoSection }: ProcessVideoProps) {
     if (videoRef.current) {
       videoRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
+      // Hide indicator when user unmutes
+      if (!isMuted === false) {
+        setShowMuteIndicator(false);
+      }
     }
   };
 
@@ -224,6 +235,24 @@ export default function ProcessVideo({ videoSection }: ProcessVideoProps) {
                     </motion.button>
                   )}
 
+                  {/* Mute Indicator - "Press to hear the story" */}
+                  {isPlaying && isMuted && showMuteIndicator && (
+                    <motion.div
+                      className="absolute top-4 left-1/2 -translate-x-1/2 z-20"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="bg-white/90 backdrop-blur-sm text-black px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+                        <VolumeX className="w-4 h-4" />
+                        <span className="text-xs sm:text-sm font-medium">
+                          Press to hear the story
+                        </span>
+                      </div>
+                    </motion.div>
+                  )}
+
                   {/* Video Controls */}
                   {showControls && (
                     <motion.div
@@ -257,23 +286,62 @@ export default function ProcessVideo({ videoSection }: ProcessVideoProps) {
                         </button>
 
                         {/* Mute/Unmute */}
-                        <button
-                          onClick={handleMuteToggle}
-                          className="p-2 rounded-full transition-all hover:bg-white/20"
-                          aria-label={isMuted ? "Unmute" : "Mute"}
-                        >
-                          {isMuted ? (
-                            <VolumeX
-                              className="w-5 h-5 sm:w-6 sm:h-6"
-                              style={{ color: "white" }}
-                            />
-                          ) : (
-                            <Volume2
-                              className="w-5 h-5 sm:w-6 sm:h-6"
-                              style={{ color: "white" }}
-                            />
+                        <div className="relative">
+                          <motion.button
+                            onClick={handleMuteToggle}
+                            className={`p-2 rounded-full transition-all ${
+                              isPlaying && isMuted
+                                ? "bg-white/30 ring-2 ring-white/60 ring-offset-2 ring-offset-black/50"
+                                : "hover:bg-white/20"
+                            }`}
+                            aria-label={isMuted ? "Unmute" : "Mute"}
+                            animate={
+                              isPlaying && isMuted
+                                ? {
+                                    scale: [1, 1.1, 1],
+                                    boxShadow: [
+                                      "0 0 0 0 rgba(255, 255, 255, 0.4)",
+                                      "0 0 0 10px rgba(255, 255, 255, 0)",
+                                      "0 0 0 0 rgba(255, 255, 255, 0)",
+                                    ],
+                                  }
+                                : {}
+                            }
+                            transition={
+                              isPlaying && isMuted
+                                ? {
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                  }
+                                : {}
+                            }
+                          >
+                            {isMuted ? (
+                              <VolumeX
+                                className="w-5 h-5 sm:w-6 sm:h-6"
+                                style={{ color: "white" }}
+                              />
+                            ) : (
+                              <Volume2
+                                className="w-5 h-5 sm:w-6 sm:h-6"
+                                style={{ color: "white" }}
+                              />
+                            )}
+                          </motion.button>
+
+                          {/* Press label */}
+                          {isPlaying && isMuted && (
+                            <motion.span
+                              className="absolute -top-8 left-1/2 -translate-x-1/2 text-white text-xs font-medium bg-black/60 px-2 py-1 rounded whitespace-nowrap"
+                              initial={{ opacity: 0, y: 5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 5 }}
+                            >
+                              Press
+                            </motion.span>
                           )}
-                        </button>
+                        </div>
 
                         {/* Duration (if provided) */}
                         {videoSection.duration && (
