@@ -288,9 +288,9 @@ export default function Hero({ data }: { data: HeroData }) {
           </motion.p>
         </motion.div>
 
-        {/* Bottom: Buttons */}
+        {/* Bottom: Button */}
         <div className="flex flex-col gap-2.5 items-center w-full max-w-xs mx-auto bg-gradient-to-t from-black via-black/95 to-transparent pb-8 pt-12">
-          <Link href={ctaLink || "/contact"} className="w-full">
+          <Link href={secondaryCtaLink || "/movie"} className="w-full">
             <motion.button
               variants={buttonVariants}
               initial="hidden"
@@ -298,18 +298,6 @@ export default function Hero({ data }: { data: HeroData }) {
               whileHover="hover"
               whileTap="tap"
               className="w-full px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
-            >
-              {ctaText || "Book your free consultation"}
-            </motion.button>
-          </Link>
-          <Link href={secondaryCtaLink || "/movie"} className="w-full">
-            <motion.button
-              variants={secondaryButtonVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover="hover"
-              whileTap="tap"
-              className="w-full px-6 py-2 bg-transparent border border-white/60 text-white text-xs font-medium uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black backdrop-blur-sm"
             >
               {secondaryCtaText || "Watch Our Films"}
             </motion.button>
@@ -356,32 +344,18 @@ export default function Hero({ data }: { data: HeroData }) {
               {subHeading}
             </motion.p>
 
-            <div className="flex flex-row gap-3 items-center">
-              <Link href={ctaLink || "/contact"}>
-                <motion.button
-                  variants={buttonVariants}
-                  initial="hidden"
-                  animate="visible"
-                  whileHover="hover"
-                  whileTap="tap"
-                  className="px-5 sm:px-6 md:px-6 lg:px-6 xl:px-8 py-2 sm:py-2 md:py-2.5 lg:py-2.5 xl:py-3 bg-white text-black text-[10px] sm:text-[10px] md:text-xs lg:text-xs xl:text-sm font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
-                >
-                  {ctaText || "Book your free consultation"}
-                </motion.button>
-              </Link>
-              <Link href={secondaryCtaLink || "/movie"}>
-                <motion.button
-                  variants={secondaryButtonVariants}
-                  initial="hidden"
-                  animate="visible"
-                  whileHover="hover"
-                  whileTap="tap"
-                  className="px-5 sm:px-6 md:px-6 lg:px-6 xl:px-8 py-2 sm:py-2 md:py-2.5 lg:py-2.5 xl:py-3 bg-transparent border-2 border-white/70 text-white text-[10px] sm:text-[10px] md:text-xs lg:text-xs xl:text-sm font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black backdrop-blur-sm"
-                >
-                  {secondaryCtaText || "Watch Our Films"}
-                </motion.button>
-              </Link>
-            </div>
+            <Link href={secondaryCtaLink || "/movie"}>
+              <motion.button
+                variants={buttonVariants}
+                initial="hidden"
+                animate="visible"
+                whileHover="hover"
+                whileTap="tap"
+                className="px-5 sm:px-6 md:px-6 lg:px-6 xl:px-8 py-2 sm:py-2 md:py-2.5 lg:py-2.5 xl:py-3 bg-white text-black text-[10px] sm:text-[10px] md:text-xs lg:text-xs xl:text-sm font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
+              >
+                {secondaryCtaText || "Watch Our Films"}
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
 
