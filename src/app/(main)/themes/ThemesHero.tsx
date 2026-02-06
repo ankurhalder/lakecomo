@@ -13,8 +13,8 @@ interface FeatureItem {
 
 interface ThemesHeroProps {
   hero?: {
+    preHeading?: string;
     mainTitle?: string;
-    highlightTitle?: string;
     secondaryTitle?: string;
     description?: string;
   };
@@ -78,7 +78,7 @@ export default function ThemesHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
-            Choose Your Experience
+            {hero.preHeading || "Choose Your Experience"}
           </motion.p>
 
           <motion.h1

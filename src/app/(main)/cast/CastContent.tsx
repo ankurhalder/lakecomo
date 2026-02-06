@@ -44,6 +44,12 @@ interface CastContentProps {
   content?: {
     paragraphs?: string[];
   };
+  cta?: {
+    title?: string;
+    description?: string;
+    buttonText?: string;
+    buttonLink?: string;
+  };
 }
 
 export default function CastContent({
@@ -52,6 +58,7 @@ export default function CastContent({
   fallingStars,
   showcaseImages,
   content,
+  cta,
 }: CastContentProps) {
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -229,17 +236,17 @@ export default function CastContent({
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 tracking-tight leading-[1.1]"
             style={{ color: "var(--text-primary)" }}
           >
-            Ready to Become a Star?
+            {cta?.title || "Ready to Become a Star?"}
           </h2>
           <p
             className="text-base md:text-lg mb-8"
             style={{ color: "var(--text-secondary)" }}
           >
-            Join our next cinematic experience and transform into your movie
-            character.
+            {cta?.description ||
+              "Join our next cinematic experience and transform into your movie character."}
           </p>
           <motion.a
-            href="/contact"
+            href={cta?.buttonLink || "/contact"}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-block px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors"
@@ -248,7 +255,7 @@ export default function CastContent({
               color: "var(--bg-primary)",
             }}
           >
-            Book Your Experience
+            {cta?.buttonText || "Book Your Experience"}
           </motion.a>
         </motion.div>
       </section>

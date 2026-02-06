@@ -1,117 +1,221 @@
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: 'crewPage',
-  title: 'Crew Page',
-  type: 'document',
+  name: "crewPage",
+  title: "Crew Page",
+  type: "document",
   fields: [
     defineField({
-      name: 'title',
-      title: 'Page Title',
-      type: 'string',
+      name: "title",
+      title: "Page Title",
+      type: "string",
     }),
     defineField({
-      name: 'hero',
-      title: 'Hero Section',
-      type: 'object',
+      name: "hero",
+      title: "Hero Section",
+      type: "object",
       options: { collapsible: true, collapsed: false },
       fields: [
-        defineField({ name: 'heading', title: 'Main Heading', type: 'string', initialValue: 'Your Film Crew' }),
-        defineField({ name: 'subHeading', title: 'Sub Heading', type: 'string', initialValue: 'From the Big Apple to the heart of Milan — our team brings international talent to your celebration' }),
-        defineField({ name: 'description', title: 'Description', type: 'text', rows: 4 }),
-      ]
+        defineField({
+          name: "heading",
+          title: "Main Heading",
+          type: "string",
+          initialValue: "Your Film Crew",
+        }),
+        defineField({
+          name: "subHeading",
+          title: "Sub Heading",
+          type: "string",
+          initialValue:
+            "From the Big Apple to the heart of Milan — our team brings international talent to your celebration",
+        }),
+        defineField({
+          name: "description",
+          title: "Description",
+          type: "text",
+          rows: 4,
+        }),
+      ],
     }),
     defineField({
-      name: 'heroFeature',
-      title: 'Hero Feature Badge',
-      description: 'Feature badge displayed on the right side of the hero section (desktop only).',
-      type: 'object',
+      name: "heroFeature",
+      title: "Hero Feature Badge",
+      description:
+        "Feature badge displayed on the right side of the hero section (desktop only).",
+      type: "object",
       options: { collapsible: true, collapsed: true },
       fields: [
-        defineField({ name: 'title', title: 'Badge Title', type: 'string', initialValue: 'MEET THE TEAM' }),
-        defineField({ name: 'subtitle', title: 'Badge Subtitle', type: 'string', initialValue: 'International Expertise' }),
-        defineField({ name: 'tag', title: 'Badge Tag', type: 'string', initialValue: '2026' }),
-        defineField({ name: 'link', title: 'Badge Link', type: 'string', initialValue: '/contact' }),
-      ]
+        defineField({
+          name: "title",
+          title: "Badge Title",
+          type: "string",
+          initialValue: "MEET THE TEAM",
+        }),
+        defineField({
+          name: "subtitle",
+          title: "Badge Subtitle",
+          type: "string",
+          initialValue: "International Expertise",
+        }),
+        defineField({
+          name: "tag",
+          title: "Badge Tag",
+          type: "string",
+          initialValue: "2026",
+        }),
+        defineField({
+          name: "link",
+          title: "Badge Link",
+          type: "string",
+          initialValue: "/contact",
+        }),
+      ],
     }),
     defineField({
-      name: 'crewMembers',
-      title: 'Crew Members',
-      description: 'Add your crew members here.',
-      type: 'array',
-      of: [{
-        type: 'object',
-        title: 'Crew Member',
-        fields: [
-          defineField({ name: 'name', title: 'Full Name', type: 'string' }),
-          defineField({ name: 'role', title: 'Role/Title', type: 'string' }),
-          defineField({ name: 'image', title: 'Photo', type: 'image', options: { hotspot: true } }),
-          defineField({ 
-            name: 'bio', 
-            title: 'Biography', 
-            type: 'array', 
-            of: [{ type: 'text', rows: 4 }],
-            description: 'Add multiple paragraphs for the bio.'
-          }),
-          defineField({
-            name: 'socials',
-            title: 'Social Media Links',
-            type: 'object',
-            options: { collapsible: true, collapsed: true },
-            fields: [
-              defineField({ name: 'website', title: 'Website URL', type: 'url' }),
-              defineField({ name: 'instagram', title: 'Instagram URL', type: 'url' }),
-              defineField({ name: 'linkedin', title: 'LinkedIn URL', type: 'url' }),
-              defineField({ name: 'twitter', title: 'Twitter/X URL', type: 'url' }),
-            ]
-          }),
-        ],
-        preview: {
-          select: {
-            title: 'name',
-            subtitle: 'role',
-            media: 'image'
-          }
-        }
-      }],
-    }),
-    defineField({
-      name: 'logosTitle',
-      title: 'Logos Section Title',
-      type: 'string',
-      initialValue: 'AS SEEN IN & COLLABORATIONS',
-    }),
-    defineField({
-      name: 'logos',
-      title: 'Partner/Client Logos',
-      description: 'Add logos of partners or production companies. You can drag and drop multiple images at once.',
-      type: 'array',
+      name: "crewMembers",
+      title: "Crew Members",
+      description: "Add your crew members here.",
+      type: "array",
       of: [
         {
-          type: 'image',
-          options: { hotspot: true },
+          type: "object",
+          title: "Crew Member",
           fields: [
-            {
-              name: 'name',
-              type: 'string',
-              title: 'Partner/Company Name',
-            },
+            defineField({ name: "name", title: "Full Name", type: "string" }),
+            defineField({ name: "role", title: "Role/Title", type: "string" }),
+            defineField({
+              name: "image",
+              title: "Photo",
+              type: "image",
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: "bio",
+              title: "Biography",
+              type: "array",
+              of: [{ type: "text", rows: 4 }],
+              description: "Add multiple paragraphs for the bio.",
+            }),
+            defineField({
+              name: "socials",
+              title: "Social Media Links",
+              type: "object",
+              options: { collapsible: true, collapsed: true },
+              fields: [
+                defineField({
+                  name: "website",
+                  title: "Website URL",
+                  type: "url",
+                }),
+                defineField({
+                  name: "instagram",
+                  title: "Instagram URL",
+                  type: "url",
+                }),
+                defineField({
+                  name: "linkedin",
+                  title: "LinkedIn URL",
+                  type: "url",
+                }),
+                defineField({
+                  name: "twitter",
+                  title: "Twitter/X URL",
+                  type: "url",
+                }),
+              ],
+            }),
           ],
           preview: {
             select: {
-              title: 'name',
-              fileName: 'asset.originalFilename',
-              media: 'asset',
-            },
-            prepare({ title, fileName, media }) {
-              return {
-                title: title || fileName || 'Untitled Logo',
-                media,
-              }
+              title: "name",
+              subtitle: "role",
+              media: "image",
             },
           },
         },
       ],
     }),
-  ]
-})
+    defineField({
+      name: "logosTitle",
+      title: "Logos Section Title",
+      type: "string",
+      initialValue: "AS SEEN IN & COLLABORATIONS",
+    }),
+    defineField({
+      name: "logos",
+      title: "Partner/Client Logos",
+      description:
+        "Add logos of partners or production companies. You can drag and drop multiple images at once.",
+      type: "array",
+      of: [
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "name",
+              type: "string",
+              title: "Partner/Company Name",
+            },
+          ],
+          preview: {
+            select: {
+              title: "name",
+              fileName: "asset.originalFilename",
+              media: "asset",
+            },
+            prepare({ title, fileName, media }) {
+              return {
+                title: title || fileName || "Untitled Logo",
+                media,
+              };
+            },
+          },
+        },
+      ],
+    }),
+    defineField({
+      name: "cta",
+      title: "Call-to-Action Section",
+      description: "The CTA section at the bottom of the page",
+      type: "object",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({
+          name: "icon",
+          title: "Icon Name",
+          type: "string",
+          initialValue: "Film",
+          description:
+            "Lucide icon name (e.g., Film, Clapperboard, Camera, Video)",
+        }),
+        defineField({
+          name: "title",
+          title: "CTA Title",
+          type: "string",
+          initialValue: "Ready to Create Magic Together?",
+        }),
+        defineField({
+          name: "description",
+          title: "CTA Description",
+          type: "text",
+          rows: 2,
+          initialValue:
+            "Let our international team bring your cinematic vision to life.",
+        }),
+        defineField({
+          name: "buttonText",
+          title: "Button Text",
+          type: "string",
+          initialValue: "Get In Touch",
+        }),
+        defineField({
+          name: "buttonLink",
+          title: "Button Link",
+          type: "string",
+          initialValue: "/contact",
+        }),
+      ],
+    }),
+  ],
+});

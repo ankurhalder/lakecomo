@@ -191,5 +191,47 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: "cta",
+      title: "Call-to-Action Section",
+      description: "The CTA section at the bottom of the page",
+      type: "object",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({
+          name: "icon",
+          title: "Icon Name",
+          type: "string",
+          initialValue: "Film",
+          description: "Lucide icon name (e.g., Film, Clapperboard, Camera)",
+        }),
+        defineField({
+          name: "title",
+          title: "CTA Title",
+          type: "string",
+          initialValue: "Ready to Create Your Movie?",
+        }),
+        defineField({
+          name: "description",
+          title: "CTA Description",
+          type: "text",
+          rows: 2,
+          initialValue:
+            "Start your cinematic journey today. Let us transform your celebration into an unforgettable movie experience.",
+        }),
+        defineField({
+          name: "buttonText",
+          title: "Button Text",
+          type: "string",
+          initialValue: "Start Your Experience",
+        }),
+        defineField({
+          name: "buttonLink",
+          title: "Button Link",
+          type: "string",
+          initialValue: "/contact",
+        }),
+      ],
+    }),
   ],
 });

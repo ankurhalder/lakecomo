@@ -6,8 +6,8 @@ const query = `
   *[_type == "themesPage"][0] {
     title,
     hero {
+      preHeading,
       mainTitle,
-      highlightTitle,
       secondaryTitle,
       description
     },
@@ -28,6 +28,13 @@ const query = `
       feel,
       ctaText,
       ctaLink
+    },
+    customThemeCta {
+      icon,
+      title,
+      description,
+      buttonText,
+      buttonLink
     }
   }
 `;
@@ -35,14 +42,18 @@ const query = `
 const fetchThemesPageData = async () => {
   try {
     const data = await client.fetch(query);
-    
+
     if (!data) return null;
 
     if (data.themesList) {
-      data.themesList = data.themesList.map((theme: { image?: unknown; [key: string]: unknown }) => ({
-        ...theme,
-        imageUrl: theme.image ? urlFor(theme.image).auto('format').url() : null
-      }));
+      data.themesList = data.themesList.map(
+        (theme: { image?: unknown; [key: string]: unknown }) => ({
+          ...theme,
+          imageUrl: theme.image
+            ? urlFor(theme.image).auto("format").url()
+            : null,
+        }),
+      );
     }
 
     return data;
@@ -52,11 +63,10 @@ const fetchThemesPageData = async () => {
   }
 };
 
-const cachedFetch = unstable_cache(
-  fetchThemesPageData,
-  ["themesPage"],
-  { revalidate: DEFAULT_REVALIDATE, tags: ["themesPage", "content"] }
-);
+const cachedFetch = unstable_cache(fetchThemesPageData, ["themesPage"], {
+  revalidate: DEFAULT_REVALIDATE,
+  tags: ["themesPage", "content"],
+});
 
 export async function getThemesPageData() {
   if (process.env.NODE_ENV === "development") {

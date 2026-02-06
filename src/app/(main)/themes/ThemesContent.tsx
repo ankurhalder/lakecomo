@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Wand2 } from "lucide-react";
+import { Wand2, Sparkles, type LucideIcon } from "lucide-react";
 import ThemesHero from "./ThemesHero";
 import ThemeCard from "./ThemeCard";
 import ThemeModal from "./ThemeModal";
@@ -24,8 +24,8 @@ interface Theme {
 interface ThemesData {
   title?: string;
   hero?: {
+    preHeading?: string;
     mainTitle?: string;
-    highlightTitle?: string;
     secondaryTitle?: string;
     description?: string;
   };
@@ -36,12 +36,20 @@ interface ThemesData {
     link?: string;
   }[];
   themesList?: Theme[];
+  customThemeCta?: {
+    icon?: string;
+    title?: string;
+    description?: string;
+    buttonText?: string;
+    buttonLink?: string;
+  };
 }
 
 export default function ThemesContent({ data }: { data: ThemesData }) {
   const hero = data?.hero || {};
   const featuresGrid = data?.featuresGrid || [];
   const themes = data?.themesList || [];
+  const customThemeCta = data?.customThemeCta || {};
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedTheme, setSelectedTheme] = useState<Theme | null>(null);
 
@@ -82,27 +90,34 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Wand2
-              className="w-10 h-10 mx-auto mb-4"
-              style={{ color: "var(--text-secondary)", opacity: 0.5 }}
-            />
+            {customThemeCta.icon === "Sparkles" ? (
+              <Sparkles
+                className="w-10 h-10 mx-auto mb-4"
+                style={{ color: "var(--text-secondary)", opacity: 0.5 }}
+              />
+            ) : (
+              <Wand2
+                className="w-10 h-10 mx-auto mb-4"
+                style={{ color: "var(--text-secondary)", opacity: 0.5 }}
+              />
+            )}
 
             <h2
               className="text-2xl md:text-3xl font-bold mb-3"
               style={{ color: "var(--text-primary)" }}
             >
-              Create Your Own Theme
+              {customThemeCta.title || "Create Your Own Theme"}
             </h2>
 
             <p
               className="text-sm md:text-base mb-8 leading-relaxed"
               style={{ color: "var(--text-secondary)" }}
             >
-              Don&apos;t see what you&apos;re looking for? We can design a
-              completely custom theme tailored to your vision.
+              {customThemeCta.description ||
+                "Don't see what you're looking for? We can design a completely custom theme tailored to your vision."}
             </p>
 
-            <Link href="/contact">
+            <Link href={customThemeCta.buttonLink || "/contact"}>
               <motion.button
                 whileTap={{ scale: 0.98 }}
                 className="px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-all"
@@ -111,7 +126,7 @@ export default function ThemesContent({ data }: { data: ThemesData }) {
                   color: "var(--bg-primary)",
                 }}
               >
-                Start Your Custom Theme
+                {customThemeCta.buttonText || "Start Your Custom Theme"}
               </motion.button>
             </Link>
           </motion.div>

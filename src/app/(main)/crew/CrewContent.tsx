@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Film, Star, Sparkles } from "lucide-react";
+import {
+  Film,
+  Star,
+  Sparkles,
+  Clapperboard,
+  Camera,
+  Video,
+} from "lucide-react";
 import Image from "next/image";
 import CrewHero from "./CrewHero";
 import CrewMemberCard from "./CrewMemberCard";
@@ -12,7 +19,16 @@ interface CrewContentProps {
 }
 
 export default function CrewContent({ data }: CrewContentProps) {
-  const { hero, heroFeature, crewMembers } = data;
+  const { hero, heroFeature, crewMembers, cta } = data;
+
+  const IconComponent =
+    cta?.icon === "Clapperboard"
+      ? Clapperboard
+      : cta?.icon === "Camera"
+        ? Camera
+        : cta?.icon === "Video"
+          ? Video
+          : Film;
 
   return (
     <div
@@ -159,7 +175,7 @@ export default function CrewContent({ data }: CrewContentProps) {
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
-              <Film
+              <IconComponent
                 size={20}
                 style={{ color: "var(--accent)", opacity: 0.6 }}
               />
@@ -170,16 +186,17 @@ export default function CrewContent({ data }: CrewContentProps) {
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 tracking-tight leading-[1.1]"
             style={{ color: "var(--text-primary)" }}
           >
-            Ready to Create Magic Together?
+            {cta?.title || "Ready to Create Magic Together?"}
           </h2>
           <p
             className="text-base md:text-lg mb-8"
             style={{ color: "var(--text-secondary)" }}
           >
-            Let our international team bring your cinematic vision to life.
+            {cta?.description ||
+              "Let our international team bring your cinematic vision to life."}
           </p>
           <motion.a
-            href="/contact"
+            href={cta?.buttonLink || "/contact"}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-block px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors"
@@ -188,7 +205,7 @@ export default function CrewContent({ data }: CrewContentProps) {
               color: "var(--bg-primary)",
             }}
           >
-            Get In Touch
+            {cta?.buttonText || "Get In Touch"}
           </motion.a>
         </motion.div>
       </section>

@@ -38,6 +38,13 @@ export interface CrewPageData {
   crewMembers: CrewMember[];
   logosTitle?: string;
   logos?: Logo[];
+  cta?: {
+    icon?: string;
+    title?: string;
+    description?: string;
+    buttonText?: string;
+    buttonLink?: string;
+  };
 }
 
 const query = `
@@ -67,30 +74,47 @@ const query = `
       }
     },
     logosTitle,
-    logos
+    logos,
+    cta {
+      icon,
+      title,
+      description,
+      buttonText,
+      buttonLink
+    }
   }
 `;
 
 const fetchCrewPageData = async (): Promise<CrewPageData | null> => {
   try {
     const data = await client.fetch(query);
-    
+
     if (!data) return null;
 
     if (data.crewMembers) {
-      data.crewMembers = data.crewMembers.map((member: { image?: object; name: string; role: string; bio?: string[]; socials?: CrewMemberSocials }) => ({
-        name: member.name,
-        role: member.role,
-        imageUrl: member.image ? urlFor(member.image).auto('format').url() : undefined,
-        bio: member.bio || [],
-        socials: member.socials,
-      }));
+      data.crewMembers = data.crewMembers.map(
+        (member: {
+          image?: object;
+          name: string;
+          role: string;
+          bio?: string[];
+          socials?: CrewMemberSocials;
+        }) => ({
+          name: member.name,
+          role: member.role,
+          imageUrl: member.image
+            ? urlFor(member.image).auto("format").url()
+            : undefined,
+          bio: member.bio || [],
+          socials: member.socials,
+        }),
+      );
     }
 
     if (data.logos) {
       data.logos = data.logos.map((logo: { name?: string } & object) => ({
         name: logo.name,
-        imageUrl: logo ? urlFor(logo).auto('format').url() : undefined,
+        imageUrl: logo ? urlFor(logo).auto("format").url() : undefined,
       }));
     }
 
@@ -101,11 +125,10 @@ const fetchCrewPageData = async (): Promise<CrewPageData | null> => {
   }
 };
 
-const cachedFetch = unstable_cache(
-  fetchCrewPageData,
-  ["crewPage"],
-  { revalidate: DEFAULT_REVALIDATE, tags: ["crewPage", "content"] }
-);
+const cachedFetch = unstable_cache(fetchCrewPageData, ["crewPage"], {
+  revalidate: DEFAULT_REVALIDATE,
+  tags: ["crewPage", "content"],
+});
 
 export async function getCrewPageData(): Promise<CrewPageData | null> {
   if (process.env.NODE_ENV === "development") {

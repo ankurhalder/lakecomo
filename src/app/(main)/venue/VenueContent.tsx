@@ -100,13 +100,14 @@ export default function VenueContent({ data }: VenueContentProps) {
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 tracking-tight leading-[1.1]"
             style={{ color: "var(--text-primary)" }}
           >
-            Host Your Event at the Palace
+            {cta?.title || "Host Your Event at the Palace"}
           </h2>
           <p
             className="text-base md:text-lg mb-8"
             style={{ color: "var(--text-secondary)" }}
           >
-            Create unforgettable memories in this historic setting.
+            {cta?.description ||
+              "Create unforgettable memories in this historic setting."}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <motion.a
@@ -119,7 +120,7 @@ export default function VenueContent({ data }: VenueContentProps) {
                 color: "var(--bg-primary)",
               }}
             >
-              Book Your Experience
+              {cta?.buttonText || "Book Your Experience"}
             </motion.a>
           </div>
         </motion.div>

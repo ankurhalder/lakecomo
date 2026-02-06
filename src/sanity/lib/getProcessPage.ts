@@ -43,6 +43,13 @@ export interface ProcessPageData {
     audioPromptText?: string;
   };
   steps: ProcessStep[];
+  cta?: {
+    icon?: string;
+    title?: string;
+    description?: string;
+    buttonText?: string;
+    buttonLink?: string;
+  };
 }
 
 const query = `
@@ -85,6 +92,13 @@ const query = `
       tagline,
       heading,
       body
+    },
+    cta {
+      icon,
+      title,
+      description,
+      buttonText,
+      buttonLink
     }
   }
 `;

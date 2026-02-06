@@ -39,6 +39,12 @@ export interface CastPageData {
   content?: {
     paragraphs: string[];
   };
+  cta?: {
+    title?: string;
+    description?: string;
+    buttonText?: string;
+    buttonLink?: string;
+  };
 }
 
 const query = `
@@ -68,22 +74,30 @@ const query = `
       "title": title,
       "role": role
     },
-    content
+    content,
+    cta {
+      title,
+      description,
+      buttonText,
+      buttonLink
+    }
   }
 `;
 
 const fetchCastPageData = async (): Promise<CastPageData | null> => {
   try {
     const data = await client.fetch(query);
-    
+
     if (!data) return null;
 
     if (data.showcaseImages) {
-      data.showcaseImages = data.showcaseImages.map((item: { image?: unknown; title?: string; role?: string }) => ({
-        url: item.image ? urlFor(item.image).auto('format').url() : "",
-        title: item.title,
-        role: item.role
-      }));
+      data.showcaseImages = data.showcaseImages.map(
+        (item: { image?: unknown; title?: string; role?: string }) => ({
+          url: item.image ? urlFor(item.image).auto("format").url() : "",
+          title: item.title,
+          role: item.role,
+        }),
+      );
     }
 
     return data;
@@ -93,11 +107,10 @@ const fetchCastPageData = async (): Promise<CastPageData | null> => {
   }
 };
 
-const cachedFetch = unstable_cache(
-  fetchCastPageData,
-  ["castPage"],
-  { revalidate: DEFAULT_REVALIDATE, tags: ["castPage", "content"] }
-);
+const cachedFetch = unstable_cache(fetchCastPageData, ["castPage"], {
+  revalidate: DEFAULT_REVALIDATE,
+  tags: ["castPage", "content"],
+});
 
 export async function getCastPageData(): Promise<CastPageData | null> {
   if (process.env.NODE_ENV === "development") {

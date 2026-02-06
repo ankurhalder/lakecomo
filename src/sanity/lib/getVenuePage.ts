@@ -1,14 +1,11 @@
 import { client, DEFAULT_REVALIDATE } from "./client";
 import { unstable_cache } from "next/cache";
 
-
 export interface GalleryImage {
   url: string;
   alt?: string;
   caption?: string;
 }
-
-
 
 export interface VenuePageData {
   title: string;
@@ -29,6 +26,11 @@ export interface VenuePageData {
   externalLinks?: {
     palaceWebsite?: string;
     bookingLink?: string;
+  };
+  cta?: {
+    title?: string;
+    description?: string;
+    buttonText?: string;
   };
 }
 
@@ -56,6 +58,11 @@ const query = `
     externalLinks {
       palaceWebsite,
       bookingLink
+    },
+    cta {
+      title,
+      description,
+      buttonText
     }
   }
 `;
@@ -63,7 +70,7 @@ const query = `
 const fetchVenuePageData = async (): Promise<VenuePageData | null> => {
   try {
     const data = await client.fetch(query);
-    
+
     if (!data) return null;
 
     if (data.galleryImages) {
@@ -83,11 +90,10 @@ const fetchVenuePageData = async (): Promise<VenuePageData | null> => {
   }
 };
 
-const cachedFetch = unstable_cache(
-  fetchVenuePageData,
-  ["venuePage"],
-  { revalidate: DEFAULT_REVALIDATE, tags: ["venuePage", "content"] }
-);
+const cachedFetch = unstable_cache(fetchVenuePageData, ["venuePage"], {
+  revalidate: DEFAULT_REVALIDATE,
+  tags: ["venuePage", "content"],
+});
 
 export async function getVenuePageData(): Promise<VenuePageData | null> {
   if (process.env.NODE_ENV === "development") {
