@@ -18,6 +18,7 @@ export default function VenueContent({ data }: VenueContentProps) {
     eventInfo,
     galleryImages,
     externalLinks,
+    cta,
   } = data;
 
   return (
