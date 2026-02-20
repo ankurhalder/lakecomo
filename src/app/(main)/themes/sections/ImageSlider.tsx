@@ -41,7 +41,6 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<number>(1);
   const [isPaused, setIsPaused] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const touchStartX = useRef<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -51,13 +50,8 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
   });
   const innerY = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
-  const clearTimer = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-  };
-
   const goTo = useCallback(
     (index: number, dir: number) => {
-      clearTimer();
       setDirection(dir);
       setCurrentIndex(index);
     },
@@ -87,15 +81,15 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
     [currentIndex, goTo],
   );
 
-  // Autoplay
+  // Autoplay — resets on every slide change so manual nav never breaks it
   useEffect(() => {
     if (images.length <= 1 || isPaused) return;
-    intervalRef.current = setInterval(() => {
+    const timer = setTimeout(() => {
       setDirection(1);
       setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
     }, SLIDE_DURATION);
-    return () => clearTimer();
-  }, [images.length, isPaused]);
+    return () => clearTimeout(timer);
+  }, [images.length, isPaused, currentIndex]);
 
   // Touch swipe
   const handleTouchStart = (e: React.TouchEvent) => {
