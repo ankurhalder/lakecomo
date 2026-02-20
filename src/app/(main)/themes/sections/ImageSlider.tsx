@@ -1,14 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import type { SliderImage } from "@/sanity/lib/getThemesPage";
 
-const SLIDE_DURATION = 5500;
 const TRANSITION_DURATION = 0.9;
 const KEN_BURNS_SCALE = 1.04;
-const KEN_BURNS_DURATION = (SLIDE_DURATION + TRANSITION_DURATION * 1000) / 1000;
+const KEN_BURNS_DURATION = 7.4;
 
 interface ImageSliderProps {
   images?: SliderImage[];
@@ -38,8 +37,6 @@ const slideVariants = {
 export default function ImageSlider({ images = [] }: ImageSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<number>(1);
-  const [isPaused, setIsPaused] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const touchStartX = useRef<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -49,30 +46,19 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
   });
   const innerY = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
-  const clearTimer = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-  };
-
   const goTo = useCallback((index: number, dir: number) => {
-    clearTimer();
     setDirection(dir);
     setCurrentIndex(index);
   }, []);
 
   const goNext = useCallback(() => {
-    setCurrentIndex((prev) => {
-      const next = prev === images.length - 1 ? 0 : prev + 1;
-      setDirection(1);
-      return next;
-    });
+    setDirection(1);
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   }, [images.length]);
 
   const goPrev = useCallback(() => {
-    setCurrentIndex((prev) => {
-      const next = prev === 0 ? images.length - 1 : prev - 1;
-      setDirection(-1);
-      return next;
-    });
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   }, [images.length]);
 
   const goDot = useCallback(
@@ -81,15 +67,6 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
     },
     [currentIndex, goTo],
   );
-
-  useEffect(() => {
-    if (images.length <= 1 || isPaused) return;
-    intervalRef.current = setInterval(() => {
-      setDirection(1);
-      setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-    }, SLIDE_DURATION);
-    return () => clearTimer();
-  }, [images.length, isPaused]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -115,8 +92,6 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
         backgroundColor: "var(--bg-primary)",
         perspective: "1400px",
       }}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       aria-label="Event photo gallery"
@@ -218,7 +193,7 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
         {images[currentIndex]?.caption && (
           <motion.p
             key={`caption-${currentIndex}`}
-            className="absolute bottom-16 left-8 md:left-14 z-20 text-xs md:text-sm italic font-light max-w-xs"
+            className="absolute bottom-14 left-8 md:left-14 z-20 text-xs md:text-sm italic font-light max-w-xs"
             style={{ color: "rgba(255,255,255,0.5)" }}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -277,7 +252,7 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
       </button>
 
       {/* Bottom controls: dots + counter */}
-      <div className="absolute bottom-5 left-0 right-0 z-20 flex flex-col items-center gap-2">
+      <div className="absolute bottom-4 left-0 right-0 z-20 flex flex-col items-center gap-2">
         <div
           className="flex items-center gap-2"
           role="tablist"
@@ -310,21 +285,6 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
           <span style={{ color: "rgba(255,255,255,0.4)" }}> / </span>
           {String(images.length).padStart(2, "0")}
         </span>
-      </div>
-
-      {/* Progress bar */}
-      <div
-        className="absolute bottom-0 left-0 right-0 z-20 h-0.5"
-        style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
-      >
-        <motion.div
-          key={`progress-${currentIndex}`}
-          className="h-full"
-          style={{ backgroundColor: "var(--accent)" }}
-          initial={{ width: "0%" }}
-          animate={{ width: "100%" }}
-          transition={{ duration: SLIDE_DURATION / 1000, ease: "linear" }}
-        />
       </div>
     </section>
   );
