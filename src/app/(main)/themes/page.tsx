@@ -1,22 +1,30 @@
-import { getThemesPageData } from "@/sanity/lib/getThemesPage"
-import ThemesContent from "./ThemesContent"
-import type { Metadata } from "next"
-import { Suspense } from "react"
-import PageLoading from "@/components/shared/PageLoading"
+import { getThemesPageData } from "@/sanity/lib/getThemesPage";
+import ThemesContent from "./ThemesContent";
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import PageLoading from "@/components/shared/PageLoading";
 
 export const metadata: Metadata = {
-  title: "Themes | Lake Como Style",
-  description: "Choose from our signature cinematic themes: 007 Agents of Style, The Hollywood Hussle, and La Dolce Vita. Transform your celebration into an unforgettable movie experience.",
+  title: "Spies of Style Dinner Experience | Lake Como Style",
+  description:
+    "Step into history, intrigue, and glamour on Lake Como. A James Bond–inspired immersive dinner experience rooted in the real wartime exploits of Cecil Richard Mallaby.",
   openGraph: {
-    title: "Cinematic Themes | Lake Como Style", 
-    description: "Explore our signature themes designed to make every guest a star.",
+    title: "Spies of Style Dinner Experience | Lake Como Style",
+    description:
+      "Live a James Bond–inspired spy adventure on the shores of Lake Como. Interactive missions, cinematic dining, secret codes, and glamour await.",
     type: "website",
   },
-}
+  twitter: {
+    card: "summary_large_image",
+    title: "Spies of Style Dinner Experience | Lake Como Style",
+    description:
+      "An immersive James Bond–inspired dining experience on Lake Como — two cinematic locations, spy kits, secret missions, and glamour.",
+  },
+};
 
 async function ThemesPageContent() {
-  const data = await getThemesPageData()
-  return <ThemesContent data={data} />
+  const data = await getThemesPageData();
+  return <ThemesContent data={data} />;
 }
 
 export default async function ThemesPage() {
@@ -26,5 +34,5 @@ export default async function ThemesPage() {
         <ThemesPageContent />
       </Suspense>
     </main>
-  )
+  );
 }
