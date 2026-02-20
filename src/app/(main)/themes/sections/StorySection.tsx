@@ -3,8 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const SPY_GOLD = "#C9A86C";
-
 interface StorySectionProps {
   storySection?: {
     historyTitle?: string;
@@ -24,24 +22,23 @@ const DEFAULTS = {
     "Cecil Richard Mallaby, a fearless British intelligence officer, carried out daring secret missions on Lake Como during WWII — parachuting behind enemy lines, using disguises, and transmitting critical information under pressure. Some historians believe his exploits inspired Ian Fleming when he created James Bond, the world's most iconic spy. At our Spies of Style Dinner Experience, guests step into this thrilling world of espionage, intrigue, and adventure.",
 };
 
-// Reusable cinematic section divider
 function CinematicDivider() {
   return (
     <div className="flex items-center gap-4 my-7 md:my-10">
       <div
         className="flex-1 h-px"
         style={{
-          background: `linear-gradient(to right, transparent, ${SPY_GOLD}66)`,
+          background: "linear-gradient(to right, transparent, rgba(255,255,255,0.2))",
         }}
       />
       <div
         className="w-2 h-2 rotate-45 flex-shrink-0"
-        style={{ backgroundColor: SPY_GOLD }}
+        style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
       />
       <div
         className="flex-1 h-px"
         style={{
-          background: `linear-gradient(to left, transparent, ${SPY_GOLD}66)`,
+          background: "linear-gradient(to left, transparent, rgba(255,255,255,0.2))",
         }}
       />
     </div>
@@ -56,7 +53,6 @@ export default function StorySection({ storySection = {} }: StorySectionProps) {
   const bondConnectionText =
     storySection.bondConnectionText ?? DEFAULTS.bondConnectionText;
 
-  // Split paragraphs on newlines for proper rendering
   const historyParagraphs = historyText
     .split("\n")
     .map((p) => p.trim())
@@ -67,14 +63,6 @@ export default function StorySection({ storySection = {} }: StorySectionProps) {
       className="relative py-10 md:py-14 lg:py-20 overflow-hidden"
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
-      {/* Subtle background texture — radial glow at center */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(ellipse 80% 60% at 50% 50%, ${SPY_GOLD}06 0%, transparent 70%)`,
-        }}
-      />
-
       <div className="relative z-10 max-w-5xl mx-auto px-5 md:px-8 lg:px-12">
         {/* ── HISTORY BLOCK ─────────────────────────────────────────────── */}
         <motion.div
@@ -83,26 +71,22 @@ export default function StorySection({ storySection = {} }: StorySectionProps) {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Section label */}
           <div className="flex items-center gap-3 mb-4">
             <div
               className="h-px w-8 flex-shrink-0"
-              style={{ backgroundColor: SPY_GOLD }}
+              style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
             />
             <span
               className="text-[10px] uppercase tracking-[0.5em] font-light"
-              style={{ color: SPY_GOLD }}
+              style={{ color: "rgba(255,255,255,0.5)" }}
             >
               The Story
             </span>
           </div>
 
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-tight mb-5"
-            style={{
-              color: "var(--text-primary)",
-              fontFamily: "var(--font-limelight)",
-            }}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1] mb-5"
+            style={{ color: "var(--text-primary)" }}
           >
             {historyTitle}
           </h2>
@@ -112,10 +96,7 @@ export default function StorySection({ storySection = {} }: StorySectionProps) {
               <motion.p
                 key={i}
                 className="text-base md:text-lg leading-[1.85] font-light"
-                style={{
-                  color: "rgba(255,255,255,0.78)",
-                  fontFamily: "var(--font-courier)",
-                }}
+                style={{ color: "var(--text-secondary)" }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
@@ -139,52 +120,44 @@ export default function StorySection({ storySection = {} }: StorySectionProps) {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.85, ease: "easeOut" }}
           >
-            {/* Section label */}
             <div className="flex items-center gap-3 mb-4">
               <div
                 className="h-px w-8 flex-shrink-0"
-                style={{ backgroundColor: SPY_GOLD }}
+                style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
               />
               <span
                 className="text-[10px] uppercase tracking-[0.5em] font-light"
-                style={{ color: SPY_GOLD }}
+                style={{ color: "rgba(255,255,255,0.5)" }}
               >
                 The Inspiration
               </span>
             </div>
 
             <h2
-              className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-tight mb-5"
-              style={{
-                color: "var(--text-primary)",
-                fontFamily: "var(--font-limelight)",
-              }}
+              className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1] mb-5"
+              style={{ color: "var(--text-primary)" }}
             >
               {bondConnectionTitle}
             </h2>
 
-            {/* Quote block — premium styling */}
+            {/* Quote block */}
             <div className="relative pl-7">
-              {/* Vertical gold bar */}
               <div
                 className="absolute left-0 top-0 bottom-0 w-0.5"
                 style={{
-                  background: `linear-gradient(to bottom, ${SPY_GOLD}, ${SPY_GOLD}44)`,
+                  background:
+                    "linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.05))",
                 }}
               />
-              {/* Opening quote mark */}
               <span
                 className="block text-4xl leading-none mb-1 font-serif"
-                style={{ color: SPY_GOLD, opacity: 0.6 }}
+                style={{ color: "rgba(255,255,255,0.2)" }}
               >
-              &ldquo;
+                &ldquo;
               </span>
               <p
-                className="text-base md:text-lg leading-[1.9] italic"
-                style={{
-                  color: "rgba(255,255,255,0.85)",
-                  fontFamily: "var(--font-courier)",
-                }}
+                className="text-base md:text-lg leading-[1.9] italic font-light"
+                style={{ color: "var(--text-secondary)" }}
               >
                 {bondConnectionText}
               </p>
@@ -200,8 +173,8 @@ export default function StorySection({ storySection = {} }: StorySectionProps) {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.9, ease: "easeOut" }}
               style={{
-                border: `1px solid ${SPY_GOLD}33`,
-                boxShadow: `0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.03)`,
+                border: "1px solid var(--border-color)",
+                boxShadow: "0 24px 80px rgba(0,0,0,0.7)",
               }}
             >
               <Image
@@ -218,19 +191,18 @@ export default function StorySection({ storySection = {} }: StorySectionProps) {
                     "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)",
                 }}
               />
-              {/* Gold corner frame */}
               <div
                 className="absolute top-3 left-3 w-6 h-6"
                 style={{
-                  borderTop: `1px solid ${SPY_GOLD}99`,
-                  borderLeft: `1px solid ${SPY_GOLD}99`,
+                  borderTop: "1px solid rgba(255,255,255,0.25)",
+                  borderLeft: "1px solid rgba(255,255,255,0.25)",
                 }}
               />
               <div
                 className="absolute bottom-3 right-3 w-6 h-6"
                 style={{
-                  borderBottom: `1px solid ${SPY_GOLD}99`,
-                  borderRight: `1px solid ${SPY_GOLD}99`,
+                  borderBottom: "1px solid rgba(255,255,255,0.25)",
+                  borderRight: "1px solid rgba(255,255,255,0.25)",
                 }}
               />
             </motion.div>

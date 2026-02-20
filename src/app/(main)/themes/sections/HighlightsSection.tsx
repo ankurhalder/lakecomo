@@ -1,9 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
-
-const SPY_GOLD = "#C9A86C";
 
 interface HighlightsSectionProps {
   highlightsSection?: {
@@ -37,20 +34,6 @@ export default function HighlightsSection({
       className="relative py-10 md:py-14 lg:py-20 overflow-hidden"
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
-      {/* Faint horizontal scan lines — cinematic effect */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-20"
-        style={{
-          backgroundImage: `repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 3px,
-            rgba(201,168,108,0.015) 3px,
-            rgba(201,168,108,0.015) 4px
-          )`,
-        }}
-      />
-
       <div className="relative z-10 max-w-6xl mx-auto px-5 md:px-8 lg:px-12 xl:px-16">
         {/* Section Header */}
         <motion.div
@@ -64,46 +47,44 @@ export default function HighlightsSection({
             <div
               className="h-px w-10 flex-shrink-0"
               style={{
-                background: `linear-gradient(to right, transparent, ${SPY_GOLD})`,
+                background:
+                  "linear-gradient(to right, transparent, rgba(255,255,255,0.2))",
               }}
             />
-            <Sparkles size={13} style={{ color: SPY_GOLD }} />
+            <div
+              className="w-1.5 h-1.5 rotate-45 flex-shrink-0"
+              style={{ backgroundColor: "rgba(255,255,255,0.4)" }}
+            />
             <div
               className="h-px w-10 flex-shrink-0"
               style={{
-                background: `linear-gradient(to left, transparent, ${SPY_GOLD})`,
+                background:
+                  "linear-gradient(to left, transparent, rgba(255,255,255,0.2))",
               }}
             />
           </div>
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight"
-            style={{
-              color: "var(--text-primary)",
-              fontFamily: "var(--font-limelight)",
-            }}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1]"
+            style={{ color: "var(--text-primary)" }}
           >
             {title}
           </h2>
         </motion.div>
 
-        {/* Highlights Grid
-            Responsive: 1 col mobile, 2 col tablet, 3 col large desktop.
-            Conversion strategy: numbered items with strong visual weight.
-            Odd item gets full-width on its row for breathing room. */}
+        {/* Highlights Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {highlights.map((highlight, index) => (
             <motion.div
               key={index}
               className={`relative p-6 md:p-7 rounded-2xl flex items-start gap-4 ${
-                // If last item and total is odd, span full on md, center on lg
                 index === highlights.length - 1 && highlights.length % 2 !== 0
                   ? "sm:col-span-2 lg:col-span-1"
                   : ""
               }`}
               style={{
-                border: `1px solid ${SPY_GOLD}1E`,
+                border: "1px solid var(--border-color)",
                 background:
-                  "linear-gradient(135deg, rgba(201,168,108,0.04) 0%, rgba(255,255,255,0.01) 100%)",
+                  "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
               }}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -114,25 +95,20 @@ export default function HighlightsSection({
                 ease: "easeOut",
               }}
               whileHover={{
-                borderColor: `${SPY_GOLD}44`,
-                background:
-                  "linear-gradient(135deg, rgba(201,168,108,0.07) 0%, rgba(255,255,255,0.02) 100%)",
+                borderColor: "rgba(255,255,255,0.2)",
               }}
             >
-              {/* Gold number bullet */}
+              {/* Number bullet */}
               <div
                 className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
                 style={{
-                  border: `1px solid ${SPY_GOLD}55`,
-                  backgroundColor: `${SPY_GOLD}11`,
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  backgroundColor: "rgba(255,255,255,0.05)",
                 }}
               >
                 <span
                   className="text-xs font-bold tracking-wider"
-                  style={{
-                    color: SPY_GOLD,
-                    fontFamily: "var(--font-limelight)",
-                  }}
+                  style={{ color: "rgba(255,255,255,0.7)" }}
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>

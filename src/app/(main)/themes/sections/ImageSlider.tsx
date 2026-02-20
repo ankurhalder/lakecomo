@@ -5,17 +5,15 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import Image from "next/image";
 import type { SliderImage } from "@/sanity/lib/getThemesPage";
 
-const SPY_GOLD = "#C9A86C";
 const SLIDE_DURATION = 5500;
 const TRANSITION_DURATION = 0.9;
-const KEN_BURNS_SCALE = 1.04; // subtle zoom — won't fight object-contain letterbox
+const KEN_BURNS_SCALE = 1.04;
 const KEN_BURNS_DURATION = (SLIDE_DURATION + TRANSITION_DURATION * 1000) / 1000;
 
 interface ImageSliderProps {
   images?: SliderImage[];
 }
 
-// Slide variants — subtle 3D perspective warp on enter/exit
 const slideVariants = {
   enter: (dir: number) => ({
     x: dir > 0 ? "5%" : "-5%",
@@ -55,14 +53,11 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
     if (intervalRef.current) clearInterval(intervalRef.current);
   };
 
-  const goTo = useCallback(
-    (index: number, dir: number) => {
-      clearTimer();
-      setDirection(dir);
-      setCurrentIndex(index);
-    },
-    [],
-  );
+  const goTo = useCallback((index: number, dir: number) => {
+    clearTimer();
+    setDirection(dir);
+    setCurrentIndex(index);
+  }, []);
 
   const goNext = useCallback(() => {
     setCurrentIndex((prev) => {
@@ -87,7 +82,6 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
     [currentIndex, goTo],
   );
 
-  // Autoplay
   useEffect(() => {
     if (images.length <= 1 || isPaused) return;
     intervalRef.current = setInterval(() => {
@@ -97,7 +91,6 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
     return () => clearTimer();
   }, [images.length, isPaused]);
 
-  // Touch swipe
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -119,7 +112,7 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
       className="relative w-full overflow-hidden"
       style={{
         height: "clamp(320px, 55vh, 560px)",
-        backgroundColor: "#0a0a0a",
+        backgroundColor: "var(--bg-primary)",
         perspective: "1400px",
       }}
       onMouseEnter={() => setIsPaused(true)}
@@ -128,21 +121,21 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
       onTouchEnd={handleTouchEnd}
       aria-label="Event photo gallery"
     >
-      {/* Gallery label — top left */}
+      {/* Gallery label */}
       <div className="absolute top-6 left-8 md:left-14 z-20 flex items-center gap-2.5">
         <div
           className="h-px w-7 flex-shrink-0"
-          style={{ backgroundColor: SPY_GOLD }}
+          style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
         />
         <span
           className="text-[9px] uppercase tracking-[0.55em] font-light"
-          style={{ color: SPY_GOLD, opacity: 0.8 }}
+          style={{ color: "rgba(255,255,255,0.5)" }}
         >
           Gallery
         </span>
       </div>
 
-      {/* ── Parallax container ─────────────────────────────────────────────── */}
+      {/* Parallax container */}
       <motion.div
         className="absolute inset-0"
         style={{ y: innerY, willChange: "transform" }}
@@ -165,7 +158,7 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
               transformStyle: "preserve-3d",
             }}
           >
-            {/* Ken Burns zoom on inner image layer */}
+            {/* Ken Burns zoom */}
             <motion.div
               key={`kb-${currentIndex}`}
               className="absolute inset-0"
@@ -192,8 +185,7 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
         </AnimatePresence>
       </motion.div>
 
-      {/* ── Gradient overlays ──────────────────────────────────────────────── */}
-      {/* Bottom */}
+      {/* Gradient overlays */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
@@ -201,7 +193,6 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
             "linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.15) 35%, transparent 60%)",
         }}
       />
-      {/* Top */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
@@ -209,14 +200,12 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
             "linear-gradient(to bottom, rgba(0,0,0,0.38) 0%, transparent 28%)",
         }}
       />
-      {/* Left vignette */}
       <div
         className="absolute inset-y-0 left-0 w-28 z-10 pointer-events-none"
         style={{
           background: "linear-gradient(to right, rgba(0,0,0,0.45), transparent)",
         }}
       />
-      {/* Right vignette */}
       <div
         className="absolute inset-y-0 right-0 w-28 z-10 pointer-events-none"
         style={{
@@ -224,16 +213,13 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
         }}
       />
 
-      {/* ── Caption ────────────────────────────────────────────────────────── */}
+      {/* Caption */}
       <AnimatePresence mode="wait">
         {images[currentIndex]?.caption && (
           <motion.p
             key={`caption-${currentIndex}`}
             className="absolute bottom-16 left-8 md:left-14 z-20 text-xs md:text-sm italic font-light max-w-xs"
-            style={{
-              color: "rgba(255,255,255,0.6)",
-              fontFamily: "var(--font-courier)",
-            }}
+            style={{ color: "rgba(255,255,255,0.5)" }}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -244,25 +230,19 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
         )}
       </AnimatePresence>
 
-      {/* ── Prev arrow ─────────────────────────────────────────────────────── */}
+      {/* Prev arrow */}
       <button
         onClick={goPrev}
         aria-label="Previous slide"
         className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full transition-all duration-200 hover:scale-110 active:scale-95"
         style={{
           backgroundColor: "rgba(0,0,0,0.50)",
-          border: `1px solid ${SPY_GOLD}55`,
-          color: SPY_GOLD,
+          border: "1px solid rgba(255,255,255,0.15)",
+          color: "var(--accent)",
           backdropFilter: "blur(10px)",
         }}
       >
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          aria-hidden="true"
-        >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
           <path
             d="M9 2L4 7L9 12"
             stroke="currentColor"
@@ -273,25 +253,19 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
         </svg>
       </button>
 
-      {/* ── Next arrow ─────────────────────────────────────────────────────── */}
+      {/* Next arrow */}
       <button
         onClick={goNext}
         aria-label="Next slide"
         className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full transition-all duration-200 hover:scale-110 active:scale-95"
         style={{
           backgroundColor: "rgba(0,0,0,0.50)",
-          border: `1px solid ${SPY_GOLD}55`,
-          color: SPY_GOLD,
+          border: "1px solid rgba(255,255,255,0.15)",
+          color: "var(--accent)",
           backdropFilter: "blur(10px)",
         }}
       >
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          aria-hidden="true"
-        >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
           <path
             d="M5 2L10 7L5 12"
             stroke="currentColor"
@@ -302,9 +276,8 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
         </svg>
       </button>
 
-      {/* ── Bottom controls: dots + counter ───────────────────────────────── */}
+      {/* Bottom controls: dots + counter */}
       <div className="absolute bottom-5 left-0 right-0 z-20 flex flex-col items-center gap-2">
-        {/* Dot pagination */}
         <div
           className="flex items-center gap-2"
           role="tablist"
@@ -322,23 +295,24 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
                 width: i === currentIndex ? "22px" : "5px",
                 height: "5px",
                 backgroundColor:
-                  i === currentIndex ? SPY_GOLD : "rgba(255,255,255,0.28)",
+                  i === currentIndex
+                    ? "var(--accent)"
+                    : "rgba(255,255,255,0.25)",
               }}
             />
           ))}
         </div>
-        {/* Slide counter */}
         <span
           className="text-[9px] tracking-[0.35em] font-light"
-          style={{ color: "rgba(255,255,255,0.32)" }}
+          style={{ color: "rgba(255,255,255,0.3)" }}
         >
           {String(currentIndex + 1).padStart(2, "0")}
-          <span style={{ color: SPY_GOLD, opacity: 0.5 }}> / </span>
+          <span style={{ color: "rgba(255,255,255,0.4)" }}> / </span>
           {String(images.length).padStart(2, "0")}
         </span>
       </div>
 
-      {/* ── Progress bar ───────────────────────────────────────────────────── */}
+      {/* Progress bar */}
       <div
         className="absolute bottom-0 left-0 right-0 z-20 h-0.5"
         style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
@@ -346,7 +320,7 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
         <motion.div
           key={`progress-${currentIndex}`}
           className="h-full"
-          style={{ backgroundColor: SPY_GOLD }}
+          style={{ backgroundColor: "var(--accent)" }}
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
           transition={{ duration: SLIDE_DURATION / 1000, ease: "linear" }}

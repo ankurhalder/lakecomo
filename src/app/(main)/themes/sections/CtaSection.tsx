@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-const SPY_GOLD = "#C9A86C";
-
 interface CtaSectionProps {
   ctaSection?: {
     title?: string;
@@ -50,26 +48,16 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
       ) : (
         <div
           className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(160deg, #080808 0%, #0b0a07 50%, #0a0808 100%)",
-          }}
+          style={{ backgroundColor: "var(--bg-secondary)" }}
         />
       )}
-
-      {/* Warm gold radial glow — luxury warmth signal */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(ellipse 70% 60% at 50% 50%, ${SPY_GOLD}10 0%, transparent 65%)`,
-        }}
-      />
 
       {/* Top separator */}
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{
-          background: `linear-gradient(to right, transparent, ${SPY_GOLD}55, transparent)`,
+          background:
+            "linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent)",
         }}
       />
 
@@ -85,20 +73,19 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
             <div
               className="h-px w-12"
               style={{
-                background: `linear-gradient(to right, transparent, ${SPY_GOLD})`,
+                background:
+                  "linear-gradient(to right, transparent, rgba(255,255,255,0.2))",
               }}
             />
             <div
               className="w-2.5 h-2.5 rotate-45 border"
-              style={{
-                borderColor: SPY_GOLD,
-                backgroundColor: `${SPY_GOLD}22`,
-              }}
+              style={{ borderColor: "rgba(255,255,255,0.25)" }}
             />
             <div
               className="h-px w-12"
               style={{
-                background: `linear-gradient(to left, transparent, ${SPY_GOLD})`,
+                background:
+                  "linear-gradient(to left, transparent, rgba(255,255,255,0.2))",
               }}
             />
           </div>
@@ -106,17 +93,16 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
           {/* Section Label */}
           <span
             className="text-[10px] uppercase tracking-[0.55em] font-light block mb-5"
-            style={{ color: SPY_GOLD, opacity: 0.75 }}
+            style={{ color: "rgba(255,255,255,0.45)" }}
           >
             Your Mission Awaits
           </span>
 
           {/* Title */}
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-5"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-5"
             style={{
               color: "var(--text-primary)",
-              fontFamily: "var(--font-limelight)",
               textShadow: "0 4px 40px rgba(0,0,0,0.5)",
             }}
           >
@@ -126,10 +112,7 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
           {/* Quote */}
           <p
             className="text-sm md:text-base leading-[1.9] italic font-light mb-7 max-w-2xl mx-auto"
-            style={{
-              color: "rgba(255,255,255,0.8)",
-              fontFamily: "var(--font-courier)",
-            }}
+            style={{ color: "rgba(255,255,255,0.7)" }}
           >
             &ldquo;{quote}&rdquo;
           </p>
@@ -137,15 +120,12 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
           {/* CTA Button */}
           <Link href={ctaLink}>
             <motion.button
-              whileHover={{ scale: 1.04 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.96 }}
-              className="inline-flex items-center gap-3 px-10 py-5 text-sm font-bold uppercase tracking-[0.25em] transition-all"
+              className="inline-flex items-center gap-3 px-10 py-5 text-sm font-bold uppercase tracking-widest rounded-full transition-all"
               style={{
-                backgroundColor: SPY_GOLD,
-                color: "#0a0a0a",
-                clipPath:
-                  "polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px))",
-                boxShadow: `0 0 40px ${SPY_GOLD}33`,
+                backgroundColor: "var(--accent)",
+                color: "var(--bg-primary)",
               }}
             >
               {ctaText}
@@ -153,7 +133,7 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
             </motion.button>
           </Link>
 
-          {/* Guarantee / Trust micro-copy */}
+          {/* Trust micro-copy */}
           <p
             className="mt-5 text-xs font-light tracking-wider"
             style={{ color: "rgba(255,255,255,0.3)" }}
@@ -167,7 +147,8 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
       <div
         className="absolute bottom-0 left-0 right-0 h-px"
         style={{
-          background: `linear-gradient(to right, transparent, ${SPY_GOLD}33, transparent)`,
+          background:
+            "linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent)",
         }}
       />
     </section>

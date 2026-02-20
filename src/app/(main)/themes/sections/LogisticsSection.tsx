@@ -12,8 +12,6 @@ import {
 } from "lucide-react";
 import type { LogisticsDetail } from "@/sanity/lib/getThemesPage";
 
-const SPY_GOLD = "#C9A86C";
-
 interface LogisticsSectionProps {
   logisticsSection?: {
     title?: string;
@@ -77,14 +75,6 @@ export default function LogisticsSection({
       className="relative py-10 md:py-14 lg:py-20 overflow-hidden"
       style={{ backgroundColor: "var(--bg-secondary)" }}
     >
-      {/* Background accent */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(ellipse 60% 50% at 50% 100%, ${SPY_GOLD}05 0%, transparent 70%)`,
-        }}
-      />
-
       <div className="relative z-10 max-w-5xl mx-auto px-5 md:px-8 lg:px-12 xl:px-16">
         {/* Section Header */}
         <motion.div
@@ -98,34 +88,33 @@ export default function LogisticsSection({
             <div
               className="h-px w-10 flex-shrink-0"
               style={{
-                background: `linear-gradient(to right, transparent, ${SPY_GOLD})`,
+                background:
+                  "linear-gradient(to right, transparent, rgba(255,255,255,0.2))",
               }}
             />
             <span
               className="text-[10px] uppercase tracking-[0.5em] font-light"
-              style={{ color: SPY_GOLD }}
+              style={{ color: "rgba(255,255,255,0.5)" }}
             >
               Know Before You Go
             </span>
             <div
               className="h-px w-10 flex-shrink-0"
               style={{
-                background: `linear-gradient(to left, transparent, ${SPY_GOLD})`,
+                background:
+                  "linear-gradient(to left, transparent, rgba(255,255,255,0.2))",
               }}
             />
           </div>
           <h2
-            className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight"
-            style={{
-              color: "var(--text-primary)",
-              fontFamily: "var(--font-limelight)",
-            }}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1]"
+            style={{ color: "var(--text-primary)" }}
           >
             {title}
           </h2>
         </motion.div>
 
-        {/* Details Grid — 2 columns on tablet/desktop, 1 on mobile */}
+        {/* Details Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
           {details.map((detail, index) => {
             const IconComponent = getIcon(detail.icon);
@@ -139,9 +128,7 @@ export default function LogisticsSection({
                 className={`relative flex items-start gap-5 py-7 px-6 md:px-8 ${
                   isRightCol ? "md:border-l" : ""
                 } ${isLastRow ? "" : "border-b"}`}
-                style={{
-                  borderColor: `${SPY_GOLD}1E`,
-                }}
+                style={{ borderColor: "var(--border-color)" }}
                 initial={{ opacity: 0, x: isRightCol ? 20 : -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
@@ -155,24 +142,27 @@ export default function LogisticsSection({
                 <div
                   className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center mt-0.5"
                   style={{
-                    border: `1px solid ${SPY_GOLD}44`,
-                    backgroundColor: `${SPY_GOLD}0E`,
+                    border: "1px solid var(--border-color)",
+                    backgroundColor: "rgba(255,255,255,0.04)",
                   }}
                 >
-                  <IconComponent size={16} style={{ color: SPY_GOLD }} />
+                  <IconComponent
+                    size={16}
+                    style={{ color: "var(--text-secondary)" }}
+                  />
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
                   <span
                     className="text-[10px] uppercase tracking-[0.4em] font-light block mb-1.5"
-                    style={{ color: SPY_GOLD, opacity: 0.75 }}
+                    style={{ color: "rgba(255,255,255,0.4)" }}
                   >
                     {detail.label}
                   </span>
                   <p
                     className="text-sm md:text-base leading-relaxed font-light"
-                    style={{ color: "rgba(255,255,255,0.85)" }}
+                    style={{ color: "var(--text-secondary)" }}
                   >
                     {detail.value}
                   </p>
@@ -186,7 +176,8 @@ export default function LogisticsSection({
         <div
           className="mt-0 h-px"
           style={{
-            background: `linear-gradient(to right, transparent, ${SPY_GOLD}33, transparent)`,
+            background:
+              "linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent)",
           }}
         />
       </div>
