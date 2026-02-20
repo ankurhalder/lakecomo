@@ -51,6 +51,7 @@ const SKIP_FILES = new Set([
   "yarn.lock",
   "pnpm-lock.yaml",
   "complete-codebase.txt",
+  "lakecomostyle.json",
 ]);
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
@@ -241,7 +242,7 @@ function buildTree(dir, patterns, prefix = "", depth = 0) {
         entryPath,
         patterns,
         prefix + extension,
-        depth + 1
+        depth + 1,
       );
       items.push(...children);
     } else {
@@ -262,7 +263,7 @@ function getFileContent(filePath) {
 
     if (stats.size > MAX_FILE_SIZE) {
       console.warn(
-        `⚠️  WARNING: Skipping large file (${(stats.size / 1024 / 1024).toFixed(2)}MB): ${filePath}`
+        `⚠️  WARNING: Skipping large file (${(stats.size / 1024 / 1024).toFixed(2)}MB): ${filePath}`,
       );
       return null;
     }
@@ -412,7 +413,7 @@ function main() {
   if (success) {
     console.warn(`✅ Project tree written to: ${outputPath}`);
     console.warn(
-      `   Tree: ${treeLines.length} entries, Contents: ${fileContentsOutput.length / 4} files`
+      `   Tree: ${treeLines.length} entries, Contents: ${fileContentsOutput.length / 4} files`,
     );
   } else {
     console.error("❌ Failed to write project tree");
