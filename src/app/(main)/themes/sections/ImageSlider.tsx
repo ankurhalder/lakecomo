@@ -8,7 +8,7 @@ import type { SliderImage } from "@/sanity/lib/getThemesPage";
 const SPY_GOLD = "#C9A86C";
 const SLIDE_DURATION = 5500;
 const TRANSITION_DURATION = 0.9;
-const KEN_BURNS_SCALE = 1.07;
+const KEN_BURNS_SCALE = 1.04; // subtle zoom — won't fight object-contain letterbox
 const KEN_BURNS_DURATION = (SLIDE_DURATION + TRANSITION_DURATION * 1000) / 1000;
 
 interface ImageSliderProps {
@@ -118,8 +118,8 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
       ref={sectionRef}
       className="relative w-full overflow-hidden"
       style={{
-        height: "clamp(380px, 56vw, 720px)",
-        backgroundColor: "#000",
+        height: "clamp(320px, 55vh, 560px)",
+        backgroundColor: "#0a0a0a",
         perspective: "1400px",
       }}
       onMouseEnter={() => setIsPaused(true)}
@@ -182,7 +182,7 @@ export default function ImageSlider({ images = [] }: ImageSliderProps) {
                   }
                   fill
                   sizes="100vw"
-                  className="object-cover object-center"
+                  className="object-contain"
                   priority={currentIndex < 2}
                   draggable={false}
                 />
