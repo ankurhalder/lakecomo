@@ -60,13 +60,13 @@ export default function ThemesContent({ data }: ThemesContentProps) {
       {/* 6 ── Details & Logistics: Friction-removing practical info */}
       <LogisticsSection logisticsSection={data?.logisticsSection} />
 
-      {/* 7 ── Reserve CTA: Primary conversion block */}
-      <CtaSection ctaSection={data?.ctaSection} />
-
-      {/* 8 ── Image Slider: Ken Burns autoplay — social proof closure */}
+      {/* 7 ── Image Slider: Ken Burns autoplay — social proof before final CTA */}
       {data?.sliderImages && data.sliderImages.length > 0 && (
         <ImageSlider images={data.sliderImages} />
       )}
+
+      {/* 8 ── Reserve CTA: Primary conversion block */}
+      <CtaSection ctaSection={data?.ctaSection} />
     </div>
   );
 }

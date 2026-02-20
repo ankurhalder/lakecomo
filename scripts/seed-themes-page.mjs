@@ -39,7 +39,7 @@ const themesPageData = {
     headline: "Spies of Style Dinner Experience",
     subheadline:
       "Step into history, intrigue, and glamour — live a James Bond–inspired adventure on Lake Como.",
-    ctaText: "Book Your Experience →",
+    ctaText: "Book Your Experience",
     ctaLink: "/contact",
   },
 
@@ -148,7 +148,7 @@ const themesPageData = {
     title: "Reserve Your Adventure",
     quote:
       "Step into history, mystery, and glamour on Lake Como. Choose your night, grab your spy kit, and live the adventure.",
-    ctaText: "Book Now →",
+    ctaText: "Book Now",
     ctaLink: "/contact",
   },
 };
