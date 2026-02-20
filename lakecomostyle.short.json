@@ -1,0 +1,802 @@
+{
+  "_metadata": {
+    "exportedAt": "2026-02-20T17:30:09.280Z",
+    "projectId": "c20abca7",
+    "dataset": "production"
+  },
+  "homepage": [
+    {
+      "_id": "homepage",
+      "_type": "homepage",
+      "heroSection": {
+        "ctaLink": "/contact",
+        "eventShowcase": {
+          "eventTypes": [
+            "Pre- or Post-wedding events",
+            "Small group celebrations",
+            "VIP clients",
+            ""
+          ],
+          "link": "/themes",
+          "title": "Perfect For"
+        },
+        "mainHeading": "Immersive, Themed Fashion Experiences",
+        "mobileVideoFile": {
+          "_type": "file",
+          "assetUrl": "https://cdn.sanity.io/files/c20abca7/production/d1ef0f0bf33db10c1157acd3f71a066ca846983a.mp4"
+        },
+        "playIndicatorText": "hear the music",
+        "preHeading": "Step into the glamour, history, and fashion of Lake Como",
+        "secondaryCtaLink": "/process",
+        "subHeading": "From themed Spies of Style dinners to La Dolce Vita lunches and aperitivos, each event is thoughtfully designed to delight the senses, inspire style, and tell a story",
+        "videoFile": {
+          "_type": "file",
+          "assetUrl": "https://cdn.sanity.io/files/c20abca7/production/8619aa7c6162b0324b047155cadceb864dc70208.mp4"
+        }
+      },
+      "styling": {
+        "_type": "pageStyles",
+        "bgPrimary": "#EDEAEA"
+      },
+      "title": "Home Page"
+    }
+  ],
+  "navbar": [
+    {
+      "_id": "navbar",
+      "_type": "navbar",
+      "ctaLink": "/contact",
+      "ctaText": "Book Now",
+      "links": [
+        {
+          "label": "Home",
+          "url": "/"
+        },
+        {
+          "label": "Spies of Style Dinner Experience ",
+          "url": "/themes"
+        },
+        {
+          "label": "La Dolce Vita Fashion Lunch",
+          "url": "/faq"
+        },
+        {
+          "label": "Your Private Experience, Your Way",
+          "url": "/cast"
+        },
+        {
+          "label": "Gallery",
+          "url": "/gallery"
+        },
+        {
+          "label": "About ",
+          "url": "/crew"
+        },
+        {
+          "label": "FAQ",
+          "url": "/movie"
+        },
+        {
+          "label": "Contact",
+          "url": "/contact"
+        }
+      ],
+      "logoText": "LAKE COMO STYLE",
+      "title": "Main Navigation"
+    }
+  ],
+  "footer": [
+    {
+      "_id": "footer",
+      "_type": "footer",
+      "email": "info@lakecomostyle.it ",
+      "footerTagline": "Your Adventure in Style Awaits",
+      "phone": "+393487847234",
+      "title": "Global Footer"
+    }
+  ],
+  "themesPage": [
+    {
+      "_id": "themesPage",
+      "_type": "themesPage",
+      "customThemeCta": {
+        "buttonLink": "Contact/",
+        "buttonText": "Join the Scene",
+        "description": "Don't see what you're looking for? We can design a custom theme tailored to your event.",
+        "title": "Theme Inquiry"
+      },
+      "featuresGrid": [
+        {
+          "_type": "featureCard",
+          "title": " Best 2026 Spy Experience"
+        }
+      ],
+      "hero": {
+        "description": "The Experience\n\nBegin your evening with a scenic funicular ride to Brunate, offering panoramic views of Lake Como and setting the stage for intrigue. Once at our exclusive venue, you are fully immersed in a world of espionage, suspense, and interactive storytelling.\n\nGuests will:\n-Unlock a real spy mission inspired by Cecil Richard Mallaby, the daring British officer whose wartime exploits on Lake Como may have inspired Ian Fleming’s James Bond.\n\n-Participate in interactive storylines: decode messages, track “agents,” and collaborate to complete your mission.\n\n-Enjoy a luxurious pre-fix dinner with themed cocktails, each course revealing new plot twists.\n\n-Dress the part or engage with props and costumes to fully inhabit the spy narrative.\n\n-Collect curated themed kits and immersive props as keepsakes from your adventure.\n\nLake Como itself becomes a character: from Villa Carminati, a historic espionage hub, to Villa delle Rose, where Allied missions were coordinated, guests step directly into locations that shaped real spy history\n\nTwo Ways to Join\n\nWeekly Turnkey Venue Dinners in Brunate\n-Join scheduled evenings for a cinematic, story-driven dinner with fellow guests\n\n-Begin your adventure with the iconic funicular ride- perfect for instagram sharing\n\n-Small, intimate groups ensure luxury and immersion\n\n-Access curated themed kits and collectible props for purchase\n\nPrivate Villa & Event Bookings\nBring the experience to your villa, private residence, or destination event\n\n-Fully customizable missions, props, and storylines\n\n-Perfect for weddings, milestone celebrations, corporate gatherings, or luxury retreats\n\n-Guests step directly into the Lake Como espionage world from the comfort of their own villa\n\nKey Features (Both Options)\n\nThe only Bond-inspired spy adventure on Lake Como, rooted in true history\n\nPre-fix dinner with themed cocktails\n\nInteractive missions, codes, and spy activities\n\nProps and costume options for full immersion\n\nSmall group format for intimacy and luxury\n\nCurated themed kits and collectibles available for purchase",
+        "mainTitle": "Experience Lake Como like never before — the only James Bond–inspired spy experience on the lake, where cinematic storytelling, interactive missions, and true espionage history come alive.",
+        "preHeading": "Step into the Shadows: An Immersive James Bond–Inspired Spy Adventure",
+        "secondaryTitle": "Fully themed, fully immersive, fully unforgettable"
+      },
+      "themesList": [
+        {
+          "feel": "Sophisticated, adventurous, playful suspense.",
+          "genre": "Bond Inspired",
+          "icon": "glasses",
+          "image": {
+            "_type": "image",
+            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/4729227fb0bb7d2fcb85a055cb40b79b0c6afa7e-1600x900.jpg"
+          },
+          "story": "Guests step into the world of secret agents, daring missions, and intrigue. Think tuxedos, glamorous dresses, clever props, and action-packed poses.",
+          "title": "Agents of Style",
+          "vibe": "Sleek, stylish, high-stakes, espionage."
+        }
+      ],
+      "title": "Spies of Style Dinner Experience: The Only Bond-Inspired Spy Adventure on Lake Como"
+    }
+  ],
+  "castPage": [
+    {
+      "_id": "castPage",
+      "_type": "castPage",
+      "content": {
+        "paragraphs": [
+          "Choose your theme. Select your venue. Now it’s time to experience the immersive fun!",
+          "We create unforgettable experiences for groups of all sizes. Whether it’s an intimate gathering or a large celebration, our team brings your event to life with style, elegance, and flair.\n",
+          "Guests can choose from our exclusive 2026 themes—from the timeless glamour of La Dolce Vita, to the cinematic sparkle of Hollywood Hustle, or the sophisticated intrigue of Bond. Prefer something truly unique? We also offer custom themes, tailored to your vision and designed to make your occasion one-of-a-kind.",
+          "We provide all themed backdrops and props for Polaroid moments, with the option to personalize backdrops, giving your guests fun, memorable keepsakes.",
+          "Our events are hosted in an array of stunning venues, from exclusive wine cellars, to historic palaces, elegant gardens, and lively terraces, providing the perfect backdrop for every occasion.",
+          "To enhance the experience, we suggest guests come in themed attire, and offer the option of a pop-up fashion rack so guests can purchase curated themed styles on-site.",
+          "We also offer a variety of music options, from DJs to live singers, performing curated playlists for each theme—ensuring the soundtrack perfectly matches the mood and atmosphere.",
+          "For those who wish to capture the magic, we offer professional photography and videography, with the exclusive option to create a custom 3-minute cinematic movie trailer, complete with a personalized cast list and tailored music—bringing your immersive experience fully to life long after the event ends.\n",
+          "With fashion, food, and drinks at the heart of every experience, your private event on Lake Como becomes more than a celebration—it’s an immersive journey your guests will never forget.\n\n"
+        ]
+      },
+      "cta": {
+        "buttonText": "Book Your Private Event",
+        "description": "Immerse yourself in the theme and live the moment",
+        "title": "Celebrate like a Star"
+      },
+      "fallingStars": {
+        "enabled": true
+      },
+      "hero": {
+        "subtitle": "From intimate gatherings to full celebrations",
+        "title": "Designed for Celebration, Styled to Remember"
+      },
+      "heroFeature": {
+        "subtitle": "2026 Immersive Parties",
+        "title": "Best Private Event"
+      },
+      "showcaseImages": [
+        {
+          "image": {
+            "_type": "image",
+            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/437dd49a02ecac575dc481e3535b2dfb4b275442-951x913.png"
+          }
+        },
+        {
+          "image": {
+            "_type": "image",
+            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080.png"
+          }
+        },
+        {
+          "image": {
+            "_type": "image",
+            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/5bdb7664d902978a660db843d80ca21424de53bf-960x720.jpg"
+          }
+        },
+        {
+          "image": {
+            "_type": "image",
+            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439.jpg"
+          }
+        },
+        {
+          "image": {
+            "_type": "image",
+            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798.png"
+          }
+        },
+        {
+          "image": {
+            "_type": "image",
+            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080.png"
+          }
+        },
+        {
+          "image": {
+            "_type": "image",
+            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756.jpg"
+          }
+        }
+      ],
+      "title": "Private Events"
+    }
+  ],
+  "processPage": [
+    {
+      "_id": "processPage",
+      "_type": "processPage",
+      "hero": {
+        "description": "Our 2026 themed experiences invite guests into a one-of-a-kind atmosphere on Lake Como, featuring photo-ready backdrops and a curated selection of props for spontaneous, playful photo moments. Guests are welcome to come dressed to theme or simply grab an accessory and join in. \n\nSignature cocktails, menus, and music guide the evening—often transforming dinner into dancing.\n\nWith candid Polaroid moments captured throughout the night, and plenty of opportunities to share your own, our weekly aperitivos and pre-fixed dinners are designed to be social, immersive, and unforgettable.",
+        "heading": "Seasonal Weekly Events",
+        "subHeading": "From Drinks to Dinner to Dancing Under the Stars"
+      },
+      "heroFeature": {
+        "link": "/themes",
+        "subtitle": "Dive into the World of Cinematic Creativity",
+        "tag": "Choose Your Theme",
+        "title": "THEMED CINEMATIC PARTIES"
+      },
+      "steps": [
+        {
+          "body": "Select from our signature themes: International Agents of Style, Hollywood Hussle, La Dolce Vita, Pink Ladies, Angels & Demons or create a custom theme. With over 3,000 costumes and props, your celebration can be uniquely tailored to your group. We consult with you to build any themed story - the sky is the limit with us! \n\nGuests may take the lead on screen, step into select moments, or simply enjoy the experience while our professional actors bring the story to life.\n\nWhether you want to star in your own cinematic trailer or watch the drama unfold around you, the film is crafted seamlessly around your level of participation, comfort, and style.\n\nExample Customized Storytelling – Corporate Brand Dinner Show:\n\nA company invites key clients, partners, or employees to an exclusive dinner, either at our historic palace in the heart of Como or a venue of their choice. The evening transforms into an immersive storytelling experience, where the brand’s story is enacted through performances, cinematic content, and thematic moments woven seamlessly into the dining experience. Guests are not just observers—they actively engage with the narrative, creating a sense of participation and exclusivity.\n\nEvery detail—from costumes and props to custom backdrops and interactive set pieces—is designed to reflect the brand’s identity, creating a luxurious and memorable atmosphere. Throughout the evening, the experience is filmed as a short cinematic production, culminating in a 3-minute movie trailer that serves as a lasting memento. Experiencing the brand in such a personalized and captivating way fosters deeper connections, strengthens loyalty, and leaves an impression that extends far beyond the event itself.\n\n",
+          "heading": "Choose or Create Your Story",
+          "stepNumber": 1,
+          "tagline": "LA DOLCE VITA to BOND",
+          "titleLines": [
+            "SELECT",
+            "YOUR",
+            "THEME"
+          ]
+        },
+        {
+          "body": "Decide where your cinematic experience will take place:\n\n• Our Venue: Our Turnkey setup with cocktails, gourmet popcorn with DJ & dancing\n• Luxury Hotel: Partnering with selected hotels for seamless events offering guests an exclusive experience\n• Your Chosen Venue: We bring all props, costumes, step & repeat backdrops, and filming to your location. We do travel to various locations with advance requests.\n• We offer 1/2 day & full day filming with boats, vespas, costumes and props for groups wanting a day group event. A perfect memorabilia and adventure for guests.\n\nExample Concept – Lake Como Bachelor/Bachelorette Experience:\n\nA wedding party travels to Lake Como and wants to create a truly unforgettable bachelor or bachelorette celebration. Our team designs an immersive experience, guiding guests through iconic locations across the city—capturing moments with cinematic, movie-trailer-style storytelling that feels both playful and elegant.\n\nThe experience can be tailored to fit either a half-day (4–5 hours) or a full-day (7–8 hours) journey. A half-day option allows for a focused, energetic adventure that concludes with a refined cocktail reception, while a full-day experience offers a complete narrative arc with multiple locations and interactive moments, culminating in a luxurious finale.\n\nIn both cases, the journey ends at our historic palace venue in the heart of Como. Guests enjoy an exclusive cocktail reception where highlights from the day are presented in cinematic form, all within the palace’s elegant interiors. This combination of immersive storytelling, city exploration, and a luxurious finale transforms the celebration into an experience that guests will remember—and share—long after the wedding.",
+          "heading": "Pick Your Location",
+          "stepNumber": 2,
+          "tagline": "YOU NAME IT",
+          "titleLines": [
+            "SELECT",
+            "YOUR",
+            "VENUE"
+          ]
+        },
+        {
+          "body": "Our team curates every detail to bring your theme to life. From custom step & repeat backdrops and curated props to music and storylines, we transform venues into a cinematic setting. Our stylist works directly with you to ensure all props, costumes and backdrops are ready for your film. We curate and manage a bespoke cast of professional actors who can enact the full story, should guests choose this option. You relax while we handle all the production details.\n\nProduction & Client Collaboration:\n\nOur immersive experiences are fully collaborative, giving clients the opportunity to shape the narrative of their event from start to finish. We provide storyboards, visual mock-ups, and thematic suggestions for each scene, allowing the experience to be carefully tailored to the client’s identity and objectives.\n\nClients can customize performances, costumes, props, and backdrops to reflect their unique vision, ensuring every element aligns with their story. By engaging directly in the creative process, clients become active partners in the production, resulting in a one-of-a-kind immersive experience that leaves a lasting impression on participants and reinforces the brand’s connection with its audience.",
+          "heading": "Production Design",
+          "stepNumber": 3,
+          "tagline": "PROPS & COSTUMES",
+          "titleLines": [
+            "WE DESIGN",
+            "YOUR",
+            "EVENT"
+          ]
+        },
+        {
+          "body": "On the day of your event, guests step into a world of intrigue, glamour, and cinematic storytelling. With guidance from our production team, everyone gets to act out key scenes from your chosen theme, making the experience interactive and unforgettable. Our professional videographer captures both spontaneous and directed moments, ensuring every guest shines on camera while enjoying an elevated, immersive celebration.\n\nNo acting experience is required—guests can choose how much they want to engage in the storytelling. Some clients prefer to simply observe and enjoy the narrative as it unfolds, while others can take on lead roles and fully immerse themselves in the performances. You can take on a starring role, appear in stylish cameo moments, or relax while professional actors enact the full narrative around you. Every scene is designed to feel effortless, elegant, and unmistakably cinematic. This flexibility ensures that every participant feels comfortable and can enjoy the experience in a way that suits their personality, creating a welcoming, inclusive atmosphere while still maintaining the immersive, cinematic impact of the event.\n\n",
+          "heading": "The Big Day",
+          "stepNumber": 4,
+          "tagline": "TIME TO SHINE",
+          "titleLines": [
+            "CELEBRATE",
+            "IN",
+            "STYLE"
+          ]
+        },
+        {
+          "body": "Within 3–4 weeks, we deliver a beautifully produced 3-minute cinematic trailer, along with social media-ready clips. \n\nThe cinematic trailer of the experience is fully crafted to reflect the client’s vision. Clients provide the title, cast names, and music selection, and we integrate these elements seamlessly into our cinematic production. Before the trailer is shared with guests, we confirm every element with the client to ensure it perfectly represents their story and meets their expectations. This attention to detail guarantees a polished, professional, and memorable keepsake that reinforces the impact of the immersive experience.",
+          "heading": "Post-Production Magic",
+          "stepNumber": 5,
+          "tagline": "YOUR SILVER SCREEN",
+          "titleLines": [
+            "YOUR MOVIE &",
+            "SOCIAL",
+            "MEDIA CLIPS"
+          ]
+        },
+        {
+          "body": "Your personalized movie trailer can be treasured for years to come — the perfect way to relive the magic of your event.\n\nThe immersive event is captured and packaged as a 3-minute cinematic movie, creating a long-lasting keepsake. Clients can share the trailer virtually via Zoom or by hosting their own in-person movie screening party. This allows the event to live on far beyond the actual day, extending the impact of the immersive experience, strengthening connections with guests, and creating ongoing engagement with the brand or celebration.",
+          "heading": "Keep the Story Alive",
+          "stepNumber": 6,
+          "tagline": "POPCORN TIME",
+          "titleLines": [
+            "RELIVE",
+            "THE",
+            "EXPERIENCE"
+          ]
+        }
+      ],
+      "title": "Seasonal Weekly Events",
+      "videoSection": {
+        "enabled": true,
+        "heading": "List of 2026 Venues",
+        "subHeading": "- Ristorante Locando Milano 1973 \n- Ristorante Terzo Crotto"
+      }
+    }
+  ],
+  "moviePage": [
+    {
+      "_id": "moviePage",
+      "_type": "moviePage",
+      "deliverables": [
+        {
+          "description": "A fully edited trailer up to 3 minutes in length",
+          "features": [
+            "Includes your choice of music to match the tone and style",
+            "Features custom title and cast names",
+            "Enhanced with special effects to elevate the cinematic impact",
+            "Professional photography"
+          ],
+          "title": "3-Minute Movie Trailer with Professional Photography"
+        },
+        {
+          "description": "Shorter versions optimized for social media platforms",
+          "features": [
+            "Perfect for Instagram, TikTok, YouTube, or Facebook",
+            "Designed to grab attention and drive engagement"
+          ],
+          "title": "Social Media Ready Cuts"
+        },
+        {
+          "description": "Delivered within 3–4 weeks from event date",
+          "features": [
+            "Professional post-production editing",
+            "Quality assurance review",
+            "Secure digital delivery"
+          ],
+          "title": "Timeline"
+        }
+      ],
+      "hero": {
+        "heading": "Where Every Guest Becomes A Star",
+        "subHeading": "Lights, Camera, Action!",
+        "subSubHeading": "Our professional videographer captures your private event to create your very own 3-minute movie trailer. With custom casting, selected music, and highlights from your special event, we turn your celebration into a cinematic keepsake. The only movie experience on Lake Como, complete with social media–ready clips and your full trailer delivered within 3–4 weeks — making your event truly unforgettable!"
+      },
+      "heroFeature": {
+        "link": "/contact",
+        "subtitle": "Your Cinematic Keepsake",
+        "tag": "Coming Soon",
+        "title": "MOVIE PREMIERE"
+      },
+      "popcornSection": {
+        "image": {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/321c90df5c1ee24afc8168a27d44c0893d84a55f-500x500.png"
+        }
+      },
+      "timeline": "Delivered within 3–4 weeks from event date",
+      "title": "Star in Your Own Trailer"
+    }
+  ],
+  "crewPage": [
+    {
+      "_id": "3d2JLpUTPM5qppQf883Uxu",
+      "_type": "crewPage",
+      "crewMembers": [
+        {
+          "bio": [
+            "Our founder, Dee Lasprogata has over 30 years of experience in fashion, working in New York, Los Angeles, Rome, Milan, and Lake Como. She arrived to the shores of Lake Como 20 years ago and has been back and forth ever since.",
+            "With roots in Philadelphia, Dee grew up surrounded by couture as her grandmother operated a custom gown atelier. Later, she graduated from both Vanderbilt University and the Fashion Institute of Design in New York City.",
+            "She has launched a pioneering fashion collections working with celebrities including Valentino, Stevie Wonder and Giada De Laurentiis. Over the years, her visionary work has been featured in major publications in both the USA and Italy, including People, Glamour, Io Donna, Women's Wear Daily (WWD), Fox & Friends, TG5, and Entrepreneur.",
+            "Today, Dee combines her fashion-forward sensibilities with cinematic flair to craft an unforgettable experience; she curates the wardrobe, props, and look for every guest. ",
+            ""
+          ],
+          "image": {
+            "_type": "image",
+            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/e60f4c4a969ae568d0975a407795225dbe163a2a-470x558.png",
+            "crop": {
+              "_type": "sanity.imageCrop",
+              "bottom": 0,
+              "left": 0.21337170755346613,
+              "right": 0.22032969526829874,
+              "top": 0
+            },
+            "hotspot": {
+              "_type": "sanity.imageHotspot",
+              "height": 1,
+              "width": 0.5662985971782352,
+              "x": 0.4965210061425837,
+              "y": 0.5
+            }
+          },
+          "name": "Dee Lasprogata",
+          "role": "Founder & Creative Director",
+          "socials": {
+            "instagram": "https://instagram.com/lakecomostyle",
+            "linkedin": "https://linkedin.com/in/deelasprogata"
+          }
+        },
+        {
+          "bio": [
+            "Stefano Dozza is a filmmaker, photographer, and content producer from Bologna, currently based between Milan and Rome. He has studied and worked in New York, Los Angeles, and the UK. Over the years, his work has spanned corporate and fashion projects, with each video carefully tailored to reflect the unique look and identity of each brand.",
+            "As a versatile creative professional, Stefano brings expertise in filmmaking, photography, copywriting, and podcasting to Lake Como Style. His international experience and artistic vision ensure that every cinematic experience captures the essence of Italian elegance combined with Hollywood production values.",
+            "Stefano's commitment to sustainability and thoughtful content creation aligns perfectly with Lake Como Style's mission to deliver meaningful, memorable experiences that respect both artistry and environment."
+          ],
+          "image": {
+            "_type": "image",
+            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/427d578bd9cde9bcce27512c36b3c3eadc4d7ccb-3456x5184.jpg",
+            "crop": {
+              "_type": "sanity.imageCrop",
+              "bottom": 0,
+              "left": 0.011984548843354564,
+              "right": 0,
+              "top": 0
+            },
+            "hotspot": {
+              "_type": "sanity.imageHotspot",
+              "height": 1,
+              "width": 0.9880149025517225,
+              "x": 0.5059925487241388,
+              "y": 0.5
+            }
+          },
+          "name": "Stefano Dozza",
+          "role": "Filmmaker & Visual Director",
+          "socials": {
+            "instagram": "https://instagram.com/johntouche",
+            "website": "https://johntouche.com"
+          }
+        }
+      ],
+      "cta": {
+        "buttonText": "Contact Us",
+        "description": "Join us for an unforgettable immersive experience",
+        "icon": "Your Lake Como Team",
+        "title": "Your Lake Como Team"
+      },
+      "hero": {
+        "description": "Lake Como Style brings immersive, themed experiences to life on the Lake. From our weekly events to private parties, every celebration is carefully styled and designed, allowing guests to step into a world of themed fun. ",
+        "heading": "Your Event Crew",
+        "subHeading": "From the Big Apple to the heart of Milan — our team brings international talent to your celebration"
+      },
+      "heroFeature": {
+        "link": "/contact",
+        "subtitle": "International Expertise",
+        "tag": "2026",
+        "title": "MEET THE TEAM"
+      },
+      "logos": [
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/db22b67cdc4c6ad9f1d230c9710b05345e46bb3f-1170x382.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/1abdd77c34d19a7d239ef968514a8ca79dbadb74-656x360.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/458f2cfdae32d8daf86566e6e95bd6c2ad526070-1170x639.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/183c5b6e64301731b664a70ce2b27210574f738c-1019x538.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/669127a0bcb96a83d790685dd84a4b7827760964-409x160.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/30c40301d0ec7725d209275840ff506e7afe35ec-1169x473.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/9d6ee43623b86c12d4370d83c6b02d2afe0ca089-456x353.jpg"
+        }
+      ],
+      "logosTitle": "featured on & in",
+      "title": "About "
+    }
+  ],
+  "venuePage": [
+    {
+      "_id": "3d2JLpUTPM5qppQf88BJIs",
+      "_type": "venuePage",
+      "cta": {
+        "buttonText": "Join Our Events",
+        "description": "Create unforgettable moments on Lake Como ",
+        "title": "Unique Venues, Unique Events For All"
+      },
+      "description": [
+        "AGENTS OF STYLE AT HOTEL TERZO CROTTO: \nNestled in the heart of Cernobbio, Hotel Terzo Crotto is a charming historic property set in a garden‑surrounded former farmhouse dating back to the late 19th century. The hotel’s tranquil setting offers easy access to the lakeside and local attractions like Villa d’Este while maintaining a peaceful, picturesque atmosphere. With inviting outdoor spaces, wine cellar and a welcoming restaurant celebrating authentic Italian cuisine, Hotel Terzo Crotto provides an elegant backdrop for any event.",
+        "DATES: May 6 & May 16\nTIME: 5pm- 8pm\nTICKETS:"
+      ],
+      "externalLinks": {
+        "bookingLink": "contact"
+      },
+      "galleryImages": [
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/5bdb7664d902978a660db843d80ca21424de53bf-960x720.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/fd866ca52e4b811cb176080a9b9468a723e607c2-550x412.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/fe3de70117969f48e5c4357717bf3229402161a3-1284x961.webp"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/e75d690f4207cc816d6f73b1d03eb20453755760-1920x1280.webp"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/89ca9a0352a0628203ef4387bb8245a7d17e8d19-1030x682.png"
+        }
+      ],
+      "hero": {
+        "heading": "Themed Events at Authentic Italian Venues ",
+        "location": "Lake Como, Italy",
+        "subHeading": "From Villas to Historic Restaurants Join Our Immersive Events"
+      },
+      "heroFeature": {
+        "link": "Limited Spaces",
+        "tag": "Themed Events at Stunning Venues ",
+        "title": "2026 Ticketed Events"
+      },
+      "title": "2026 Open Ticketed Experiences"
+    },
+    {
+      "_id": "drafts.3d2JLpUTPM5qppQf88BJIs",
+      "_type": "venuePage",
+      "cta": {
+        "buttonText": "Join Our Events",
+        "description": "Create unforgettable moments on Lake Como ",
+        "title": "Unique Venues, Unique Events For All"
+      },
+      "description": [
+        "AGENTS OF STYLE AT HOTEL TERZO CROTTO: \nNestled in the heart of Cernobbio, Hotel Terzo Crotto is a charming historic property set in a garden‑surrounded former farmhouse dating back to the late 19th century. The hotel’s tranquil setting offers easy access to the lakeside and local attractions like Villa d’Este while maintaining a peaceful, picturesque atmosphere. With inviting outdoor spaces, wine cellar and a welcoming restaurant celebrating authentic Italian cuisine, Hotel Terzo Crotto provides an elegant backdrop for any event.",
+        "DATES: May 6 & May 16\nTIME: 5pm- 8pm\nTICKETS:"
+      ],
+      "externalLinks": {
+        "bookingLink": "contact"
+      },
+      "galleryImages": [
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/5bdb7664d902978a660db843d80ca21424de53bf-960x720.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/fd866ca52e4b811cb176080a9b9468a723e607c2-550x412.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/fe3de70117969f48e5c4357717bf3229402161a3-1284x961.webp"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/e75d690f4207cc816d6f73b1d03eb20453755760-1920x1280.webp"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/89ca9a0352a0628203ef4387bb8245a7d17e8d19-1030x682.png"
+        },
+        {
+          "_type": "image"
+        }
+      ],
+      "hero": {
+        "heading": "Themed Events at Authentic Italian Venues ",
+        "location": "Lake Como, Italy",
+        "subHeading": "From Villas to Historic Restaurants Join Our Immersive Events"
+      },
+      "heroFeature": {
+        "link": "Limited Spaces",
+        "tag": "Themed Events at Stunning Venues ",
+        "title": "2026 Ticketed Events"
+      },
+      "title": "2026 Open Ticketed Experiences"
+    }
+  ],
+  "galleryPage": [
+    {
+      "_id": "galleryPage",
+      "_type": "galleryPage",
+      "hero": {
+        "heading": "Scenes from the Experiences",
+        "subHeading": "Lights, Camera, Action!"
+      },
+      "heroFeature": {
+        "link": "/contact",
+        "subtitle": "Scenes",
+        "tag": "2026",
+        "title": "Themed Events"
+      },
+      "images": [
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/89307f3fef09feb106360e6380de44b5e9bb536c-1582x821.png"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/c6332474612f28f05d16dd4035a10958381213f5-550x423.png",
+          "crop": {
+            "_type": "sanity.imageCrop",
+            "bottom": 0.33742016259136814,
+            "left": 0.3256658516929254,
+            "right": 0.1979512383739022,
+            "top": 0.07134023974756118
+          },
+          "hotspot": {
+            "_type": "sanity.imageHotspot",
+            "height": 0.5912395976610707,
+            "width": 0.47638290993317245,
+            "x": 0.5638573066595116,
+            "y": 0.36696003857809645
+          }
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/388b2d0430dbd54b63706e771f3a00cf16086aae-3024x2179.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798.png"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/91472121a6a46f2e4be72ab8cebb4a232978c1d5-1775x892.png"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/ccd733b1ba903f27752dccddac1eaba559934d87-1788x673.png"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/9c7cbf0d082b55c42bddd5af0ff9a80563785bc0-1040x576.png"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/b70d3a824263d3ded7cdfc65e44cd041abccdb6e-2350x4029.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/ebe619b3de4a6f1995e92ce832606a2eb2d11482-973x1119.jpg",
+          "crop": {
+            "_type": "sanity.imageCrop",
+            "bottom": 0,
+            "left": 0,
+            "right": 0.05825894833654819,
+            "top": 0
+          },
+          "hotspot": {
+            "_type": "sanity.imageHotspot",
+            "height": 1,
+            "width": 0.9417410516634518,
+            "x": 0.4708705258317259,
+            "y": 0.5
+          }
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/475628e95f1e0398cdb7f69c2fe264cb9ab94424-1170x691.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/df513f7de5a5c8367bf1fe7c7c154659df5ba021-768x1344.jpg",
+          "crop": {
+            "_type": "sanity.imageCrop",
+            "bottom": 0.2928963247586994,
+            "left": 0,
+            "right": 0,
+            "top": 0
+          },
+          "hotspot": {
+            "_type": "sanity.imageHotspot",
+            "height": 0.7071036752413006,
+            "width": 1,
+            "x": 0.5,
+            "y": 0.3535518376206503
+          }
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756.jpg"
+        }
+      ],
+      "title": "Gallery"
+    }
+  ],
+  "faqPage": [
+    {
+      "_id": "faqPage",
+      "_type": "faqPage",
+      "contactCta": {
+        "buttonLink": "/contact",
+        "buttonText": "Contact Us",
+        "text": "Still have questions?"
+      },
+      "faqs": [
+        {
+          "answer": "Yes! We host weekly events for all guests visiting Lake Como, ranging from casual aperitivi to pre-fixed dinners at select lakeside locations. Each week offers a unique experience, allowing guests to enjoy the best of local cuisine, stunning views, and the vibrant atmosphere of the Lake.\n\nFor details on dates, times, and locations, feel free to check out our weekly events schedule.",
+          "question": "Are there weekly events open to all guests visiting Lake Como?"
+        },
+        {
+          "answer": "Yes! We offer private events tailored for bachelorettes, tour groups, corporate functions, and other special gatherings. Whether it’s a curated aperitivo, a pre-fixed dinner, or a full lakeside experience, we can customize the event to suit your group’s needs and create a memorable experience on Lake Como.",
+          "category": "experience",
+          "question": "Can I book a private event for a bachelorette, rehearsal dinner or tour group gathering?"
+        },
+        {
+          "answer": "We offer a collection of over 3,000 couture costumes and props, spanning multiple time periods, styles, and themes. The collection includes elegant, theatrical, historical, fantasy, and bespoke pieces, each selected for its craftsmanship, visual impact, and suitability for immersive, high-end events.",
+          "category": "experience",
+          "question": "What backdrops and props do you offer?"
+        },
+        {
+          "answer": "We recommend booking private events at least 2–4 weeks in advance to ensure availability and allow us time to tailor the experience to your group. For larger groups or peak season dates, we suggest booking as early as possible to secure your preferred date and location on Lake Como.",
+          "category": "logistics",
+          "question": "How long in advance do I need to book a private event?"
+        },
+        {
+          "answer": "Yes. We offer private presentations and curated previews, either in person or virtually, allowing clients to explore themes, venues, and all backdrops and props in advance.",
+          "category": "experience",
+          "question": "Do you offer a sneak peek of the experience before confirming a private party reservation?"
+        },
+        {
+          "answer": "For our seasonal weekly events, we recommend booking at least 1–2 weeks in advance to secure your spot, as these events can fill up quickly during peak season. For larger groups or special dates, booking earlier is advised to ensure availability and the best experience on Lake Como.",
+          "category": "booking",
+          "question": "For seasonal weekly events, how far in advance should we book?"
+        }
+      ],
+      "hero": {
+        "description": "Join our immersive themed events",
+        "mainHeading": "2026 Seasonal Events",
+        "preHeading": "Your Immersive Style Adventure Awaits",
+        "searchPlaceholder": "Search questions..."
+      },
+      "title": "2026 Open Ticketed Experiences"
+    }
+  ],
+  "contactPage": [
+    {
+      "_id": "contactPage",
+      "_type": "contactPage",
+      "cameraImage": {
+        "_type": "image",
+        "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/708cec19ac0d52a98033e50246ca0cb168209f2f-414x600.jpg"
+      },
+      "form": {
+        "emailLabel": "Email",
+        "emailPlaceholder": "john@example.com",
+        "eventDateLabel": "Date of Event",
+        "firstNameLabel": "First Name",
+        "firstNamePlaceholder": "John",
+        "formTitle": "Step Into the Scene",
+        "groupSizeDefaultOption": "Select group size",
+        "groupSizeLabel": "How many will you be?",
+        "groupSizeOptions": [
+          "2-5 people",
+          "6-10 people",
+          "11-20 people",
+          "21-50 people",
+          "50+ people"
+        ],
+        "lastNameLabel": "Last Name",
+        "lastNamePlaceholder": "Doe",
+        "messageLabel": "Event Inquiry",
+        "phoneLabel": "Phone",
+        "phonePlaceholder": "555 123-4567",
+        "submitButtonLoadingText": "Sending...",
+        "submitButtonText": "Join the Vibe"
+      },
+      "hero": {
+        "description": "Drop us a message and step into the experience.",
+        "mainHeading": "Join the Party in Style",
+        "preHeading": "Get in Touch"
+      },
+      "success": {
+        "buttonLink": "/",
+        "buttonText": "Back to Home",
+        "message": "Thank you for reaching out. We'll be in touch soon to help you create your unforgettable cinematic experience.",
+        "title": "The Spotlight Awaits!"
+      },
+      "title": "Contact Us"
+    }
+  ]
+}
