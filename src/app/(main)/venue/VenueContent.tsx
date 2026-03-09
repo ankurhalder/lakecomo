@@ -89,7 +89,7 @@ export default function VenueContent({ data }: VenueContentProps) {
 
       <ParallaxGallery images={galleryImages} />
 
-      <section className="px-4 md:px-8 lg:px-12 py-16 pb-28 md:py-24">
+      <section className="px-4 md:px-8 lg:px-12 py-16 md:py-24">
         <motion.div
           className="max-w-4xl mx-auto text-center"
           initial={{ opacity: 0, y: 40 }}
@@ -118,7 +118,7 @@ export default function VenueContent({ data }: VenueContentProps) {
               className="inline-block px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors"
               style={{
                 backgroundColor: "var(--accent)",
-                color: "var(--bg-primary)",
+                color: "var(--accent-text)",
               }}
             >
               {cta?.buttonText || "Book Your Experience"}

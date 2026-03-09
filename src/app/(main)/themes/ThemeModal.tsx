@@ -173,7 +173,7 @@ export default function ThemeModal({ theme, onClose }: ThemeModalProps) {
                   <motion.button
                     whileTap={{ scale: 0.98 }}
                     className="w-full py-3 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-widest rounded-full transition-all"
-                    style={{ backgroundColor: 'var(--accent)', color: 'var(--bg-primary)' }}
+                    style={{ backgroundColor: 'var(--accent)', color: 'var(--accent-text)' }}
                   >
                     {theme.ctaText || 'Book This Theme'}
                   </motion.button>

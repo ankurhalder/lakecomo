@@ -130,7 +130,7 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
               className="inline-flex items-center gap-3 px-10 py-5 text-sm font-bold uppercase tracking-widest rounded-full transition-all"
               style={{
                 backgroundColor: "var(--accent)",
-                color: "var(--bg-primary)",
+                color: "var(--accent-text)",
               }}
             >
               {ctaText}

@@ -83,7 +83,7 @@ export default function CastContent({
           maxSpeed={stars.maxSpeed ?? DEFAULT_FALLING_STARS.maxSpeed}
           sidesOnly={true}
           sideWidth={0.15}
-          color="var(--text-primary)"
+          color="var(--accent)"
         />
       )}
       <section className="h-[calc(100dvh-60px)] min-h-[600px] flex flex-col px-4 md:px-8 lg:px-12 relative">
@@ -95,7 +95,7 @@ export default function CastContent({
           }}
         />
 
-        <div className="relative z-10 flex-1 flex flex-col pt-16 md:pt-20">
+        <div className="relative z-10 flex-1 flex flex-col pt-6 md:pt-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center max-w-7xl mx-auto w-full">
             <motion.div
               className="text-center lg:text-left"
@@ -224,7 +224,7 @@ export default function CastContent({
         </section>
       )}
 
-      <section className="px-4 md:px-8 lg:px-12 py-16 pb-28 md:py-24">
+      <section className="px-4 md:px-8 lg:px-12 py-16 md:py-24">
         <motion.div
           className="max-w-4xl mx-auto text-center"
           initial={{ opacity: 0, y: 40 }}
@@ -252,7 +252,7 @@ export default function CastContent({
             className="inline-block px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors"
             style={{
               backgroundColor: "var(--accent)",
-              color: "var(--bg-primary)",
+              color: "var(--accent-text)",
             }}
           >
             {cta?.buttonText || "Book Your Experience"}

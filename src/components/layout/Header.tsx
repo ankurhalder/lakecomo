@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, Menu } from "lucide-react";
-import { useState, useEffect } from "react";
-import { useLenis } from "@/components/providers/SmoothScroll";
+import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
+import { X, Menu } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { useLenis } from '@/components/providers/SmoothScroll'
 
 interface NavLink {
   label: string;
@@ -19,85 +19,107 @@ interface HeaderData {
 }
 
 export default function Header({ data }: { data: HeaderData }) {
-  const { stop: stopLenis, start: startLenis } = useLenis();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { stop: stopLenis, start: startLenis } = useLenis()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const lastScrollY = useRef(0)
+  const ticking = useRef(false)
 
-  const logoText = data?.logoText || "Lake Como Style";
-  const links = data?.links || [];
+  const logoText = data?.logoText || "Lake Como Style"
+  const links = data?.links || []
+
+  // Scroll-hide: hide on scroll down, show on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      if (ticking.current) return
+      ticking.current = true
+      requestAnimationFrame(() => {
+        const currentY = window.scrollY
+        if (currentY < 60) {
+          setIsVisible(true)
+        } else if (currentY > lastScrollY.current + 6) {
+          setIsVisible(false)
+        } else if (currentY < lastScrollY.current - 4) {
+          setIsVisible(true)
+        }
+        lastScrollY.current = currentY
+        ticking.current = false
+      })
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(() => {
     if (isSidebarOpen) {
-      stopLenis();
-      document.body.style.overflow = "hidden";
+      stopLenis()
+      document.body.style.overflow = 'hidden'
     } else {
-      startLenis();
-      document.body.style.overflow = "";
+      startLenis()
+      document.body.style.overflow = ''
     }
     return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isSidebarOpen, stopLenis, startLenis]);
+      document.body.style.overflow = ''
+    }
+  }, [isSidebarOpen, stopLenis, startLenis])
 
   const sidebarVariants = {
     closed: {
-      x: "100%",
-      transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const },
+      x: '100%',
+      transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }
     },
     open: {
       x: 0,
-      transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const },
-    },
-  };
+      transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }
+    }
+  }
 
   const overlayVariants = {
     closed: { opacity: 0 },
-    open: { opacity: 1 },
-  };
+    open: { opacity: 1 }
+  }
 
   const linkVariants = {
     closed: { opacity: 0, x: 30 },
     open: (i: number) => ({
       opacity: 1,
       x: 0,
-      transition: {
-        delay: 0.2 + i * 0.08,
-        duration: 0.4,
-        ease: "easeOut" as const,
-      },
-    }),
-  };
+      transition: { delay: 0.2 + i * 0.08, duration: 0.4, ease: 'easeOut' as const }
+    })
+  }
 
   return (
     <>
       <motion.header
         initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="fixed top-0 left-0 w-full z-50 backdrop-blur-md px-4 md:px-8 lg:px-12 h-16 md:h-20 flex items-center justify-between border-b transition-colors"
+        animate={{ y: isVisible ? 0 : '-100%' }}
+        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        className="fixed top-0 left-0 w-full z-50 backdrop-blur-md px-4 md:px-8 lg:px-12 h-12 md:h-14 flex items-center justify-between border-b"
         style={{
-          backgroundColor: "var(--header-bg)",
-          color: "var(--text-primary)",
-          borderColor: "var(--border-color)",
+          backgroundColor: 'var(--header-bg)',
+          color: 'var(--text-primary)',
+          borderColor: 'var(--border-color)'
         }}
       >
-        <Link
-          href="/"
-          className="text-base md:text-xl font-bold tracking-wide font-sans z-10"
-        >
+        <Link href="/" className="text-sm md:text-base font-bold tracking-wide font-sans z-10">
           {logoText}
         </Link>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <button
-            className="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full transition-colors"
-            style={{ backgroundColor: "var(--border-color)" }}
+            className="flex items-center justify-center w-8 h-8 rounded-full transition-colors"
+            style={{ backgroundColor: 'var(--border-color)' }}
             onClick={() => setIsSidebarOpen(true)}
             aria-label="Open menu"
           >
-            <Menu size={20} />
+            <Menu size={18} />
           </button>
         </div>
       </motion.header>
+
+      {/* Spacer so content starts below the fixed header */}
+      <div className="h-12 md:h-14" aria-hidden="true" />
 
       <AnimatePresence>
         {isSidebarOpen && (
@@ -109,7 +131,7 @@ export default function Header({ data }: { data: HeaderData }) {
               exit="closed"
               transition={{ duration: 0.3 }}
               className="fixed inset-0 z-[60] backdrop-blur-sm"
-              style={{ backgroundColor: "var(--overlay-medium)" }}
+              style={{ backgroundColor: 'var(--overlay-medium)' }}
               onClick={() => setIsSidebarOpen(false)}
             />
 
@@ -120,39 +142,39 @@ export default function Header({ data }: { data: HeaderData }) {
               exit="closed"
               className="fixed top-0 right-0 h-full w-full max-w-md z-[70] flex flex-col border-l overflow-y-auto"
               style={{
-                backgroundColor: "var(--header-bg)",
-                borderColor: "var(--border-color)",
-                overscrollBehavior: "contain",
+                backgroundColor: 'var(--header-bg)',
+                borderColor: 'var(--border-color)',
+                overscrollBehavior: 'contain'
               }}
               onWheel={(e) => e.stopPropagation()}
               onTouchMove={(e) => e.stopPropagation()}
             >
               <div
                 className="flex items-center justify-between p-6 border-b"
-                style={{ borderColor: "var(--border-color)" }}
+                style={{ borderColor: 'var(--border-color)' }}
               >
                 <span
                   className="text-xs uppercase tracking-[0.3em] font-light"
-                  style={{ color: "var(--text-secondary)" }}
+                  style={{ color: 'var(--text-secondary)' }}
                 >
                   Menu
                 </span>
                 <button
                   type="button"
                   onClick={(e) => {
-                    e.stopPropagation();
-                    setIsSidebarOpen(false);
+                    e.stopPropagation()
+                    setIsSidebarOpen(false)
                   }}
                   onTouchEnd={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setIsSidebarOpen(false);
+                    e.preventDefault()
+                    e.stopPropagation()
+                    setIsSidebarOpen(false)
                   }}
-                  className="flex items-center justify-center w-10 h-10 rounded-full transition-colors touch-manipulation"
-                  style={{ backgroundColor: "var(--border-color)" }}
+                  className="flex items-center justify-center w-9 h-9 rounded-full transition-colors touch-manipulation"
+                  style={{ backgroundColor: 'var(--border-color)' }}
                   aria-label="Close menu"
                 >
-                  <X size={20} />
+                  <X size={18} />
                 </button>
               </div>
 
@@ -169,7 +191,7 @@ export default function Header({ data }: { data: HeaderData }) {
                       href={link.url}
                       onClick={() => setIsSidebarOpen(false)}
                       className="block py-3 text-2xl md:text-3xl font-light tracking-tight transition-all hover:translate-x-2 hover:opacity-70"
-                      style={{ color: "var(--text-primary)" }}
+                      style={{ color: 'var(--text-primary)' }}
                     >
                       {link.label}
                     </Link>
@@ -177,13 +199,10 @@ export default function Header({ data }: { data: HeaderData }) {
                 ))}
               </nav>
 
-              <div
-                className="p-8 border-t"
-                style={{ borderColor: "var(--border-color)" }}
-              >
+              <div className="p-8 border-t" style={{ borderColor: 'var(--border-color)' }}>
                 <p
                   className="text-center text-xs"
-                  style={{ color: "var(--text-secondary)", opacity: 0.6 }}
+                  style={{ color: 'var(--text-secondary)', opacity: 0.6 }}
                 >
                   Cinematic Event Experiences
                 </p>
@@ -193,5 +212,5 @@ export default function Header({ data }: { data: HeaderData }) {
         )}
       </AnimatePresence>
     </>
-  );
+  )
 }

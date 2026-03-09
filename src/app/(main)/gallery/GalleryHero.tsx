@@ -39,7 +39,7 @@ export default function GalleryHero({
         }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto pt-20 pb-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto pt-6 pb-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div>
           <motion.p
             className="text-xs md:text-sm uppercase tracking-[0.4em] mb-4"

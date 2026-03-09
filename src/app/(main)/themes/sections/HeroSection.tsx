@@ -40,7 +40,6 @@ export default function HeroSection({
     <>
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-end pb-16 md:pb-20 lg:items-center lg:pb-0 overflow-hidden">
-        {/* Cover Image */}
         {hero.coverImageUrl ? (
           <Image
             src={hero.coverImageUrl}
@@ -81,7 +80,7 @@ export default function HeroSection({
         />
 
         {/* Content Grid */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 md:px-8 lg:px-12 xl:px-16 pt-28 lg:pt-0">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 md:px-8 lg:px-12 xl:px-16 pt-4 lg:pt-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen lg:min-h-0 lg:py-16">
             {/* ── LEFT: Text Content ─────────────────────────────────────── */}
             <div className="flex flex-col justify-center">
@@ -108,7 +107,7 @@ export default function HeroSection({
               <motion.h1
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold leading-[1.05] tracking-tight mb-4 whitespace-pre-line"
                 style={{
-                  color: "var(--text-primary)",
+                  color: "var(--bg-secondary)",
                   textShadow: "0 2px 32px rgba(0,0,0,0.6)",
                 }}
                 initial={{ opacity: 0, y: 30 }}
@@ -142,7 +141,7 @@ export default function HeroSection({
                     className="inline-flex items-center gap-3 px-8 py-4 text-sm font-bold uppercase tracking-widest rounded-full transition-all"
                     style={{
                       backgroundColor: "var(--accent)",
-                      color: "var(--bg-primary)",
+                      color: "var(--accent-text)",
                     }}
                   >
                     {ctaText}

@@ -206,7 +206,7 @@ export default function ContactContent({ data }: ContactContentProps) {
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
           >
-            <Sparkles size={40} style={{ color: "var(--bg-primary)" }} />
+            <Sparkles size={40} style={{ color: "var(--accent-text)" }} />
           </motion.div>
           <h2
             className="text-3xl md:text-4xl font-bold mb-4"
@@ -228,7 +228,7 @@ export default function ContactContent({ data }: ContactContentProps) {
             className="inline-block px-8 py-4 text-sm font-bold uppercase tracking-widest rounded-full"
             style={{
               backgroundColor: "var(--accent)",
-              color: "var(--bg-primary)",
+              color: "var(--accent-text)",
             }}
           >
             {success.buttonText || "Back to Home"}
@@ -248,7 +248,7 @@ export default function ContactContent({ data }: ContactContentProps) {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-24 md:pt-28 pb-28 md:pb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-8 md:pt-10 md:pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start relative">
           <motion.div
             className="lg:sticky lg:top-32 flex flex-col items-center lg:h-[calc(100vh-160px)] lg:justify-center"
@@ -607,7 +607,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                   className="inline-flex items-center gap-3 px-10 py-4 text-sm font-bold uppercase tracking-widest rounded-full transition-all disabled:opacity-70"
                   style={{
                     backgroundColor: "var(--accent)",
-                    color: "var(--bg-primary)",
+                    color: "var(--accent-text)",
                   }}
                 >
                   {isSubmitting ? (

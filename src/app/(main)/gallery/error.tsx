@@ -19,7 +19,7 @@ export default function GalleryError({
         <button
           onClick={reset}
           className="px-6 py-3 rounded-full text-sm font-bold uppercase tracking-widest"
-          style={{ backgroundColor: 'var(--accent)', color: 'var(--bg-primary)' }}
+          style={{ backgroundColor: 'var(--accent)', color: 'var(--accent-text)' }}
         >
           Try Again
         </button>

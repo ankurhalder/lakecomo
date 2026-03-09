@@ -40,7 +40,7 @@ export default function CrewHero({ hero, heroFeature }: CrewHeroProps) {
         style={{ background: 'linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary) 50%, var(--bg-primary))' }}
       />
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto pt-24 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto pt-8 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <div className="text-center lg:text-left">
           <motion.p
             className="text-xs md:text-sm uppercase tracking-[0.4em] mb-4"

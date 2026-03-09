@@ -39,7 +39,7 @@ export default function ProcessContent({ data }: ProcessContentProps) {
 
       <FilmStrip steps={steps} />
 
-      <section className="relative py-16 pb-28 sm:py-20 md:py-24 px-4">
+      <section className="relative py-16 sm:py-20 md:py-24 px-4">
         <div
           className="absolute inset-0"
           style={{
@@ -80,7 +80,7 @@ export default function ProcessContent({ data }: ProcessContentProps) {
               className="px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-widest rounded-full transition-all"
               style={{
                 backgroundColor: "var(--accent)",
-                color: "var(--bg-primary)",
+                color: "var(--accent-text)",
               }}
             >
               {cta.buttonText || "Start Your Experience"}

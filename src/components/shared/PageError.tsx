@@ -63,7 +63,7 @@ export default function PageError({
               className="flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium uppercase tracking-wider transition-colors"
               style={{ 
                 backgroundColor: 'var(--accent)', 
-                color: 'var(--bg-primary)' 
+                color: 'var(--accent-text)' 
               }}
             >
               <RefreshCw size={16} />

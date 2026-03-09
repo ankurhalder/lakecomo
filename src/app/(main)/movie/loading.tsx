@@ -13,7 +13,7 @@ export default function Loading() {
         style={{ background: 'linear-gradient(135deg, var(--bg-secondary), var(--bg-primary))' }}
       />
 
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-[80vh] pt-24 pb-16 px-4 md:px-8 lg:px-12 max-w-7xl mx-auto items-center gap-8">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-[80vh] pt-8 pb-10 px-4 md:px-8 lg:px-12 max-w-7xl mx-auto items-center gap-8">
         <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left">
           <Skeleton className="w-32 h-4 mb-4" />
           <Skeleton className="w-full max-w-md h-10 mb-3" />

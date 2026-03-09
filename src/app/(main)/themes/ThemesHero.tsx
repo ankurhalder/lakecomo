@@ -69,7 +69,7 @@ export default function ThemesHero({
         }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto pt-20 pb-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto pt-6 pb-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <div className="text-center md:text-left">
           <motion.p
             className="text-xs md:text-sm uppercase tracking-[0.4em] mb-4"

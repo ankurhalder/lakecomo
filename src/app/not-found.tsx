@@ -34,7 +34,7 @@ export default function NotFound() {
         <Link 
           href="/"
           className="inline-flex items-center justify-center gap-2 px-8 py-4 font-bold uppercase tracking-widest rounded-full transition-all hover:scale-105"
-          style={{ backgroundColor: 'var(--accent)', color: 'var(--bg-primary)' }}
+          style={{ backgroundColor: 'var(--accent)', color: 'var(--accent-text)' }}
         >
           Back to Home
         </Link>

@@ -67,7 +67,7 @@ export default function GalleryParallax({ images }: ParallaxGalleryProps) {
     <>
       <section
         ref={containerRef}
-        className="relative py-24 pb-28 md:pb-24 overflow-hidden"
+        className="relative py-24 md:pb-24 overflow-hidden"
       >
         <motion.div
           className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12"

@@ -176,7 +176,7 @@ export default function FAQContent({ data }: { data?: FAQPageData | null }) {
           }}
         />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto pt-28 pb-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto pt-6 pb-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="text-center lg:text-left">
             <motion.p
               className="text-xs md:text-sm uppercase tracking-[0.4em] mb-4"
@@ -467,7 +467,7 @@ export default function FAQContent({ data }: { data?: FAQPageData | null }) {
               className="w-12 h-12 rounded-full flex items-center justify-center"
               style={{ backgroundColor: "var(--accent)" }}
             >
-              <MessageCircle size={24} style={{ color: "var(--bg-primary)" }} />
+              <MessageCircle size={24} style={{ color: "var(--accent-text)" }} />
             </div>
             <p
               className="text-lg font-medium"
@@ -482,7 +482,7 @@ export default function FAQContent({ data }: { data?: FAQPageData | null }) {
                 className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-wider rounded-full transition-all"
                 style={{
                   backgroundColor: "var(--accent)",
-                  color: "var(--bg-primary)",
+                  color: "var(--accent-text)",
                 }}
               >
                 {contactCta.buttonText || "Contact Us"}

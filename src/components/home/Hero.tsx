@@ -354,12 +354,13 @@ export default function Hero({ data }: { data: HeroData }) {
         </div>
       </div>
 
-      <div className="fixed bottom-20 md:bottom-28 right-4 md:right-6 z-50">
+      <div className="fixed bottom-8 md:bottom-10 right-4 md:right-6 z-50">
         <AnimatePresence>
           {showPlayIndicator && !userInteracted && (
             <>
               <motion.div
-                className="absolute inset-0 rounded-full bg-white/30"
+                className="absolute inset-0 rounded-full"
+                style={{ backgroundColor: 'rgba(255,255,204,0.3)' }}
                 initial={{ scale: 1, opacity: 0 }}
                 animate={{
                   scale: [1, 2, 2],
@@ -372,7 +373,8 @@ export default function Hero({ data }: { data: HeroData }) {
                 }}
               />
               <motion.div
-                className="absolute inset-0 rounded-full bg-white/20"
+                className="absolute inset-0 rounded-full"
+                style={{ backgroundColor: 'rgba(255,255,204,0.2)' }}
                 initial={{ scale: 1, opacity: 0 }}
                 animate={{
                   scale: [1, 2.5, 2.5],
@@ -386,7 +388,8 @@ export default function Hero({ data }: { data: HeroData }) {
                 }}
               />
               <motion.div
-                className="absolute -left-2 -translate-x-full top-1/2 -translate-y-1/2 md:-top-12 md:left-auto md:right-0 md:translate-x-0 md:translate-y-0 whitespace-nowrap bg-white/90 text-black text-xs font-medium px-3 py-1.5 rounded-full shadow-lg"
+                className="absolute -left-2 -translate-x-full top-1/2 -translate-y-1/2 md:-left-3 md:-translate-x-full md:top-1/2 md:-translate-y-1/2 whitespace-nowrap text-black text-xs font-medium px-3 py-1.5 rounded-full shadow-lg"
+                style={{ backgroundColor: 'var(--accent)' }}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
@@ -413,11 +416,20 @@ export default function Hero({ data }: { data: HeroData }) {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={toggleSound}
-          className={`relative w-10 h-10 md:w-12 md:h-12 rounded-full backdrop-blur-md border flex items-center justify-center text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+          className={`relative w-10 h-10 md:w-12 md:h-12 rounded-full backdrop-blur-md border flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
             showPlayIndicator && !userInteracted
-              ? "bg-white/30 border-white/50 shadow-lg shadow-white/20"
-              : "bg-white/10 border-white/20 hover:bg-white/20"
+              ? "shadow-lg"
+              : ""
           }`}
+          style={{
+            backgroundColor: showPlayIndicator && !userInteracted
+              ? 'rgba(255,255,204,0.35)'
+              : 'rgba(255,255,204,0.15)',
+            borderColor: showPlayIndicator && !userInteracted
+              ? 'rgba(255,255,204,0.7)'
+              : 'rgba(255,255,204,0.35)',
+            color: 'var(--accent)',
+          }}
           aria-label={isMuted ? "Unmute video" : "Mute video"}
         >
           <motion.div

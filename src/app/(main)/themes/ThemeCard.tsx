@@ -255,7 +255,7 @@ export default function ThemeCard({
               className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all flex items-center gap-2"
               style={{
                 backgroundColor: "var(--accent)",
-                color: "var(--bg-primary)",
+                color: "var(--accent-text)",
               }}
             >
               {theme.ctaText || "Book This Theme"}

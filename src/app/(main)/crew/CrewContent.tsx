@@ -154,7 +154,7 @@ export default function CrewContent({ data }: CrewContentProps) {
         </section>
       )}
 
-      <section className="relative px-4 md:px-8 lg:px-12 py-16 pb-28 md:py-24 overflow-hidden">
+      <section className="relative px-4 md:px-8 lg:px-12 py-16 md:py-24 overflow-hidden">
         <div
           className="absolute inset-0"
           style={{
@@ -202,7 +202,7 @@ export default function CrewContent({ data }: CrewContentProps) {
             className="inline-block px-8 py-4 text-sm md:text-base font-bold uppercase tracking-widest rounded-full transition-colors"
             style={{
               backgroundColor: "var(--accent)",
-              color: "var(--bg-primary)",
+              color: "var(--accent-text)",
             }}
           >
             {cta?.buttonText || "Get In Touch"}
