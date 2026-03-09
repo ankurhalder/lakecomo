@@ -74,12 +74,12 @@ export default function LocationsSection({
               className="h-px w-10 flex-shrink-0"
               style={{
                 background:
-                  "linear-gradient(to right, transparent, rgba(255,255,255,0.2))",
+                  "linear-gradient(to right, transparent, var(--divider-color))",
               }}
             />
             <span
               className="text-[10px] uppercase tracking-[0.5em] font-light"
-              style={{ color: "rgba(255,255,255,0.5)" }}
+              style={{ color: "var(--text-muted)" }}
             >
               Choose Your Adventure
             </span>
@@ -87,7 +87,7 @@ export default function LocationsSection({
               className="h-px w-10 flex-shrink-0"
               style={{
                 background:
-                  "linear-gradient(to left, transparent, rgba(255,255,255,0.2))",
+                  "linear-gradient(to left, transparent, var(--divider-color))",
               }}
             />
           </div>
@@ -137,24 +137,24 @@ export default function LocationsSection({
               className="h-px w-16"
               style={{
                 background:
-                  "linear-gradient(to right, transparent, rgba(255,255,255,0.15))",
+                  "linear-gradient(to right, transparent, var(--divider-color))",
               }}
             />
             <div
               className="w-1.5 h-1.5 rotate-45"
-              style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
+              style={{ backgroundColor: "var(--divider-color)" }}
             />
             <div
               className="h-px w-16"
               style={{
                 background:
-                  "linear-gradient(to left, transparent, rgba(255,255,255,0.15))",
+                  "linear-gradient(to left, transparent, var(--divider-color))",
               }}
             />
           </div>
           <p
             className="text-sm md:text-base italic font-light tracking-wide"
-            style={{ color: "rgba(255,255,255,0.6)" }}
+            style={{ color: "var(--text-muted)" }}
           >
             {closingLine}
           </p>
@@ -177,7 +177,7 @@ function LocationCard({
       style={{
         border: "1px solid var(--border-color)",
         background:
-          "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
+          "linear-gradient(135deg, var(--surface-raised) 0%, transparent 100%)",
         boxShadow: "0 8px 48px rgba(0,0,0,0.5)",
         backdropFilter: "blur(8px)",
       }}
@@ -221,16 +221,16 @@ function LocationCard({
           style={{
             background:
               index === 0
-                ? "linear-gradient(135deg, #0a0a14 0%, #141424 100%)"
-                : "linear-gradient(135deg, #0f0c0a 0%, #141414 100%)",
+                ? "linear-gradient(135deg, var(--bg-secondary) 0%, var(--header-bg) 100%)"
+                : "linear-gradient(135deg, var(--header-bg) 0%, var(--bg-primary) 100%)",
           }}
         >
           {location.label && (
             <span
               className="text-[10px] uppercase tracking-[0.4em] px-3 py-1 rounded-full absolute bottom-4 left-4 font-light"
               style={{
-                color: "rgba(255,255,255,0.6)",
-                border: "1px solid rgba(255,255,255,0.15)",
+                color: "var(--text-muted)",
+                border: "1px solid var(--border-color)",
                 backgroundColor: "rgba(0,0,0,0.5)",
               }}
             >
@@ -245,7 +245,7 @@ function LocationCard({
         <div className="flex items-center gap-2 mb-3">
           <span
             className="text-[10px] uppercase tracking-[0.5em] font-light"
-            style={{ color: "rgba(255,255,255,0.35)" }}
+            style={{ color: "var(--text-muted)" }}
           >
             Location {String(index + 1).padStart(2, "0")}
           </span>
@@ -261,7 +261,7 @@ function LocationCard({
         {location.tagline && (
           <p
             className="text-sm italic mb-6 font-light"
-            style={{ color: "rgba(255,255,255,0.55)" }}
+            style={{ color: "var(--text-secondary)" }}
           >
             {location.tagline}
           </p>
@@ -272,7 +272,7 @@ function LocationCard({
           className="h-px mb-6"
           style={{
             background:
-              "linear-gradient(to right, rgba(255,255,255,0.12), transparent)",
+              "linear-gradient(to right, var(--divider-color), transparent)",
           }}
         />
 
@@ -284,15 +284,15 @@ function LocationCard({
                 <div
                   className="mt-1 w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
                   style={{
-                    border: "1px solid rgba(255,255,255,0.2)",
-                    backgroundColor: "rgba(255,255,255,0.05)",
+                    border: "1px solid var(--border-color)",
+                    backgroundColor: "var(--surface-raised)",
                   }}
                 >
-                  <Check size={9} style={{ color: "rgba(255,255,255,0.7)" }} />
+                  <Check size={9} style={{ color: "var(--text-muted)" }} />
                 </div>
                 <span
                   className="text-sm leading-relaxed font-light"
-                  style={{ color: "rgba(255,255,255,0.75)" }}
+                  style={{ color: "var(--text-secondary)" }}
                 >
                   {highlight}
                 </span>
@@ -307,7 +307,7 @@ function LocationCard({
         className="absolute top-0 left-0 right-0 h-0.5"
         style={{
           background:
-            "linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent)",
+            "linear-gradient(to right, transparent, var(--divider-color), transparent)",
         }}
       />
     </div>

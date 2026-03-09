@@ -35,7 +35,7 @@ const buttonVariants = {
   },
   hover: {
     scale: 1.05,
-    boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.3)",
+    boxShadow: "0 25px 50px -12px rgba(255, 255, 204, 0.4)",
     transition: { type: "spring" as const, stiffness: 400 },
   },
   tap: { scale: 0.95 },
@@ -275,9 +275,10 @@ export default function Hero({ data }: { data: HeroData }) {
               animate="visible"
               whileHover="hover"
               whileTap="tap"
-              className="w-full px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
+              className="w-full px-6 py-2.5 text-xs font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
               style={{
-                backgroundColor: "white",
+                backgroundColor: "var(--accent)",
+                color: "var(--accent-text)",
                 boxShadow: "0 0 30px rgba(0,0,0,0.5)",
               }}
             >
@@ -336,7 +337,11 @@ export default function Hero({ data }: { data: HeroData }) {
                 animate="visible"
                 whileHover="hover"
                 whileTap="tap"
-                className="px-5 sm:px-6 md:px-6 lg:px-6 xl:px-8 py-2 sm:py-2 md:py-2.5 lg:py-2.5 xl:py-3 bg-white text-black text-[10px] sm:text-[10px] md:text-xs lg:text-xs xl:text-sm font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
+                className="px-5 sm:px-6 md:px-6 lg:px-6 xl:px-8 py-2 sm:py-2 md:py-2.5 lg:py-2.5 xl:py-3 text-[10px] sm:text-[10px] md:text-xs lg:text-xs xl:text-sm font-bold uppercase tracking-widest rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black shadow-lg"
+                style={{
+                  backgroundColor: "var(--accent)",
+                  color: "var(--accent-text)",
+                }}
               >
                 {secondaryCtaText || "Watch Our Films"}
               </motion.button>

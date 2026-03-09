@@ -48,7 +48,7 @@ export default function HeroSection({
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-contain absolute top-0 left-0"
           />
         ) : (
           <div
@@ -249,7 +249,7 @@ export default function HeroSection({
           <div className="max-w-lg mx-auto">
             <p
               className="text-center text-[10px] uppercase tracking-[0.45em] mb-4 font-light"
-              style={{ color: "rgba(255,255,255,0.4)" }}
+              style={{ color: "var(--text-muted)" }}
             >
               Bond Theme Preview
             </p>

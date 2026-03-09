@@ -28,17 +28,17 @@ function CinematicDivider() {
       <div
         className="flex-1 h-px"
         style={{
-          background: "linear-gradient(to right, transparent, rgba(255,255,255,0.2))",
+          background: "linear-gradient(to right, transparent, var(--divider-color))",
         }}
       />
       <div
         className="w-2 h-2 rotate-45 flex-shrink-0"
-        style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
+        style={{ backgroundColor: "var(--divider-color)" }}
       />
       <div
         className="flex-1 h-px"
         style={{
-          background: "linear-gradient(to left, transparent, rgba(255,255,255,0.2))",
+          background: "linear-gradient(to left, transparent, var(--divider-color))",
         }}
       />
     </div>
@@ -74,11 +74,11 @@ export default function StorySection({ storySection = {} }: StorySectionProps) {
           <div className="flex items-center gap-3 mb-4">
             <div
               className="h-px w-8 flex-shrink-0"
-              style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
+              style={{ backgroundColor: "var(--divider-color)" }}
             />
             <span
               className="text-[10px] uppercase tracking-[0.5em] font-light"
-              style={{ color: "rgba(255,255,255,0.5)" }}
+              style={{ color: "var(--text-muted)" }}
             >
               The Story
             </span>
@@ -123,11 +123,11 @@ export default function StorySection({ storySection = {} }: StorySectionProps) {
             <div className="flex items-center gap-3 mb-4">
               <div
                 className="h-px w-8 flex-shrink-0"
-                style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
+                style={{ backgroundColor: "var(--divider-color)" }}
               />
               <span
                 className="text-[10px] uppercase tracking-[0.5em] font-light"
-                style={{ color: "rgba(255,255,255,0.5)" }}
+                style={{ color: "var(--text-muted)" }}
               >
                 The Inspiration
               </span>
@@ -146,12 +146,12 @@ export default function StorySection({ storySection = {} }: StorySectionProps) {
                 className="absolute left-0 top-0 bottom-0 w-0.5"
                 style={{
                   background:
-                    "linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.05))",
+                    "linear-gradient(to bottom, var(--divider-color), transparent)",
                 }}
               />
               <span
                 className="block text-4xl leading-none mb-1 font-serif"
-                style={{ color: "rgba(255,255,255,0.2)" }}
+                style={{ color: "var(--divider-color)" }}
               >
                 &ldquo;
               </span>

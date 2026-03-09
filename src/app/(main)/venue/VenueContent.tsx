@@ -57,7 +57,7 @@ export default function VenueContent({ data }: VenueContentProps) {
               className="p-8 rounded-2xl text-center relative overflow-hidden"
               style={{
                 backgroundColor: "var(--bg-secondary)",
-                border: "1px solid rgba(255,255,255,0.1)",
+                border: "1px solid var(--border-color)",
               }}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}

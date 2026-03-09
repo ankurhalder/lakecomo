@@ -15,7 +15,6 @@ import {
   MessageSquare,
 } from "lucide-react";
 import InteractiveCamera from "./InteractiveCamera";
-import { useTheme } from "@/components/providers/ThemeProvider";
 
 interface FormData {
   firstName: string;
@@ -66,7 +65,6 @@ interface ContactContentProps {
 }
 
 export default function ContactContent({ data }: ContactContentProps) {
-  const { theme } = useTheme();
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -141,7 +139,7 @@ export default function ContactContent({ data }: ContactContentProps) {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     setFormData((prev) => ({
       ...prev,
@@ -177,7 +175,7 @@ export default function ContactContent({ data }: ContactContentProps) {
       setError(
         err instanceof Error
           ? err.message
-          : "Something went wrong. Please try again."
+          : "Something went wrong. Please try again.",
       );
     } finally {
       setIsSubmitting(false);
@@ -320,7 +318,7 @@ export default function ContactContent({ data }: ContactContentProps) {
           </motion.div>
 
           <motion.div
-            className="relative p-6 md:p-8 rounded-2xl border border-white/20"
+            className="relative p-6 md:p-8 rounded-2xl border border-black/15"
             style={{
               backgroundColor: "var(--bg-primary)",
             }}
@@ -355,7 +353,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                     onFocus={() => setFocusedField("firstName")}
                     onBlur={() => setFocusedField(null)}
                     required
-                    className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/40"
+                    className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-black/20"
                     style={{
                       backgroundColor: "var(--bg-secondary)",
                       color: "var(--text-primary)",
@@ -382,7 +380,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                     onFocus={() => setFocusedField("lastName")}
                     onBlur={() => setFocusedField(null)}
                     required
-                    className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/40"
+                    className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-black/20"
                     style={{
                       backgroundColor: "var(--bg-secondary)",
                       color: "var(--text-primary)",
@@ -413,14 +411,14 @@ export default function ContactContent({ data }: ContactContentProps) {
                       onFocus={() => setFocusedField("email")}
                       onBlur={() => setFocusedField(null)}
                       required
-                      className="w-full px-4 py-3 pr-10 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/40"
+                      className="w-full px-4 py-3 pr-10 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-black/20"
                       style={{
                         backgroundColor: "var(--bg-secondary)",
                         color: "var(--text-primary)",
                         borderColor: formData.email
                           ? emailValidation.valid
-                            ? "#22c55e"
-                            : "#ef4444"
+                            ? "var(--color-success)"
+                            : "var(--color-error)"
                           : undefined,
                       }}
                       placeholder={form.emailPlaceholder || "john@example.com"}
@@ -464,7 +462,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                     <select
                       value={countryCode}
                       onChange={(e) => setCountryCode(e.target.value)}
-                      className="w-[100px] px-2 min-h-[44px] rounded-lg text-xs md:text-sm transition-all focus:outline-none focus:ring-2 border border-white/40 shrink-0"
+                      className="w-[100px] px-2 min-h-[44px] rounded-lg text-xs md:text-sm transition-all focus:outline-none focus:ring-2 border border-black/20 shrink-0"
                       style={{
                         backgroundColor: "var(--bg-secondary)",
                         color: "var(--text-primary)",
@@ -484,7 +482,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                       onChange={handleChange}
                       onFocus={() => setFocusedField("phone")}
                       onBlur={() => setFocusedField(null)}
-                      className="min-w-0 flex-1 px-3 md:px-4 min-h-[44px] rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/40"
+                      className="min-w-0 flex-1 px-3 md:px-4 min-h-[44px] rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-black/20"
                       style={{
                         backgroundColor: "var(--bg-secondary)",
                         color: "var(--text-primary)",
@@ -512,7 +510,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                     onChange={handleChange}
                     onFocus={() => setFocusedField("groupSize")}
                     onBlur={() => setFocusedField(null)}
-                    className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/40"
+                    className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-black/20"
                     style={{
                       backgroundColor: "var(--bg-secondary)",
                       color: "var(--text-primary)",
@@ -546,11 +544,11 @@ export default function ContactContent({ data }: ContactContentProps) {
                     onChange={handleChange}
                     onFocus={() => setFocusedField("eventDate")}
                     onBlur={() => setFocusedField(null)}
-                    className="w-full px-4 min-h-[44px] rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-white/40"
+                    className="w-full px-4 min-h-[44px] rounded-lg text-sm transition-all focus:outline-none focus:ring-2 border border-black/20"
                     style={{
                       backgroundColor: "var(--bg-secondary)",
                       color: "var(--text-primary)",
-                      colorScheme: theme === "dark" ? "dark" : "light",
+                      colorScheme: "light",
                     }}
                   />
                 </div>
@@ -573,7 +571,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                   onFocus={() => setFocusedField("message")}
                   onBlur={() => setFocusedField(null)}
                   rows={4}
-                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 resize-none border border-white/40"
+                  className="w-full px-4 py-3 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 resize-none border border-black/20"
                   style={{
                     backgroundColor: "var(--bg-secondary)",
                     color: "var(--text-primary)",
@@ -590,7 +588,7 @@ export default function ContactContent({ data }: ContactContentProps) {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-center gap-3 p-4 rounded-lg border border-red-500/30"
-                  style={{ backgroundColor: "rgba(239, 68, 68, 0.1)" }}
+                  style={{ backgroundColor: "var(--color-error-bg)" }}
                 >
                   <AlertCircle
                     size={20}

@@ -48,18 +48,18 @@ export default function HighlightsSection({
               className="h-px w-10 flex-shrink-0"
               style={{
                 background:
-                  "linear-gradient(to right, transparent, rgba(255,255,255,0.2))",
+                  "linear-gradient(to right, transparent, var(--divider-color))",
               }}
             />
             <div
               className="w-1.5 h-1.5 rotate-45 flex-shrink-0"
-              style={{ backgroundColor: "rgba(255,255,255,0.4)" }}
+              style={{ backgroundColor: "var(--divider-color)" }}
             />
             <div
               className="h-px w-10 flex-shrink-0"
               style={{
                 background:
-                  "linear-gradient(to left, transparent, rgba(255,255,255,0.2))",
+                  "linear-gradient(to left, transparent, var(--divider-color))",
               }}
             />
           </div>
@@ -84,7 +84,7 @@ export default function HighlightsSection({
               style={{
                 border: "1px solid var(--border-color)",
                 background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
+                  "linear-gradient(135deg, var(--surface-raised) 0%, transparent 100%)",
               }}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -95,20 +95,20 @@ export default function HighlightsSection({
                 ease: "easeOut",
               }}
               whileHover={{
-                borderColor: "rgba(255,255,255,0.2)",
+                borderColor: "var(--border-color)",
               }}
             >
               {/* Number bullet */}
               <div
                 className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
                 style={{
-                  border: "1px solid rgba(255,255,255,0.2)",
-                  backgroundColor: "rgba(255,255,255,0.05)",
+                  border: "1px solid var(--border-color)",
+                  backgroundColor: "var(--surface-raised)",
                 }}
               >
                 <span
                   className="text-xs font-bold tracking-wider"
-                  style={{ color: "rgba(255,255,255,0.7)" }}
+                  style={{ color: "var(--text-muted)" }}
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>
@@ -116,7 +116,7 @@ export default function HighlightsSection({
 
               <p
                 className="text-sm md:text-base leading-relaxed font-light pt-1.5"
-                style={{ color: "rgba(255,255,255,0.85)" }}
+                style={{ color: "var(--text-secondary)" }}
               >
                 {highlight}
               </p>

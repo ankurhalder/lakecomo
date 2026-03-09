@@ -89,12 +89,12 @@ export default function LogisticsSection({
               className="h-px w-10 flex-shrink-0"
               style={{
                 background:
-                  "linear-gradient(to right, transparent, rgba(255,255,255,0.2))",
+                  "linear-gradient(to right, transparent, var(--divider-color))",
               }}
             />
             <span
               className="text-[10px] uppercase tracking-[0.5em] font-light"
-              style={{ color: "rgba(255,255,255,0.5)" }}
+              style={{ color: "var(--text-muted)" }}
             >
               Know Before You Go
             </span>
@@ -102,7 +102,7 @@ export default function LogisticsSection({
               className="h-px w-10 flex-shrink-0"
               style={{
                 background:
-                  "linear-gradient(to left, transparent, rgba(255,255,255,0.2))",
+                  "linear-gradient(to left, transparent, var(--divider-color))",
               }}
             />
           </div>
@@ -143,7 +143,7 @@ export default function LogisticsSection({
                   className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center mt-0.5"
                   style={{
                     border: "1px solid var(--border-color)",
-                    backgroundColor: "rgba(255,255,255,0.04)",
+                    backgroundColor: "var(--surface-raised)",
                   }}
                 >
                   <IconComponent
@@ -156,7 +156,7 @@ export default function LogisticsSection({
                 <div className="flex-1 min-w-0">
                   <span
                     className="text-[10px] uppercase tracking-[0.4em] font-light block mb-1.5"
-                    style={{ color: "rgba(255,255,255,0.4)" }}
+                    style={{ color: "var(--text-muted)" }}
                   >
                     {detail.label}
                   </span>
@@ -177,7 +177,7 @@ export default function LogisticsSection({
           className="mt-0 h-px"
           style={{
             background:
-              "linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent)",
+              "linear-gradient(to right, transparent, var(--divider-color), transparent)",
           }}
         />
       </div>

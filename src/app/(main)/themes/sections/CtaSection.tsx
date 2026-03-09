@@ -28,6 +28,14 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
   const ctaText = ctaSection.ctaText ?? DEFAULTS.ctaText;
   const ctaLink = ctaSection.ctaLink ?? DEFAULTS.ctaLink;
 
+  const hasBg = !!ctaSection.backgroundImageUrl;
+  const dividerColor = hasBg ? 'rgba(255,255,255,0.2)' : 'var(--divider-color)';
+  const diamondBorder = hasBg ? 'rgba(255,255,255,0.25)' : 'var(--border-color)';
+  const labelColor = hasBg ? 'rgba(255,255,255,0.45)' : 'var(--text-muted)';
+  const quoteColor = hasBg ? 'rgba(255,255,255,0.7)' : 'var(--text-secondary)';
+  const trustColor = hasBg ? 'rgba(255,255,255,0.3)' : 'var(--text-muted)';
+  const separatorColor = hasBg ? 'rgba(255,255,255,0.12)' : 'var(--divider-color)';
+
   return (
     <section className="relative py-14 md:py-20 lg:py-28 overflow-hidden">
       {/* Background */}
@@ -56,8 +64,7 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{
-          background:
-            "linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent)",
+          background: `linear-gradient(to right, transparent, ${separatorColor}, transparent)`,
         }}
       />
 
@@ -73,19 +80,17 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
             <div
               className="h-px w-12"
               style={{
-                background:
-                  "linear-gradient(to right, transparent, rgba(255,255,255,0.2))",
+                background: `linear-gradient(to right, transparent, ${dividerColor})`,
               }}
             />
             <div
               className="w-2.5 h-2.5 rotate-45 border"
-              style={{ borderColor: "rgba(255,255,255,0.25)" }}
+              style={{ borderColor: diamondBorder }}
             />
             <div
               className="h-px w-12"
               style={{
-                background:
-                  "linear-gradient(to left, transparent, rgba(255,255,255,0.2))",
+                background: `linear-gradient(to left, transparent, ${dividerColor})`,
               }}
             />
           </div>
@@ -93,7 +98,7 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
           {/* Section Label */}
           <span
             className="text-[10px] uppercase tracking-[0.55em] font-light block mb-5"
-            style={{ color: "rgba(255,255,255,0.45)" }}
+            style={{ color: labelColor }}
           >
             Your Mission Awaits
           </span>
@@ -112,7 +117,7 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
           {/* Quote */}
           <p
             className="text-sm md:text-base leading-[1.9] italic font-light mb-7 max-w-2xl mx-auto"
-            style={{ color: "rgba(255,255,255,0.7)" }}
+            style={{ color: quoteColor }}
           >
             &ldquo;{quote}&rdquo;
           </p>
@@ -136,7 +141,7 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
           {/* Trust micro-copy */}
           <p
             className="mt-5 text-xs font-light tracking-wider"
-            style={{ color: "rgba(255,255,255,0.3)" }}
+            style={{ color: trustColor }}
           >
             Private & semi-private dates available · Lake Como, Italy
           </p>
@@ -147,8 +152,7 @@ export default function CtaSection({ ctaSection = {} }: CtaSectionProps) {
       <div
         className="absolute bottom-0 left-0 right-0 h-px"
         style={{
-          background:
-            "linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent)",
+          background: `linear-gradient(to right, transparent, ${separatorColor}, transparent)`,
         }}
       />
     </section>

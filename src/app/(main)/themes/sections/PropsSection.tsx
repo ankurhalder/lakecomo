@@ -31,6 +31,16 @@ export default function PropsSection({ propsSection = {} }: PropsSectionProps) {
       : DEFAULTS.highlights;
   const quote = propsSection.quote ?? DEFAULTS.quote;
 
+  const hasBg = !!propsSection.backgroundImageUrl;
+  const dividerColor = hasBg ? 'rgba(255,255,255,0.2)' : 'var(--divider-color)';
+  const textBody = hasBg ? 'rgba(255,255,255,0.82)' : 'var(--text-secondary)';
+  const surfaceBg = hasBg ? 'rgba(255,255,255,0.03)' : 'var(--surface-raised)';
+  const decorativeDot = hasBg ? 'rgba(255,255,255,0.4)' : 'var(--divider-color)';
+  const hoverBorder = hasBg ? 'rgba(255,255,255,0.2)' : 'var(--border-color)';
+  const quoteBarColor = hasBg ? 'rgba(255,255,255,0.12)' : 'var(--divider-color)';
+  const quoteMarkColor = hasBg ? 'rgba(255,255,255,0.15)' : 'var(--divider-color)';
+  const quoteTextColor = hasBg ? 'rgba(255,255,255,0.75)' : 'var(--text-secondary)';
+
   return (
     <section className="relative py-10 md:py-14 lg:py-20 overflow-hidden">
       {/* Background */}
@@ -68,19 +78,17 @@ export default function PropsSection({ propsSection = {} }: PropsSectionProps) {
             <div
               className="h-px w-10 flex-shrink-0"
               style={{
-                background:
-                  "linear-gradient(to right, transparent, rgba(255,255,255,0.2))",
+                background: `linear-gradient(to right, transparent, ${dividerColor})`,
               }}
             />
             <div
               className="w-1.5 h-1.5 rotate-45 flex-shrink-0"
-              style={{ backgroundColor: "rgba(255,255,255,0.4)" }}
+              style={{ backgroundColor: decorativeDot }}
             />
             <div
               className="h-px w-10 flex-shrink-0"
               style={{
-                background:
-                  "linear-gradient(to left, transparent, rgba(255,255,255,0.2))",
+                background: `linear-gradient(to left, transparent, ${dividerColor})`,
               }}
             />
           </div>
@@ -100,8 +108,7 @@ export default function PropsSection({ propsSection = {} }: PropsSectionProps) {
               className="relative rounded-xl p-6 md:p-7 text-center"
               style={{
                 border: "1px solid var(--border-color)",
-                background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
+                background: `linear-gradient(135deg, ${surfaceBg} 0%, transparent 100%)`,
               }}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -111,18 +118,18 @@ export default function PropsSection({ propsSection = {} }: PropsSectionProps) {
                 delay: index * 0.12,
                 ease: "easeOut",
               }}
-              whileHover={{ borderColor: "rgba(255,255,255,0.2)" }}
+              whileHover={{ borderColor: hoverBorder }}
             >
               {/* Number */}
               <div
                 className="text-4xl font-bold mb-4 leading-none"
-                style={{ color: "rgba(255,255,255,0.12)" }}
+                style={{ color: quoteBarColor }}
               >
                 {String(index + 1).padStart(2, "0")}
               </div>
               <p
                 className="text-sm md:text-base leading-relaxed font-light"
-                style={{ color: "rgba(255,255,255,0.82)" }}
+                style={{ color: textBody }}
               >
                 {highlight}
               </p>
@@ -140,25 +147,25 @@ export default function PropsSection({ propsSection = {} }: PropsSectionProps) {
         >
           <div
             className="h-px w-20 mx-auto mb-6"
-            style={{ backgroundColor: "rgba(255,255,255,0.12)" }}
+            style={{ backgroundColor: quoteBarColor }}
           />
           <blockquote>
             <span
               className="block text-5xl leading-none font-serif mb-2"
-              style={{ color: "rgba(255,255,255,0.15)" }}
+              style={{ color: quoteMarkColor }}
             >
               &ldquo;
             </span>
             <p
               className="text-base md:text-xl leading-[1.9] italic font-light"
-              style={{ color: "rgba(255,255,255,0.75)" }}
+              style={{ color: quoteTextColor }}
             >
               {quote}
             </p>
           </blockquote>
           <div
             className="h-px w-20 mx-auto mt-6"
-            style={{ backgroundColor: "rgba(255,255,255,0.12)" }}
+            style={{ backgroundColor: quoteBarColor }}
           />
         </motion.div>
       </div>

@@ -115,7 +115,7 @@ export default function CrewContent({ data }: CrewContentProps) {
       </section>
 
       {data.logos && data.logos.length > 0 && (
-        <section className="relative py-12 px-4 md:px-8 lg:px-12 border-y border-white/5 bg-black/20">
+        <section className="relative py-12 px-4 md:px-8 lg:px-12 border-y border-black/8 bg-black/10">
           <div className="max-w-7xl mx-auto">
             <motion.p
               initial={{ opacity: 0, y: 10 }}

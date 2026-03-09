@@ -1,55 +1,61 @@
-'use client'
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from "react";
 
 interface Star {
-  x: number
-  y: number
-  size: number
-  rotation: number
-  rotationSpeed: number
-  speed: number
-  alpha: number
+  x: number;
+  y: number;
+  size: number;
+  rotation: number;
+  rotationSpeed: number;
+  speed: number;
+  alpha: number;
 }
 
 interface FallingStarsProps {
-  count?: number
-  mobileCount?: number
-  minSize?: number
-  maxSize?: number
-  minSpeed?: number
-  maxSpeed?: number
-  sidesOnly?: boolean
-  sideWidth?: number
-  color?: string
-  className?: string
+  count?: number;
+  mobileCount?: number;
+  minSize?: number;
+  maxSize?: number;
+  minSpeed?: number;
+  maxSpeed?: number;
+  sidesOnly?: boolean;
+  sideWidth?: number;
+  color?: string;
+  className?: string;
 }
 
-function drawStar(ctx: CanvasRenderingContext2D, cx: number, cy: number, size: number, rotation: number) {
-  const spikes = 5
-  const outerRadius = size
-  const innerRadius = size * 0.4
-  
-  ctx.save()
-  ctx.translate(cx, cy)
-  ctx.rotate(rotation)
-  ctx.beginPath()
-  
+function drawStar(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  size: number,
+  rotation: number,
+) {
+  const spikes = 5;
+  const outerRadius = size;
+  const innerRadius = size * 0.4;
+
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(rotation);
+  ctx.beginPath();
+
   for (let i = 0; i < spikes * 2; i++) {
-    const radius = i % 2 === 0 ? outerRadius : innerRadius
-    const angle = (i * Math.PI) / spikes - Math.PI / 2
-    const x = Math.cos(angle) * radius
-    const y = Math.sin(angle) * radius
-    
+    const radius = i % 2 === 0 ? outerRadius : innerRadius;
+    const angle = (i * Math.PI) / spikes - Math.PI / 2;
+    const x = Math.cos(angle) * radius;
+    const y = Math.sin(angle) * radius;
+
     if (i === 0) {
-      ctx.moveTo(x, y)
+      ctx.moveTo(x, y);
     } else {
-      ctx.lineTo(x, y)
+      ctx.lineTo(x, y);
     }
   }
-  
-  ctx.closePath()
-  ctx.restore()
+
+  ctx.closePath();
+  ctx.restore();
 }
 
 export default function FallingStars({
@@ -62,147 +68,144 @@ export default function FallingStars({
   sidesOnly = false,
   sideWidth = 0.15,
   color,
-  className = ''
+  className = "",
 }: FallingStarsProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
-  const [isMobile, setIsMobile] = useState(false)
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         setDimensions({
           width: window.innerWidth,
-          height: window.innerHeight
-        })
-        setIsMobile(window.innerWidth < 768)
+          height: window.innerHeight,
+        });
+        setIsMobile(window.innerWidth < 768);
       }
-    }
-    
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+    };
 
-  const activeCount = isMobile ? mobileCount : count
-  const sizeRange = maxSize - minSize
-  const speedRange = maxSpeed - minSpeed
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const activeCount = isMobile ? mobileCount : count;
+  const sizeRange = maxSize - minSize;
+  const speedRange = maxSpeed - minSpeed;
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas || dimensions.width === 0) return
+    const canvas = canvasRef.current;
+    if (!canvas || dimensions.width === 0) return;
 
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     const getComputedColor = (colorStr: string) => {
-      if (!colorStr.startsWith('var(')) return colorStr
-      const temp = document.createElement('div')
-      temp.style.color = colorStr
-      temp.style.display = 'none'
-      document.body.appendChild(temp)
-      const computed = window.getComputedStyle(temp).color
-      document.body.removeChild(temp)
-      return computed
-    }
+      if (!colorStr.startsWith("var(")) return colorStr;
+      const temp = document.createElement("div");
+      temp.style.color = colorStr;
+      temp.style.display = "none";
+      document.body.appendChild(temp);
+      const computed = window.getComputedStyle(temp).color;
+      document.body.removeChild(temp);
+      return computed;
+    };
 
-    let activeColor = getComputedColor(color || '#ffffff')
+    let activeColor = getComputedColor(color || "#ffffff");
 
-    const observer = new MutationObserver((mutations) => {
-      for (const mutation of mutations) {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-          activeColor = getComputedColor(color || '#ffffff')
-        }
-      }
-    })
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = dimensions.width * dpr;
+    canvas.height = dimensions.height * dpr;
+    ctx.scale(dpr, dpr);
+    canvas.style.width = `${dimensions.width}px`;
+    canvas.style.height = `${dimensions.height}px`;
 
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme']
-    })
-
-    const dpr = window.devicePixelRatio || 1
-    canvas.width = dimensions.width * dpr
-    canvas.height = dimensions.height * dpr
-    ctx.scale(dpr, dpr)
-    canvas.style.width = `${dimensions.width}px`
-    canvas.style.height = `${dimensions.height}px`
-
-    const stars: Star[] = []
+    const stars: Star[] = [];
 
     const spawnStar = (randomY = false): Star => {
-      let x: number
-      
+      let x: number;
+
       if (sidesOnly) {
-        const leftZoneWidth = dimensions.width * sideWidth
-        const rightZoneStart = dimensions.width * (1 - sideWidth)
-        
+        const leftZoneWidth = dimensions.width * sideWidth;
+        const rightZoneStart = dimensions.width * (1 - sideWidth);
+
         if (Math.random() > 0.5) {
-          x = Math.random() * leftZoneWidth
+          x = Math.random() * leftZoneWidth;
         } else {
-          x = rightZoneStart + Math.random() * leftZoneWidth
+          x = rightZoneStart + Math.random() * leftZoneWidth;
         }
       } else {
-        x = Math.random() * dimensions.width
+        x = Math.random() * dimensions.width;
       }
 
       return {
         x,
-        y: randomY ? Math.random() * dimensions.height : -50 - Math.random() * 100,
+        y: randomY
+          ? Math.random() * dimensions.height
+          : -50 - Math.random() * 100,
         size: minSize + Math.random() * sizeRange,
         rotation: Math.random() * Math.PI * 2,
         rotationSpeed: (Math.random() - 0.5) * 0.04,
         speed: minSpeed + Math.random() * speedRange,
-        alpha: 0.6 + Math.random() * 0.4
-      }
-    }
+        alpha: 0.6 + Math.random() * 0.4,
+      };
+    };
 
     for (let i = 0; i < activeCount; i++) {
-      stars.push(spawnStar(true))
+      stars.push(spawnStar(true));
     }
 
-    let animationFrameId: number
+    let animationFrameId: number;
 
     const render = () => {
-      ctx.clearRect(0, 0, dimensions.width, dimensions.height)
-      
+      ctx.clearRect(0, 0, dimensions.width, dimensions.height);
+
       stars.forEach((star, index) => {
-        star.y += star.speed
-        star.rotation += star.rotationSpeed
+        star.y += star.speed;
+        star.rotation += star.rotationSpeed;
 
         if (star.y > dimensions.height + star.size * 2) {
-          stars[index] = spawnStar(false)
+          stars[index] = spawnStar(false);
         }
 
-        ctx.save()
-        ctx.globalAlpha = star.alpha
-        ctx.fillStyle = activeColor
-        ctx.shadowBlur = star.size * 0.5
-        ctx.shadowColor = activeColor
-        
-        drawStar(ctx, star.x, star.y, star.size, star.rotation)
-        ctx.fill()
-        
-        ctx.restore()
-      })
+        ctx.save();
+        ctx.globalAlpha = star.alpha;
+        ctx.fillStyle = activeColor;
+        ctx.shadowBlur = star.size * 0.5;
+        ctx.shadowColor = activeColor;
 
-      animationFrameId = requestAnimationFrame(render)
-    }
+        drawStar(ctx, star.x, star.y, star.size, star.rotation);
+        ctx.fill();
 
-    render()
+        ctx.restore();
+      });
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
 
     return () => {
-      cancelAnimationFrame(animationFrameId)
-      observer.disconnect()
-    }
-  }, [dimensions, activeCount, minSize, sizeRange, minSpeed, speedRange, sidesOnly, sideWidth, color])
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [
+    dimensions,
+    activeCount,
+    minSize,
+    sizeRange,
+    minSpeed,
+    speedRange,
+    sidesOnly,
+    sideWidth,
+    color,
+  ]);
 
   return (
-    <canvas 
+    <canvas
       ref={canvasRef}
       className={`fixed inset-0 pointer-events-none z-[1] ${className}`}
       style={{ opacity: 0.9 }}
     />
-  )
+  );
 }
-
