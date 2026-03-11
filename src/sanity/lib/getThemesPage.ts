@@ -2,74 +2,73 @@ import { client, DEFAULT_REVALIDATE } from "./client";
 import { unstable_cache } from "next/cache";
 import { urlFor } from "./image";
 
-// ─── TYPE DEFINITIONS ──────────────────────────────────────────────────────────
+// ─── TYPES ─────────────────────────────────────────────────────────────────────
 
-export interface SliderImage {
+export interface HeroSlide {
   url: string;
   alt?: string;
-  caption?: string;
 }
 
-export interface LocationData {
-  name: string;
-  label?: string;
-  tagline?: string;
-  highlights?: string[];
+export interface AssignmentCardData {
+  title?: string;
+  duration?: string;
+  features?: string[];
+  ctaText?: string;
+  ctaLink?: string;
   imageUrl?: string | null;
 }
 
-export interface LogisticsDetail {
-  label: string;
-  value: string;
-  icon?: string;
+export interface CtaButtonData {
+  text: string;
+  link: string;
 }
 
 export interface ThemesPageData {
   title?: string;
+
+  heroSlides?: HeroSlide[];
+
   hero?: {
-    coverImageUrl?: string | null;
-    preHeading?: string;
+    blinkingLabel?: string;
     headline?: string;
     subheadline?: string;
     ctaText?: string;
     ctaLink?: string;
   };
-  bondVideoUrl?: string | null;
-  storySection?: {
-    historyTitle?: string;
-    historyText?: string;
-    bondConnectionTitle?: string;
-    bondConnectionText?: string;
-    bondConnectionImageUrl?: string | null;
+
+  real007Section?: {
+    heading?: string;
+    paragraph1?: string;
+    paragraph2?: string;
+    bullets?: string[];
+    imageUrl?: string | null;
   };
-  locationsSection?: {
+
+  assignmentsSection?: {
     sectionTitle?: string;
-    sectionSubtitle?: string;
-    locations?: LocationData[];
-    closingLine?: string;
+    cards?: AssignmentCardData[];
   };
-  propsSection?: {
+
+  privateVillaSection?: {
     title?: string;
-    highlights?: string[];
-    quote?: string;
-    backgroundImageUrl?: string | null;
+    description?: string;
+    features?: string[];
+    ctaText?: string;
+    ctaLink?: string;
+    imageUrl?: string | null;
   };
-  highlightsSection?: {
-    title?: string;
-    highlights?: string[];
-  };
-  logisticsSection?: {
-    title?: string;
-    details?: LogisticsDetail[];
-  };
+
   ctaSection?: {
     title?: string;
     quote?: string;
-    ctaText?: string;
-    ctaLink?: string;
+    ctas?: CtaButtonData[];
     backgroundImageUrl?: string | null;
   };
-  sliderImages?: SliderImage[];
+
+  whatsIncludedSection?: {
+    title?: string;
+    items?: string[];
+  };
 }
 
 // ─── GROQ QUERY ───────────────────────────────────────────────────────────────
@@ -78,84 +77,69 @@ const query = `
   *[_type == "themesPage"][0] {
     title,
 
+    "heroSlides": heroSlides[] {
+      asset,
+      hotspot,
+      "alt": alt
+    },
+
     hero {
-      coverImage,
-      preHeading,
+      blinkingLabel,
       headline,
       subheadline,
       ctaText,
       ctaLink
     },
 
-    "bondVideoUrl": bondVideo.asset->url,
-
-    storySection {
-      historyTitle,
-      historyText,
-      bondConnectionTitle,
-      bondConnectionText,
-      bondConnectionImage
+    real007Section {
+      heading,
+      paragraph1,
+      paragraph2,
+      bullets,
+      image
     },
 
-    locationsSection {
+    assignmentsSection {
       sectionTitle,
-      sectionSubtitle,
-      locations[] {
-        name,
-        label,
-        tagline,
-        highlights,
+      cards[] {
+        title,
+        duration,
+        features,
+        ctaText,
+        ctaLink,
         image
-      },
-      closingLine
-    },
-
-    propsSection {
-      title,
-      highlights,
-      quote,
-      backgroundImage
-    },
-
-    highlightsSection {
-      title,
-      highlights
-    },
-
-    logisticsSection {
-      title,
-      details[] {
-        label,
-        value,
-        icon
       }
+    },
+
+    privateVillaSection {
+      title,
+      description,
+      features,
+      ctaText,
+      ctaLink,
+      image
     },
 
     ctaSection {
       title,
       quote,
-      ctaText,
-      ctaLink,
+      ctas[] { text, link },
       backgroundImage
     },
 
-    sliderImages[] {
-      asset,
-      hotspot,
-      "alt": alt,
-      "caption": caption
+    whatsIncludedSection {
+      title,
+      items
     }
   }
 `;
 
 // ─── DATA TRANSFORMATION ──────────────────────────────────────────────────────
 
-const IMAGE_QUALITY = 85;
-
 function processImageToUrl(
   image: unknown,
   width?: number,
-  quality = IMAGE_QUALITY,
+  quality = 85,
 ): string | null {
   if (!image) return null;
   try {
@@ -175,10 +159,16 @@ const fetchThemesPageData = async (): Promise<ThemesPageData | null> => {
     const data: ThemesPageData = {
       title: raw.title,
 
+      heroSlides: (raw.heroSlides ?? [])
+        .map((img: { alt?: string; [key: string]: unknown }) => ({
+          url: processImageToUrl(img, 2560) ?? "",
+          alt: img.alt ?? "",
+        }))
+        .filter((s: HeroSlide) => s.url),
+
       hero: raw.hero
         ? {
-            coverImageUrl: processImageToUrl(raw.hero.coverImage, 2560),
-            preHeading: raw.hero.preHeading,
+            blinkingLabel: raw.hero.blinkingLabel,
             headline: raw.hero.headline,
             subheadline: raw.hero.subheadline,
             ctaText: raw.hero.ctaText,
@@ -186,67 +176,47 @@ const fetchThemesPageData = async (): Promise<ThemesPageData | null> => {
           }
         : undefined,
 
-      bondVideoUrl: raw.bondVideoUrl ?? null,
-
-      storySection: raw.storySection
+      real007Section: raw.real007Section
         ? {
-            historyTitle: raw.storySection.historyTitle,
-            historyText: raw.storySection.historyText,
-            bondConnectionTitle: raw.storySection.bondConnectionTitle,
-            bondConnectionText: raw.storySection.bondConnectionText,
-            bondConnectionImageUrl: processImageToUrl(
-              raw.storySection.bondConnectionImage,
-              1200,
-            ),
+            heading: raw.real007Section.heading,
+            paragraph1: raw.real007Section.paragraph1,
+            paragraph2: raw.real007Section.paragraph2,
+            bullets: raw.real007Section.bullets ?? [],
+            imageUrl: processImageToUrl(raw.real007Section.image, 1000),
           }
         : undefined,
 
-      locationsSection: raw.locationsSection
+      assignmentsSection: raw.assignmentsSection
         ? {
-            sectionTitle: raw.locationsSection.sectionTitle,
-            sectionSubtitle: raw.locationsSection.sectionSubtitle,
-            locations: (raw.locationsSection.locations ?? []).map(
-              (loc: {
-                name?: string;
-                label?: string;
-                tagline?: string;
-                highlights?: string[];
+            sectionTitle: raw.assignmentsSection.sectionTitle,
+            cards: (raw.assignmentsSection.cards ?? []).map(
+              (card: {
+                title?: string;
+                duration?: string;
+                features?: string[];
+                ctaText?: string;
+                ctaLink?: string;
                 image?: unknown;
               }) => ({
-                name: loc.name,
-                label: loc.label,
-                tagline: loc.tagline,
-                highlights: loc.highlights ?? [],
-                imageUrl: processImageToUrl(loc.image, 800),
+                title: card.title,
+                duration: card.duration,
+                features: card.features ?? [],
+                ctaText: card.ctaText,
+                ctaLink: card.ctaLink,
+                imageUrl: processImageToUrl(card.image, 900),
               }),
             ),
-            closingLine: raw.locationsSection.closingLine,
           }
         : undefined,
 
-      propsSection: raw.propsSection
+      privateVillaSection: raw.privateVillaSection
         ? {
-            title: raw.propsSection.title,
-            highlights: raw.propsSection.highlights ?? [],
-            quote: raw.propsSection.quote,
-            backgroundImageUrl: processImageToUrl(
-              raw.propsSection.backgroundImage,
-              2000,
-            ),
-          }
-        : undefined,
-
-      highlightsSection: raw.highlightsSection
-        ? {
-            title: raw.highlightsSection.title,
-            highlights: raw.highlightsSection.highlights ?? [],
-          }
-        : undefined,
-
-      logisticsSection: raw.logisticsSection
-        ? {
-            title: raw.logisticsSection.title,
-            details: raw.logisticsSection.details ?? [],
+            title: raw.privateVillaSection.title,
+            description: raw.privateVillaSection.description,
+            features: raw.privateVillaSection.features ?? [],
+            ctaText: raw.privateVillaSection.ctaText,
+            ctaLink: raw.privateVillaSection.ctaLink,
+            imageUrl: processImageToUrl(raw.privateVillaSection.image, 1000),
           }
         : undefined,
 
@@ -254,8 +224,7 @@ const fetchThemesPageData = async (): Promise<ThemesPageData | null> => {
         ? {
             title: raw.ctaSection.title,
             quote: raw.ctaSection.quote,
-            ctaText: raw.ctaSection.ctaText,
-            ctaLink: raw.ctaSection.ctaLink,
+            ctas: raw.ctaSection.ctas ?? [],
             backgroundImageUrl: processImageToUrl(
               raw.ctaSection.backgroundImage,
               2000,
@@ -263,19 +232,12 @@ const fetchThemesPageData = async (): Promise<ThemesPageData | null> => {
           }
         : undefined,
 
-      sliderImages: (raw.sliderImages ?? [])
-        .map(
-          (img: {
-            alt?: string;
-            caption?: string;
-            [key: string]: unknown;
-          }) => ({
-            url: processImageToUrl(img, 1920) ?? "",
-            alt: img.alt ?? "",
-            caption: img.caption,
-          }),
-        )
-        .filter((img: SliderImage) => img.url),
+      whatsIncludedSection: raw.whatsIncludedSection
+        ? {
+            title: raw.whatsIncludedSection.title,
+            items: raw.whatsIncludedSection.items ?? [],
+          }
+        : undefined,
     };
 
     return data;

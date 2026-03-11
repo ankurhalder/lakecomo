@@ -112,7 +112,7 @@ export default function FallingStars({
       return computed;
     };
 
-    let activeColor = getComputedColor(color || "#ffffff");
+    const activeColor = getComputedColor(color || "#ffffff");
 
     const dpr = window.devicePixelRatio || 1;
     canvas.width = dimensions.width * dpr;

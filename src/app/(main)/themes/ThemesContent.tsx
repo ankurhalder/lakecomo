@@ -1,72 +1,62 @@
 "use client";
 
 /**
- * ThemesContent — Cinematic Experience Page Orchestrator
- *
- * This component is the single orchestrator for the /themes page.
- * It receives fully-typed, transformed data from the server-side
- * getThemesPageData() function and distributes it to each section component.
+ * ThemesContent — Cinematic Experience Page Orchestrator (Spies of Style)
  *
  * Section rendering order (conversion narrative arc):
- *   1. HeroSection      — First impression + immediate CTA trigger
- *   2. StorySection     — Emotional context + trust through history
- *   3. LocationsSection — Concrete options + decision scaffolding
- *   4. PropsSection     — Tactile detail + "what I get" clarity
- *   5. HighlightsSection — Summary validation + conversion nudge
- *   6. LogisticsSection  — Practical answers, removes booking friction
- *   7. CtaSection        — Final conversion moment
- *   8. ImageSlider       — Social proof + aspirational imagery
+ *   1. HeroSlider          — Full-screen cinematic image slider + persistent CTA overlay
+ *   2. RealLifeSection     — "The Real-Life 007" two-column storytelling section
+ *   3. AssignmentsSection  — "Choose Your Assignment" — Dinner + Cocktail mission cards
+ *   4. PrivateVillaSection — Private villa experience with image + bullet features
+ *   5. CtaSection          — Multi-button conversion block
+ *   6. WhatsIncludedSection— What every mission includes
  *
- * All section components handle their own null/missing content
- * via internal DEFAULTS — the page never breaks from empty CMS state.
+ * All sections tolerate undefined/null props — hard-coded fallback defaults
+ * are embedded within each section component.
  */
 
 import type { ThemesPageData } from "@/sanity/lib/getThemesPage";
-import HeroSection from "./sections/HeroSection";
-import StorySection from "./sections/StorySection";
-import LocationsSection from "./sections/LocationsSection";
-import PropsSection from "./sections/PropsSection";
-import HighlightsSection from "./sections/HighlightsSection";
-import LogisticsSection from "./sections/LogisticsSection";
+import HeroSlider from "./sections/HeroSlider";
+import RealLifeSection from "./sections/RealLifeSection";
+import AssignmentsSection from "./sections/AssignmentsSection";
+import PrivateVillaSection from "./sections/PrivateVillaSection";
 import CtaSection from "./sections/CtaSection";
-import ImageSlider from "./sections/ImageSlider";
+import WhatsIncludedSection from "./sections/WhatsIncludedSection";
 
 interface ThemesContentProps {
   data: ThemesPageData | null;
 }
 
 export default function ThemesContent({ data }: ThemesContentProps) {
-  // All sections tolerate undefined props — defaults are embedded within each section.
   return (
     <div
       className="relative min-h-screen"
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
-      {/* 1 ── Cinematic Hero: Full-bleed cover image + Bond video inset */}
-      <HeroSection hero={data?.hero} bondVideoUrl={data?.bondVideoUrl} />
+      {/* 1 ── Full-screen cinematic slider */}
+      <HeroSlider
+        slides={data?.heroSlides}
+        blinkingLabel={data?.hero?.blinkingLabel}
+        headline={data?.hero?.headline}
+        description={data?.hero?.subheadline}
+        ctaText={data?.hero?.ctaText}
+        ctaLink={data?.hero?.ctaLink}
+      />
 
-      {/* 2 ── Story: History of Mallaby + Bond connection narrative */}
-      <StorySection storySection={data?.storySection} />
+      {/* 2 ── The Real-Life 007: Two-column narrative */}
+      <RealLifeSection section={data?.real007Section} />
 
-      {/* 3 ── Two Locations: Brunate vs Cernobbio cinematic comparison */}
-      <LocationsSection locationsSection={data?.locationsSection} />
+      {/* 3 ── Choose Your Assignment: Dinner + Cocktail mission cards */}
+      <AssignmentsSection assignmentsSection={data?.assignmentsSection} />
 
-      {/* 4 ── Props & Spy Kits: Tactile detail + quote callout */}
-      <PropsSection propsSection={data?.propsSection} />
+      {/* 4 ── Private Villa Operations */}
+      <PrivateVillaSection section={data?.privateVillaSection} />
 
-      {/* 5 ── Experience Highlights: Numbered grid summary */}
-      <HighlightsSection highlightsSection={data?.highlightsSection} />
-
-      {/* 6 ── Details & Logistics: Friction-removing practical info */}
-      <LogisticsSection logisticsSection={data?.logisticsSection} />
-
-      {/* 7 ── Image Slider: Ken Burns autoplay — social proof before final CTA */}
-      {data?.sliderImages && data.sliderImages.length > 0 && (
-        <ImageSlider images={data.sliderImages} />
-      )}
-
-      {/* 8 ── Reserve CTA: Primary conversion block */}
+      {/* 5 ── Cinematic multi-button CTA */}
       <CtaSection ctaSection={data?.ctaSection} />
+
+      {/* 6 ── What's Included list */}
+      <WhatsIncludedSection section={data?.whatsIncludedSection} />
     </div>
   );
 }
