@@ -186,7 +186,13 @@ export default function AssignmentSection({
 
   return (
     <section id="assignment" style={{ backgroundColor: "var(--bg-primary)" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingTop: "var(--section-py)", paddingBottom: "var(--section-py)" }}>
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{
+          paddingTop: "var(--section-py)",
+          paddingBottom: "var(--section-py)",
+        }}
+      >
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -200,9 +206,7 @@ export default function AssignmentSection({
               className="h-px w-8"
               style={{ backgroundColor: "var(--accent)" }}
             />
-            <span
-              className="text-xs uppercase tracking-[0.3em] font-light gold-text"
-            >
+            <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
               Your Assignment
             </span>
             <span
@@ -212,7 +216,11 @@ export default function AssignmentSection({
           </div>
           <h2
             className="font-bold"
-            style={{ fontFamily: "var(--font-limelight)", fontSize: "var(--fs-h2)", color: "var(--text-primary)" }}
+            style={{
+              fontFamily: "var(--font-limelight)",
+              fontSize: "var(--fs-h2)",
+              color: "var(--text-primary)",
+            }}
           >
             {sectionTitle}
           </h2>
