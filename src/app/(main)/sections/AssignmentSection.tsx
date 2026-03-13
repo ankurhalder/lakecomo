@@ -79,7 +79,7 @@ function MissionCard({
             src={imageUrl}
             alt={title || "Mission"}
             fill
-            className="object-cover"
+            className="object-cover object-top"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         ) : (
