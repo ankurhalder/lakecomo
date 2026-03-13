@@ -1,55 +1,98 @@
 @import "tailwindcss";
 
-/* ── SINGLE THEME ──────────────────────────────────────────── */
+/* ── DARK CINEMATIC THEME ──────────────────────────────────── */
 :root {
-  /* Core backgrounds */
-  --bg-primary: #d9d9d9;
-  --bg-secondary: #cccccc;
-  --header-bg: #b3b3b3;
+  /* Core backgrounds — deep navy-black */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --header-bg: rgba(10, 10, 15, 0.85);
 
-  /* Core text */
-  --text-primary: #1a1a1a;
-  --text-secondary: rgba(0, 0, 0, 0.65);
-  --text-muted: rgba(0, 0, 0, 0.45);
+  /* Core text — light on dark */
+  --text-primary: #e8e8ec;
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --text-muted: rgba(255, 255, 255, 0.4);
 
-  /* Accent / buttons */
-  --accent: #ffffcc;
-  --accent-text: #1a1a1a;
+  /* Accent — gold */
+  --accent: #c9a84c;
+  --accent-text: #0a0a0f;
+
+  /* Silver highlights */
+  --silver: #b8b8c4;
+  --silver-muted: rgba(184, 184, 196, 0.4);
 
   /* Borders */
-  --border-color: rgba(0, 0, 0, 0.15);
-  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-color: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.06);
 
-  /* Overlays (used on top of images/video — always dark) */
+  /* Overlays (always dark — unchanged) */
   --overlay: rgba(0, 0, 0, 0.3);
   --overlay-light: rgba(0, 0, 0, 0.2);
   --overlay-medium: rgba(0, 0, 0, 0.45);
   --overlay-heavy: rgba(0, 0, 0, 0.75);
 
   /* Decorative / surfaces */
-  --divider-color: rgba(0, 0, 0, 0.18);
-  --surface-raised: rgba(0, 0, 0, 0.04);
+  --divider-color: rgba(255, 255, 255, 0.15);
+  --surface-raised: rgba(255, 255, 255, 0.04);
 
   /* UI component colors */
-  --nav-button-bg: rgba(0, 0, 0, 0.45);
+  --nav-button-bg: rgba(255, 255, 255, 0.12);
 
-  /* Form validation */
+  /* Form validation — unchanged */
   --color-success: #22c55e;
   --color-error: #ef4444;
   --color-error-bg: rgba(239, 68, 68, 0.12);
 
   /* Special component tokens */
-  --ticket-bg: #f4e4bc;
+  --ticket-bg: #1e1a10;
 
   /* Fonts */
   --font-limelight: "Limelight", cursive;
   --font-courier: "Courier Prime", monospace;
+
+  /* Premium gold gradient */
+  --accent-gradient: linear-gradient(
+    120deg,
+    #f5d060 0%,
+    #e0b840 28%,
+    #c9a84c 58%,
+    #a87c20 100%
+  );
+  --accent-gradient-text: linear-gradient(
+    120deg,
+    #f5d060 0%,
+    #eac545 45%,
+    #c9a84c 100%
+  );
+
+  /* Fluid typography — single source of truth */
+  --fs-hero: clamp(1.5rem, 2.5vw + 0.5rem, 2.75rem);
+  --fs-h2: clamp(1.25rem, 1.5vw + 0.5rem, 2rem);
+  --fs-h3: clamp(1.125rem, 1vw + 0.5rem, 1.625rem);
+  --fs-body: 0.875rem;
+  --fs-label: 0.6875rem;
+  --fs-cta: 0.6875rem;
+
+  /* Section spacing */
+  --section-py: clamp(1.5rem, 3vw, 3rem);
+  --section-gap: clamp(1.25rem, 2.5vw, 2.5rem);
 }
 
 /* ── Tailwind theme registration ──────────────────────────── */
 @theme {
   --font-limelight: var(--font-limelight);
   --font-courier: var(--font-courier);
+
+  /* Custom breakpoints */
+  --breakpoint-lg: 900px;
+}
+
+/* Gold gradient text — apply to individual letters/words for premium feel */
+.gold-text {
+  background: var(--accent-gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
 }
 
 body {

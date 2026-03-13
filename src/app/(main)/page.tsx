@@ -1,30 +1,37 @@
-import { getHomePageData } from "@/sanity/lib/getHomePage"
-import Hero from "@/components/home/Hero"
-import type { Metadata } from "next"
-import { Suspense } from "react"
-import PageLoading from "@/components/shared/PageLoading"
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import { getLandingPageData } from "@/sanity/lib/getLandingPage";
+import LandingPage from "./sections/LandingPage";
+import PageLoading from "@/components/shared/PageLoading";
 
 export const metadata: Metadata = {
   title: "Lake Como Style | Cinematic Event Experiences",
-  description: "Transform your celebration into an unforgettable cinematic experience. Themed parties, professional videography, and custom movie trailers in Lake Como, Italy.",
+  description:
+    "Step into the true mission of Cecil Richard Mallaby — a WWII spy who inspired James Bond — through an immersive dinner or cocktail experience on Lake Como, Italy.",
   openGraph: {
     title: "Lake Como Style | Cinematic Event Experiences",
-    description: "Transform your celebration into an unforgettable cinematic experience in Lake Como, Italy.",
+    description:
+      "Immersive spy-themed dining and cocktail experiences on Lake Como, Italy. Inspired by the real-life story behind James Bond.",
     type: "website",
   },
-}
+};
 
-async function HomeContent() {
-  const data = await getHomePageData()
-  return <Hero data={data} />
+async function LandingContent() {
+  const data = await getLandingPageData();
+  if (!data) return null;
+  return <LandingPage data={data} />;
 }
 
 export default async function Home() {
   return (
-    <main id="main-content" className="min-h-screen bg-black">
+    <main
+      id="main-content"
+      className="min-h-screen"
+      style={{ backgroundColor: "var(--bg-primary)" }}
+    >
       <Suspense fallback={<PageLoading />}>
-        <HomeContent />
+        <LandingContent />
       </Suspense>
     </main>
-  )
+  );
 }
