@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "exportedAt": "2026-02-20T17:30:09.280Z",
+    "exportedAt": "2026-03-13T10:18:26.355Z",
     "projectId": "c20abca7",
     "dataset": "production"
   },
@@ -17,26 +17,22 @@
             "VIP clients",
             ""
           ],
-          "link": "/themes",
+          "link": "xxxxx",
           "title": "Perfect For"
         },
-        "mainHeading": "Immersive, Themed Fashion Experiences",
+        "mainHeading": "An Immersive Spy-Themed Dinner on Lake Como",
         "mobileVideoFile": {
           "_type": "file",
-          "assetUrl": "https://cdn.sanity.io/files/c20abca7/production/d1ef0f0bf33db10c1157acd3f71a066ca846983a.mp4"
+          "assetUrl": "https://cdn.sanity.io/files/c20abca7/production/7f033daf9c31e19f11828b8abc68c39c9b5e94f2.mp4"
         },
-        "playIndicatorText": "hear the music",
-        "preHeading": "Step into the glamour, history, and fashion of Lake Como",
+        "playIndicatorText": "hear the story",
+        "preHeading": "Step Into the Shadows of History",
         "secondaryCtaLink": "/process",
-        "subHeading": "From themed Spies of Style dinners to La Dolce Vita lunches and aperitivos, each event is thoughtfully designed to delight the senses, inspire style, and tell a story",
+        "subHeading": "Inspired by the daring missions of Cecil Mallaby, one of WWII’s real-life secret agents, your evening will be a thrilling blend of espionage, gourmet cuisine, and immersive storytelling",
         "videoFile": {
           "_type": "file",
-          "assetUrl": "https://cdn.sanity.io/files/c20abca7/production/8619aa7c6162b0324b047155cadceb864dc70208.mp4"
+          "assetUrl": "https://cdn.sanity.io/files/c20abca7/production/1699843ef9d7d0f546f69a3458c63fe8289b0d82.mp4"
         }
-      },
-      "styling": {
-        "_type": "pageStyles",
-        "bgPrimary": "#EDEAEA"
       },
       "title": "Home Page"
     }
@@ -53,24 +49,20 @@
           "url": "/"
         },
         {
-          "label": "Spies of Style Dinner Experience ",
+          "label": "Spies of Style Experience ",
           "url": "/themes"
         },
         {
-          "label": "La Dolce Vita Fashion Lunch",
-          "url": "/faq"
-        },
-        {
-          "label": "Your Private Experience, Your Way",
+          "label": "Private Spy Events",
           "url": "/cast"
         },
         {
-          "label": "Gallery",
-          "url": "/gallery"
+          "label": "About Your Spy Team",
+          "url": "/crew"
         },
         {
-          "label": "About ",
-          "url": "/crew"
+          "label": "Spy Gallery",
+          "url": "/gallery"
         },
         {
           "label": "FAQ",
@@ -89,9 +81,7 @@
     {
       "_id": "footer",
       "_type": "footer",
-      "email": "info@lakecomostyle.it ",
       "footerTagline": "Your Adventure in Style Awaits",
-      "phone": "+393487847234",
       "title": "Global Footer"
     }
   ],
@@ -99,39 +89,137 @@
     {
       "_id": "themesPage",
       "_type": "themesPage",
-      "customThemeCta": {
-        "buttonLink": "Contact/",
-        "buttonText": "Join the Scene",
-        "description": "Don't see what you're looking for? We can design a custom theme tailored to your event.",
-        "title": "Theme Inquiry"
-      },
-      "featuresGrid": [
-        {
-          "_type": "featureCard",
-          "title": " Best 2026 Spy Experience"
-        }
-      ],
-      "hero": {
-        "description": "The Experience\n\nBegin your evening with a scenic funicular ride to Brunate, offering panoramic views of Lake Como and setting the stage for intrigue. Once at our exclusive venue, you are fully immersed in a world of espionage, suspense, and interactive storytelling.\n\nGuests will:\n-Unlock a real spy mission inspired by Cecil Richard Mallaby, the daring British officer whose wartime exploits on Lake Como may have inspired Ian Fleming’s James Bond.\n\n-Participate in interactive storylines: decode messages, track “agents,” and collaborate to complete your mission.\n\n-Enjoy a luxurious pre-fix dinner with themed cocktails, each course revealing new plot twists.\n\n-Dress the part or engage with props and costumes to fully inhabit the spy narrative.\n\n-Collect curated themed kits and immersive props as keepsakes from your adventure.\n\nLake Como itself becomes a character: from Villa Carminati, a historic espionage hub, to Villa delle Rose, where Allied missions were coordinated, guests step directly into locations that shaped real spy history\n\nTwo Ways to Join\n\nWeekly Turnkey Venue Dinners in Brunate\n-Join scheduled evenings for a cinematic, story-driven dinner with fellow guests\n\n-Begin your adventure with the iconic funicular ride- perfect for instagram sharing\n\n-Small, intimate groups ensure luxury and immersion\n\n-Access curated themed kits and collectible props for purchase\n\nPrivate Villa & Event Bookings\nBring the experience to your villa, private residence, or destination event\n\n-Fully customizable missions, props, and storylines\n\n-Perfect for weddings, milestone celebrations, corporate gatherings, or luxury retreats\n\n-Guests step directly into the Lake Como espionage world from the comfort of their own villa\n\nKey Features (Both Options)\n\nThe only Bond-inspired spy adventure on Lake Como, rooted in true history\n\nPre-fix dinner with themed cocktails\n\nInteractive missions, codes, and spy activities\n\nProps and costume options for full immersion\n\nSmall group format for intimacy and luxury\n\nCurated themed kits and collectibles available for purchase",
-        "mainTitle": "Experience Lake Como like never before — the only James Bond–inspired spy experience on the lake, where cinematic storytelling, interactive missions, and true espionage history come alive.",
-        "preHeading": "Step into the Shadows: An Immersive James Bond–Inspired Spy Adventure",
-        "secondaryTitle": "Fully themed, fully immersive, fully unforgettable"
-      },
-      "themesList": [
-        {
-          "feel": "Sophisticated, adventurous, playful suspense.",
-          "genre": "Bond Inspired",
-          "icon": "glasses",
-          "image": {
-            "_type": "image",
-            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/4729227fb0bb7d2fcb85a055cb40b79b0c6afa7e-1600x900.jpg"
+      "assignmentsSection": {
+        "cards": [
+          {
+            "_type": "object",
+            "ctaLink": "/contact",
+            "ctaText": "Book Dinner Mission",
+            "duration": "3-hour immersive experience",
+            "features": [
+              "Multi-course themed dinner",
+              "Full spy kit & historical dossier",
+              "Interactive historical mission",
+              "Cinematic photo opportunities"
+            ],
+            "title": "Dinner Mission"
           },
-          "story": "Guests step into the world of secret agents, daring missions, and intrigue. Think tuxedos, glamorous dresses, clever props, and action-packed poses.",
-          "title": "Agents of Style",
-          "vibe": "Sleek, stylish, high-stakes, espionage."
+          {
+            "_type": "object",
+            "ctaLink": "/contact",
+            "ctaText": "Book Cocktail Mission",
+            "duration": "90–120 minute experience",
+            "features": [
+              "Curated cocktails & hors d’oeuvres",
+              "Spy kit and tactical briefing",
+              "Interactive mission puzzles",
+              "Perfect pre-dinner social experience"
+            ],
+            "title": "Cocktail Mission"
+          }
+        ],
+        "sectionTitle": "Choose Your Assignment"
+      },
+      "ctaSection": {
+        "ctas": [
+          {
+            "_type": "object",
+            "link": "/contact",
+            "text": "Book Dinner Mission"
+          },
+          {
+            "_type": "object",
+            "link": "/contact",
+            "text": "Book Cocktail Mission"
+          },
+          {
+            "_type": "object",
+            "link": "/contact",
+            "text": "Inquire About Private Villa Events"
+          }
+        ],
+        "quote": "Step into history, mystery, and glamour on Lake Como. Choose your night, grab your spy kit, and live the adventure.",
+        "title": "Live a True Spy Mission on Lake Como"
+      },
+      "hero": {
+        "blinkingLabel": "Classified Intelligence",
+        "ctaLink": "/contact",
+        "ctaText": "Reserve Your Mission",
+        "headline": "Spies of Style",
+        "subheadline": "Step into the true mission of Cecil Richard Mallaby — a WWII spy whose daring story inspired James Bond — through an immersive dinner or cocktail experience on Lake Como."
+      },
+      "heroSlides": [
+        {
+          "_type": "image",
+          "alt": "gallery",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/43fdff9abb7826d5389b751bf0a0a18949837c2f-1651x868.png"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/ef7310f3d34e709483448353cd3497710158fe81-648x439.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/13ddf4eaa8b4fef3d430916c7f28916f5cf67949-795x502.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/cf01fbb4bda2b71a7f4b99c7c1ffa28fc9aa1e42-736x516.jpg"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080.png"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/0ac9afdecb1586c574770b42545414b5ffea541f-1920x1080.png"
+        },
+        {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/63492ab2a56fc483754a0cb42e982ac93a54684a-951x913.png"
         }
       ],
-      "title": "Spies of Style Dinner Experience: The Only Bond-Inspired Spy Adventure on Lake Como"
+      "privateVillaSection": {
+        "ctaLink": "/contact",
+        "ctaText": "Inquire About Private Events",
+        "description": "Bring the mission to your exclusive Lake Como residence. Ideal for private celebrations, corporate retreats, or destination weddings.",
+        "features": [
+          "Personalized storylines for your group",
+          "Optional 3-minute cinematic event trailer",
+          "Full immersive setup & professional cast"
+        ],
+        "image": {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/90bd1a2aac457dc836d3ae0f2ffc6dd150505698-884x519.png"
+        },
+        "title": "Private Villa Operations"
+      },
+      "real007Section": {
+        "bullets": [
+          "Solve the type of codes used by Mallory",
+          "Experience the suspense and strategy of a true spy mission",
+          "Collaborate with teams in a cinematic setting",
+          "Walk in the footsteps of the spy who inspired James Bond"
+        ],
+        "heading": "The Real-Life 007",
+        "image": {
+          "_type": "image",
+          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693.png"
+        },
+        "paragraph1": "During World War II, intelligence operative Cecile Mallory arrived secretly in Cernobbio on Lake Como carrying a critical Allied mission. Her audacious operations, coded messages, and elegant style remain part of the region's wartime history.",
+        "paragraph2": "Historians believe Mallory's daring missions and sophistication inspired elements of Ian Fleming's James Bond, from secret communications to high-stakes espionage in glamorous locations."
+      },
+      "title": "Spies of Style — Cinematic Spy Experience",
+      "whatsIncludedSection": {
+        "items": [
+          "Custom spy kit for every guest",
+          "Historic codes and mission dossiers",
+          "Multi-course dinner or curated cocktail service",
+          "Cinematic photo opportunities",
+          "Optional cinematic trailer for private events"
+        ],
+        "title": "What's Included"
+      }
     }
   ],
   "castPage": [
@@ -160,8 +248,8 @@
         "enabled": true
       },
       "hero": {
-        "subtitle": "From intimate gatherings to full celebrations",
-        "title": "Designed for Celebration, Styled to Remember"
+        "subtitle": "From intimate gatherings to group celebrations",
+        "title": "A Private Spy-Themed Dinner Experience"
       },
       "heroFeature": {
         "subtitle": "2026 Immersive Parties",
@@ -476,7 +564,7 @@
           "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/9d6ee43623b86c12d4370d83c6b02d2afe0ca089-456x353.jpg"
         }
       ],
-      "logosTitle": "featured on & in",
+      "logosTitle": "featured in",
       "title": "About "
     }
   ],
@@ -596,8 +684,8 @@
       "_id": "galleryPage",
       "_type": "galleryPage",
       "hero": {
-        "heading": "Scenes from the Experiences",
-        "subHeading": "Lights, Camera, Action!"
+        "heading": "Scenes from the Experience",
+        "subHeading": "Snapshots — clandestine exchanges, dinner finales, Lake Como scenery"
       },
       "heroFeature": {
         "link": "/contact",
@@ -609,24 +697,6 @@
         {
           "_type": "image",
           "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/89307f3fef09feb106360e6380de44b5e9bb536c-1582x821.png"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/c6332474612f28f05d16dd4035a10958381213f5-550x423.png",
-          "crop": {
-            "_type": "sanity.imageCrop",
-            "bottom": 0.33742016259136814,
-            "left": 0.3256658516929254,
-            "right": 0.1979512383739022,
-            "top": 0.07134023974756118
-          },
-          "hotspot": {
-            "_type": "sanity.imageHotspot",
-            "height": 0.5912395976610707,
-            "width": 0.47638290993317245,
-            "x": 0.5638573066595116,
-            "y": 0.36696003857809645
-          }
         },
         {
           "_type": "image",
@@ -651,50 +721,6 @@
         {
           "_type": "image",
           "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/9c7cbf0d082b55c42bddd5af0ff9a80563785bc0-1040x576.png"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/b70d3a824263d3ded7cdfc65e44cd041abccdb6e-2350x4029.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/ebe619b3de4a6f1995e92ce832606a2eb2d11482-973x1119.jpg",
-          "crop": {
-            "_type": "sanity.imageCrop",
-            "bottom": 0,
-            "left": 0,
-            "right": 0.05825894833654819,
-            "top": 0
-          },
-          "hotspot": {
-            "_type": "sanity.imageHotspot",
-            "height": 1,
-            "width": 0.9417410516634518,
-            "x": 0.4708705258317259,
-            "y": 0.5
-          }
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/475628e95f1e0398cdb7f69c2fe264cb9ab94424-1170x691.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/df513f7de5a5c8367bf1fe7c7c154659df5ba021-768x1344.jpg",
-          "crop": {
-            "_type": "sanity.imageCrop",
-            "bottom": 0.2928963247586994,
-            "left": 0,
-            "right": 0,
-            "top": 0
-          },
-          "hotspot": {
-            "_type": "sanity.imageHotspot",
-            "height": 0.7071036752413006,
-            "width": 1,
-            "x": 0.5,
-            "y": 0.3535518376206503
-          }
         },
         {
           "_type": "image",
