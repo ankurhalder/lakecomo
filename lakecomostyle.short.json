@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "exportedAt": "2026-03-13T10:18:26.355Z",
+    "exportedAt": "2026-03-14T21:50:56.910Z",
     "projectId": "c20abca7",
     "dataset": "production"
   },
@@ -45,32 +45,27 @@
       "ctaText": "Book Now",
       "links": [
         {
-          "label": "Home",
-          "url": "/"
+          "_type": "object",
+          "label": "Story",
+          "url": "/#story"
         },
         {
-          "label": "Spies of Style Experience ",
-          "url": "/themes"
+          "_type": "object",
+          "label": "Experience",
+          "url": "/#experience"
         },
         {
-          "label": "Private Spy Events",
-          "url": "/cast"
+          "_type": "object",
+          "label": "Choose Your Mission",
+          "url": "/#assignment"
         },
         {
-          "label": "About Your Spy Team",
-          "url": "/crew"
+          "label": "Private Events"
         },
         {
-          "label": "Spy Gallery",
-          "url": "/gallery"
-        },
-        {
-          "label": "FAQ",
-          "url": "/movie"
-        },
-        {
-          "label": "Contact",
-          "url": "/contact"
+          "_type": "object",
+          "label": "Inquire",
+          "url": "/#contact"
         }
       ],
       "logoText": "LAKE COMO STYLE",

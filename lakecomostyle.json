@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "exportedAt": "2026-03-13T10:18:26.355Z",
+    "exportedAt": "2026-03-14T21:50:56.910Z",
     "projectId": "c20abca7",
     "dataset": "production"
   },
@@ -56,52 +56,45 @@
     {
       "_createdAt": "2025-12-27T05:29:58Z",
       "_id": "navbar",
-      "_rev": "qeHkBtaCAAYzf5RK47DmOk",
+      "_rev": "OJl4e2TkVOqlZxtjkC95eF",
       "_system": {
         "base": {
           "id": "navbar",
-          "rev": "kD2Bf5mqCHk08kw0ZdIKDN"
+          "rev": "MjdSXFelIF5IivE64yY9U0"
         }
       },
       "_type": "navbar",
-      "_updatedAt": "2026-02-23T09:49:50Z",
+      "_updatedAt": "2026-03-14T14:12:44Z",
       "ctaLink": "/contact",
       "ctaText": "Book Now",
       "links": [
         {
-          "_key": "nav1",
-          "label": "Home",
-          "url": "/"
+          "_key": "nav_0",
+          "_type": "object",
+          "label": "Story",
+          "url": "/#story"
         },
         {
-          "_key": "nav3",
-          "label": "Spies of Style Experience ",
-          "url": "/themes"
+          "_key": "nav_1",
+          "_type": "object",
+          "label": "Experience",
+          "url": "/#experience"
         },
         {
-          "_key": "nav4",
-          "label": "Private Spy Events",
-          "url": "/cast"
+          "_key": "nav_2",
+          "_type": "object",
+          "label": "Choose Your Mission",
+          "url": "/#assignment"
         },
         {
-          "_key": "nav7",
-          "label": "About Your Spy Team",
-          "url": "/crew"
+          "_key": "252fc46ccaa6",
+          "label": "Private Events"
         },
         {
-          "_key": "nav8",
-          "label": "Spy Gallery",
-          "url": "/gallery"
-        },
-        {
-          "_key": "nav6",
-          "label": "FAQ",
-          "url": "/movie"
-        },
-        {
-          "_key": "nav9",
-          "label": "Contact",
-          "url": "/contact"
+          "_key": "nav_3",
+          "_type": "object",
+          "label": "Inquire",
+          "url": "/#contact"
         }
       ],
       "logoText": "LAKE COMO STYLE",
@@ -4749,6 +4742,80 @@
       "originalFilename": "d27191de-3f93-426b-913e-901389c118d1.jpeg",
       "size": 77694,
       "url": "https://cdn.sanity.io/images/c20abca7/production/5e893ec961aa81f625cddbab9d9e3119dc57c2de-613x792.jpg"
+    },
+    {
+      "_id": "image-5ec94db9b43dc9f38411b9afc7baceefce5f9063-366x250-png",
+      "_type": "sanity.imageAsset",
+      "metadata": {
+        "_type": "sanity.imageMetadata",
+        "blurHash": "VwLNAD~WM{s-n#-;ofM_j[ofbbWBadRkR+t6WBRkofay",
+        "dimensions": {
+          "_type": "sanity.imageDimensions",
+          "aspectRatio": 1.464,
+          "height": 250,
+          "width": 366
+        },
+        "hasAlpha": true,
+        "isOpaque": true,
+        "lqip": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAAD6klEQVR4nC3M+1MTBADA8f0F9aP9UJfdmZwPFo4xgeEGQxCQiWwTSJiYmknqnSaB5KkZvrCQqacJahODHqIgONlsMGGAoNuAPZibjkcOA0l5mIqneN+Oq88f8BFkSyPQ7dqKx3SN6Qce3gYDzIwGeTM1zpvpad7OzPD61QumHgcZHx1mcmKCZ5OTjAaDWG8YOLgtj/Vxy8iMFKMWhyH4sWgnd65WMeG28XrQx6shP8/7/UwMPGD84Z88f/qEl1PjPH00yKN+Hz6nk1ajkd/Lz/J9QT7bVWnkyKRkzIYRYQj85nom3Xd4PehlesDLhM/FiNPBQ8ddhrodPLrnZWwwwLDPiaezlZpzFezL+5KtKhUbkxLRxsn5VBqJZmk4qtnwnz4b0/edTAc8TPqcjDjt+DuseNusBGw23G2tdDffxNd+E0+LkeoTOrZnZrJWoWBtbCxZshgyoiWoJSJWh3+C4OW9bl76nUx5e3ni6WHwbic9TU0E7HaGehyYqn6i6theWiuPEbDWc8dooKSgkNykZDLlsWTExKCJkpAeISJtNnzh7WbSY+dvl4ORXgeeWxZcLVbGAv2M9rm5VXkKfeE6ag9vxm+uJujs5nJ5BVtUGjTLZGikUlSR/4ciIYJnbhuPHbcZ67Uz2HWbttpaXC2tTAWHmQj4cV/TU1+8kbrv1uG9fo4xr5PmmqvsyNaijlmGOjqKdImYtPAwlGGhCMZsHQx3WhnrddDX3ExdxXk6DY0M97kJdFnprrtAe0URluNf4Kkp5S+HleaaGnbkaEmXxqCKimR1RDirRML/woEWM0PtLYz22OkxGqkq09FwsZKmK5fRlx7kwqF8GnQFmEo+x34uH1+jnsunT7IpXU1atJT0qEhWiUWkLhGiXBKKwGm4xkCrheG7XfSaTFTrdJQfLuF86Q8Uf7WF3Z+p+HZjOmWbkjAcyMZ8Kp/ibZvRKBJQy2NZI5OhFIezMkxIsnARgrZff+a+xcxAexsu8x8Y9BfR7T1A2f79lBfv5tSePHZlK9mcIOKINpbi3BVkxUlRxsjITkohJzGRNImEFaGLiF8YgqDhzEnumY34LU04TSZshkZ+OXGao18XoC/ZR235UfbkaUkVh5AaNpdk4UcsFy5gtUyGNiWV3JQUVNIoli9eiDzkYwSXjhTjutGA96YRe30Dfc0WOuoauFR6nOqyQ9Sd11GUtx5pyIcsnvMOkXPnsFK0CLVcxpr4BLLil5OliEUpESMLmYfg9DeFOGpr8DQa6LpyFY+5CVeThbbaOq7rz/LbGR07N2hZOu8DhO+9i2L++6yJEpKpkKNRxJMRp2CDMoWcBAXyBfP5F8B/79CZXhVxAAAAAElFTkSuQmCC",
+        "palette": {
+          "_type": "sanity.imagePalette",
+          "darkMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#452d2c",
+            "foreground": "#fff",
+            "population": 14.23,
+            "title": "#fff"
+          },
+          "darkVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#632d0c",
+            "foreground": "#fff",
+            "population": 0.38,
+            "title": "#fff"
+          },
+          "dominant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#452d2c",
+            "foreground": "#fff",
+            "population": 14.23,
+            "title": "#fff"
+          },
+          "lightMuted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#dec2c0",
+            "foreground": "#000",
+            "population": 2.63,
+            "title": "#000"
+          },
+          "lightVibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#fce1dc",
+            "foreground": "#000",
+            "population": 8.63,
+            "title": "#000"
+          },
+          "muted": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#a37956",
+            "foreground": "#fff",
+            "population": 2.47,
+            "title": "#fff"
+          },
+          "vibrant": {
+            "_type": "sanity.imagePaletteSwatch",
+            "background": "#b45c34",
+            "foreground": "#fff",
+            "population": 0,
+            "title": "#fff"
+          }
+        },
+        "thumbHash": "pCgSDYBveId7hXh3d4d3eRmVgE0H"
+      },
+      "mimeType": "image/png",
+      "originalFilename": "bond.png",
+      "size": 103407,
+      "url": "https://cdn.sanity.io/images/c20abca7/production/5ec94db9b43dc9f38411b9afc7baceefce5f9063-366x250.png"
     },
     {
       "_id": "image-5fb79a461053f7d48188ad4a6b0f653a0948d512-366x250-png",
