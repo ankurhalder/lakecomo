@@ -118,6 +118,56 @@ async function migrate() {
       "assignment.sectionTitle":
         assignments.sectionTitle || "Choose Your Assignment",
 
+      // ── Private Events ────────────────────────────────────────
+      "privateEvents.label": "LAKE COMO EXCLUSIVE",
+      "privateEvents.title": "Private Spy Missions",
+      "privateEvents.subtitle": "Host Your Bond-Inspired Spy Experience",
+      "privateEvents.description":
+        "Bring the thrill of espionage to Lake Como with a fully immersive, cinematic spy experience. Perfect for private villas or pre- and post-wedding celebrations.",
+      "privateEvents.ctaText": "DISCOVER HOW IT WORKS",
+      "privateEvents.ctaLink": "#contact",
+      "privateEvents.videographyLabel": "A TRULY UNIQUE OFFERING",
+      "privateEvents.videographyTitle": "Photography & Videography",
+      "privateEvents.videographySubtitle":
+        "We offer an exclusive cinematic video experience — the only spy event videography of its kind on Lake Como.",
+      "privateEvents.videographyHighlights": [
+        'Bespoke 5-minute cinematic "movie trailer" of your mission',
+        "Custom cast names for each guest and tailored music",
+        "Fully produced and delivered within 10 days",
+        "Includes short social media clips for sharing",
+      ],
+      "privateEvents.photographyHighlights": [
+        "Professional images capturing the drama and elegance",
+        "Guests interacting with spy kits, props, and backdrops",
+        "Perfect for keepsakes, social media, or personal mementos",
+      ],
+      "privateEvents.features": [
+        {
+          _key: key("feat", 0),
+          _type: "object",
+          icon: "target",
+          text: "Choose your mission: Spy Mission Dinner or Cocktail Party",
+        },
+        {
+          _key: key("feat", 1),
+          _type: "object",
+          icon: "map-pin",
+          text: "Fully tailored for your specific location and guest count",
+        },
+        {
+          _key: key("feat", 2),
+          _type: "object",
+          icon: "martini",
+          text: "Gourmet dining, cocktails, immersive storytelling",
+        },
+        {
+          _key: key("feat", 3),
+          _type: "object",
+          icon: "briefcase",
+          text: "Complete with cinematic backdrops, spy props, and spy kits",
+        },
+      ],
+
       // ── Inquire ───────────────────────────────────────────────
       "inquire.preHeading": contactHero.preHeading || "Get in Touch",
       "inquire.mainHeading": contactHero.mainHeading || "The Spotlight Awaits",
@@ -243,6 +293,12 @@ async function migrate() {
           },
           {
             _key: key("nav", 3),
+            _type: "object",
+            label: "Private Events",
+            url: "/#private-events",
+          },
+          {
+            _key: key("nav", 4),
             _type: "object",
             label: "Inquire",
             url: "/#contact",

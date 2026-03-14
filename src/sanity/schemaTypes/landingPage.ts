@@ -9,6 +9,7 @@ export default defineType({
     { name: "story", title: "Our Story" },
     { name: "experience", title: "The Experience" },
     { name: "assignment", title: "Your Assignment" },
+    { name: "privateEvents", title: "Private Events" },
     { name: "inquire", title: "Inquire / Contact" },
   ],
   fields: [
@@ -262,6 +263,122 @@ export default defineType({
             },
           ],
           validation: (Rule) => Rule.max(2),
+        }),
+      ],
+    }),
+
+    // ─── PRIVATE EVENTS ──────────────────────────────────────────
+    defineField({
+      name: "privateEvents",
+      title: "Private Events Section",
+      type: "object",
+      group: "privateEvents",
+      options: { collapsible: true, collapsed: false },
+      fields: [
+        defineField({
+          name: "label",
+          title: "Section Label",
+          type: "string",
+          initialValue: "LAKE COMO EXCLUSIVE",
+        }),
+        defineField({
+          name: "title",
+          title: "Section Title",
+          type: "string",
+          initialValue: "Private Spy Missions",
+        }),
+        defineField({
+          name: "subtitle",
+          title: "Subtitle",
+          type: "string",
+          initialValue: "Host Your Bond-Inspired Spy Experience",
+        }),
+        defineField({
+          name: "description",
+          title: "Description",
+          type: "text",
+          rows: 3,
+          initialValue:
+            "Bring the thrill of espionage to Lake Como with a fully immersive, cinematic spy experience. Perfect for private villas or pre- and post-wedding celebrations.",
+        }),
+        defineField({
+          name: "features",
+          title: "Feature Cards",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                defineField({
+                  name: "icon",
+                  title: "Icon Name",
+                  type: "string",
+                  description:
+                    "Lucide icon key: target, map-pin, martini, briefcase",
+                }),
+                defineField({
+                  name: "text",
+                  title: "Feature Text",
+                  type: "string",
+                  validation: (Rule) => Rule.required(),
+                }),
+              ],
+              preview: { select: { title: "text", subtitle: "icon" } },
+            },
+          ],
+          validation: (Rule) => Rule.max(4),
+        }),
+        defineField({
+          name: "ctaText",
+          title: "CTA Button Text",
+          type: "string",
+          initialValue: "DISCOVER HOW IT WORKS",
+        }),
+        defineField({
+          name: "ctaLink",
+          title: "CTA Link",
+          type: "string",
+          initialValue: "#contact",
+        }),
+        defineField({
+          name: "image",
+          title: "Cinematic Image",
+          type: "image",
+          options: { hotspot: true },
+          description:
+            "A luxury alpine palace beside a calm lake at dusk surrounded by forest.",
+        }),
+        defineField({
+          name: "videographyLabel",
+          title: "Videography Section Label",
+          type: "string",
+          initialValue: "A TRULY UNIQUE OFFERING",
+        }),
+        defineField({
+          name: "videographyTitle",
+          title: "Videography Section Title",
+          type: "string",
+          initialValue: "Photography & Videography",
+        }),
+        defineField({
+          name: "videographySubtitle",
+          title: "Videography Subtitle",
+          type: "text",
+          rows: 2,
+          initialValue:
+            "We offer an exclusive cinematic video experience — the only spy event videography of its kind on Lake Como.",
+        }),
+        defineField({
+          name: "videographyHighlights",
+          title: "Videography Highlights",
+          type: "array",
+          of: [{ type: "string" }],
+        }),
+        defineField({
+          name: "photographyHighlights",
+          title: "Photography Highlights",
+          type: "array",
+          of: [{ type: "string" }],
         }),
       ],
     }),

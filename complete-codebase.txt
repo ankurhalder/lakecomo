@@ -9,9 +9,7 @@ lakecomo/
 │   ├── favicon.ico
 │   └── robots.txt
 ├── scripts/
-│   ├── cleanup-sanity.mjs
 │   ├── crawl-project.js
-│   ├── export-sanity.mjs
 │   └── seed-landing-page.mjs
 ├── src/
 │   ├── app/
@@ -22,6 +20,7 @@ lakecomo/
 │   │   │   │   ├── HeroSection.tsx
 │   │   │   │   ├── InquireSection.tsx
 │   │   │   │   ├── LandingPage.tsx
+│   │   │   │   ├── PrivateEventsSection.tsx
 │   │   │   │   └── StorySection.tsx
 │   │   │   ├── error.tsx
 │   │   │   ├── layout.tsx
@@ -70,8 +69,6 @@ lakecomo/
 ├── .gitignore
 ├── complete-codebase.txt
 ├── eslint.config.mjs
-├── lakecomostyle.json
-├── lakecomostyle.short.json
 ├── next.config.ts
 ├── package-lock.json
 ├── package.json
@@ -160,834 +157,6 @@ const eslintConfig = defineConfig([
 
 export default eslintConfig;
 
-
-================================================================================
-FILE: lakecomostyle.short.json
-================================================================================
-
-{
-  "_metadata": {
-    "exportedAt": "2026-03-14T21:50:56.910Z",
-    "projectId": "c20abca7",
-    "dataset": "production"
-  },
-  "homepage": [
-    {
-      "_id": "homepage",
-      "_type": "homepage",
-      "heroSection": {
-        "ctaLink": "/contact",
-        "eventShowcase": {
-          "eventTypes": [
-            "Pre- or Post-wedding events",
-            "Small group celebrations",
-            "VIP clients",
-            ""
-          ],
-          "link": "xxxxx",
-          "title": "Perfect For"
-        },
-        "mainHeading": "An Immersive Spy-Themed Dinner on Lake Como",
-        "mobileVideoFile": {
-          "_type": "file",
-          "assetUrl": "https://cdn.sanity.io/files/c20abca7/production/7f033daf9c31e19f11828b8abc68c39c9b5e94f2.mp4"
-        },
-        "playIndicatorText": "hear the story",
-        "preHeading": "Step Into the Shadows of History",
-        "secondaryCtaLink": "/process",
-        "subHeading": "Inspired by the daring missions of Cecil Mallaby, one of WWII’s real-life secret agents, your evening will be a thrilling blend of espionage, gourmet cuisine, and immersive storytelling",
-        "videoFile": {
-          "_type": "file",
-          "assetUrl": "https://cdn.sanity.io/files/c20abca7/production/1699843ef9d7d0f546f69a3458c63fe8289b0d82.mp4"
-        }
-      },
-      "title": "Home Page"
-    }
-  ],
-  "navbar": [
-    {
-      "_id": "navbar",
-      "_type": "navbar",
-      "ctaLink": "/contact",
-      "ctaText": "Book Now",
-      "links": [
-        {
-          "_type": "object",
-          "label": "Story",
-          "url": "/#story"
-        },
-        {
-          "_type": "object",
-          "label": "Experience",
-          "url": "/#experience"
-        },
-        {
-          "_type": "object",
-          "label": "Choose Your Mission",
-          "url": "/#assignment"
-        },
-        {
-          "label": "Private Events"
-        },
-        {
-          "_type": "object",
-          "label": "Inquire",
-          "url": "/#contact"
-        }
-      ],
-      "logoText": "LAKE COMO STYLE",
-      "title": "Main Navigation"
-    }
-  ],
-  "footer": [
-    {
-      "_id": "footer",
-      "_type": "footer",
-      "footerTagline": "Your Adventure in Style Awaits",
-      "title": "Global Footer"
-    }
-  ],
-  "themesPage": [
-    {
-      "_id": "themesPage",
-      "_type": "themesPage",
-      "assignmentsSection": {
-        "cards": [
-          {
-            "_type": "object",
-            "ctaLink": "/contact",
-            "ctaText": "Book Dinner Mission",
-            "duration": "3-hour immersive experience",
-            "features": [
-              "Multi-course themed dinner",
-              "Full spy kit & historical dossier",
-              "Interactive historical mission",
-              "Cinematic photo opportunities"
-            ],
-            "title": "Dinner Mission"
-          },
-          {
-            "_type": "object",
-            "ctaLink": "/contact",
-            "ctaText": "Book Cocktail Mission",
-            "duration": "90–120 minute experience",
-            "features": [
-              "Curated cocktails & hors d’oeuvres",
-              "Spy kit and tactical briefing",
-              "Interactive mission puzzles",
-              "Perfect pre-dinner social experience"
-            ],
-            "title": "Cocktail Mission"
-          }
-        ],
-        "sectionTitle": "Choose Your Assignment"
-      },
-      "ctaSection": {
-        "ctas": [
-          {
-            "_type": "object",
-            "link": "/contact",
-            "text": "Book Dinner Mission"
-          },
-          {
-            "_type": "object",
-            "link": "/contact",
-            "text": "Book Cocktail Mission"
-          },
-          {
-            "_type": "object",
-            "link": "/contact",
-            "text": "Inquire About Private Villa Events"
-          }
-        ],
-        "quote": "Step into history, mystery, and glamour on Lake Como. Choose your night, grab your spy kit, and live the adventure.",
-        "title": "Live a True Spy Mission on Lake Como"
-      },
-      "hero": {
-        "blinkingLabel": "Classified Intelligence",
-        "ctaLink": "/contact",
-        "ctaText": "Reserve Your Mission",
-        "headline": "Spies of Style",
-        "subheadline": "Step into the true mission of Cecil Richard Mallaby — a WWII spy whose daring story inspired James Bond — through an immersive dinner or cocktail experience on Lake Como."
-      },
-      "heroSlides": [
-        {
-          "_type": "image",
-          "alt": "gallery",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/43fdff9abb7826d5389b751bf0a0a18949837c2f-1651x868.png"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/ef7310f3d34e709483448353cd3497710158fe81-648x439.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/13ddf4eaa8b4fef3d430916c7f28916f5cf67949-795x502.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/cf01fbb4bda2b71a7f4b99c7c1ffa28fc9aa1e42-736x516.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080.png"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/0ac9afdecb1586c574770b42545414b5ffea541f-1920x1080.png"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/63492ab2a56fc483754a0cb42e982ac93a54684a-951x913.png"
-        }
-      ],
-      "privateVillaSection": {
-        "ctaLink": "/contact",
-        "ctaText": "Inquire About Private Events",
-        "description": "Bring the mission to your exclusive Lake Como residence. Ideal for private celebrations, corporate retreats, or destination weddings.",
-        "features": [
-          "Personalized storylines for your group",
-          "Optional 3-minute cinematic event trailer",
-          "Full immersive setup & professional cast"
-        ],
-        "image": {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/90bd1a2aac457dc836d3ae0f2ffc6dd150505698-884x519.png"
-        },
-        "title": "Private Villa Operations"
-      },
-      "real007Section": {
-        "bullets": [
-          "Solve the type of codes used by Mallory",
-          "Experience the suspense and strategy of a true spy mission",
-          "Collaborate with teams in a cinematic setting",
-          "Walk in the footsteps of the spy who inspired James Bond"
-        ],
-        "heading": "The Real-Life 007",
-        "image": {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693.png"
-        },
-        "paragraph1": "During World War II, intelligence operative Cecile Mallory arrived secretly in Cernobbio on Lake Como carrying a critical Allied mission. Her audacious operations, coded messages, and elegant style remain part of the region's wartime history.",
-        "paragraph2": "Historians believe Mallory's daring missions and sophistication inspired elements of Ian Fleming's James Bond, from secret communications to high-stakes espionage in glamorous locations."
-      },
-      "title": "Spies of Style — Cinematic Spy Experience",
-      "whatsIncludedSection": {
-        "items": [
-          "Custom spy kit for every guest",
-          "Historic codes and mission dossiers",
-          "Multi-course dinner or curated cocktail service",
-          "Cinematic photo opportunities",
-          "Optional cinematic trailer for private events"
-        ],
-        "title": "What's Included"
-      }
-    }
-  ],
-  "castPage": [
-    {
-      "_id": "castPage",
-      "_type": "castPage",
-      "content": {
-        "paragraphs": [
-          "Choose your theme. Select your venue. Now it’s time to experience the immersive fun!",
-          "We create unforgettable experiences for groups of all sizes. Whether it’s an intimate gathering or a large celebration, our team brings your event to life with style, elegance, and flair.\n",
-          "Guests can choose from our exclusive 2026 themes—from the timeless glamour of La Dolce Vita, to the cinematic sparkle of Hollywood Hustle, or the sophisticated intrigue of Bond. Prefer something truly unique? We also offer custom themes, tailored to your vision and designed to make your occasion one-of-a-kind.",
-          "We provide all themed backdrops and props for Polaroid moments, with the option to personalize backdrops, giving your guests fun, memorable keepsakes.",
-          "Our events are hosted in an array of stunning venues, from exclusive wine cellars, to historic palaces, elegant gardens, and lively terraces, providing the perfect backdrop for every occasion.",
-          "To enhance the experience, we suggest guests come in themed attire, and offer the option of a pop-up fashion rack so guests can purchase curated themed styles on-site.",
-          "We also offer a variety of music options, from DJs to live singers, performing curated playlists for each theme—ensuring the soundtrack perfectly matches the mood and atmosphere.",
-          "For those who wish to capture the magic, we offer professional photography and videography, with the exclusive option to create a custom 3-minute cinematic movie trailer, complete with a personalized cast list and tailored music—bringing your immersive experience fully to life long after the event ends.\n",
-          "With fashion, food, and drinks at the heart of every experience, your private event on Lake Como becomes more than a celebration—it’s an immersive journey your guests will never forget.\n\n"
-        ]
-      },
-      "cta": {
-        "buttonText": "Book Your Private Event",
-        "description": "Immerse yourself in the theme and live the moment",
-        "title": "Celebrate like a Star"
-      },
-      "fallingStars": {
-        "enabled": true
-      },
-      "hero": {
-        "subtitle": "From intimate gatherings to group celebrations",
-        "title": "A Private Spy-Themed Dinner Experience"
-      },
-      "heroFeature": {
-        "subtitle": "2026 Immersive Parties",
-        "title": "Best Private Event"
-      },
-      "showcaseImages": [
-        {
-          "image": {
-            "_type": "image",
-            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/437dd49a02ecac575dc481e3535b2dfb4b275442-951x913.png"
-          }
-        },
-        {
-          "image": {
-            "_type": "image",
-            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080.png"
-          }
-        },
-        {
-          "image": {
-            "_type": "image",
-            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/5bdb7664d902978a660db843d80ca21424de53bf-960x720.jpg"
-          }
-        },
-        {
-          "image": {
-            "_type": "image",
-            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439.jpg"
-          }
-        },
-        {
-          "image": {
-            "_type": "image",
-            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798.png"
-          }
-        },
-        {
-          "image": {
-            "_type": "image",
-            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080.png"
-          }
-        },
-        {
-          "image": {
-            "_type": "image",
-            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756.jpg"
-          }
-        }
-      ],
-      "title": "Private Events"
-    }
-  ],
-  "processPage": [
-    {
-      "_id": "processPage",
-      "_type": "processPage",
-      "hero": {
-        "description": "Our 2026 themed experiences invite guests into a one-of-a-kind atmosphere on Lake Como, featuring photo-ready backdrops and a curated selection of props for spontaneous, playful photo moments. Guests are welcome to come dressed to theme or simply grab an accessory and join in. \n\nSignature cocktails, menus, and music guide the evening—often transforming dinner into dancing.\n\nWith candid Polaroid moments captured throughout the night, and plenty of opportunities to share your own, our weekly aperitivos and pre-fixed dinners are designed to be social, immersive, and unforgettable.",
-        "heading": "Seasonal Weekly Events",
-        "subHeading": "From Drinks to Dinner to Dancing Under the Stars"
-      },
-      "heroFeature": {
-        "link": "/themes",
-        "subtitle": "Dive into the World of Cinematic Creativity",
-        "tag": "Choose Your Theme",
-        "title": "THEMED CINEMATIC PARTIES"
-      },
-      "steps": [
-        {
-          "body": "Select from our signature themes: International Agents of Style, Hollywood Hussle, La Dolce Vita, Pink Ladies, Angels & Demons or create a custom theme. With over 3,000 costumes and props, your celebration can be uniquely tailored to your group. We consult with you to build any themed story - the sky is the limit with us! \n\nGuests may take the lead on screen, step into select moments, or simply enjoy the experience while our professional actors bring the story to life.\n\nWhether you want to star in your own cinematic trailer or watch the drama unfold around you, the film is crafted seamlessly around your level of participation, comfort, and style.\n\nExample Customized Storytelling – Corporate Brand Dinner Show:\n\nA company invites key clients, partners, or employees to an exclusive dinner, either at our historic palace in the heart of Como or a venue of their choice. The evening transforms into an immersive storytelling experience, where the brand’s story is enacted through performances, cinematic content, and thematic moments woven seamlessly into the dining experience. Guests are not just observers—they actively engage with the narrative, creating a sense of participation and exclusivity.\n\nEvery detail—from costumes and props to custom backdrops and interactive set pieces—is designed to reflect the brand’s identity, creating a luxurious and memorable atmosphere. Throughout the evening, the experience is filmed as a short cinematic production, culminating in a 3-minute movie trailer that serves as a lasting memento. Experiencing the brand in such a personalized and captivating way fosters deeper connections, strengthens loyalty, and leaves an impression that extends far beyond the event itself.\n\n",
-          "heading": "Choose or Create Your Story",
-          "stepNumber": 1,
-          "tagline": "LA DOLCE VITA to BOND",
-          "titleLines": [
-            "SELECT",
-            "YOUR",
-            "THEME"
-          ]
-        },
-        {
-          "body": "Decide where your cinematic experience will take place:\n\n• Our Venue: Our Turnkey setup with cocktails, gourmet popcorn with DJ & dancing\n• Luxury Hotel: Partnering with selected hotels for seamless events offering guests an exclusive experience\n• Your Chosen Venue: We bring all props, costumes, step & repeat backdrops, and filming to your location. We do travel to various locations with advance requests.\n• We offer 1/2 day & full day filming with boats, vespas, costumes and props for groups wanting a day group event. A perfect memorabilia and adventure for guests.\n\nExample Concept – Lake Como Bachelor/Bachelorette Experience:\n\nA wedding party travels to Lake Como and wants to create a truly unforgettable bachelor or bachelorette celebration. Our team designs an immersive experience, guiding guests through iconic locations across the city—capturing moments with cinematic, movie-trailer-style storytelling that feels both playful and elegant.\n\nThe experience can be tailored to fit either a half-day (4–5 hours) or a full-day (7–8 hours) journey. A half-day option allows for a focused, energetic adventure that concludes with a refined cocktail reception, while a full-day experience offers a complete narrative arc with multiple locations and interactive moments, culminating in a luxurious finale.\n\nIn both cases, the journey ends at our historic palace venue in the heart of Como. Guests enjoy an exclusive cocktail reception where highlights from the day are presented in cinematic form, all within the palace’s elegant interiors. This combination of immersive storytelling, city exploration, and a luxurious finale transforms the celebration into an experience that guests will remember—and share—long after the wedding.",
-          "heading": "Pick Your Location",
-          "stepNumber": 2,
-          "tagline": "YOU NAME IT",
-          "titleLines": [
-            "SELECT",
-            "YOUR",
-            "VENUE"
-          ]
-        },
-        {
-          "body": "Our team curates every detail to bring your theme to life. From custom step & repeat backdrops and curated props to music and storylines, we transform venues into a cinematic setting. Our stylist works directly with you to ensure all props, costumes and backdrops are ready for your film. We curate and manage a bespoke cast of professional actors who can enact the full story, should guests choose this option. You relax while we handle all the production details.\n\nProduction & Client Collaboration:\n\nOur immersive experiences are fully collaborative, giving clients the opportunity to shape the narrative of their event from start to finish. We provide storyboards, visual mock-ups, and thematic suggestions for each scene, allowing the experience to be carefully tailored to the client’s identity and objectives.\n\nClients can customize performances, costumes, props, and backdrops to reflect their unique vision, ensuring every element aligns with their story. By engaging directly in the creative process, clients become active partners in the production, resulting in a one-of-a-kind immersive experience that leaves a lasting impression on participants and reinforces the brand’s connection with its audience.",
-          "heading": "Production Design",
-          "stepNumber": 3,
-          "tagline": "PROPS & COSTUMES",
-          "titleLines": [
-            "WE DESIGN",
-            "YOUR",
-            "EVENT"
-          ]
-        },
-        {
-          "body": "On the day of your event, guests step into a world of intrigue, glamour, and cinematic storytelling. With guidance from our production team, everyone gets to act out key scenes from your chosen theme, making the experience interactive and unforgettable. Our professional videographer captures both spontaneous and directed moments, ensuring every guest shines on camera while enjoying an elevated, immersive celebration.\n\nNo acting experience is required—guests can choose how much they want to engage in the storytelling. Some clients prefer to simply observe and enjoy the narrative as it unfolds, while others can take on lead roles and fully immerse themselves in the performances. You can take on a starring role, appear in stylish cameo moments, or relax while professional actors enact the full narrative around you. Every scene is designed to feel effortless, elegant, and unmistakably cinematic. This flexibility ensures that every participant feels comfortable and can enjoy the experience in a way that suits their personality, creating a welcoming, inclusive atmosphere while still maintaining the immersive, cinematic impact of the event.\n\n",
-          "heading": "The Big Day",
-          "stepNumber": 4,
-          "tagline": "TIME TO SHINE",
-          "titleLines": [
-            "CELEBRATE",
-            "IN",
-            "STYLE"
-          ]
-        },
-        {
-          "body": "Within 3–4 weeks, we deliver a beautifully produced 3-minute cinematic trailer, along with social media-ready clips. \n\nThe cinematic trailer of the experience is fully crafted to reflect the client’s vision. Clients provide the title, cast names, and music selection, and we integrate these elements seamlessly into our cinematic production. Before the trailer is shared with guests, we confirm every element with the client to ensure it perfectly represents their story and meets their expectations. This attention to detail guarantees a polished, professional, and memorable keepsake that reinforces the impact of the immersive experience.",
-          "heading": "Post-Production Magic",
-          "stepNumber": 5,
-          "tagline": "YOUR SILVER SCREEN",
-          "titleLines": [
-            "YOUR MOVIE &",
-            "SOCIAL",
-            "MEDIA CLIPS"
-          ]
-        },
-        {
-          "body": "Your personalized movie trailer can be treasured for years to come — the perfect way to relive the magic of your event.\n\nThe immersive event is captured and packaged as a 3-minute cinematic movie, creating a long-lasting keepsake. Clients can share the trailer virtually via Zoom or by hosting their own in-person movie screening party. This allows the event to live on far beyond the actual day, extending the impact of the immersive experience, strengthening connections with guests, and creating ongoing engagement with the brand or celebration.",
-          "heading": "Keep the Story Alive",
-          "stepNumber": 6,
-          "tagline": "POPCORN TIME",
-          "titleLines": [
-            "RELIVE",
-            "THE",
-            "EXPERIENCE"
-          ]
-        }
-      ],
-      "title": "Seasonal Weekly Events",
-      "videoSection": {
-        "enabled": true,
-        "heading": "List of 2026 Venues",
-        "subHeading": "- Ristorante Locando Milano 1973 \n- Ristorante Terzo Crotto"
-      }
-    }
-  ],
-  "moviePage": [
-    {
-      "_id": "moviePage",
-      "_type": "moviePage",
-      "deliverables": [
-        {
-          "description": "A fully edited trailer up to 3 minutes in length",
-          "features": [
-            "Includes your choice of music to match the tone and style",
-            "Features custom title and cast names",
-            "Enhanced with special effects to elevate the cinematic impact",
-            "Professional photography"
-          ],
-          "title": "3-Minute Movie Trailer with Professional Photography"
-        },
-        {
-          "description": "Shorter versions optimized for social media platforms",
-          "features": [
-            "Perfect for Instagram, TikTok, YouTube, or Facebook",
-            "Designed to grab attention and drive engagement"
-          ],
-          "title": "Social Media Ready Cuts"
-        },
-        {
-          "description": "Delivered within 3–4 weeks from event date",
-          "features": [
-            "Professional post-production editing",
-            "Quality assurance review",
-            "Secure digital delivery"
-          ],
-          "title": "Timeline"
-        }
-      ],
-      "hero": {
-        "heading": "Where Every Guest Becomes A Star",
-        "subHeading": "Lights, Camera, Action!",
-        "subSubHeading": "Our professional videographer captures your private event to create your very own 3-minute movie trailer. With custom casting, selected music, and highlights from your special event, we turn your celebration into a cinematic keepsake. The only movie experience on Lake Como, complete with social media–ready clips and your full trailer delivered within 3–4 weeks — making your event truly unforgettable!"
-      },
-      "heroFeature": {
-        "link": "/contact",
-        "subtitle": "Your Cinematic Keepsake",
-        "tag": "Coming Soon",
-        "title": "MOVIE PREMIERE"
-      },
-      "popcornSection": {
-        "image": {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/321c90df5c1ee24afc8168a27d44c0893d84a55f-500x500.png"
-        }
-      },
-      "timeline": "Delivered within 3–4 weeks from event date",
-      "title": "Star in Your Own Trailer"
-    }
-  ],
-  "crewPage": [
-    {
-      "_id": "3d2JLpUTPM5qppQf883Uxu",
-      "_type": "crewPage",
-      "crewMembers": [
-        {
-          "bio": [
-            "Our founder, Dee Lasprogata has over 30 years of experience in fashion, working in New York, Los Angeles, Rome, Milan, and Lake Como. She arrived to the shores of Lake Como 20 years ago and has been back and forth ever since.",
-            "With roots in Philadelphia, Dee grew up surrounded by couture as her grandmother operated a custom gown atelier. Later, she graduated from both Vanderbilt University and the Fashion Institute of Design in New York City.",
-            "She has launched a pioneering fashion collections working with celebrities including Valentino, Stevie Wonder and Giada De Laurentiis. Over the years, her visionary work has been featured in major publications in both the USA and Italy, including People, Glamour, Io Donna, Women's Wear Daily (WWD), Fox & Friends, TG5, and Entrepreneur.",
-            "Today, Dee combines her fashion-forward sensibilities with cinematic flair to craft an unforgettable experience; she curates the wardrobe, props, and look for every guest. ",
-            ""
-          ],
-          "image": {
-            "_type": "image",
-            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/e60f4c4a969ae568d0975a407795225dbe163a2a-470x558.png",
-            "crop": {
-              "_type": "sanity.imageCrop",
-              "bottom": 0,
-              "left": 0.21337170755346613,
-              "right": 0.22032969526829874,
-              "top": 0
-            },
-            "hotspot": {
-              "_type": "sanity.imageHotspot",
-              "height": 1,
-              "width": 0.5662985971782352,
-              "x": 0.4965210061425837,
-              "y": 0.5
-            }
-          },
-          "name": "Dee Lasprogata",
-          "role": "Founder & Creative Director",
-          "socials": {
-            "instagram": "https://instagram.com/lakecomostyle",
-            "linkedin": "https://linkedin.com/in/deelasprogata"
-          }
-        },
-        {
-          "bio": [
-            "Stefano Dozza is a filmmaker, photographer, and content producer from Bologna, currently based between Milan and Rome. He has studied and worked in New York, Los Angeles, and the UK. Over the years, his work has spanned corporate and fashion projects, with each video carefully tailored to reflect the unique look and identity of each brand.",
-            "As a versatile creative professional, Stefano brings expertise in filmmaking, photography, copywriting, and podcasting to Lake Como Style. His international experience and artistic vision ensure that every cinematic experience captures the essence of Italian elegance combined with Hollywood production values.",
-            "Stefano's commitment to sustainability and thoughtful content creation aligns perfectly with Lake Como Style's mission to deliver meaningful, memorable experiences that respect both artistry and environment."
-          ],
-          "image": {
-            "_type": "image",
-            "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/427d578bd9cde9bcce27512c36b3c3eadc4d7ccb-3456x5184.jpg",
-            "crop": {
-              "_type": "sanity.imageCrop",
-              "bottom": 0,
-              "left": 0.011984548843354564,
-              "right": 0,
-              "top": 0
-            },
-            "hotspot": {
-              "_type": "sanity.imageHotspot",
-              "height": 1,
-              "width": 0.9880149025517225,
-              "x": 0.5059925487241388,
-              "y": 0.5
-            }
-          },
-          "name": "Stefano Dozza",
-          "role": "Filmmaker & Visual Director",
-          "socials": {
-            "instagram": "https://instagram.com/johntouche",
-            "website": "https://johntouche.com"
-          }
-        }
-      ],
-      "cta": {
-        "buttonText": "Contact Us",
-        "description": "Join us for an unforgettable immersive experience",
-        "icon": "Your Lake Como Team",
-        "title": "Your Lake Como Team"
-      },
-      "hero": {
-        "description": "Lake Como Style brings immersive, themed experiences to life on the Lake. From our weekly events to private parties, every celebration is carefully styled and designed, allowing guests to step into a world of themed fun. ",
-        "heading": "Your Event Crew",
-        "subHeading": "From the Big Apple to the heart of Milan — our team brings international talent to your celebration"
-      },
-      "heroFeature": {
-        "link": "/contact",
-        "subtitle": "International Expertise",
-        "tag": "2026",
-        "title": "MEET THE TEAM"
-      },
-      "logos": [
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/db22b67cdc4c6ad9f1d230c9710b05345e46bb3f-1170x382.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/1abdd77c34d19a7d239ef968514a8ca79dbadb74-656x360.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/458f2cfdae32d8daf86566e6e95bd6c2ad526070-1170x639.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/183c5b6e64301731b664a70ce2b27210574f738c-1019x538.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/669127a0bcb96a83d790685dd84a4b7827760964-409x160.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/30c40301d0ec7725d209275840ff506e7afe35ec-1169x473.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/9d6ee43623b86c12d4370d83c6b02d2afe0ca089-456x353.jpg"
-        }
-      ],
-      "logosTitle": "featured in",
-      "title": "About "
-    }
-  ],
-  "venuePage": [
-    {
-      "_id": "3d2JLpUTPM5qppQf88BJIs",
-      "_type": "venuePage",
-      "cta": {
-        "buttonText": "Join Our Events",
-        "description": "Create unforgettable moments on Lake Como ",
-        "title": "Unique Venues, Unique Events For All"
-      },
-      "description": [
-        "AGENTS OF STYLE AT HOTEL TERZO CROTTO: \nNestled in the heart of Cernobbio, Hotel Terzo Crotto is a charming historic property set in a garden‑surrounded former farmhouse dating back to the late 19th century. The hotel’s tranquil setting offers easy access to the lakeside and local attractions like Villa d’Este while maintaining a peaceful, picturesque atmosphere. With inviting outdoor spaces, wine cellar and a welcoming restaurant celebrating authentic Italian cuisine, Hotel Terzo Crotto provides an elegant backdrop for any event.",
-        "DATES: May 6 & May 16\nTIME: 5pm- 8pm\nTICKETS:"
-      ],
-      "externalLinks": {
-        "bookingLink": "contact"
-      },
-      "galleryImages": [
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/5bdb7664d902978a660db843d80ca21424de53bf-960x720.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/fd866ca52e4b811cb176080a9b9468a723e607c2-550x412.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/fe3de70117969f48e5c4357717bf3229402161a3-1284x961.webp"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/e75d690f4207cc816d6f73b1d03eb20453755760-1920x1280.webp"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/89ca9a0352a0628203ef4387bb8245a7d17e8d19-1030x682.png"
-        }
-      ],
-      "hero": {
-        "heading": "Themed Events at Authentic Italian Venues ",
-        "location": "Lake Como, Italy",
-        "subHeading": "From Villas to Historic Restaurants Join Our Immersive Events"
-      },
-      "heroFeature": {
-        "link": "Limited Spaces",
-        "tag": "Themed Events at Stunning Venues ",
-        "title": "2026 Ticketed Events"
-      },
-      "title": "2026 Open Ticketed Experiences"
-    },
-    {
-      "_id": "drafts.3d2JLpUTPM5qppQf88BJIs",
-      "_type": "venuePage",
-      "cta": {
-        "buttonText": "Join Our Events",
-        "description": "Create unforgettable moments on Lake Como ",
-        "title": "Unique Venues, Unique Events For All"
-      },
-      "description": [
-        "AGENTS OF STYLE AT HOTEL TERZO CROTTO: \nNestled in the heart of Cernobbio, Hotel Terzo Crotto is a charming historic property set in a garden‑surrounded former farmhouse dating back to the late 19th century. The hotel’s tranquil setting offers easy access to the lakeside and local attractions like Villa d’Este while maintaining a peaceful, picturesque atmosphere. With inviting outdoor spaces, wine cellar and a welcoming restaurant celebrating authentic Italian cuisine, Hotel Terzo Crotto provides an elegant backdrop for any event.",
-        "DATES: May 6 & May 16\nTIME: 5pm- 8pm\nTICKETS:"
-      ],
-      "externalLinks": {
-        "bookingLink": "contact"
-      },
-      "galleryImages": [
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/5bdb7664d902978a660db843d80ca21424de53bf-960x720.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/fd866ca52e4b811cb176080a9b9468a723e607c2-550x412.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/fe3de70117969f48e5c4357717bf3229402161a3-1284x961.webp"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/e75d690f4207cc816d6f73b1d03eb20453755760-1920x1280.webp"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/89ca9a0352a0628203ef4387bb8245a7d17e8d19-1030x682.png"
-        },
-        {
-          "_type": "image"
-        }
-      ],
-      "hero": {
-        "heading": "Themed Events at Authentic Italian Venues ",
-        "location": "Lake Como, Italy",
-        "subHeading": "From Villas to Historic Restaurants Join Our Immersive Events"
-      },
-      "heroFeature": {
-        "link": "Limited Spaces",
-        "tag": "Themed Events at Stunning Venues ",
-        "title": "2026 Ticketed Events"
-      },
-      "title": "2026 Open Ticketed Experiences"
-    }
-  ],
-  "galleryPage": [
-    {
-      "_id": "galleryPage",
-      "_type": "galleryPage",
-      "hero": {
-        "heading": "Scenes from the Experience",
-        "subHeading": "Snapshots — clandestine exchanges, dinner finales, Lake Como scenery"
-      },
-      "heroFeature": {
-        "link": "/contact",
-        "subtitle": "Scenes",
-        "tag": "2026",
-        "title": "Themed Events"
-      },
-      "images": [
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/89307f3fef09feb106360e6380de44b5e9bb536c-1582x821.png"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/388b2d0430dbd54b63706e771f3a00cf16086aae-3024x2179.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439.jpg"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798.png"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/91472121a6a46f2e4be72ab8cebb4a232978c1d5-1775x892.png"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/ccd733b1ba903f27752dccddac1eaba559934d87-1788x673.png"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/9c7cbf0d082b55c42bddd5af0ff9a80563785bc0-1040x576.png"
-        },
-        {
-          "_type": "image",
-          "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756.jpg"
-        }
-      ],
-      "title": "Gallery"
-    }
-  ],
-  "faqPage": [
-    {
-      "_id": "faqPage",
-      "_type": "faqPage",
-      "contactCta": {
-        "buttonLink": "/contact",
-        "buttonText": "Contact Us",
-        "text": "Still have questions?"
-      },
-      "faqs": [
-        {
-          "answer": "Yes! We host weekly events for all guests visiting Lake Como, ranging from casual aperitivi to pre-fixed dinners at select lakeside locations. Each week offers a unique experience, allowing guests to enjoy the best of local cuisine, stunning views, and the vibrant atmosphere of the Lake.\n\nFor details on dates, times, and locations, feel free to check out our weekly events schedule.",
-          "question": "Are there weekly events open to all guests visiting Lake Como?"
-        },
-        {
-          "answer": "Yes! We offer private events tailored for bachelorettes, tour groups, corporate functions, and other special gatherings. Whether it’s a curated aperitivo, a pre-fixed dinner, or a full lakeside experience, we can customize the event to suit your group’s needs and create a memorable experience on Lake Como.",
-          "category": "experience",
-          "question": "Can I book a private event for a bachelorette, rehearsal dinner or tour group gathering?"
-        },
-        {
-          "answer": "We offer a collection of over 3,000 couture costumes and props, spanning multiple time periods, styles, and themes. The collection includes elegant, theatrical, historical, fantasy, and bespoke pieces, each selected for its craftsmanship, visual impact, and suitability for immersive, high-end events.",
-          "category": "experience",
-          "question": "What backdrops and props do you offer?"
-        },
-        {
-          "answer": "We recommend booking private events at least 2–4 weeks in advance to ensure availability and allow us time to tailor the experience to your group. For larger groups or peak season dates, we suggest booking as early as possible to secure your preferred date and location on Lake Como.",
-          "category": "logistics",
-          "question": "How long in advance do I need to book a private event?"
-        },
-        {
-          "answer": "Yes. We offer private presentations and curated previews, either in person or virtually, allowing clients to explore themes, venues, and all backdrops and props in advance.",
-          "category": "experience",
-          "question": "Do you offer a sneak peek of the experience before confirming a private party reservation?"
-        },
-        {
-          "answer": "For our seasonal weekly events, we recommend booking at least 1–2 weeks in advance to secure your spot, as these events can fill up quickly during peak season. For larger groups or special dates, booking earlier is advised to ensure availability and the best experience on Lake Como.",
-          "category": "booking",
-          "question": "For seasonal weekly events, how far in advance should we book?"
-        }
-      ],
-      "hero": {
-        "description": "Join our immersive themed events",
-        "mainHeading": "2026 Seasonal Events",
-        "preHeading": "Your Immersive Style Adventure Awaits",
-        "searchPlaceholder": "Search questions..."
-      },
-      "title": "2026 Open Ticketed Experiences"
-    }
-  ],
-  "contactPage": [
-    {
-      "_id": "contactPage",
-      "_type": "contactPage",
-      "cameraImage": {
-        "_type": "image",
-        "assetUrl": "https://cdn.sanity.io/images/c20abca7/production/708cec19ac0d52a98033e50246ca0cb168209f2f-414x600.jpg"
-      },
-      "form": {
-        "emailLabel": "Email",
-        "emailPlaceholder": "john@example.com",
-        "eventDateLabel": "Date of Event",
-        "firstNameLabel": "First Name",
-        "firstNamePlaceholder": "John",
-        "formTitle": "Step Into the Scene",
-        "groupSizeDefaultOption": "Select group size",
-        "groupSizeLabel": "How many will you be?",
-        "groupSizeOptions": [
-          "2-5 people",
-          "6-10 people",
-          "11-20 people",
-          "21-50 people",
-          "50+ people"
-        ],
-        "lastNameLabel": "Last Name",
-        "lastNamePlaceholder": "Doe",
-        "messageLabel": "Event Inquiry",
-        "phoneLabel": "Phone",
-        "phonePlaceholder": "555 123-4567",
-        "submitButtonLoadingText": "Sending...",
-        "submitButtonText": "Join the Vibe"
-      },
-      "hero": {
-        "description": "Drop us a message and step into the experience.",
-        "mainHeading": "Join the Party in Style",
-        "preHeading": "Get in Touch"
-      },
-      "success": {
-        "buttonLink": "/",
-        "buttonText": "Back to Home",
-        "message": "Thank you for reaching out. We'll be in touch soon to help you create your unforgettable cinematic experience.",
-        "title": "The Spotlight Awaits!"
-      },
-      "title": "Contact Us"
-    }
-  ]
-}
 
 ================================================================================
 FILE: next.config.ts
@@ -1438,245 +607,6 @@ export default defineConfig({
 
 
 ================================================================================
-FILE: scripts\cleanup-sanity.mjs
-================================================================================
-
-/**
- * cleanup-sanity.mjs
- *
- * Safely removes unused Sanity assets (images / files) that are not
- * referenced by any document in the dataset.
- *
- * SAFETY GUARANTEES:
- *   1. Fetches ALL documents before doing anything destructive.
- *   2. Builds a complete reference map — every asset referenced anywhere
- *      in any document is marked as "in use".
- *   3. Never deletes an asset that is referenced.
- *   4. Displays a full deletion report BEFORE asking for confirmation.
- *   5. Supports --dry-run mode: shows what WOULD be deleted, nothing is touched.
- *   6. Requires explicit --confirm flag to actually delete anything.
- *
- * Usage:
- *   node scripts/cleanup-sanity.mjs --dry-run     # preview only
- *   node scripts/cleanup-sanity.mjs --confirm     # actually delete
- *
- * Required env (in .env.local):
- *   NEXT_PUBLIC_SANITY_PROJECT_ID
- *   NEXT_PUBLIC_SANITY_DATASET
- *   SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS
- */
-
-import { createClient } from "@sanity/client";
-import dotenv from "dotenv";
-import readline from "readline";
-
-dotenv.config({ path: ".env.local" });
-
-// ── CLI flags ──────────────────────────────────────────────────────────────────
-const args = process.argv.slice(2);
-const isDryRun = args.includes("--dry-run");
-const isConfirm = args.includes("--confirm");
-
-if (!isDryRun && !isConfirm) {
-  console.log(`
-\u26a0\ufe0f  Sanity Asset Cleanup
-
-Usage:
-  node scripts/cleanup-sanity.mjs --dry-run     Preview orphaned assets (safe, no deletes)
-  node scripts/cleanup-sanity.mjs --confirm     Delete orphaned assets after confirmation
-
-Always run --dry-run first to review what will be deleted.
-`);
-  process.exit(0);
-}
-
-// ── Client ─────────────────────────────────────────────────────────────────────
-const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-  apiVersion: "2025-12-27",
-  token: process.env.SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS,
-  useCdn: false,
-});
-
-// ── Helpers ────────────────────────────────────────────────────────────────────
-
-/** Recursively extract all asset _ref strings from a value */
-function extractAssetRefs(value, refs = new Set()) {
-  if (!value || typeof value !== "object") return refs;
-  if (Array.isArray(value)) {
-    for (const item of value) extractAssetRefs(item, refs);
-    return refs;
-  }
-  // If this object has an _ref and its parent key was "asset" → it's an asset ref
-  for (const [key, val] of Object.entries(value)) {
-    if (key === "asset" && val && typeof val === "object" && val._ref) {
-      refs.add(val._ref);
-    } else {
-      extractAssetRefs(val, refs);
-    }
-  }
-  return refs;
-}
-
-/** Format bytes to human-readable size string */
-function formatSize(bytes) {
-  if (!bytes) return "unknown size";
-  if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-}
-
-/** Ask user for yes/no confirmation via stdin */
-async function confirm(question) {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-  return new Promise((resolve) => {
-    rl.question(`${question} [y/N] `, (answer) => {
-      rl.close();
-      resolve(answer.toLowerCase() === "y");
-    });
-  });
-}
-
-// ── Main ───────────────────────────────────────────────────────────────────────
-
-async function runCleanup() {
-  const mode = isDryRun ? "DRY RUN" : "LIVE DELETE";
-  console.log(`\n\ud83e\uddf9  Sanity Asset Cleanup — ${mode}\n`);
-
-  // ── Step 1: Fetch all content documents ─────────────────────────────────────
-  console.log("Step 1/4 \u2014 Fetching all content documents...");
-  const allDocs = await client.fetch(`*[!(_type match "sanity.*")] { ... }`);
-  console.log(`         Found ${allDocs.length} content documents\n`);
-
-  // ── Step 2: Build reference set ─────────────────────────────────────────────
-  console.log("Step 2/4 \u2014 Building asset reference map...");
-  const referencedAssetIds = new Set();
-  for (const doc of allDocs) {
-    extractAssetRefs(doc, referencedAssetIds);
-  }
-  console.log(
-    `         ${referencedAssetIds.size} unique asset references found\n`,
-  );
-
-  // ── Step 3: Fetch all assets ─────────────────────────────────────────────────
-  console.log("Step 3/4 \u2014 Fetching all image and file assets...");
-  const imageAssets = await client.fetch(
-    `*[_type == "sanity.imageAsset"] { _id, _type, url, size, originalFilename, _createdAt }`,
-  );
-  const fileAssets = await client.fetch(
-    `*[_type == "sanity.fileAsset"] { _id, _type, url, size, originalFilename, _createdAt }`,
-  );
-  const allAssets = [...imageAssets, ...fileAssets];
-  console.log(
-    `         Found ${imageAssets.length} image assets, ${fileAssets.length} file assets\n`,
-  );
-
-  // ── Step 4: Compute orphans ──────────────────────────────────────────────────
-  const orphans = allAssets.filter(
-    (asset) => !referencedAssetIds.has(asset._id),
-  );
-  const referenced = allAssets.filter((asset) =>
-    referencedAssetIds.has(asset._id),
-  );
-
-  // ── Deletion report ─────────────────────────────────────────────────────────
-  console.log("Step 4/4 \u2014 Analysis complete\n");
-  console.log(
-    `\u2500\u2500 Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500`,
-  );
-  console.log(`  Total assets:      ${allAssets.length}`);
-  console.log(
-    `  Referenced:        ${referenced.length}  \u2705 (safe, will not be touched)`,
-  );
-  console.log(
-    `  Orphaned:          ${orphans.length}  \u{1f4a5} (unused, candidates for deletion)`,
-  );
-
-  const totalOrphanSize = orphans.reduce((sum, a) => sum + (a.size || 0), 0);
-  console.log(`  Orphan total size: ${formatSize(totalOrphanSize)}`);
-  console.log();
-
-  if (orphans.length === 0) {
-    console.log("\u2705 No orphaned assets found. Your dataset is clean!\n");
-    return;
-  }
-
-  // List the orphans
-  console.log(
-    "\u2500\u2500 Orphaned Assets (to be deleted) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
-  );
-  for (let i = 0; i < orphans.length; i++) {
-    const a = orphans[i];
-    const name = a.originalFilename || a._id;
-    const type = a._type === "sanity.imageAsset" ? "image" : "file";
-    const size = formatSize(a.size);
-    const created = a._createdAt
-      ? new Date(a._createdAt).toLocaleDateString()
-      : "unknown";
-    console.log(
-      `  ${String(i + 1).padStart(3, " ")}. [${type}] ${name}  (${size})  uploaded: ${created}`,
-    );
-  }
-  console.log();
-
-  // ── Dry-run stops here ───────────────────────────────────────────────────────
-  if (isDryRun) {
-    console.log(`\ud83d\udccc DRY RUN complete. No assets were deleted.`);
-    console.log(`   To delete the ${orphans.length} orphaned assets, run:`);
-    console.log(`   node scripts/cleanup-sanity.mjs --confirm\n`);
-    return;
-  }
-
-  // ── Confirm before deletion ──────────────────────────────────────────────────
-  const proceed = await confirm(
-    `\u26a0\ufe0f  About to permanently delete ${orphans.length} orphaned assets. Continue?`,
-  );
-
-  if (!proceed) {
-    console.log("\n\u274c Deletion cancelled. No assets were deleted.\n");
-    return;
-  }
-
-  // ── Delete ───────────────────────────────────────────────────────────────────
-  console.log("\n\ud83d\uddd1\ufe0f  Deleting orphaned assets...\n");
-  let deleted = 0;
-  let failed = 0;
-
-  for (const asset of orphans) {
-    try {
-      await client.delete(asset._id);
-      const name = asset.originalFilename || asset._id;
-      console.log(`  \u2713 Deleted: ${name}`);
-      deleted++;
-    } catch (err) {
-      console.error(`  \u274c Failed:  ${asset._id} — ${err.message}`);
-      failed++;
-    }
-  }
-
-  console.log(
-    `\n\u2500\u2500 Done \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500`,
-  );
-  console.log(`  \u2705 Deleted: ${deleted} assets`);
-  if (failed > 0) {
-    console.log(`  \u274c Failed:  ${failed} assets`);
-  }
-  console.log(`  \ud83d\udcbe Space freed: ${formatSize(totalOrphanSize)}`);
-  console.log();
-}
-
-runCleanup().catch((error) => {
-  console.error("\u274c Fatal error:", error.message);
-  console.error(error);
-  process.exit(1);
-});
-
-
-================================================================================
 FILE: scripts\crawl-project.js
 ================================================================================
 
@@ -2107,219 +1037,6 @@ main();
 
 
 ================================================================================
-FILE: scripts\export-sanity.mjs
-================================================================================
-
-import { createClient } from "@sanity/client";
-import dotenv from "dotenv";
-import fs from "fs";
-import path from "path";
-
-dotenv.config({ path: ".env.local" });
-
-const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  apiVersion: "2024-01-01",
-  token: process.env.SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS,
-  useCdn: false,
-});
-
-const schemaTypes = [
-  "homepage",
-  "navbar",
-  "footer",
-  "themesPage",
-  "castPage",
-  "processPage",
-  "moviePage",
-  "crewPage",
-  "venuePage",
-  "galleryPage",
-  "faqPage",
-  "contactPage",
-];
-
-const REMOVED_INTERNAL_FIELDS = new Set([
-  "_rev",
-  "_createdAt",
-  "_updatedAt",
-  "_system",
-]);
-
-function buildAssetRefToUrlMap(assets) {
-  const map = new Map();
-
-  if (!Array.isArray(assets)) return map;
-
-  for (const asset of assets) {
-    if (
-      asset &&
-      typeof asset._id === "string" &&
-      typeof asset.url === "string"
-    ) {
-      map.set(asset._id, asset.url);
-    }
-  }
-
-  return map;
-}
-
-function toShortValue(value, assetRefToUrl, stats) {
-  if (Array.isArray(value)) {
-    return value.map((item) => toShortValue(item, assetRefToUrl, stats));
-  }
-
-  if (!value || typeof value !== "object") {
-    return value;
-  }
-
-  const shortObject = {};
-
-  for (const [key, nestedValue] of Object.entries(value)) {
-    if (REMOVED_INTERNAL_FIELDS.has(key)) {
-      continue;
-    }
-
-    if (key.startsWith("_") && key !== "_id" && key !== "_type") {
-      continue;
-    }
-
-    if (
-      key === "asset" &&
-      nestedValue &&
-      typeof nestedValue === "object" &&
-      typeof nestedValue._ref === "string"
-    ) {
-      const assetRef = nestedValue._ref;
-      const resolvedAssetUrl = assetRefToUrl.get(assetRef);
-
-      stats.assetRefs += 1;
-
-      if (resolvedAssetUrl) {
-        shortObject.assetUrl = resolvedAssetUrl;
-        stats.resolvedAssetRefs += 1;
-      } else {
-        shortObject.assetRef = assetRef;
-        stats.unresolvedAssetRefs += 1;
-      }
-
-      continue;
-    }
-
-    shortObject[key] = toShortValue(nestedValue, assetRefToUrl, stats);
-  }
-
-  return shortObject;
-}
-
-function buildShortExport(allData, assetRefToUrl, stats) {
-  const shortData = {
-    _metadata: allData._metadata,
-  };
-
-  for (const schemaType of schemaTypes) {
-    const schemaDocuments = allData[schemaType];
-    if (!Array.isArray(schemaDocuments)) {
-      shortData[schemaType] = schemaDocuments;
-      continue;
-    }
-
-    shortData[schemaType] = schemaDocuments.map((doc) =>
-      toShortValue(doc, assetRefToUrl, stats),
-    );
-  }
-
-  return shortData;
-}
-
-async function fetchAllData() {
-  console.log("🎬 Fetching all Lake Como Style data from Sanity...\n");
-
-  const allData = {
-    _metadata: {
-      exportedAt: new Date().toISOString(),
-      projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-      dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-    },
-  };
-
-  for (const schemaType of schemaTypes) {
-    try {
-      console.log(`📦 Fetching ${schemaType}...`);
-      const data = await client.fetch(`*[_type == "${schemaType}"]`);
-      allData[schemaType] = data;
-      console.log(`   ✅ Found ${data.length} document(s)`);
-    } catch (error) {
-      console.error(`   ❌ Error fetching ${schemaType}:`, error.message);
-      allData[schemaType] = { error: error.message };
-    }
-  }
-
-  console.log("\n📦 Fetching all assets (images/files)...");
-  try {
-    const assets =
-      await client.fetch(`*[_type in ["sanity.imageAsset", "sanity.fileAsset"]] {
-      _id,
-      _type,
-      originalFilename,
-      url,
-      mimeType,
-      size,
-      metadata
-    }`);
-    allData["_assets"] = assets;
-    console.log(`   ✅ Found ${assets.length} asset(s)`);
-  } catch (error) {
-    console.error(`   ❌ Error fetching assets:`, error.message);
-    allData["_assets"] = { error: error.message };
-  }
-
-  const shortExportStats = {
-    assetRefs: 0,
-    resolvedAssetRefs: 0,
-    unresolvedAssetRefs: 0,
-  };
-  const assetRefToUrl = buildAssetRefToUrlMap(allData["_assets"]);
-  const shortData = buildShortExport(allData, assetRefToUrl, shortExportStats);
-
-  const fullOutputPath = path.join(process.cwd(), "lakecomostyle.json");
-  const shortOutputPath = path.join(process.cwd(), "lakecomostyle.short.json");
-
-  fs.writeFileSync(fullOutputPath, JSON.stringify(allData, null, 2), "utf-8");
-  fs.writeFileSync(
-    shortOutputPath,
-    JSON.stringify(shortData, null, 2),
-    "utf-8",
-  );
-
-  console.log("\n✅ Export complete!");
-  console.log(`📄 Full data saved to: ${fullOutputPath}`);
-  console.log(`📄 Short data saved to: ${shortOutputPath}`);
-  console.log(`📊 Total schema types exported: ${schemaTypes.length}`);
-
-  const stats = schemaTypes.map((type) => ({
-    type,
-    count: Array.isArray(allData[type]) ? allData[type].length : 0,
-  }));
-  console.log("\n📈 Summary:");
-  stats.forEach(({ type, count }) => {
-    console.log(`   ${type}: ${count} document(s)`);
-  });
-
-  console.log("\n🔗 Asset reference summary (short export):");
-  console.log(`   Total refs found: ${shortExportStats.assetRefs}`);
-  console.log(`   Resolved URLs: ${shortExportStats.resolvedAssetRefs}`);
-  console.log(`   Unresolved refs: ${shortExportStats.unresolvedAssetRefs}`);
-}
-
-fetchAllData().catch((error) => {
-  console.error("❌ Fatal error:", error);
-  process.exit(1);
-});
-
-
-================================================================================
 FILE: scripts\seed-landing-page.mjs
 ================================================================================
 
@@ -2442,6 +1159,56 @@ async function migrate() {
       // ── Assignment ────────────────────────────────────────────
       "assignment.sectionTitle":
         assignments.sectionTitle || "Choose Your Assignment",
+
+      // ── Private Events ────────────────────────────────────────
+      "privateEvents.label": "LAKE COMO EXCLUSIVE",
+      "privateEvents.title": "Private Spy Missions",
+      "privateEvents.subtitle": "Host Your Bond-Inspired Spy Experience",
+      "privateEvents.description":
+        "Bring the thrill of espionage to Lake Como with a fully immersive, cinematic spy experience. Perfect for private villas or pre- and post-wedding celebrations.",
+      "privateEvents.ctaText": "DISCOVER HOW IT WORKS",
+      "privateEvents.ctaLink": "#contact",
+      "privateEvents.videographyLabel": "A TRULY UNIQUE OFFERING",
+      "privateEvents.videographyTitle": "Photography & Videography",
+      "privateEvents.videographySubtitle":
+        "We offer an exclusive cinematic video experience — the only spy event videography of its kind on Lake Como.",
+      "privateEvents.videographyHighlights": [
+        'Bespoke 5-minute cinematic "movie trailer" of your mission',
+        "Custom cast names for each guest and tailored music",
+        "Fully produced and delivered within 10 days",
+        "Includes short social media clips for sharing",
+      ],
+      "privateEvents.photographyHighlights": [
+        "Professional images capturing the drama and elegance",
+        "Guests interacting with spy kits, props, and backdrops",
+        "Perfect for keepsakes, social media, or personal mementos",
+      ],
+      "privateEvents.features": [
+        {
+          _key: key("feat", 0),
+          _type: "object",
+          icon: "target",
+          text: "Choose your mission: Spy Mission Dinner or Cocktail Party",
+        },
+        {
+          _key: key("feat", 1),
+          _type: "object",
+          icon: "map-pin",
+          text: "Fully tailored for your specific location and guest count",
+        },
+        {
+          _key: key("feat", 2),
+          _type: "object",
+          icon: "martini",
+          text: "Gourmet dining, cocktails, immersive storytelling",
+        },
+        {
+          _key: key("feat", 3),
+          _type: "object",
+          icon: "briefcase",
+          text: "Complete with cinematic backdrops, spy props, and spy kits",
+        },
+      ],
 
       // ── Inquire ───────────────────────────────────────────────
       "inquire.preHeading": contactHero.preHeading || "Get in Touch",
@@ -2568,6 +1335,12 @@ async function migrate() {
           },
           {
             _key: key("nav", 3),
+            _type: "object",
+            label: "Private Events",
+            url: "/#private-events",
+          },
+          {
+            _key: key("nav", 4),
             _type: "object",
             label: "Inquire",
             url: "/#contact",
@@ -4058,6 +2831,7 @@ import HeroSection from "./HeroSection";
 import StorySection from "./StorySection";
 import ExperienceSection from "./ExperienceSection";
 import AssignmentSection from "./AssignmentSection";
+import PrivateEventsSection from "./PrivateEventsSection";
 import InquireSection from "./InquireSection";
 
 export default function LandingPage({ data }: { data: LandingPageData }) {
@@ -4070,8 +2844,408 @@ export default function LandingPage({ data }: { data: LandingPageData }) {
       <StorySection data={data.story} />
       <ExperienceSection data={data.experience} />
       <AssignmentSection data={data.assignment} />
+      <PrivateEventsSection data={data.privateEvents} />
       <InquireSection data={data.inquire} />
     </div>
+  );
+}
+
+
+================================================================================
+FILE: src\app\(main)\sections\PrivateEventsSection.tsx
+================================================================================
+
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Target, MapPin, Wine, Briefcase } from "lucide-react";
+import { useLenis } from "@/components/providers/SmoothScroll";
+import type { LandingPageData } from "@/sanity/lib/getLandingPage";
+
+type FeatureCard = NonNullable<
+  LandingPageData["privateEvents"]["features"]
+>[number];
+
+const ICON_MAP: Record<
+  string,
+  React.ComponentType<{ size?: number; strokeWidth?: number }>
+> = {
+  target: Target,
+  "map-pin": MapPin,
+  martini: Wine,
+  briefcase: Briefcase,
+};
+
+const DEFAULT_FEATURES: FeatureCard[] = [
+  {
+    icon: "target",
+    text: "Choose your mission: Spy Mission Dinner or Cocktail Party",
+  },
+  {
+    icon: "map-pin",
+    text: "Fully tailored for your specific location and guest count",
+  },
+  {
+    icon: "martini",
+    text: "Gourmet dining, cocktails, immersive storytelling",
+  },
+  {
+    icon: "briefcase",
+    text: "Complete with cinematic backdrops, spy props, and spy kits",
+  },
+];
+
+const DEFAULT_VIDEOGRAPHY_HIGHLIGHTS: string[] = [
+  'Bespoke 5-minute cinematic "movie trailer" of your mission',
+  "Custom cast names for each guest and tailored music",
+  "Fully produced and delivered within 10 days",
+  "Includes short social media clips for sharing",
+];
+
+const DEFAULT_PHOTOGRAPHY_HIGHLIGHTS: string[] = [
+  "Professional images capturing the drama and elegance",
+  "Guests interacting with spy kits, props, and backdrops",
+  "Perfect for keepsakes, social media, or personal mementos",
+];
+
+export default function PrivateEventsSection({
+  data,
+}: {
+  data: LandingPageData["privateEvents"];
+}) {
+  const { lenisRef } = useLenis();
+
+  const label = data.label ?? "LAKE COMO EXCLUSIVE";
+  const title = data.title ?? "Private Spy Missions";
+  const subtitle = data.subtitle ?? "Host Your Bond-Inspired Spy Experience";
+  const description =
+    data.description ??
+    "Bring the thrill of espionage to Lake Como with a fully immersive, cinematic spy experience. Perfect for private villas or pre- and post-wedding celebrations.";
+  const features =
+    data.features && data.features.length > 0
+      ? data.features
+      : DEFAULT_FEATURES;
+  const ctaText = data.ctaText ?? "DISCOVER HOW IT WORKS";
+  const ctaLink = data.ctaLink ?? "#contact";
+  const imageUrl = data.imageUrl ?? null;
+  const videographyLabel = data.videographyLabel ?? "A TRULY UNIQUE OFFERING";
+  const videographyTitle = data.videographyTitle ?? "Photography & Videography";
+  const videographySubtitle =
+    data.videographySubtitle ??
+    "We offer an exclusive cinematic video experience — the only spy event videography of its kind on Lake Como.";
+  const videographyHighlights =
+    data.videographyHighlights && data.videographyHighlights.length > 0
+      ? data.videographyHighlights
+      : DEFAULT_VIDEOGRAPHY_HIGHLIGHTS;
+  const photographyHighlights =
+    data.photographyHighlights && data.photographyHighlights.length > 0
+      ? data.photographyHighlights
+      : DEFAULT_PHOTOGRAPHY_HIGHLIGHTS;
+
+  const handleCtaClick = () => {
+    const hash = ctaLink.startsWith("#") ? ctaLink : ctaLink.replace("/", "");
+    const el = document.querySelector(hash);
+    if (el) {
+      lenisRef.current?.scrollTo(el as HTMLElement, { offset: -48 });
+    } else {
+      const contact = document.querySelector("#contact");
+      if (contact)
+        lenisRef.current?.scrollTo(contact as HTMLElement, { offset: -48 });
+    }
+  };
+
+  return (
+    <section
+      id="private-events"
+      style={{ backgroundColor: "var(--bg-secondary)" }}
+    >
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{
+          paddingTop: "var(--section-py)",
+          paddingBottom: "var(--section-py)",
+        }}
+      >
+        {/* ── Section header ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-center mb-8"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span
+              className="h-px w-8"
+              style={{ backgroundColor: "var(--accent)" }}
+            />
+            <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
+              {label}
+            </span>
+            <span
+              className="h-px w-8"
+              style={{ backgroundColor: "var(--accent)" }}
+            />
+          </div>
+
+          <h2
+            className="font-bold"
+            style={{
+              fontFamily: "var(--font-limelight)",
+              fontSize: "var(--fs-h2)",
+              color: "var(--text-primary)",
+            }}
+          >
+            {title}
+          </h2>
+
+          <p
+            className="mt-2 text-sm sm:text-base font-light"
+            style={{
+              color: "var(--text-secondary)",
+              fontFamily: "var(--font-courier)",
+            }}
+          >
+            {subtitle}
+          </p>
+
+          <p
+            className="mt-4 max-w-2xl mx-auto text-sm sm:text-base"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            {description}
+          </p>
+        </motion.div>
+
+        {/* ── Feature cards ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {features.map((feat, i) => {
+            const IconComponent = ICON_MAP[feat.icon ?? "target"] ?? Target;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: i * 0.1,
+                  ease: "easeOut",
+                }}
+                className="flex flex-col items-center text-center p-5 rounded-sm border gap-3"
+                style={{
+                  backgroundColor: "var(--bg-primary)",
+                  borderColor: "var(--border-color)",
+                }}
+              >
+                <div
+                  className="flex items-center justify-center w-10 h-10 rounded-full border shrink-0"
+                  style={{
+                    borderColor: "var(--accent)",
+                    color: "var(--accent)",
+                  }}
+                >
+                  <IconComponent size={18} strokeWidth={1.5} />
+                </div>
+                <p
+                  className="text-sm"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  {feat.text}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* ── CTA ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex justify-center mb-10"
+        >
+          <button
+            onClick={handleCtaClick}
+            className="px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-full transition-opacity hover:opacity-90 cursor-pointer"
+            style={{
+              background: "var(--accent-gradient)",
+              color: "var(--accent-text)",
+            }}
+          >
+            <motion.span
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              className="block"
+            >
+              {ctaText}
+            </motion.span>
+          </button>
+        </motion.div>
+
+        {/* ── Cinematic image ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative w-full overflow-hidden rounded-sm mb-12"
+          style={{
+            aspectRatio: "16/7",
+            backgroundColor: "var(--bg-primary)",
+          }}
+        >
+          {imageUrl ? (
+            <Image
+              src={imageUrl}
+              alt="A luxury alpine palace beside a calm lake at dusk surrounded by forest"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 90vw"
+            />
+          ) : (
+            <div
+              className="w-full h-full flex items-center justify-center"
+              style={{ color: "var(--text-muted)" }}
+            >
+              <span className="text-sm tracking-widest uppercase">
+                Venue Image
+              </span>
+            </div>
+          )}
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+          {/* Location badge */}
+          <div
+            className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 px-3 py-1.5 text-[10px] uppercase tracking-[0.25em] font-bold border"
+            style={{
+              backgroundColor: "rgba(10,10,15,0.85)",
+              color: "var(--accent)",
+              borderColor: "var(--accent)",
+            }}
+          >
+            TARGET LOCATION: LAKE COMO
+          </div>
+        </motion.div>
+
+        {/* ── Photo & Video section header ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-center mb-8"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span
+              className="h-px w-8"
+              style={{ backgroundColor: "var(--accent)" }}
+            />
+            <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
+              {videographyLabel}
+            </span>
+            <span
+              className="h-px w-8"
+              style={{ backgroundColor: "var(--accent)" }}
+            />
+          </div>
+
+          <h3
+            className="font-bold"
+            style={{
+              fontFamily: "var(--font-limelight)",
+              fontSize: "var(--fs-h3)",
+              color: "var(--text-primary)",
+            }}
+          >
+            {videographyTitle}
+          </h3>
+
+          <p
+            className="mt-3 max-w-2xl mx-auto text-sm sm:text-base"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            {videographySubtitle}
+          </p>
+        </motion.div>
+
+        {/* ── Two-column highlights ── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+          {/* Videography highlights */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            className="p-6 rounded-sm border"
+            style={{
+              backgroundColor: "var(--bg-primary)",
+              borderColor: "var(--border-color)",
+            }}
+          >
+            <h4
+              className="text-sm font-bold uppercase tracking-widest mb-4"
+              style={{ color: "var(--accent)" }}
+            >
+              Videography
+            </h4>
+            <ul className="space-y-3">
+              {videographyHighlights.map((item, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-2.5 text-sm"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  <span
+                    className="mt-[7px] shrink-0 w-1 h-1 rounded-full"
+                    style={{ backgroundColor: "var(--accent)" }}
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Photography highlights */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            className="p-6 rounded-sm border"
+            style={{
+              backgroundColor: "var(--bg-primary)",
+              borderColor: "var(--border-color)",
+            }}
+          >
+            <h4
+              className="text-sm font-bold uppercase tracking-widest mb-4"
+              style={{ color: "var(--accent)" }}
+            >
+              Photography
+            </h4>
+            <ul className="space-y-3">
+              {photographyHighlights.map((item, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-2.5 text-sm"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  <span
+                    className="mt-[7px] shrink-0 w-1 h-1 rounded-full"
+                    style={{ backgroundColor: "var(--silver)" }}
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -5264,6 +4438,7 @@ const DEFAULT_LINKS: NavLink[] = [
   { label: "Story", url: "/#story" },
   { label: "Experience", url: "/#experience" },
   { label: "Assignment", url: "/#assignment" },
+  { label: "Private Events", url: "/#private-events" },
   { label: "Inquire", url: "/#contact" },
 ];
 
@@ -5324,7 +4499,8 @@ export default function Header({ data }: { data: HeaderData }) {
     if (el) lenisRef.current?.scrollTo(el as HTMLElement, { offset: -48 });
   };
 
-  const handleNavClick = (url: string) => {
+  const handleNavClick = (url: string | null | undefined) => {
+    if (!url) return;
     if (sidebarOpen) {
       // Close sidebar first, then scroll after animation completes
       setSidebarOpen(false);
@@ -6434,6 +5610,22 @@ export interface LandingPageData {
     }[];
   };
 
+  privateEvents: {
+    label?: string;
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    features?: { icon?: string; text?: string }[];
+    ctaText?: string;
+    ctaLink?: string;
+    imageUrl?: string | null;
+    videographyLabel?: string;
+    videographyTitle?: string;
+    videographySubtitle?: string;
+    videographyHighlights?: string[];
+    photographyHighlights?: string[];
+  };
+
   inquire: {
     preHeading?: string;
     mainHeading?: string;
@@ -6512,6 +5704,22 @@ const query = `
         ctaText,
         image { asset->{ url }, hotspot, crop }
       }
+    },
+
+    privateEvents {
+      label,
+      title,
+      subtitle,
+      description,
+      "features": features[] { icon, text },
+      ctaText,
+      ctaLink,
+      image { asset->{ url }, hotspot, crop },
+      videographyLabel,
+      videographyTitle,
+      videographySubtitle,
+      videographyHighlights,
+      photographyHighlights
     },
 
     inquire {
@@ -6602,14 +5810,20 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
         sectionTitle: raw.experience?.sectionTitle ?? "Step Into the Spotlight",
         sectionSubtitle: raw.experience?.sectionSubtitle,
         showcaseImages: (raw.experience?.showcaseImages ?? [])
-        .map((item: { image?: { asset?: { url?: string } }; title?: string; role?: string }) => ({
-            url:
-              item.image?.asset?.url ??
-              processImageToUrl(item.image, 800) ??
-              "",
-            title: item.title,
-            role: item.role,
-          }))
+          .map(
+            (item: {
+              image?: { asset?: { url?: string } };
+              title?: string;
+              role?: string;
+            }) => ({
+              url:
+                item.image?.asset?.url ??
+                processImageToUrl(item.image, 800) ??
+                "",
+              title: item.title,
+              role: item.role,
+            }),
+          )
           .filter((img: { url: string }) => img.url),
         paragraphs: raw.experience?.paragraphs ?? [],
       },
@@ -6634,6 +5848,30 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
               null,
           }),
         ),
+      },
+
+      privateEvents: {
+        label: raw.privateEvents?.label,
+        title: raw.privateEvents?.title,
+        subtitle: raw.privateEvents?.subtitle,
+        description: raw.privateEvents?.description,
+        features: (raw.privateEvents?.features ?? []).map(
+          (f: { icon?: string; text?: string }) => ({
+            icon: f.icon,
+            text: f.text,
+          }),
+        ),
+        ctaText: raw.privateEvents?.ctaText,
+        ctaLink: raw.privateEvents?.ctaLink,
+        imageUrl:
+          (raw.privateEvents?.image?.asset?.url as string | undefined) ??
+          processImageToUrl(raw.privateEvents?.image, 1600) ??
+          null,
+        videographyLabel: raw.privateEvents?.videographyLabel,
+        videographyTitle: raw.privateEvents?.videographyTitle,
+        videographySubtitle: raw.privateEvents?.videographySubtitle,
+        videographyHighlights: raw.privateEvents?.videographyHighlights ?? [],
+        photographyHighlights: raw.privateEvents?.photographyHighlights ?? [],
       },
 
       inquire: {
@@ -6827,6 +6065,7 @@ export default defineType({
     { name: "story", title: "Our Story" },
     { name: "experience", title: "The Experience" },
     { name: "assignment", title: "Your Assignment" },
+    { name: "privateEvents", title: "Private Events" },
     { name: "inquire", title: "Inquire / Contact" },
   ],
   fields: [
@@ -7080,6 +6319,122 @@ export default defineType({
             },
           ],
           validation: (Rule) => Rule.max(2),
+        }),
+      ],
+    }),
+
+    // ─── PRIVATE EVENTS ──────────────────────────────────────────
+    defineField({
+      name: "privateEvents",
+      title: "Private Events Section",
+      type: "object",
+      group: "privateEvents",
+      options: { collapsible: true, collapsed: false },
+      fields: [
+        defineField({
+          name: "label",
+          title: "Section Label",
+          type: "string",
+          initialValue: "LAKE COMO EXCLUSIVE",
+        }),
+        defineField({
+          name: "title",
+          title: "Section Title",
+          type: "string",
+          initialValue: "Private Spy Missions",
+        }),
+        defineField({
+          name: "subtitle",
+          title: "Subtitle",
+          type: "string",
+          initialValue: "Host Your Bond-Inspired Spy Experience",
+        }),
+        defineField({
+          name: "description",
+          title: "Description",
+          type: "text",
+          rows: 3,
+          initialValue:
+            "Bring the thrill of espionage to Lake Como with a fully immersive, cinematic spy experience. Perfect for private villas or pre- and post-wedding celebrations.",
+        }),
+        defineField({
+          name: "features",
+          title: "Feature Cards",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                defineField({
+                  name: "icon",
+                  title: "Icon Name",
+                  type: "string",
+                  description:
+                    "Lucide icon key: target, map-pin, martini, briefcase",
+                }),
+                defineField({
+                  name: "text",
+                  title: "Feature Text",
+                  type: "string",
+                  validation: (Rule) => Rule.required(),
+                }),
+              ],
+              preview: { select: { title: "text", subtitle: "icon" } },
+            },
+          ],
+          validation: (Rule) => Rule.max(4),
+        }),
+        defineField({
+          name: "ctaText",
+          title: "CTA Button Text",
+          type: "string",
+          initialValue: "DISCOVER HOW IT WORKS",
+        }),
+        defineField({
+          name: "ctaLink",
+          title: "CTA Link",
+          type: "string",
+          initialValue: "#contact",
+        }),
+        defineField({
+          name: "image",
+          title: "Cinematic Image",
+          type: "image",
+          options: { hotspot: true },
+          description:
+            "A luxury alpine palace beside a calm lake at dusk surrounded by forest.",
+        }),
+        defineField({
+          name: "videographyLabel",
+          title: "Videography Section Label",
+          type: "string",
+          initialValue: "A TRULY UNIQUE OFFERING",
+        }),
+        defineField({
+          name: "videographyTitle",
+          title: "Videography Section Title",
+          type: "string",
+          initialValue: "Photography & Videography",
+        }),
+        defineField({
+          name: "videographySubtitle",
+          title: "Videography Subtitle",
+          type: "text",
+          rows: 2,
+          initialValue:
+            "We offer an exclusive cinematic video experience — the only spy event videography of its kind on Lake Como.",
+        }),
+        defineField({
+          name: "videographyHighlights",
+          title: "Videography Highlights",
+          type: "array",
+          of: [{ type: "string" }],
+        }),
+        defineField({
+          name: "photographyHighlights",
+          title: "Photography Highlights",
+          type: "array",
+          of: [{ type: "string" }],
         }),
       ],
     }),

@@ -19,6 +19,7 @@ const DEFAULT_LINKS: NavLink[] = [
   { label: "Story", url: "/#story" },
   { label: "Experience", url: "/#experience" },
   { label: "Assignment", url: "/#assignment" },
+  { label: "Private Events", url: "/#private-events" },
   { label: "Inquire", url: "/#contact" },
 ];
 

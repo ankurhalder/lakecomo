@@ -5,6 +5,7 @@ import HeroSection from "./HeroSection";
 import StorySection from "./StorySection";
 import ExperienceSection from "./ExperienceSection";
 import AssignmentSection from "./AssignmentSection";
+import PrivateEventsSection from "./PrivateEventsSection";
 import InquireSection from "./InquireSection";
 
 export default function LandingPage({ data }: { data: LandingPageData }) {
@@ -17,6 +18,7 @@ export default function LandingPage({ data }: { data: LandingPageData }) {
       <StorySection data={data.story} />
       <ExperienceSection data={data.experience} />
       <AssignmentSection data={data.assignment} />
+      <PrivateEventsSection data={data.privateEvents} />
       <InquireSection data={data.inquire} />
     </div>
   );

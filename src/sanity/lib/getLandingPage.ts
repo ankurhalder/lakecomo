@@ -46,6 +46,22 @@ export interface LandingPageData {
     }[];
   };
 
+  privateEvents: {
+    label?: string;
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    features?: { icon?: string; text?: string }[];
+    ctaText?: string;
+    ctaLink?: string;
+    imageUrl?: string | null;
+    videographyLabel?: string;
+    videographyTitle?: string;
+    videographySubtitle?: string;
+    videographyHighlights?: string[];
+    photographyHighlights?: string[];
+  };
+
   inquire: {
     preHeading?: string;
     mainHeading?: string;
@@ -124,6 +140,22 @@ const query = `
         ctaText,
         image { asset->{ url }, hotspot, crop }
       }
+    },
+
+    privateEvents {
+      label,
+      title,
+      subtitle,
+      description,
+      "features": features[] { icon, text },
+      ctaText,
+      ctaLink,
+      image { asset->{ url }, hotspot, crop },
+      videographyLabel,
+      videographyTitle,
+      videographySubtitle,
+      videographyHighlights,
+      photographyHighlights
     },
 
     inquire {
@@ -214,14 +246,20 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
         sectionTitle: raw.experience?.sectionTitle ?? "Step Into the Spotlight",
         sectionSubtitle: raw.experience?.sectionSubtitle,
         showcaseImages: (raw.experience?.showcaseImages ?? [])
-        .map((item: { image?: { asset?: { url?: string } }; title?: string; role?: string }) => ({
-            url:
-              item.image?.asset?.url ??
-              processImageToUrl(item.image, 800) ??
-              "",
-            title: item.title,
-            role: item.role,
-          }))
+          .map(
+            (item: {
+              image?: { asset?: { url?: string } };
+              title?: string;
+              role?: string;
+            }) => ({
+              url:
+                item.image?.asset?.url ??
+                processImageToUrl(item.image, 800) ??
+                "",
+              title: item.title,
+              role: item.role,
+            }),
+          )
           .filter((img: { url: string }) => img.url),
         paragraphs: raw.experience?.paragraphs ?? [],
       },
@@ -246,6 +284,30 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
               null,
           }),
         ),
+      },
+
+      privateEvents: {
+        label: raw.privateEvents?.label,
+        title: raw.privateEvents?.title,
+        subtitle: raw.privateEvents?.subtitle,
+        description: raw.privateEvents?.description,
+        features: (raw.privateEvents?.features ?? []).map(
+          (f: { icon?: string; text?: string }) => ({
+            icon: f.icon,
+            text: f.text,
+          }),
+        ),
+        ctaText: raw.privateEvents?.ctaText,
+        ctaLink: raw.privateEvents?.ctaLink,
+        imageUrl:
+          (raw.privateEvents?.image?.asset?.url as string | undefined) ??
+          processImageToUrl(raw.privateEvents?.image, 1600) ??
+          null,
+        videographyLabel: raw.privateEvents?.videographyLabel,
+        videographyTitle: raw.privateEvents?.videographyTitle,
+        videographySubtitle: raw.privateEvents?.videographySubtitle,
+        videographyHighlights: raw.privateEvents?.videographyHighlights ?? [],
+        photographyHighlights: raw.privateEvents?.photographyHighlights ?? [],
       },
 
       inquire: {
