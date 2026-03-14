@@ -79,7 +79,8 @@ export default function Header({ data }: { data: HeaderData }) {
     if (el) lenisRef.current?.scrollTo(el as HTMLElement, { offset: -48 });
   };
 
-  const handleNavClick = (url: string) => {
+  const handleNavClick = (url: string | null | undefined) => {
+    if (!url) return;
     if (sidebarOpen) {
       // Close sidebar first, then scroll after animation completes
       setSidebarOpen(false);
