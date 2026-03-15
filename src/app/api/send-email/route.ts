@@ -1,17 +1,17 @@
-'use server'
+"use server";
 
-import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
+import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 interface ContactFormData {
-  firstName: string
-  lastName: string
-  email: string
-  phone: string
-  countryCode: string
-  groupSize: string
-  eventDate: string
-  message: string
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  countryCode: string;
+  groupSize: string;
+  eventDate: string;
+  message: string;
 }
 
 const transporter = nodemailer.createTransport({
@@ -22,17 +22,17 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-})
+});
 
 function generateAdminEmailHtml(data: ContactFormData): string {
-  const eventDateFormatted = data.eventDate 
-    ? new Date(data.eventDate).toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+  const eventDateFormatted = data.eventDate
+    ? new Date(data.eventDate).toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
       })
-    : 'Not specified'
+    : "Not specified";
 
   return `
 <!DOCTYPE html>
@@ -79,7 +79,7 @@ function generateAdminEmailHtml(data: ContactFormData): string {
                         </td>
                         <td width="50%" style="vertical-align: top; padding-left: 15px;">
                           <div style="color: rgba(255,215,0,0.7); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px;">Phone</div>
-                          <div style="color: #ffffff; font-size: 16px;">${data.countryCode} ${data.phone || 'Not provided'}</div>
+                          <div style="color: #ffffff; font-size: 16px;">${data.countryCode} ${data.phone || "Not provided"}</div>
                         </td>
                       </tr>
                     </table>
@@ -93,7 +93,7 @@ function generateAdminEmailHtml(data: ContactFormData): string {
                       <tr>
                         <td width="50%" style="vertical-align: top; padding-right: 15px;">
                           <div style="color: rgba(255,215,0,0.7); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px;">Group Size</div>
-                          <div style="color: #ffffff; font-size: 16px;">${data.groupSize || 'Not specified'}</div>
+                          <div style="color: #ffffff; font-size: 16px;">${data.groupSize || "Not specified"}</div>
                         </td>
                         <td width="50%" style="vertical-align: top; padding-left: 15px;">
                           <div style="color: rgba(255,215,0,0.7); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px;">Event Date</div>
@@ -105,7 +105,9 @@ function generateAdminEmailHtml(data: ContactFormData): string {
                   </td>
                 </tr>
                 
-                ${data.message ? `
+                ${
+                  data.message
+                    ? `
                 <tr>
                   <td style="padding-bottom: 20px;">
                     <div style="color: rgba(255,215,0,0.7); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px;">Message</div>
@@ -114,7 +116,9 @@ function generateAdminEmailHtml(data: ContactFormData): string {
                     </div>
                   </td>
                 </tr>
-                ` : ''}
+                `
+                    : ""
+                }
                 
               </table>
             </td>
@@ -132,7 +136,7 @@ function generateAdminEmailHtml(data: ContactFormData): string {
   </table>
 </body>
 </html>
-`
+`;
 }
 
 function generateConfirmationEmailHtml(data: ContactFormData): string {
@@ -179,18 +183,26 @@ function generateConfirmationEmailHtml(data: ContactFormData): string {
                     <td style="color: rgba(255,255,255,0.6); font-size: 13px; padding: 8px 0;">Name:</td>
                     <td style="color: #ffffff; font-size: 13px; padding: 8px 0; text-align: right;">${data.firstName} ${data.lastName}</td>
                   </tr>
-                  ${data.groupSize ? `
+                  ${
+                    data.groupSize
+                      ? `
                   <tr>
                     <td style="color: rgba(255,255,255,0.6); font-size: 13px; padding: 8px 0;">Group Size:</td>
                     <td style="color: #ffffff; font-size: 13px; padding: 8px 0; text-align: right;">${data.groupSize}</td>
                   </tr>
-                  ` : ''}
-                  ${data.eventDate ? `
+                  `
+                      : ""
+                  }
+                  ${
+                    data.eventDate
+                      ? `
                   <tr>
                     <td style="color: rgba(255,255,255,0.6); font-size: 13px; padding: 8px 0;">Event Date:</td>
-                    <td style="color: #ffffff; font-size: 13px; padding: 8px 0; text-align: right;">${new Date(data.eventDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
+                    <td style="color: #ffffff; font-size: 13px; padding: 8px 0; text-align: right;">${new Date(data.eventDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</td>
                   </tr>
-                  ` : ''}
+                  `
+                      : ""
+                  }
                 </table>
               </div>
               
@@ -226,26 +238,26 @@ function generateConfirmationEmailHtml(data: ContactFormData): string {
   </table>
 </body>
 </html>
-`
+`;
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const body: ContactFormData = await request.json()
+    const body: ContactFormData = await request.json();
 
     if (!body.firstName || !body.lastName || !body.email) {
       return NextResponse.json(
-        { error: 'First name, last name, and email are required' },
-        { status: 400 }
-      )
+        { error: "First name, last name, and email are required" },
+        { status: 400 },
+      );
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(body.email)) {
       return NextResponse.json(
-        { error: 'Invalid email address' },
-        { status: 400 }
-      )
+        { error: "Invalid email address" },
+        { status: 400 },
+      );
     }
 
     await transporter.sendMail({
@@ -253,25 +265,24 @@ export async function POST(request: NextRequest) {
       to: process.env.EMAIL_USER,
       subject: `New Inquiry from ${body.firstName} ${body.lastName}`,
       html: generateAdminEmailHtml(body),
-    })
+    });
 
     await transporter.sendMail({
       from: `"Spies of Style" <${process.env.EMAIL_USER}>`,
       to: body.email,
-      subject: 'Thank You for Contacting Spies of Style',
+      subject: "Thank You for Contacting Spies of Style",
       html: generateConfirmationEmailHtml(body),
-    })
+    });
 
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Emails sent successfully' 
-    })
-
+    return NextResponse.json({
+      success: true,
+      message: "Emails sent successfully",
+    });
   } catch (error) {
-    console.error('Email sending failed:', error)
+    console.error("Email sending failed:", error);
     return NextResponse.json(
-      { error: 'Failed to send email. Please try again later.' },
-      { status: 500 }
-    )
+      { error: "Failed to send email. Please try again later." },
+      { status: 500 },
+    );
   }
 }

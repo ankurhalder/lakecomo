@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
 export default function CompanyPreloader() {
   return (
-    <div 
+    <div
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center"
-      style={{ backgroundColor: 'var(--bg-primary)' }}
+      style={{ backgroundColor: "var(--bg-primary)" }}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -16,17 +16,17 @@ export default function CompanyPreloader() {
       >
         <motion.h1
           className="font-limelight text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-wide mb-4"
-          style={{ color: 'var(--text-primary)' }}
+          style={{ color: "var(--text-primary)" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
           Spies of Style
         </motion.h1>
-        
+
         <motion.p
           className="text-xs sm:text-sm uppercase tracking-[0.3em] mb-8"
-          style={{ color: 'var(--text-secondary)', opacity: 0.6 }}
+          style={{ color: "var(--text-secondary)", opacity: 0.6 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.6 }}
           transition={{ delay: 0.5, duration: 0.5 }}
@@ -34,7 +34,7 @@ export default function CompanyPreloader() {
           Cinematic Event Experiences
         </motion.p>
 
-        <motion.div 
+        <motion.div
           className="flex items-center justify-center gap-1"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -44,16 +44,16 @@ export default function CompanyPreloader() {
             <motion.div
               key={i}
               className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: 'var(--accent)' }}
+              style={{ backgroundColor: "var(--accent)" }}
               animate={{
                 scale: [1, 1.2, 1],
-                opacity: [0.5, 1, 0.5]
+                opacity: [0.5, 1, 0.5],
               }}
               transition={{
                 duration: 1,
                 repeat: Infinity,
                 delay: i * 0.15,
-                ease: 'easeInOut'
+                ease: "easeInOut",
               }}
             />
           ))}
@@ -66,13 +66,13 @@ export default function CompanyPreloader() {
         animate={{ opacity: 0.4 }}
         transition={{ delay: 1, duration: 0.5 }}
       >
-        <p 
+        <p
           className="text-[10px] uppercase tracking-widest"
-          style={{ color: 'var(--text-secondary)' }}
+          style={{ color: "var(--text-secondary)" }}
         >
           Loading your experience
         </p>
       </motion.div>
     </div>
-  )
+  );
 }

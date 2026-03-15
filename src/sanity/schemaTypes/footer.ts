@@ -1,52 +1,52 @@
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: 'footer',
-  title: 'Footer',
-  type: 'document',
+  name: "footer",
+  title: "Footer",
+  type: "document",
   fields: [
     defineField({
-      name: 'title',
-      title: 'Internal Title',
-      type: 'string',
+      name: "title",
+      title: "Internal Title",
+      type: "string",
     }),
     defineField({
-      name: 'footerTagline',
-      title: 'Tagline',
-      type: 'string',
-      initialValue: 'Your Adventure in Style Awaits'
+      name: "footerTagline",
+      title: "Tagline",
+      type: "string",
+      initialValue: "Your Adventure in Style Awaits",
     }),
     defineField({
-      name: 'email',
-      title: 'Contact Email',
-      type: 'string',
-      initialValue: 'contact@spiesofstyle.com'
+      name: "email",
+      title: "Contact Email",
+      type: "string",
+      initialValue: "contact@spiesofstyle.com",
     }),
     defineField({
-      name: 'phone',
-      title: 'Contact Phone',
-      type: 'string',
-      description: 'Phone number with country code (e.g., +39 123 456 7890)'
+      name: "phone",
+      title: "Contact Phone",
+      type: "string",
+      description: "Phone number with country code (e.g., +39 123 456 7890)",
     }),
     defineField({
-      name: 'copyright',
-      title: 'Copyright Text',
-      type: 'string',
-      initialValue: '© 2025 by Spies of Style'
+      name: "copyright",
+      title: "Copyright Text",
+      type: "string",
+      initialValue: "© 2025 by Spies of Style",
     }),
     defineField({
-      name: 'socialLinks',
-      title: 'Social Media',
-      type: 'array',
+      name: "socialLinks",
+      title: "Social Media",
+      type: "array",
       of: [
         {
-          type: 'object',
+          type: "object",
           fields: [
-            { name: 'platform', type: 'string', title: 'Platform Name' },
-            { name: 'url', type: 'url', title: 'URL' }
-          ]
-        }
-      ]
-    })
-  ]
-})
+            { name: "platform", type: "string", title: "Platform Name" },
+            { name: "url", type: "url", title: "URL" },
+          ],
+        },
+      ],
+    }),
+  ],
+});
