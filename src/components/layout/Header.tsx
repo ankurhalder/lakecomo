@@ -16,11 +16,12 @@ interface HeaderData {
 }
 
 const DEFAULT_LINKS: NavLink[] = [
-  { label: "Story", url: "/#story" },
-  { label: "Experience", url: "/#experience" },
-  { label: "Assignment", url: "/#assignment" },
-  { label: "Private Events", url: "/#private-events" },
-  { label: "Inquire", url: "/#contact" },
+  { label: "Story",           url: "/#story"          },
+  { label: "Experience",      url: "/#experience"     },
+  { label: "Assignment",      url: "/#assignment"     },
+  { label: "Private Events",  url: "/#private-events" },
+  { label: "Upcoming Events", url: "/#events"         },
+  { label: "Inquire",         url: "/#contact"        },
 ];
 
 export default function Header({ data }: { data: HeaderData }) {

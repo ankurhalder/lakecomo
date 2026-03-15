@@ -4,6 +4,22 @@ import { urlFor } from "./image";
 
 // ─── TYPES ─────────────────────────────────────────────────────────────────────
 
+export interface EventData {
+  _id: string;
+  title: string;
+  badge?: string;
+  eventType: "single_event" | "recurring_event";
+  date?: string;       // ISO date string "YYYY-MM-DD"
+  time?: string;
+  description?: string;
+  location?: string;
+  ctaLabel?: string;
+  ctaType?: "scroll_contact";
+  imageUrl?: string | null;
+  pinned?: boolean;
+  displayOrder?: number;
+}
+
 export interface LandingPageData {
   hero: {
     videoUrl?: string;
@@ -91,9 +107,11 @@ export interface LandingPageData {
       buttonText?: string;
     };
   };
+
+  events: EventData[];
 }
 
-// ─── GROQ QUERY ───────────────────────────────────────────────────────────────
+// ─── GROQ QUERY — LANDING PAGE ────────────────────────────────────────────────
 
 const query = `
   *[_type == "landingPage"][0] {
@@ -190,6 +208,26 @@ const query = `
   }
 `;
 
+// ─── GROQ QUERY — EVENTS ──────────────────────────────────────────────────────
+
+const eventsQuery = `
+  *[_type == "event"] | order(pinned desc, date asc) {
+    _id,
+    title,
+    badge,
+    eventType,
+    date,
+    time,
+    description,
+    location,
+    ctaLabel,
+    ctaType,
+    pinned,
+    displayOrder,
+    image { asset->{ url }, hotspot, crop }
+  }
+`;
+
 // ─── DATA TRANSFORMATION ──────────────────────────────────────────────────────
 
 function processImageToUrl(
@@ -209,7 +247,10 @@ function processImageToUrl(
 
 const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
   try {
-    const raw = await client.fetch(query);
+    const [raw, rawEvents] = await Promise.all([
+      client.fetch(query),
+      client.fetch(eventsQuery),
+    ]);
     if (!raw) return null;
 
     const data: LandingPageData = {
@@ -317,6 +358,44 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
         form: raw.inquire?.form ?? {},
         success: raw.inquire?.success ?? {},
       },
+
+      events: (rawEvents ?? []).map(
+        (ev: {
+          _id: string;
+          title?: string;
+          badge?: string;
+          eventType?: string;
+          date?: string;
+          time?: string;
+          description?: string;
+          location?: string;
+          ctaLabel?: string;
+          ctaType?: string;
+          pinned?: boolean;
+          displayOrder?: number;
+          image?: { asset?: { url?: string } };
+        }): EventData => ({
+          _id: ev._id,
+          title: ev.title ?? "",
+          badge: ev.badge,
+          eventType:
+            ev.eventType === "recurring_event"
+              ? "recurring_event"
+              : "single_event",
+          date: ev.date,
+          time: ev.time,
+          description: ev.description,
+          location: ev.location,
+          ctaLabel: ev.ctaLabel,
+          ctaType: ev.ctaType === "scroll_contact" ? "scroll_contact" : undefined,
+          imageUrl:
+            ev.image?.asset?.url ??
+            processImageToUrl(ev.image, 900) ??
+            null,
+          pinned: ev.pinned ?? false,
+          displayOrder: ev.displayOrder,
+        }),
+      ),
     };
 
     return data;
