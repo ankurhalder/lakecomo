@@ -10,18 +10,21 @@ lakecomo/
 │   └── robots.txt
 ├── scripts/
 │   ├── crawl-project.js
+│   ├── seed-events.mjs
 │   └── seed-landing-page.mjs
 ├── src/
 │   ├── app/
 │   │   ├── (main)/
 │   │   │   ├── sections/
 │   │   │   │   ├── AssignmentSection.tsx
+│   │   │   │   ├── EventCard.tsx
 │   │   │   │   ├── ExperienceSection.tsx
 │   │   │   │   ├── HeroSection.tsx
 │   │   │   │   ├── InquireSection.tsx
 │   │   │   │   ├── LandingPage.tsx
 │   │   │   │   ├── PrivateEventsSection.tsx
-│   │   │   │   └── StorySection.tsx
+│   │   │   │   ├── StorySection.tsx
+│   │   │   │   └── UpcomingEventsSection.tsx
 │   │   │   ├── error.tsx
 │   │   │   ├── layout.tsx
 │   │   │   ├── loading.tsx
@@ -59,6 +62,7 @@ lakecomo/
 │       │   ├── image.ts
 │       │   └── live.ts
 │       ├── schemaTypes/
+│       │   ├── event.ts
 │       │   ├── footer.ts
 │       │   ├── index.ts
 │       │   ├── landingPage.ts
@@ -1037,6 +1041,128 @@ main();
 
 
 ================================================================================
+FILE: scripts\seed-events.mjs
+================================================================================
+
+/**
+ * seed-events.mjs
+ *
+ * Creates two example Event documents in Sanity CMS for the Upcoming Events
+ * section on the landing page.
+ *
+ * SAFE TO RE-RUN — uses createOrReplace (idempotent).
+ *
+ * Usage:
+ *   node scripts/seed-events.mjs
+ *
+ * Required env (in .env.local):
+ *   NEXT_PUBLIC_SANITY_PROJECT_ID
+ *   NEXT_PUBLIC_SANITY_DATASET
+ *   SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS
+ */
+
+import { createClient } from "@sanity/client";
+import dotenv from "dotenv";
+
+dotenv.config({ path: ".env.local" });
+
+const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+  apiVersion: "2025-12-27",
+  token: process.env.SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS,
+  useCdn: false,
+});
+
+// ─── EVENT DATA ───────────────────────────────────────────────────────────────
+
+const EVENTS = [
+  {
+    _id: "event-corso-eleganza-2026",
+    _type: "event",
+    title: "Corso Eleganza 2026 Season Kick Off Cocktail Party",
+    slug: { _type: "slug", current: "corso-eleganza-2026-season-kick-off" },
+    badge: "Season Premiere",
+    eventType: "single_event",
+    date: "2026-05-16",
+    time: "5:00 PM – 8:00 PM",
+    description:
+      "Inaugurate the season in spectacular style at the renowned Corso Eleganza. " +
+      "Join us for an exclusive cocktail evening surrounded by classic automotive beauty " +
+      "and unparalleled Lake Como elegance.",
+    location: "Terzo Crotto, Cernobbio",
+    ctaLabel: "RSVP / DETAILS",
+    ctaType: "scroll_contact",
+    pinned: true,
+    displayOrder: 1,
+  },
+  {
+    _id: "event-weekly-spies-of-style",
+    _type: "event",
+    title: "Weekly Spies of Style Dinners",
+    slug: { _type: "slug", current: "weekly-spies-of-style-dinners" },
+    badge: "Weekly Residency",
+    eventType: "recurring_event",
+    description:
+      "Experience the mystery and luxury on a weekly basis high above the lake. " +
+      "Enjoy bespoke cocktails, curated styling sessions, and the unparalleled ambiance " +
+      "of a historic retreat.",
+    location: "Locanda Milano 1873, Brunate",
+    ctaLabel: "VIEW SCHEDULE",
+    ctaType: "scroll_contact",
+    pinned: false,
+    displayOrder: 2,
+  },
+];
+
+// ─── SEED ─────────────────────────────────────────────────────────────────────
+
+async function seed() {
+  console.log("🎬 Seeding Upcoming Events...\n");
+
+  // Verify connection
+  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
+  if (!projectId) {
+    console.error(
+      "ERROR: NEXT_PUBLIC_SANITY_PROJECT_ID is not set in .env.local",
+    );
+    process.exit(1);
+  }
+  if (!process.env.SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS) {
+    console.error(
+      "ERROR: SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS is not set in .env.local",
+    );
+    process.exit(1);
+  }
+
+  console.log(`   Project: ${projectId}`);
+  console.log(`   Dataset: ${dataset}\n`);
+
+  for (const event of EVENTS) {
+    console.log(
+      `   → ${event.pinned ? "📌 " : "   "}Creating: "${event.title}"`,
+    );
+    await client.createOrReplace(event);
+    console.log(`      ✓ Saved as _id: "${event._id}"\n`);
+  }
+
+  console.log("✅ Events seeded successfully.\n");
+  console.log("   Next steps:");
+  console.log("   1. Open /admin → Events to view and edit the seeded events.");
+  console.log("   2. Upload images via the 'Event Image' field on each event.");
+  console.log(
+    "   3. The Upcoming Events section will appear on the landing page.\n",
+  );
+}
+
+seed().catch((err) => {
+  console.error("\n❌ Seed failed:", err.message || err);
+  process.exit(1);
+});
+
+
+================================================================================
 FILE: scripts\seed-landing-page.mjs
 ================================================================================
 
@@ -1738,6 +1864,237 @@ export default function AssignmentSection({
         </div>
       </div>
     </section>
+  );
+}
+
+
+================================================================================
+FILE: src\app\(main)\sections\EventCard.tsx
+================================================================================
+
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { MapPin, Clock, RefreshCw } from "lucide-react";
+import type { EventData } from "@/sanity/lib/getLandingPage";
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+
+function formatDate(dateStr: string): string {
+  // Parse without timezone shift by constructing from parts
+  const [year, month, day] = dateStr.split("-").map(Number);
+  return new Date(year, month - 1, day).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+// ─── COMPONENT ───────────────────────────────────────────────────────────────
+
+interface EventCardProps {
+  event: EventData;
+  index: number;
+  onCtaClick: () => void;
+}
+
+export default function EventCard({
+  event,
+  index,
+  onCtaClick,
+}: EventCardProps) {
+  const {
+    title,
+    badge,
+    eventType,
+    date,
+    time,
+    description,
+    location,
+    ctaLabel,
+    imageUrl,
+  } = event;
+
+  const isRecurring = eventType === "recurring_event";
+  const dateLabel = isRecurring ? "Every Week" : date ? formatDate(date) : null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
+      whileHover={{ y: -6, boxShadow: "0 24px 48px rgba(0,0,0,0.6)" }}
+      className="flex flex-col rounded-sm overflow-hidden border"
+      style={{
+        backgroundColor: "var(--bg-secondary)",
+        borderColor: "var(--border-color)",
+        // transition for the non-Framer properties
+        transition: "box-shadow 0.3s ease",
+      }}
+    >
+      {/* ── Image (object-contain + black letterbox bg) ── */}
+      <div
+        className="relative w-full overflow-hidden shrink-0"
+        style={{
+          aspectRatio: "16 / 9",
+          backgroundColor: "#000",
+        }}
+      >
+        {imageUrl ? (
+          <motion.div
+            className="absolute inset-0"
+            whileHover={{ scale: 1.04 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            <Image
+              src={imageUrl}
+              alt={title}
+              fill
+              className="object-contain"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </motion.div>
+        ) : (
+          // Placeholder when no image is set in CMS
+          <div
+            className="absolute inset-0 flex items-center justify-center border border-dashed"
+            style={{
+              borderColor: "var(--border-subtle)",
+              color: "var(--text-muted)",
+            }}
+          >
+            <span className="text-xs uppercase tracking-widest">
+              Event Image
+            </span>
+          </div>
+        )}
+
+        {/* Subtle bottom fade for smooth transition to card body */}
+        {imageUrl && (
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+        )}
+      </div>
+
+      {/* ── Card body ── */}
+      <div className="flex flex-col flex-1 p-5 sm:p-6 gap-4">
+        {/* Badge + date row */}
+        <div className="flex items-center gap-2 flex-wrap">
+          {badge && (
+            <span
+              className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full border shrink-0"
+              style={{
+                borderColor: "var(--accent)",
+                color: "var(--accent)",
+              }}
+            >
+              {badge}
+            </span>
+          )}
+          {dateLabel && (
+            <span
+              className="text-[10px] uppercase tracking-[0.2em] flex items-center gap-1"
+              style={{ color: "var(--text-muted)" }}
+            >
+              {isRecurring ? (
+                <RefreshCw size={9} strokeWidth={2} className="shrink-0" />
+              ) : null}
+              {dateLabel}
+            </span>
+          )}
+        </div>
+
+        {/* Title */}
+        <h3
+          className="leading-tight"
+          style={{
+            fontFamily: "var(--font-limelight)",
+            fontSize: "var(--fs-h3)",
+            color: "var(--text-primary)",
+          }}
+        >
+          {title}
+        </h3>
+
+        {/* Description */}
+        {description && (
+          <p
+            className="text-sm flex-1"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            {description}
+          </p>
+        )}
+
+        {/* Divider */}
+        <div
+          className="h-px"
+          style={{ backgroundColor: "var(--divider-color)" }}
+        />
+
+        {/* Metadata row — location + time */}
+        <div className="flex flex-col gap-1.5">
+          {location && (
+            <div
+              className="flex items-start gap-2 text-xs"
+              style={{ color: "var(--text-muted)" }}
+            >
+              <MapPin
+                size={11}
+                strokeWidth={1.5}
+                className="shrink-0 mt-[2px]"
+              />
+              <span>{location}</span>
+            </div>
+          )}
+          {!isRecurring && time && (
+            <div
+              className="flex items-start gap-2 text-xs"
+              style={{ color: "var(--text-muted)" }}
+            >
+              <Clock
+                size={11}
+                strokeWidth={1.5}
+                className="shrink-0 mt-[2px]"
+              />
+              <span>{time}</span>
+            </div>
+          )}
+          {isRecurring && (
+            <div
+              className="flex items-start gap-2 text-xs"
+              style={{ color: "var(--text-muted)" }}
+            >
+              <RefreshCw
+                size={11}
+                strokeWidth={1.5}
+                className="shrink-0 mt-[2px]"
+              />
+              <span>Weekly — contact us for current schedule</span>
+            </div>
+          )}
+        </div>
+
+        {/* CTA button */}
+        <button
+          onClick={onCtaClick}
+          className="mt-auto w-full px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-full transition-opacity hover:opacity-90 cursor-pointer"
+          style={{
+            background: "var(--accent-gradient)",
+            color: "var(--accent-text)",
+          }}
+        >
+          <motion.span
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
+            className="block"
+          >
+            {ctaLabel ?? "ENQUIRE NOW"}
+          </motion.span>
+        </button>
+      </div>
+    </motion.div>
   );
 }
 
@@ -2832,6 +3189,7 @@ import StorySection from "./StorySection";
 import ExperienceSection from "./ExperienceSection";
 import AssignmentSection from "./AssignmentSection";
 import PrivateEventsSection from "./PrivateEventsSection";
+import UpcomingEventsSection from "./UpcomingEventsSection";
 import InquireSection from "./InquireSection";
 
 export default function LandingPage({ data }: { data: LandingPageData }) {
@@ -2845,6 +3203,7 @@ export default function LandingPage({ data }: { data: LandingPageData }) {
       <ExperienceSection data={data.experience} />
       <AssignmentSection data={data.assignment} />
       <PrivateEventsSection data={data.privateEvents} />
+      <UpcomingEventsSection events={data.events} />
       <InquireSection data={data.inquire} />
     </div>
   );
@@ -3515,6 +3874,173 @@ export default function StorySection({
             )}
           </motion.div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+
+================================================================================
+FILE: src\app\(main)\sections\UpcomingEventsSection.tsx
+================================================================================
+
+"use client";
+
+import { motion } from "framer-motion";
+import { Calendar } from "lucide-react";
+import { useLenis } from "@/components/providers/SmoothScroll";
+import type { LandingPageData, EventData } from "@/sanity/lib/getLandingPage";
+import EventCard from "./EventCard";
+
+// ─── DEFAULT EVENTS (fallback when Sanity has no events) ─────────────────────
+
+const DEFAULT_EVENTS: EventData[] = [
+  {
+    _id: "default-event-1",
+    title: "Corso Eleganza 2026 Season Kick Off Cocktail Party",
+    badge: "Season Premiere",
+    eventType: "single_event",
+    date: "2026-05-16",
+    time: "5:00 PM – 8:00 PM",
+    description:
+      "Inaugurate the season in spectacular style at the renowned Corso Eleganza. Join us for an exclusive cocktail evening surrounded by classic automotive beauty and unparalleled Lake Como elegance.",
+    location: "Terzo Crotto, Cernobbio",
+    ctaLabel: "RSVP / DETAILS",
+    ctaType: "scroll_contact",
+    imageUrl: null,
+    pinned: true,
+  },
+  {
+    _id: "default-event-2",
+    title: "Weekly Spies of Style Dinners",
+    badge: "Weekly Residency",
+    eventType: "recurring_event",
+    description:
+      "Experience the mystery and luxury on a weekly basis high above the lake. Enjoy bespoke cocktails, curated styling sessions, and the unparalleled ambiance of a historic retreat.",
+    location: "Locanda Milano 1873, Brunate",
+    ctaLabel: "VIEW SCHEDULE",
+    ctaType: "scroll_contact",
+    imageUrl: null,
+    pinned: false,
+  },
+];
+
+// ─── COMPONENT ───────────────────────────────────────────────────────────────
+
+export default function UpcomingEventsSection({
+  events,
+}: {
+  events: LandingPageData["events"];
+}) {
+  const { lenisRef } = useLenis();
+
+  const displayEvents = events && events.length > 0 ? events : DEFAULT_EVENTS;
+
+  const scrollToContact = () => {
+    const el = document.querySelector("#contact");
+    if (el) {
+      lenisRef.current?.scrollTo(el as HTMLElement, { offset: -48 });
+    }
+  };
+
+  return (
+    <section id="events" style={{ backgroundColor: "var(--bg-primary)" }}>
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{
+          paddingTop: "var(--section-py)",
+          paddingBottom: "var(--section-py)",
+        }}
+      >
+        {/* ── Section header ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-center mb-10"
+        >
+          {/* Eyebrow */}
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span
+              className="h-px w-8"
+              style={{ backgroundColor: "var(--accent)" }}
+            />
+            <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
+              Lake Como Experiences
+            </span>
+            <span
+              className="h-px w-8"
+              style={{ backgroundColor: "var(--accent)" }}
+            />
+          </div>
+
+          {/* Icon + Title */}
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <Calendar
+              size={22}
+              strokeWidth={1.5}
+              style={{ color: "var(--accent)" }}
+              aria-hidden="true"
+            />
+            <h2
+              className="font-bold"
+              style={{
+                fontFamily: "var(--font-limelight)",
+                fontSize: "var(--fs-h2)",
+                color: "var(--text-primary)",
+              }}
+            >
+              Upcoming Events
+            </h2>
+          </div>
+
+          {/* Subtitle */}
+          <p
+            className="mt-3 max-w-2xl mx-auto text-sm sm:text-base"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            Join us for a curated series of events that celebrate the cinematic
+            allure and sartorial excellence of the world&rsquo;s most
+            sophisticated secret agents.
+          </p>
+        </motion.div>
+
+        {/* ── Events display ────────────────────────────────────────────────────
+         *  MARQUEE ARCHITECTURE NOTE:
+         *  When event count grows beyond grid capacity, this block can be
+         *  replaced with a horizontal marquee / ticker implementation.
+         *  To do so:
+         *    1. Add a displayMode: "grid" | "marquee" prop or derive from count
+         *    2. Wrap displayEvents in a <MarqueeTrack> component
+         *    3. Keep EventCard unchanged — it is marquee-ready
+         * ─────────────────────────────────────────────────────────────────── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+          {displayEvents.map((event, i) => (
+            <EventCard
+              key={event._id}
+              event={event}
+              index={i}
+              onCtaClick={scrollToContact}
+            />
+          ))}
+        </div>
+
+        {/* ── No events fallback (Sanity returned empty, no DEFAULT applied) ── */}
+        {displayEvents.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex items-center justify-center py-16"
+          >
+            <p
+              className="text-sm uppercase tracking-widest"
+              style={{ color: "var(--text-muted)" }}
+            >
+              No upcoming events — check back soon
+            </p>
+          </motion.div>
+        )}
       </div>
     </section>
   );
@@ -4435,11 +4961,12 @@ interface HeaderData {
 }
 
 const DEFAULT_LINKS: NavLink[] = [
-  { label: "Story", url: "/#story" },
-  { label: "Experience", url: "/#experience" },
-  { label: "Assignment", url: "/#assignment" },
-  { label: "Private Events", url: "/#private-events" },
-  { label: "Inquire", url: "/#contact" },
+  { label: "Story",           url: "/#story"          },
+  { label: "Experience",      url: "/#experience"     },
+  { label: "Assignment",      url: "/#assignment"     },
+  { label: "Private Events",  url: "/#private-events" },
+  { label: "Upcoming Events", url: "/#events"         },
+  { label: "Inquire",         url: "/#contact"        },
 ];
 
 export default function Header({ data }: { data: HeaderData }) {
@@ -5568,6 +6095,22 @@ import { urlFor } from "./image";
 
 // ─── TYPES ─────────────────────────────────────────────────────────────────────
 
+export interface EventData {
+  _id: string;
+  title: string;
+  badge?: string;
+  eventType: "single_event" | "recurring_event";
+  date?: string;       // ISO date string "YYYY-MM-DD"
+  time?: string;
+  description?: string;
+  location?: string;
+  ctaLabel?: string;
+  ctaType?: "scroll_contact";
+  imageUrl?: string | null;
+  pinned?: boolean;
+  displayOrder?: number;
+}
+
 export interface LandingPageData {
   hero: {
     videoUrl?: string;
@@ -5655,9 +6198,11 @@ export interface LandingPageData {
       buttonText?: string;
     };
   };
+
+  events: EventData[];
 }
 
-// ─── GROQ QUERY ───────────────────────────────────────────────────────────────
+// ─── GROQ QUERY — LANDING PAGE ────────────────────────────────────────────────
 
 const query = `
   *[_type == "landingPage"][0] {
@@ -5754,6 +6299,26 @@ const query = `
   }
 `;
 
+// ─── GROQ QUERY — EVENTS ──────────────────────────────────────────────────────
+
+const eventsQuery = `
+  *[_type == "event"] | order(pinned desc, date asc) {
+    _id,
+    title,
+    badge,
+    eventType,
+    date,
+    time,
+    description,
+    location,
+    ctaLabel,
+    ctaType,
+    pinned,
+    displayOrder,
+    image { asset->{ url }, hotspot, crop }
+  }
+`;
+
 // ─── DATA TRANSFORMATION ──────────────────────────────────────────────────────
 
 function processImageToUrl(
@@ -5773,7 +6338,10 @@ function processImageToUrl(
 
 const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
   try {
-    const raw = await client.fetch(query);
+    const [raw, rawEvents] = await Promise.all([
+      client.fetch(query),
+      client.fetch(eventsQuery),
+    ]);
     if (!raw) return null;
 
     const data: LandingPageData = {
@@ -5881,6 +6449,44 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
         form: raw.inquire?.form ?? {},
         success: raw.inquire?.success ?? {},
       },
+
+      events: (rawEvents ?? []).map(
+        (ev: {
+          _id: string;
+          title?: string;
+          badge?: string;
+          eventType?: string;
+          date?: string;
+          time?: string;
+          description?: string;
+          location?: string;
+          ctaLabel?: string;
+          ctaType?: string;
+          pinned?: boolean;
+          displayOrder?: number;
+          image?: { asset?: { url?: string } };
+        }): EventData => ({
+          _id: ev._id,
+          title: ev.title ?? "",
+          badge: ev.badge,
+          eventType:
+            ev.eventType === "recurring_event"
+              ? "recurring_event"
+              : "single_event",
+          date: ev.date,
+          time: ev.time,
+          description: ev.description,
+          location: ev.location,
+          ctaLabel: ev.ctaLabel,
+          ctaType: ev.ctaType === "scroll_contact" ? "scroll_contact" : undefined,
+          imageUrl:
+            ev.image?.asset?.url ??
+            processImageToUrl(ev.image, 900) ??
+            null,
+          pinned: ev.pinned ?? false,
+          displayOrder: ev.displayOrder,
+        }),
+      ),
     };
 
     return data;
@@ -5980,6 +6586,207 @@ export const { sanityFetch, SanityLive } = defineLive({
 
 
 ================================================================================
+FILE: src\sanity\schemaTypes\event.ts
+================================================================================
+
+import { defineField, defineType } from "sanity";
+
+export default defineType({
+  name: "event",
+  title: "Event",
+  type: "document",
+  groups: [
+    { name: "details", title: "Event Details", default: true },
+    { name: "content", title: "Content" },
+    { name: "settings", title: "Settings" },
+  ],
+  fields: [
+    // ─── DETAILS ─────────────────────────────────────────────────────────────
+
+    defineField({
+      name: "title",
+      title: "Event Title",
+      type: "string",
+      group: "details",
+      validation: (Rule) => Rule.required(),
+      description:
+        "The display name of the event shown on the card (e.g. 'Corso Eleganza Cocktail Party').",
+    }),
+
+    defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      group: "details",
+      options: { source: "title" },
+      description:
+        "Auto-generated from the title. Used as a unique identifier.",
+    }),
+
+    defineField({
+      name: "badge",
+      title: "Badge Label",
+      type: "string",
+      group: "details",
+      description:
+        "Short label shown as a pill on the card (e.g. 'Season Premiere', 'Weekly Residency').",
+    }),
+
+    defineField({
+      name: "eventType",
+      title: "Event Type",
+      type: "string",
+      group: "details",
+      options: {
+        list: [
+          { title: "Single Event — specific date", value: "single_event" },
+          {
+            title: "Recurring Event — weekly series",
+            value: "recurring_event",
+          },
+        ],
+        layout: "radio",
+      },
+      initialValue: "single_event",
+      validation: (Rule) => Rule.required(),
+      description:
+        "Choose 'Single Event' for a one-off occasion, or 'Recurring Event' for a weekly series (no date needed).",
+    }),
+
+    defineField({
+      name: "date",
+      title: "Event Date",
+      type: "date",
+      group: "details",
+      options: { dateFormat: "MMMM D, YYYY" },
+      description: "The date of the event. Not required for recurring events.",
+      hidden: ({ document }) => document?.eventType === "recurring_event",
+    }),
+
+    defineField({
+      name: "time",
+      title: "Event Time",
+      type: "string",
+      group: "details",
+      description:
+        "Time range shown on the card (e.g. '5:00 PM – 8:00 PM'). Not required for recurring events.",
+      hidden: ({ document }) => document?.eventType === "recurring_event",
+    }),
+
+    // ─── CONTENT ─────────────────────────────────────────────────────────────
+
+    defineField({
+      name: "image",
+      title: "Event Image",
+      type: "image",
+      group: "content",
+      options: { hotspot: true },
+      description:
+        "Photo for the event card. The image is never cropped — black letterboxing is added if the aspect ratio doesn't match.",
+    }),
+
+    defineField({
+      name: "description",
+      title: "Event Description",
+      type: "text",
+      rows: 4,
+      group: "content",
+      description:
+        "A short, evocative description shown on the event card (2–4 sentences recommended).",
+    }),
+
+    defineField({
+      name: "location",
+      title: "Location",
+      type: "string",
+      group: "content",
+      description:
+        "Venue and area (e.g. 'Terzo Crotto, Cernobbio'). Shown in the metadata row below the description.",
+    }),
+
+    defineField({
+      name: "ctaLabel",
+      title: "Button Label",
+      type: "string",
+      group: "content",
+      initialValue: "ENQUIRE NOW",
+      description:
+        "Text shown on the call-to-action button (e.g. 'RSVP / DETAILS', 'VIEW SCHEDULE').",
+    }),
+
+    defineField({
+      name: "ctaType",
+      title: "Button Action",
+      type: "string",
+      group: "content",
+      options: {
+        list: [
+          {
+            title: "Scroll to Contact Form (Inquire section)",
+            value: "scroll_contact",
+          },
+        ],
+        layout: "radio",
+      },
+      initialValue: "scroll_contact",
+      description:
+        "What happens when the button is clicked. Currently: smoothly scrolls to the Inquire / contact form.",
+    }),
+
+    // ─── SETTINGS ────────────────────────────────────────────────────────────
+
+    defineField({
+      name: "pinned",
+      title: "Pin to Top",
+      type: "boolean",
+      group: "settings",
+      initialValue: false,
+      description:
+        "Pinned events always appear first in the grid, regardless of their date.",
+    }),
+
+    defineField({
+      name: "displayOrder",
+      title: "Display Order",
+      type: "number",
+      group: "settings",
+      description:
+        "Optional manual sort number within pinned or non-pinned groups. Lower numbers appear first.",
+    }),
+  ],
+
+  // ─── STUDIO PREVIEW ──────────────────────────────────────────────────────
+
+  preview: {
+    select: {
+      title: "title",
+      badge: "badge",
+      date: "date",
+      type: "eventType",
+      media: "image",
+    },
+    prepare({ title, badge, date, type, media }) {
+      const dateStr =
+        type === "recurring_event"
+          ? "Recurring · Every Week"
+          : date
+            ? new Date(date).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })
+            : "No date set";
+      return {
+        title: title || "Untitled Event",
+        subtitle: [badge, dateStr].filter(Boolean).join(" · "),
+        media,
+      };
+    },
+  },
+});
+
+
+================================================================================
 FILE: src\sanity\schemaTypes\footer.ts
 ================================================================================
 
@@ -6044,9 +6851,10 @@ import { type SchemaTypeDefinition } from "sanity";
 import landingPage from "./landingPage";
 import navbar from "./navbar";
 import footer from "./footer";
+import event from "./event";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [landingPage, navbar, footer],
+  types: [landingPage, navbar, footer, event],
 };
 
 
@@ -6679,30 +7487,41 @@ FILE: src\sanity\structure.ts
 
 import type { StructureResolver } from "sanity/structure";
 
-// Each document type is a singleton — exactly one of each exists.
+// Singletons — exactly one of each exists.
 // Opening a sidebar item goes directly to that document (no list view).
 const SINGLETONS: Array<{ type: string; title: string; id: string }> = [
   { type: "landingPage", title: "Landing Page", id: "landingPage" },
-  { type: "navbar",      title: "Navbar",        id: "navbar" },
-  { type: "footer",      title: "Footer",        id: "footer" },
+  { type: "navbar", title: "Navbar", id: "navbar" },
+  { type: "footer", title: "Footer", id: "footer" },
 ];
 
 export const structure: StructureResolver = (S) =>
   S.list()
     .title("Content")
-    .items(
-      SINGLETONS.map(({ type, title, id }) =>
+    .items([
+      // Singleton pages
+      ...SINGLETONS.map(({ type, title, id }) =>
         S.listItem()
           .title(title)
           .schemaType(type)
-          .child(
-            S.document()
-              .title(title)
-              .schemaType(type)
-              .documentId(id),
-          ),
+          .child(S.document().title(title).schemaType(type).documentId(id)),
       ),
-    );
+
+      S.divider(),
+
+      // Events — multiple documents, shown as a list
+      S.listItem()
+        .title("Events")
+        .schemaType("event")
+        .child(
+          S.documentTypeList("event")
+            .title("Events")
+            .defaultOrdering([
+              { field: "pinned", direction: "desc" },
+              { field: "date", direction: "asc" },
+            ]),
+        ),
+    ]);
 
 
 ================================================================================
