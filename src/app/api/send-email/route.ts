@@ -50,7 +50,7 @@ function generateAdminEmailHtml(data: ContactFormData): string {
           <tr>
             <td style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 40px 40px 30px; text-align: center; border-bottom: 1px solid rgba(255,215,0,0.3);">
               <div style="font-size: 14px; letter-spacing: 6px; color: rgba(255,215,0,0.8); text-transform: uppercase; margin-bottom: 12px;">New Inquiry</div>
-              <h1 style="margin: 0; font-size: 32px; font-weight: 300; color: #ffffff; letter-spacing: 2px;">Lake Como Style</h1>
+              <h1 style="margin: 0; font-size: 32px; font-weight: 300; color: #ffffff; letter-spacing: 2px;">Spies of Style</h1>
               <div style="width: 60px; height: 2px; background: linear-gradient(90deg, transparent, #ffd700, transparent); margin: 20px auto 0;"></div>
             </td>
           </tr>
@@ -122,7 +122,7 @@ function generateAdminEmailHtml(data: ContactFormData): string {
           
           <tr>
             <td style="background: rgba(255,215,0,0.05); padding: 25px 40px; text-align: center; border-top: 1px solid rgba(255,215,0,0.2);">
-              <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin: 0; letter-spacing: 1px;">Received via Lake Como Style Contact Form</p>
+              <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin: 0; letter-spacing: 1px;">Received via Spies of Style Contact Form</p>
             </td>
           </tr>
           
@@ -165,7 +165,7 @@ function generateConfirmationEmailHtml(data: ContactFormData): string {
               <p style="color: #ffffff; font-size: 20px; font-weight: 300; margin: 0 0 24px; line-height: 1.6;">Dear ${data.firstName},</p>
               
               <p style="color: rgba(255,255,255,0.8); font-size: 16px; line-height: 1.8; margin: 0 0 24px;">
-                We have received your inquiry and are thrilled that you're considering Lake Como Style for your unforgettable cinematic experience.
+                We have received your inquiry and are thrilled that you're considering Spies of Style for your unforgettable cinematic experience.
               </p>
               
               <p style="color: rgba(255,255,255,0.8); font-size: 16px; line-height: 1.8; margin: 0 0 32px;">
@@ -201,21 +201,21 @@ function generateConfirmationEmailHtml(data: ContactFormData): string {
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 32px;">
                 <tr>
                   <td align="center">
-                    <a href="https://lakecomostyle.it/gallery" style="display: inline-block; background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%); color: #0a0a0a; text-decoration: none; padding: 16px 40px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">View Our Gallery</a>
+                    <a href="https://spiesofstyle.com" style="display: inline-block; background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%); color: #0a0a0a; text-decoration: none; padding: 16px 40px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">Visit Our Website</a>
                   </td>
                 </tr>
               </table>
               
               <p style="color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.7; margin: 0;">
                 Warm regards,<br>
-                <strong style="color: #ffffff;">The Lake Como Style Team</strong>
+                <strong style="color: #ffffff;">The Spies of Style Team</strong>
               </p>
             </td>
           </tr>
           
           <tr>
             <td style="background: rgba(255,215,0,0.05); padding: 30px 40px; text-align: center; border-top: 1px solid rgba(255,215,0,0.2);">
-              <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin: 0 0 8px; letter-spacing: 1px;">Lake Como Style</p>
+              <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin: 0 0 8px; letter-spacing: 1px;">Spies of Style</p>
               <p style="color: rgba(255,255,255,0.4); font-size: 11px; margin: 0;">Creating Unforgettable Cinematic Experiences in Italy</p>
             </td>
           </tr>
@@ -249,16 +249,16 @@ export async function POST(request: NextRequest) {
     }
 
     await transporter.sendMail({
-      from: `"Lake Como Style" <${process.env.EMAIL_USER}>`,
+      from: `"Spies of Style" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       subject: `New Inquiry from ${body.firstName} ${body.lastName}`,
       html: generateAdminEmailHtml(body),
     })
 
     await transporter.sendMail({
-      from: `"Lake Como Style" <${process.env.EMAIL_USER}>`,
+      from: `"Spies of Style" <${process.env.EMAIL_USER}>`,
       to: body.email,
-      subject: 'Thank You for Contacting Lake Como Style ✨',
+      subject: 'Thank You for Contacting Spies of Style',
       html: generateConfirmationEmailHtml(body),
     })
 

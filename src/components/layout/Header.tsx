@@ -31,7 +31,7 @@ export default function Header({ data }: { data: HeaderData }) {
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
 
-  const logoText = data?.logoText || "Lake Como Style";
+  const logoText = data?.logoText || "Spies of Style";
   const allLinks = data?.links?.length ? data.links : DEFAULT_LINKS;
   const navLinks = allLinks.slice(0, -1);
   const ctaLink = allLinks[allLinks.length - 1];

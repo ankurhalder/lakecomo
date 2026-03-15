@@ -41,13 +41,13 @@ export default function Footer({ data }: { data: FooterData }) {
     >
       <div className="flex flex-col items-center md:items-start gap-0.5 md:gap-1 order-2 md:order-1">
         <span style={{ color: "var(--text-secondary)" }}>
-          {data?.copyright || "© 2025 Lake Como Style"}
+          {data?.copyright || "© 2025 Spies of Style"}
         </span>
         <a
           href={`mailto:${data?.email}`}
           className="hover:opacity-70 transition-opacity hidden md:block"
         >
-          {data?.email || "info@lakecomostyle.it"}
+          {data?.email || "contact@spiesofstyle.com"}
         </a>
         {data?.phone && (
           <a
@@ -61,7 +61,7 @@ export default function Footer({ data }: { data: FooterData }) {
 
       <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
         <span className="block font-bold uppercase tracking-[0.15em] lg:tracking-[0.2em] text-xs lg:text-sm mb-0.5">
-          Lake Como Style
+          Spies of Style
         </span>
         <span
           className="block font-light italic text-[10px] lg:text-xs"

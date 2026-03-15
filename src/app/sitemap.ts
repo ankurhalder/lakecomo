@@ -1,24 +1,12 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://lakecomostyle.it'
-  
+  const baseUrl = 'https://spiesofstyle.com'
+
   const routes = [
     '',
-    '/cast',
-    '/contact',
-    '/crew',
-    '/faq',
-    '/gallery',
-    '/movie',
-    '/process',
-    '/themes',
-    '/venue',
-  
-
-  
   ]
-  
+
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),

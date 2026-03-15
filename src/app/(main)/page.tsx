@@ -5,11 +5,11 @@ import LandingPage from "./sections/LandingPage";
 import PageLoading from "@/components/shared/PageLoading";
 
 export const metadata: Metadata = {
-  title: "Lake Como Style | Cinematic Event Experiences",
+  title: "Spies of Style | Cinematic Event Experiences",
   description:
     "Step into the true mission of Cecil Richard Mallaby — a WWII spy who inspired James Bond — through an immersive dinner or cocktail experience on Lake Como, Italy.",
   openGraph: {
-    title: "Lake Como Style | Cinematic Event Experiences",
+    title: "Spies of Style | Cinematic Event Experiences",
     description:
       "Immersive spy-themed dining and cocktail experiences on Lake Como, Italy. Inspired by the real-life story behind James Bond.",
     type: "website",

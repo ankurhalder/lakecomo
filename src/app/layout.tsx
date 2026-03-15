@@ -15,25 +15,25 @@ const courierPrime = Courier_Prime({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lakecomostyle.it"),
-  title: "Lake Como Style",
+  metadataBase: new URL("https://spiesofstyle.com"),
+  title: "Spies of Style",
   description:
-    "Transform your celebration into an unforgettable cinematic experience. Themed parties, professional videography, and custom movie trailers in Lake Como, Italy.",
+    "Luxury Lake Como experiences inspired by cinematic elegance and timeless sophistication.",
   keywords: [
     "Lake Como",
     "cinematic events",
-    "themed parties",
-    "movie trailers",
+    "spy experiences",
+    "luxury events",
     "Italy events",
-    "wedding videography",
+    "immersive dining",
   ],
-  authors: [{ name: "Lake Como Style" }],
+  authors: [{ name: "Spies of Style" }],
   openGraph: {
-    title: "Lake Como Style | Cinematic Event Experiences",
+    title: "Spies of Style | Cinematic Event Experiences",
     description:
-      "Transform your celebration into an unforgettable cinematic experience in Lake Como, Italy.",
-    url: "https://lakecomostyle.it",
-    siteName: "Lake Como Style",
+      "Luxury Lake Como experiences inspired by cinematic elegance and timeless sophistication.",
+    url: "https://spiesofstyle.com",
+    siteName: "Spies of Style",
     locale: "en_US",
     type: "website",
     images: [
@@ -41,15 +41,15 @@ export const metadata: Metadata = {
         url: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=630&fit=crop",
         width: 1200,
         height: 630,
-        alt: "Lake Como Style - Cinematic Event Experiences",
+        alt: "Spies of Style - Cinematic Event Experiences",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lake Como Style | Cinematic Event Experiences",
+    title: "Spies of Style | Cinematic Event Experiences",
     description:
-      "Transform your celebration into an unforgettable cinematic experience in Lake Como, Italy.",
+      "Luxury Lake Como experiences inspired by cinematic elegance and timeless sophistication.",
     images: [
       "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=630&fit=crop",
     ],

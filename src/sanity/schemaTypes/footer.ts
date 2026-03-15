@@ -20,7 +20,7 @@ export default defineType({
       name: 'email',
       title: 'Contact Email',
       type: 'string',
-      initialValue: 'info@lakecomostyle.it'
+      initialValue: 'contact@spiesofstyle.com'
     }),
     defineField({
       name: 'phone',
@@ -32,7 +32,7 @@ export default defineType({
       name: 'copyright',
       title: 'Copyright Text',
       type: 'string',
-      initialValue: '© 2025 by Lake Como Style'
+      initialValue: '© 2025 by Spies of Style'
     }),
     defineField({
       name: 'socialLinks',

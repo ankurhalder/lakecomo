@@ -83,7 +83,7 @@ async function migrate() {
   await client
     .patch("landingPage")
     .set({
-      title: "Lake Como Style — Landing Page",
+      title: "Spies of Style — Landing Page",
 
       // ── Hero ──────────────────────────────────────────────────
       "hero.preHeading": hero.preHeading || "Presenting Our Guests With",

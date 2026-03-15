@@ -12,16 +12,6 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: "/webmail",
-        destination: "https://webmail.lakecomostyle.it",
-        permanent: true,
-      },
-      {
-        source: "/cpanel",
-        destination: "https://server322.web-hosting.com/cpanel",
-        permanent: true,
-      },
       { source: "/themes", destination: "/#story", permanent: true },
       { source: "/cast", destination: "/#experience", permanent: true },
       { source: "/contact", destination: "/#contact", permanent: true },
