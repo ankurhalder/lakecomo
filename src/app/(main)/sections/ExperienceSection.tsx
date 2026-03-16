@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import CastCarousel from "@/components/shared/CastCarousel";
 import type { LandingPageData } from "@/sanity/lib/getLandingPage";
 
@@ -10,10 +11,17 @@ export default function ExperienceSection({
   data: LandingPageData["experience"];
 }) {
   const { sectionTitle, sectionSubtitle, showcaseImages } = data;
+  const router = useRouter();
 
   return (
     <section id="experience" style={{ backgroundColor: "var(--bg-secondary)" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingTop: "var(--section-py)", paddingBottom: "var(--section-py)" }}>
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{
+          paddingTop: "var(--section-py)",
+          paddingBottom: "var(--section-py)",
+        }}
+      >
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -27,9 +35,7 @@ export default function ExperienceSection({
               className="h-px w-8"
               style={{ backgroundColor: "var(--accent)" }}
             />
-            <span
-              className="text-xs uppercase tracking-[0.3em] font-light gold-text"
-            >
+            <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
               The Experience
             </span>
             <span
@@ -39,7 +45,11 @@ export default function ExperienceSection({
           </div>
           <h2
             className="font-bold"
-            style={{ fontFamily: "var(--font-limelight)", fontSize: "var(--fs-h2)", color: "var(--text-primary)" }}
+            style={{
+              fontFamily: "var(--font-limelight)",
+              fontSize: "var(--fs-h2)",
+              color: "var(--text-primary)",
+            }}
           >
             {sectionTitle}
           </h2>
@@ -64,6 +74,35 @@ export default function ExperienceSection({
             <CastCarousel images={showcaseImages} />
           </motion.div>
         )}
+
+        {/* Mission Experience CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          className="text-center mt-8"
+        >
+          <button
+            onClick={() => router.push("/mission-experience")}
+            className="relative group"
+          >
+            <motion.span
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 30px rgba(201, 168, 76, 0.35)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block px-6 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-full cursor-pointer transition-shadow"
+              style={{
+                background: "var(--accent-gradient)",
+                color: "var(--accent-text)",
+              }}
+            >
+              Mission Experience
+            </motion.span>
+          </button>
+        </motion.div>
       </div>
     </section>
   );

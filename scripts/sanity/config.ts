@@ -64,7 +64,13 @@ export const GENERATED_TYPES_FILE = path.join(MIRROR_DIR, "generated-types.ts");
 export const MIGRATION_PLAN_FILE = path.join(repoRoot, "migration-plan.json");
 
 /** All known document types in this project */
-export const KNOWN_TYPES = ["landingPage", "navbar", "footer", "event"] as const;
+export const KNOWN_TYPES = [
+  "landingPage",
+  "navbar",
+  "footer",
+  "event",
+  "missionExperiencePage",
+] as const;
 
 // ---------------------------------------------------------------------------
 // Client factory
@@ -82,7 +88,7 @@ export function makeWriteClient(): SanityClient {
   if (!WRITE_TOKEN) {
     throw new Error(
       "SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS is not set. " +
-        "Add it to your .env.local file."
+        "Add it to your .env.local file.",
     );
   }
   return createClient({
@@ -114,7 +120,10 @@ export function isoDate(): string {
   return new Date().toISOString().slice(0, 10); // YYYY-MM-DD
 }
 
-export function log(msg: string, level: "info" | "warn" | "error" = "info"): void {
+export function log(
+  msg: string,
+  level: "info" | "warn" | "error" = "info",
+): void {
   const prefix =
     level === "error" ? "[ERROR]" : level === "warn" ? "[WARN]" : "[INFO]";
   console.log(`${prefix} ${msg}`);

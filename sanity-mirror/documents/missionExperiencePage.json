@@ -1,0 +1,41 @@
+[
+  {
+    "_id": "missionExperiencePage",
+    "_type": "missionExperiencePage",
+    "title": "Mission Experience Page",
+    "hero": {
+      "title": "The Spies of Style Mission Experience",
+      "subtitle": "An immersive social experience where guests become part of a sophisticated espionage mission set on the shores of Lake Como."
+    },
+    "setup": {
+      "title": "The Setup",
+      "description": "Through a series of clues, maps, and coded transmissions, guests work together throughout the evening to uncover the identity and mission of a secret agent connected to real wartime intrigue on Lake Como.\n\nThe experience unfolds organically during the event, encouraging interaction, collaboration, and discovery."
+    },
+    "phases": [
+      {
+        "_key": "phase-1",
+        "title": "Unlock the Spy Identity",
+        "description": "At the beginning of the event, guests receive their first intelligence briefing. Using a custom illustrated map of Lake Como, participants follow embedded clues to uncover the secret codename of the evening's central spy.\n\nClues are hidden across key locations around the lake, encouraging guests to examine the map closely while working together to solve the puzzle.\n\nAccess the Mission Through:\n\u2022 Interactive mobile app experience\n\u2022 Printed intelligence dossier and map\n\u2022 Physical clues embedded in the event program\n\nOnce the clues are solved, guests reveal the agent's secret codename and move to the next phase of the mission.",
+        "icon": "lock",
+        "images": [],
+        "order": 1
+      },
+      {
+        "_key": "phase-2",
+        "title": "The Mission Briefing",
+        "description": "Once the spy identity is revealed, guests unlock the classified mission statement. This transmission reveals the purpose of the operation and introduces the story behind the espionage activity that once took place on Lake Como during the war.\n\nParticipants receive a coded message that must be deciphered collectively during the dinner or cocktail reception.",
+        "icon": "file-text",
+        "images": [],
+        "order": 2
+      },
+      {
+        "_key": "phase-3",
+        "title": "Collaborative Code Breaking",
+        "description": "Throughout the evening, guests work together to decode the mission. The experience is intentionally designed to encourage conversation and interaction between guests.\n\nAs clues are discussed and theories emerge, the room becomes part of the investigation.\n\nBy the end of the evening, the group successfully completes the mission and reveals the final intelligence transmission.",
+        "icon": "users",
+        "images": [],
+        "order": 3
+      }
+    ]
+  }
+]
