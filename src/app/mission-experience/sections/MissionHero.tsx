@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import type { MissionExperiencePageData } from "@/sanity/lib/getMissionExperiencePage";
 
 const textVariants = {
@@ -19,7 +19,22 @@ export default function MissionHero({
   data: MissionExperiencePageData["hero"];
 }) {
   const { title, subtitle, backgroundImageUrl, backgroundVideoUrl } = data;
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Background drifts up at ~40% of scroll speed — classic parallax depth
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
+
+  // Text block fades out and floats upward as the hero leaves viewport
+  const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.6], ["0%", "-14%"]);
+
+  // Overlay deepens slightly on scroll for a "receding into darkness" feel
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.55, 0.82]);
 
   const videoSrc = backgroundVideoUrl
     ? backgroundVideoUrl.includes("#")
@@ -28,40 +43,53 @@ export default function MissionHero({
     : undefined;
 
   return (
-    <section className="relative w-full min-h-[80dvh] flex items-center justify-center overflow-hidden">
-      {/* Background: Video or Image */}
-      {videoSrc ? (
-        <video
-          ref={videoRef}
-          src={videoSrc}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster={backgroundImageUrl || undefined}
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        />
-      ) : backgroundImageUrl ? (
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-        />
-      ) : (
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            background:
-              "linear-gradient(135deg, var(--bg-primary) 0%, #1a1a2e 50%, var(--bg-primary) 100%)",
-          }}
-        />
-      )}
+    <section
+      ref={sectionRef}
+      className="relative w-full min-h-[80dvh] flex items-center justify-center overflow-hidden"
+    >
+      {/* ── Parallax background layer (scales up slightly so edges never show) ── */}
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{ y: bgY, scale: 1.15 }}
+      >
+        {videoSrc ? (
+          <video
+            src={videoSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={backgroundImageUrl || undefined}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : backgroundImageUrl ? (
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+          />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(135deg, var(--bg-primary) 0%, #1a1a2e 50%, var(--bg-primary) 100%)",
+            }}
+          />
+        )}
+      </motion.div>
 
-      {/* Cinematic overlay */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/80 via-black/50 to-black/80" />
+      {/* ── Cinematic overlay deepens on scroll ─────────────────────────────── */}
+      <motion.div
+        className="absolute inset-0 z-[1] bg-gradient-to-b from-black/80 via-black/50 to-black/80"
+        style={{ opacity: overlayOpacity }}
+      />
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-4 sm:px-8 max-w-4xl mx-auto pt-20">
+      {/* ── Content — fades and lifts away as hero scrolls out ──────────────── */}
+      <motion.div
+        className="relative z-10 text-center px-4 sm:px-8 max-w-4xl mx-auto pt-20"
+        style={{ opacity: textOpacity, y: textY }}
+      >
         <motion.div
           custom={0.3}
           variants={textVariants}
@@ -134,7 +162,7 @@ export default function MissionHero({
             />
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
