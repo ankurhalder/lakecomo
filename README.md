@@ -1,89 +1,72 @@
-# Lake Como 🎬
+# Spies of Style 🎬
 
-A modern, production-ready movie website built with Next.js 16, React 19, TypeScript, and Sanity CMS. Features smooth animations, responsive design, and a comprehensive content management system.
+A modern, production-ready cinematic event experience website built with Next.js 16, React 19, TypeScript, and Sanity CMS. Features smooth animations, a unified landing page, and a custom Sanity Migration Engine for seamless content syncing across environments.
 
 ## ✨ Features
 
-- **🎥 Movie Information System** - Detailed movie pages with cast, crew, and production information
-- **📸 Gallery Showcase** - Beautiful image galleries with optimized loading
-- **🎭 Cast & Crew Pages** - Dedicated pages for actors and production team
-- **📍 Venue Information** - Interactive venue details with custom map styling
-- **🎨 Themes Exploration** - Thematic content organization
-- **📝 Production Process** - Behind-the-scenes content and filmmaking insights
-- **💌 Contact Form** - Email integration with Nodemailer
-- **❓ FAQ Section** - Frequently asked questions
-- **🔍 SEO Optimized** - Dynamic sitemap generation and meta tags
-- **🎨 Smooth Animations** - Powered by Framer Motion and Lenis scroll
-- **📱 Fully Responsive** - Mobile-first design approach
-- **♿ Accessible** - Focus trap and keyboard navigation support
-- **🎨 Headless CMS** - Sanity Studio for easy content management
+- **🎥 Cinematic Landing Page** - Unified landing page with hero videos, mission story, experiences, and upcoming events.
+- **🕵️ Mission Experience** - An immersive espionage experience module (`/mission-experience`) detailing the real WWII spy story on Lake Como.
+- **📅 Events System** - Dynamic recurring and single ticketed event management directly from the CMS.
+- **💌 Contact & Inquire Form** - Interactive, scroll-to contact form with Nodemailer email integration.
+- **🎨 Smooth Animations** - Powered by Framer Motion, Lenis scroll, and custom canvas-based falling stars.
+- **📱 Fully Responsive & Accessible** - Mobile-first design with focus trap and keyboard navigation support.
+- **🎨 Headless CMS** - Sanity Studio integrated locally at `/admin` for easy content management.
+- **⚙️ Sanity Migration Engine v3** - Custom build tools for schema introspection, data diffing, and environment syncing.
 
 ## 🛠️ Tech Stack
 
 ### Core
-- **Next.js 16.1.1** - React framework with App Router
+- **Next.js 16.1.6** - React framework with App Router
 - **React 19.2.3** - Latest React with Server Components
 - **TypeScript 5** - Type-safe development
-- **Tailwind CSS 4** - Utility-first styling
+- **Tailwind CSS 4** - Utility-first styling with `@tailwindcss/postcss`
 
 ### CMS & Content
 - **Sanity 4.22.0** - Headless CMS
 - **next-sanity 11.6.12** - Sanity integration for Next.js
 - **@sanity/image-url** - Optimized image handling
-- **@sanity/vision** - Query testing and debugging
 
 ### Animations & UX
-- **Framer Motion 12.23.26** - Advanced animations
+- **Framer Motion 12.23.26** - Advanced animations and scroll parallax
 - **Lenis 1.3.17** - Smooth scroll experience
 - **focus-trap-react** - Accessibility focus management
-
-### Utilities
 - **Lucide React** - Beautiful icon system
-- **clsx & tailwind-merge** - Conditional styling
-- **Nodemailer 7.0.12** - Email functionality
 
-### Developer Tools
-- **ESLint 9** - Code quality
-- **React Compiler** - Automatic optimizations
-- **PostCSS** - CSS processing
+### Utilities & Developer Tools
+- **Nodemailer 7.0.12** - Email functionality
+- **React Compiler** - Automatic optimizations (`babel-plugin-react-compiler`)
+- **tsx** - Execution of custom Sanity migration scripts
 
 ## 📁 Project Structure
 
 ```
-lakecomo/
+spies-of-style/
 ├── src/
 │   ├── app/
-│   │   ├── (main)/          # Main application routes
-│   │   │   ├── cast/        # Cast members page
-│   │   │   ├── contact/     # Contact form
-│   │   │   ├── crew/        # Crew members page
-│   │   │   ├── faq/         # FAQ page
-│   │   │   ├── gallery/     # Image gallery
-│   │   │   ├── movie/       # Movie details
-│   │   │   ├── process/     # Production process
-│   │   │   ├── themes/      # Thematic content
-│   │   │   ├── venue/       # Venue information
-│   │   │   └── page.tsx     # Homepage
-│   │   ├── admin/           # Sanity Studio
-│   │   ├── api/             # API routes
-│   │   ├── globals.css      # Global styles
-│   │   ├── layout.tsx       # Root layout
-│   │   ├── not-found.tsx    # 404 page
-│   │   └── sitemap.ts       # SEO sitemap
-│   ├── components/          # Reusable components
-│   ├── lib/                 # Utilities & helpers
-│   └── sanity/              # Sanity configuration
-│       ├── schemaTypes/     # Content schemas
-│       ├── lib/             # Sanity client & queries
-│       ├── env.ts           # Environment config
-│       └── structure.ts     # Studio structure
-├── public/                  # Static assets
-├── scripts/                 # Build & utility scripts
-├── lakecomostyle.json      # Custom map styling
-├── sanity.config.ts        # Sanity Studio config
-├── next.config.ts          # Next.js configuration
-├── tailwind.config.ts      # Tailwind configuration
-└── tsconfig.json           # TypeScript configuration
+│   │   ├── (main)/              # Main landing page routes & sections
+│   │   │   ├── sections/        # Modular sections (Hero, Story, Assignment, etc.)
+│   │   │   └── page.tsx         # Consolidated Homepage
+│   │   ├── admin/               # Sanity Studio route
+│   │   ├── api/                 # API routes (revalidate, send-email)
+│   │   ├── mission-experience/  # Standalone Mission Experience page
+│   │   ├── globals.css          # Global styles & Tailwind
+│   │   ├── layout.tsx           # Root layout
+│   │   ├── not-found.tsx        # Custom 404 page
+│   │   └── sitemap.ts           # SEO sitemap
+│   ├── components/              # Reusable components (Layout, Providers, Shared)
+│   ├── sanity/                  # Sanity configuration
+│   │   ├── lib/                 # Sanity client & GROQ data fetching queries
+│   │   ├── schemaTypes/         # Content schemas (landingPage, event, navbar, etc.)
+│   │   └── structure.ts         # Studio structure config
+│   └── proxy.ts                 # Next.js middleware / proxy redirects
+├── scripts/
+│   └── sanity/                  # Custom Sanity Migration Engine v3 scripts
+├── sanity-mirror/               # Local JSON mirror of the Sanity dataset for migrations
+├── public/                      # Static assets
+├── sanity.config.ts             # Sanity Studio config
+├── next.config.ts               # Next.js configuration
+├── postcss.config.mjs           # PostCSS configuration
+└── tsconfig.json                # TypeScript configuration
 ```
 
 ## 🚀 Getting Started
@@ -91,7 +74,7 @@ lakecomo/
 ### Prerequisites
 
 - Node.js 20.x or higher
-- npm or yarn package manager
+- npm package manager
 - Sanity account (for CMS)
 
 ### Installation
@@ -105,8 +88,6 @@ lakecomo/
 2. **Install dependencies**
    ```bash
    npm install
-   # or
-   yarn install
    ```
 
 3. **Set up environment variables**
@@ -116,8 +97,11 @@ lakecomo/
    # Sanity Configuration
    NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
    NEXT_PUBLIC_SANITY_DATASET=production
-   NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
-   SANITY_API_TOKEN=your_api_token
+   NEXT_PUBLIC_SANITY_API_VERSION=2025-12-27
+
+   # Required for Sanity CMS seeding / restore operations
+   SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS=sk...
+   SANITY_MIGRATE_CONFIRM=yes
 
    # Email Configuration (for contact form)
    EMAIL_HOST=smtp.gmail.com
@@ -147,77 +131,46 @@ lakecomo/
 
 2. **Login with your Sanity account**
 
-3. **Start creating content** - movies, cast members, crew, gallery images, etc.
+3. **Manage content** - Landing Page, Mission Experience, Events, Navbar, and Footer.
 
 ## 📝 Available Scripts
 
 ```bash
-# Development
+# Development & Build
 npm run dev          # Start development server
-
-# Production
 npm run build        # Build for production
 npm run start        # Start production server
-
-# Code Quality
 npm run lint         # Run ESLint
+
+# Sanity Migration Engine v3
+npm run sanity:export      # Export live CMS → sanity-mirror/documents/
+npm run sanity:diff        # Compare live vs mirror → diff-report.json
+npm run sanity:plan        # Generate migration-plan.json from diff
+npm run sanity:seed        # Upsert mirror docs into live Sanity
+npm run sanity:migrate     # Full pipeline: snapshot → diff → plan → seed
 ```
+
+> **Note**: For a complete list of Sanity migration scripts and detailed workflow, see [`SANITY_MIGRATION.md`](./SANITY_MIGRATION.md).
 
 ## 🎨 Customization
 
 ### Styling
 
-- **Global styles**: Edit `src/app/globals.css`
-- **Tailwind config**: Modify `tailwind.config.ts`
-- **Theme colors**: Update CSS variables in `globals.css`
+- **Global styles & Theme Colors**: Edit `src/app/globals.css`
+- **Tailwind**: Configure via `postcss.config.mjs` and CSS variables
 
 ### Content Schemas
 
-Add or modify content types in `src/sanity/schemaTypes/`:
-
-```typescript
-// Example: Add a new content type
-export const customType = {
-  name: 'customType',
-  title: 'Custom Type',
-  type: 'document',
-  fields: [
-    {
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      validation: (Rule) => Rule.required()
-    },
-    // Add more fields...
-  ]
-}
-```
-
-### Map Styling
-
-Customize the map appearance by editing `lakecomostyle.json` with your preferred Mapbox or Google Maps style.
+Add or modify content types in `src/sanity/schemaTypes/`. The schemas are defined using Sanity's `defineType` and `defineField`. Ensure you update GROQ queries in `src/sanity/lib/` to reflect schema changes.
 
 ## 🔧 Configuration
 
 ### Next.js Configuration
 
-The `next.config.ts` includes optimizations for:
-- Image optimization with Sanity CDN
-- Environment variable handling
-- Build optimizations with React Compiler
-
-### TypeScript Configuration
-
-Strict mode enabled with path aliases:
-```json
-{
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
-}
-```
+The `next.config.ts` includes:
+- React Compiler enabled (`reactCompiler: true`)
+- Image optimization with `cdn.sanity.io` remote patterns
+- Permanent redirects for deprecated legacy routes (`/themes`, `/cast`, `/gallery`, etc.) pointing back to the unified homepage.
 
 ## 📦 Deployment
 
@@ -227,25 +180,6 @@ Strict mode enabled with path aliases:
 2. Import project to [Vercel](https://vercel.com)
 3. Add environment variables
 4. Deploy
-
-### Other Platforms
-
-Build the application:
-```bash
-npm run build
-```
-
-The output will be in the `.next` folder. Follow your platform's deployment guide for Next.js applications.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 ## 📄 License
 
@@ -263,13 +197,6 @@ This project is private and proprietary. All rights reserved.
 - Sanity.io for the powerful CMS
 - Framer Motion for smooth animations
 - Tailwind CSS for the utility-first approach
-- The open-source community
-
-## 📞 Support
-
-For support, questions, or feedback:
-- Open an issue on GitHub
-- Contact through the website's contact form
 
 ---
 
