@@ -75,7 +75,7 @@ function mapType(
   sanityType: string,
   isArray: boolean,
   assets: string[],
-  references: string[]
+  references: string[],
 ): string {
   let tsType: string;
 
@@ -169,12 +169,14 @@ function generateInterface(
   meta: FieldMeta[],
   assets: string[],
   references: string[],
-  isDocument: boolean
+  isDocument: boolean,
 ): string {
   const exportName = toInterfaceName(name);
   const lines: string[] = [];
 
-  lines.push(`/** Sanity ${isDocument ? "document" : "object"} type: "${name}" */`);
+  lines.push(
+    `/** Sanity ${isDocument ? "document" : "object"} type: "${name}" */`,
+  );
   lines.push(`export interface ${exportName} {`);
 
   if (isDocument) {
@@ -191,7 +193,7 @@ function generateInterface(
       field.type,
       field.isArray,
       assets,
-      references
+      references,
     );
     const optional = !field.required ? "?" : "";
     lines.push(`  ${field.name}${optional}: ${tsType};`);
@@ -216,12 +218,15 @@ function toInterfaceName(typeName: string): string {
 // ---------------------------------------------------------------------------
 async function main(): Promise<void> {
   if (!fs.existsSync(SCHEMA_MAP_FILE)) {
-    log("schema-map.json not found. Run npm run sanity:introspect first.", "error");
+    log(
+      "schema-map.json not found. Run npm run sanity:introspect first.",
+      "error",
+    );
     process.exit(1);
   }
 
   const compactMap = JSON.parse(
-    fs.readFileSync(SCHEMA_MAP_FILE, "utf-8")
+    fs.readFileSync(SCHEMA_MAP_FILE, "utf-8"),
   ) as CompactSchemaMap;
 
   log(`Generating types for: ${Object.keys(compactMap).join(", ")}`);
@@ -237,7 +242,7 @@ async function main(): Promise<void> {
 
     if (fs.existsSync(detailFile)) {
       const detail = JSON.parse(
-        fs.readFileSync(detailFile, "utf-8")
+        fs.readFileSync(detailFile, "utf-8"),
       ) as SchemaMeta;
       fields = detail.fields;
       isDocument = detail.type === "document";
@@ -256,13 +261,13 @@ async function main(): Promise<void> {
       fields,
       compact.assets,
       compact.references,
-      isDocument
+      isDocument,
     );
   }
 
   // Generate union type of all document types
   const docNames = Object.entries(compactMap)
-    .filter(([_, m]) => true) // include all
+    .filter(() => true) // include all
     .map(([n]) => toInterfaceName(n));
 
   output += `// ---------------------------------------------------------------------------\n`;
@@ -279,12 +284,14 @@ async function main(): Promise<void> {
   fs.writeFileSync(GENERATED_TYPES_FILE, output, "utf-8");
 
   log(`\n✓ TypeScript types written → ${GENERATED_TYPES_FILE}`);
-  console.log(`  Types generated: ${Object.keys(compactMap).length} interface(s)`);
+  console.log(
+    `  Types generated: ${Object.keys(compactMap).length} interface(s)`,
+  );
   console.table(
     Object.keys(compactMap).map((n) => ({
       type: n,
       interface: toInterfaceName(n),
-    }))
+    })),
   );
 }
 

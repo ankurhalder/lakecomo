@@ -21,7 +21,6 @@ import {
   makeReadClient,
   DOCUMENTS_DIR,
   DIFF_REPORT_FILE,
-  MIRROR_DIR,
   writeJson,
   ensureDir,
   isoDate,
@@ -80,8 +79,8 @@ function deepEqual(a: unknown, b: unknown): boolean {
     return keysA.every((k) =>
       deepEqual(
         (a as Record<string, unknown>)[k],
-        (b as Record<string, unknown>)[k]
-      )
+        (b as Record<string, unknown>)[k],
+      ),
     );
   }
   return false;
@@ -92,12 +91,9 @@ const SKIP_FIELDS = new Set(["_rev", "_createdAt", "_updatedAt"]);
 
 function diffDocs(
   live: Record<string, unknown>,
-  mirror: Record<string, unknown>
+  mirror: Record<string, unknown>,
 ): FieldChange[] {
-  const allKeys = new Set([
-    ...Object.keys(live),
-    ...Object.keys(mirror),
-  ]);
+  const allKeys = new Set([...Object.keys(live), ...Object.keys(mirror)]);
   const changes: FieldChange[] = [];
 
   for (const key of allKeys) {
@@ -131,7 +127,7 @@ function loadMirrorDocs(): Map<string, SanityDoc> {
 
   for (const file of files) {
     const docs = JSON.parse(
-      fs.readFileSync(path.join(DOCUMENTS_DIR, file), "utf-8")
+      fs.readFileSync(path.join(DOCUMENTS_DIR, file), "utf-8"),
     ) as SanityDoc[];
     for (const doc of docs) {
       map.set(doc._id as string, doc);
@@ -151,7 +147,7 @@ async function main(): Promise<void> {
 
   log("Fetching live documents...");
   const liveDocs = await client.fetch<SanityDoc[]>(
-    `*[!(_type in ["sanity.imageAsset", "sanity.fileAsset"])] | order(_type asc)`
+    `*[!(_type in ["sanity.imageAsset", "sanity.fileAsset"])] | order(_type asc)`,
   );
   log(`Live dataset: ${liveDocs.length} doc(s)`);
 
@@ -159,7 +155,7 @@ async function main(): Promise<void> {
   log(`Local mirror: ${mirrorMap.size} doc(s)`);
 
   const liveMap = new Map<string, SanityDoc>(
-    liveDocs.map((d) => [d._id as string, d])
+    liveDocs.map((d) => [d._id as string, d]),
   );
 
   const changes: DocDiff[] = [];
@@ -224,7 +220,10 @@ async function main(): Promise<void> {
   if (summary.new + summary.updated + summary.removed === 0) {
     log("Local mirror is in sync with the live dataset.");
   } else {
-    log(`${summary.new} new, ${summary.updated} updated, ${summary.removed} removed`, "warn");
+    log(
+      `${summary.new} new, ${summary.updated} updated, ${summary.removed} removed`,
+      "warn",
+    );
   }
 }
 

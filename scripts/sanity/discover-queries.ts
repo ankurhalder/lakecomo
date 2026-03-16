@@ -31,11 +31,9 @@ interface DiscoveredQuery {
 const GROQ_TEMPLATE_LITERAL_RE =
   /(?:const|let|var)\s+(\w+)\s*=\s*(?:groq\s*)?\`([\s\S]*?)\`/g;
 
-/** Match string GROQ queries with *[ pattern */
-const GROQ_STRING_RE =
-  /(?:const|let|var)\s+(\w+)\s*=\s*["'`]([\s\S]*?\*\[[\s\S]*?)["'`]/g;
-
-function extractGroqQueries(source: string): Array<{ variable: string; groq: string }> {
+function extractGroqQueries(
+  source: string,
+): Array<{ variable: string; groq: string }> {
   const found: Array<{ variable: string; groq: string }> = [];
   const seen = new Set<string>();
 
@@ -117,7 +115,11 @@ async function main(): Promise<void> {
     const content = fileQueries
       .map((q) => `// Variable: ${q.variable}\n${q.groq}`)
       .join("\n\n// ---\n\n");
-    fs.writeFileSync(path.join(QUERIES_DIR, `${baseName}.groq`), content, "utf-8");
+    fs.writeFileSync(
+      path.join(QUERIES_DIR, `${baseName}.groq`),
+      content,
+      "utf-8",
+    );
     log(`  ✓ ${baseName}.groq — ${fileQueries.length} query expression(s)`);
   }
 
@@ -125,13 +127,14 @@ async function main(): Promise<void> {
   const index = queries.map((q) => ({
     file: q.file,
     variable: q.variable,
-    preview: q.groq.slice(0, 80).replace(/\n/g, " ") + (q.groq.length > 80 ? "…" : ""),
+    preview:
+      q.groq.slice(0, 80).replace(/\n/g, " ") + (q.groq.length > 80 ? "…" : ""),
   }));
 
   fs.writeFileSync(
     path.join(QUERIES_DIR, "index.json"),
     JSON.stringify(index, null, 2) + "\n",
-    "utf-8"
+    "utf-8",
   );
 
   log(`\n✓ GROQ queries archived → ${QUERIES_DIR}`);

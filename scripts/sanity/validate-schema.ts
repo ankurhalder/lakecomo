@@ -32,13 +32,6 @@ export interface ValidationResult {
   warnings: ValidationIssue[];
 }
 
-interface SchemaFieldMeta {
-  name: string;
-  required: boolean;
-  type: string;
-  isArray: boolean;
-}
-
 interface SchemaMeta {
   fields: string[];
   references: string[];
@@ -75,7 +68,7 @@ function hasValidAssetRef(value: unknown): boolean {
 // ---------------------------------------------------------------------------
 function validateDoc(
   doc: SanityDoc,
-  schemaMap: SchemaMap | null
+  schemaMap: SchemaMap | null,
 ): ValidationIssue[] {
   const issues: ValidationIssue[] = [];
   const id = (doc._id as string) || "(unknown)";
@@ -142,7 +135,7 @@ export function validateDocuments(docs: SanityDoc[]): ValidationResult {
   if (!schemaMap) {
     log(
       "schema-map.json not found — run npm run sanity:introspect for full validation",
-      "warn"
+      "warn",
     );
   }
 
@@ -179,7 +172,7 @@ if (require.main === module) {
 
     for (const file of files) {
       const docs = JSON.parse(
-        fs.readFileSync(path.join(DOCUMENTS_DIR, file), "utf-8")
+        fs.readFileSync(path.join(DOCUMENTS_DIR, file), "utf-8"),
       ) as SanityDoc[];
       allDocs.push(...docs);
     }
