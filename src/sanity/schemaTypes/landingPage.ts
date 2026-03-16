@@ -196,6 +196,26 @@ export default defineType({
           type: "string",
         }),
         defineField({
+          name: "eyebrowLabel",
+          title: "Eyebrow Label",
+          type: "string",
+          initialValue: "The Experience",
+          description: "Small text above the section title.",
+        }),
+        defineField({
+          name: "ctaLabel",
+          title: "CTA Button Label",
+          type: "string",
+          initialValue: "Mission Experience",
+        }),
+        defineField({
+          name: "ctaLink",
+          title: "CTA Button Link",
+          type: "string",
+          initialValue: "/mission-experience",
+          description: "Internal path or anchor, e.g. /mission-experience",
+        }),
+        defineField({
           name: "showcaseImages",
           title: "Showcase Images (Carousel)",
           type: "array",

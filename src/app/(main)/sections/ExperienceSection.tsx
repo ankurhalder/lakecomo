@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useLenis } from "@/components/providers/SmoothScroll";
 import CastCarousel from "@/components/shared/CastCarousel";
 import type { LandingPageData } from "@/sanity/lib/getLandingPage";
 
@@ -10,8 +11,16 @@ export default function ExperienceSection({
 }: {
   data: LandingPageData["experience"];
 }) {
-  const { sectionTitle, sectionSubtitle, showcaseImages } = data;
+  const {
+    sectionTitle,
+    sectionSubtitle,
+    eyebrowLabel,
+    ctaLabel,
+    ctaLink,
+    showcaseImages,
+  } = data;
   const router = useRouter();
+  const { lenisRef } = useLenis();
 
   return (
     <section id="experience" style={{ backgroundColor: "var(--bg-secondary)" }}>
@@ -36,7 +45,7 @@ export default function ExperienceSection({
               style={{ backgroundColor: "var(--accent)" }}
             />
             <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
-              The Experience
+              {eyebrowLabel ?? "The Experience"}
             </span>
             <span
               className="h-px w-8"
@@ -84,7 +93,18 @@ export default function ExperienceSection({
           className="text-center mt-8"
         >
           <button
-            onClick={() => router.push("/mission-experience")}
+            onClick={() => {
+              if (ctaLink?.startsWith("/")) {
+                router.push(ctaLink);
+              } else if (ctaLink?.startsWith("#")) {
+                const element = document.querySelector(ctaLink);
+                if (element && lenisRef.current) {
+                  lenisRef.current.scrollTo(element as HTMLElement, {
+                    offset: -48,
+                  });
+                }
+              }
+            }}
             className="relative group"
           >
             <motion.span
@@ -99,7 +119,7 @@ export default function ExperienceSection({
                 color: "var(--accent-text)",
               }}
             >
-              Mission Experience
+              {ctaLabel ?? "Mission Experience"}
             </motion.span>
           </button>
         </motion.div>

@@ -60,6 +60,9 @@ export interface LandingPageData {
   experience: {
     sectionTitle?: string;
     sectionSubtitle?: string;
+    eyebrowLabel?: string;
+    ctaLabel?: string;
+    ctaLink?: string;
     showcaseImages: { url: string; title?: string; role?: string }[];
     paragraphs?: string[];
   };
@@ -159,6 +162,9 @@ const query = `
     experience {
       sectionTitle,
       sectionSubtitle,
+      eyebrowLabel,
+      ctaLabel,
+      ctaLink,
       "showcaseImages": showcaseImages[] {
         image { asset->{ url }, hotspot, crop },
         title,
@@ -323,6 +329,9 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
       experience: {
         sectionTitle: raw.experience?.sectionTitle ?? "Step Into the Spotlight",
         sectionSubtitle: raw.experience?.sectionSubtitle,
+        eyebrowLabel: raw.experience?.eyebrowLabel ?? "The Experience",
+        ctaLabel: raw.experience?.ctaLabel ?? "Mission Experience",
+        ctaLink: raw.experience?.ctaLink ?? "/mission-experience",
         showcaseImages: (raw.experience?.showcaseImages ?? [])
           .map(
             (item: {

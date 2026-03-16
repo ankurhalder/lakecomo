@@ -57,6 +57,9 @@
     "experience": {
       "sectionSubtitle": "Unlock the codes, solve the mission, and reveal the secret together",
       "sectionTitle": "Step Into A True Spy Story ",
+      "eyebrowLabel": "The Experience",
+      "ctaLabel": "Mission Experience",
+      "ctaLink": "/mission-experience",
       "showcaseImages": [
         {
           "_key": "exp_0",
