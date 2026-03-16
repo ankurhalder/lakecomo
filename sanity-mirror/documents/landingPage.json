@@ -2,7 +2,7 @@
   {
     "_createdAt": "2026-03-13T13:18:59Z",
     "_id": "landingPage",
-    "_rev": "MjdSXFelIF5IivE65181za",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "landingPage",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "landingPage",
-    "_updatedAt": "2026-03-16T20:28:36Z",
+    "_updatedAt": "2026-03-16T21:11:03Z",
     "assignment": {
       "cards": [
         {
@@ -55,11 +55,11 @@
       "sectionTitle": "Choose Your Assignment"
     },
     "experience": {
-      "sectionSubtitle": "Unlock the codes, solve the mission, and reveal the secret together",
-      "sectionTitle": "Step Into A True Spy Story ",
-      "eyebrowLabel": "The Experience",
       "ctaLabel": "Mission Experience",
       "ctaLink": "/mission-experience",
+      "eyebrowLabel": "The Experience",
+      "sectionSubtitle": "Unlock the codes, solve the mission, and reveal the secret together",
+      "sectionTitle": "Step Into A True Spy Story ",
       "showcaseImages": [
         {
           "_key": "exp_0",

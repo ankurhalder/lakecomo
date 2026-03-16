@@ -2,7 +2,7 @@
   {
     "_createdAt": "2026-03-15T20:13:19Z",
     "_id": "event-corso-eleganza-2026",
-    "_rev": "4DZXQ06MV0KUYSdqrP90re",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "event-corso-eleganza-2026",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "event",
-    "_updatedAt": "2026-03-16T20:38:09Z",
+    "_updatedAt": "2026-03-16T21:11:03Z",
     "badge": "Season Premiere",
     "ctaLabel": "RSVP / DETAILS",
     "ctaType": "scroll_contact",
@@ -43,8 +43,7 @@
       "video": {
         "_type": "file",
         "asset": {
-          "_ref": "file-b44ce50d57b6e417e9f2297db03642ca4dc3f953-mp4",
-          "_type": "reference"
+          "_ref": "file-b44ce50d57b6e417e9f2297db03642ca4dc3f953-mp4"
         }
       }
     },
@@ -59,7 +58,7 @@
   {
     "_createdAt": "2026-03-15T20:13:21Z",
     "_id": "event-weekly-spies-of-style",
-    "_rev": "4DZXQ06MV0KUYSdqrP2ebw",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "event-weekly-spies-of-style",
