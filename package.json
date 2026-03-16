@@ -6,7 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sanity:introspect": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/introspect-schemas.ts",
+    "sanity:export": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/export-dataset.ts",
+    "sanity:diff": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/diff-dataset.ts",
+    "sanity:plan": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/generate-migration-plan.ts",
+    "sanity:seed": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/seed-from-json.ts",
+    "sanity:seed:dry-run": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/seed-from-json.ts --dry-run",
+    "sanity:verify-assets": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/verify-assets.ts",
+    "sanity:rollback": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/rollback.ts",
+    "sanity:rollback:list": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/rollback.ts list",
+    "sanity:generate-types": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/generate-types.ts",
+    "sanity:discover-queries": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/discover-queries.ts",
+    "sanity:validate": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/validate-schema.ts",
+    "sanity:migrate": "npm run sanity:rollback -- snapshot && npm run sanity:diff && npm run sanity:plan && npm run sanity:seed"
   },
   "dependencies": {
     "@sanity/image-url": "^1.2.0",
@@ -27,6 +40,7 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@sanity/client": "^6.29.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -35,6 +49,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

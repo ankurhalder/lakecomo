@@ -1,0 +1,403 @@
+{
+  "name": "landingPage",
+  "type": "document",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "hero",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "mobileVideoFile",
+      "type": "file",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "posterImage",
+      "type": "image",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "preHeading",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "mainHeading",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "subHeading",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "playIndicatorText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "story",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "headline",
+      "type": "string",
+      "required": true,
+      "isArray": false
+    },
+    {
+      "name": "subheadline",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "real007",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "paragraph1",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "paragraph2",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "bullets",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "image",
+      "type": "image",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "experience",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "sectionSubtitle",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "showcaseImages",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "role",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "paragraphs",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "assignment",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "cards",
+      "type": "array",
+      "required": true,
+      "isArray": true
+    },
+    {
+      "name": "duration",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "features",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "ctaText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "image",
+      "type": "image",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "privateEvents",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "subtitle",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "features",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "required": true,
+      "isArray": false
+    },
+    {
+      "name": "ctaText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "ctaLink",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "image",
+      "type": "image",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "videographyLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "videographyTitle",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "videographySubtitle",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "videographyHighlights",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "photographyHighlights",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "inquire",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "mainHeading",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "form",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "firstNameLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "firstNamePlaceholder",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "lastNameLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "lastNamePlaceholder",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "emailLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "emailPlaceholder",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "phoneLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "phonePlaceholder",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "groupSizeLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "groupSizeDefaultOption",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "groupSizeOptions",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "eventDateLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "messageLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "messagePlaceholder",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "submitButtonText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "submitButtonLoadingText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "success",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "message",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "buttonText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    }
+  ],
+  "references": [],
+  "assets": [
+    "mobileVideoFile",
+    "posterImage",
+    "image",
+    "showcaseImages[].image"
+  ]
+}

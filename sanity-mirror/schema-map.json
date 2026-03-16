@@ -1,0 +1,126 @@
+{
+  "event": {
+    "fields": [
+      "title",
+      "slug",
+      "badge",
+      "eventType",
+      "date",
+      "time",
+      "image",
+      "description",
+      "location",
+      "ctaLabel",
+      "ctaType",
+      "pinned",
+      "displayOrder"
+    ],
+    "references": [],
+    "assets": [
+      "image"
+    ]
+  },
+  "footer": {
+    "fields": [
+      "title",
+      "footerTagline",
+      "email",
+      "phone",
+      "copyright",
+      "socialLinks"
+    ],
+    "references": [],
+    "assets": []
+  },
+  "landingPage": {
+    "fields": [
+      "title",
+      "hero",
+      "mobileVideoFile",
+      "posterImage",
+      "preHeading",
+      "mainHeading",
+      "subHeading",
+      "playIndicatorText",
+      "story",
+      "headline",
+      "subheadline",
+      "real007",
+      "paragraph1",
+      "paragraph2",
+      "bullets",
+      "image",
+      "experience",
+      "sectionSubtitle",
+      "showcaseImages",
+      "title",
+      "role",
+      "paragraphs",
+      "assignment",
+      "cards",
+      "duration",
+      "features",
+      "ctaText",
+      "image",
+      "privateEvents",
+      "title",
+      "subtitle",
+      "description",
+      "features",
+      "text",
+      "ctaText",
+      "ctaLink",
+      "image",
+      "videographyLabel",
+      "videographyTitle",
+      "videographySubtitle",
+      "videographyHighlights",
+      "photographyHighlights",
+      "inquire",
+      "mainHeading",
+      "description",
+      "form",
+      "firstNameLabel",
+      "firstNamePlaceholder",
+      "lastNameLabel",
+      "lastNamePlaceholder",
+      "emailLabel",
+      "emailPlaceholder",
+      "phoneLabel",
+      "phonePlaceholder",
+      "groupSizeLabel",
+      "groupSizeDefaultOption",
+      "groupSizeOptions",
+      "eventDateLabel",
+      "messageLabel",
+      "messagePlaceholder",
+      "submitButtonText",
+      "submitButtonLoadingText",
+      "success",
+      "message",
+      "buttonText"
+    ],
+    "references": [],
+    "assets": [
+      "mobileVideoFile",
+      "posterImage",
+      "image",
+      "showcaseImages[].image"
+    ]
+  },
+  "navbar": {
+    "fields": [
+      "title",
+      "logoText",
+      "logoImage",
+      "links",
+      "url",
+      "ctaText",
+      "ctaLink"
+    ],
+    "references": [],
+    "assets": [
+      "logoImage"
+    ]
+  }
+}

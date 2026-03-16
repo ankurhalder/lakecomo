@@ -1,0 +1,52 @@
+{
+  "name": "navbar",
+  "type": "document",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "logoText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "logoImage",
+      "type": "image",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "links",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "url",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "ctaText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "ctaLink",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    }
+  ],
+  "references": [],
+  "assets": [
+    "logoImage"
+  ]
+}

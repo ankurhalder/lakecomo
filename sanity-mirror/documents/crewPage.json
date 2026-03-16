@@ -1,0 +1,166 @@
+[
+  {
+    "_createdAt": "2026-01-01T08:32:51Z",
+    "_id": "3d2JLpUTPM5qppQf883Uxu",
+    "_rev": "qeHkBtaCAAYzf5RK473Y26",
+    "_system": {
+      "base": {
+        "id": "3d2JLpUTPM5qppQf883Uxu",
+        "rev": "r5z7poe2OElSjLhxtxvH1n"
+      }
+    },
+    "_type": "crewPage",
+    "_updatedAt": "2026-02-23T06:29:42Z",
+    "crewMembers": [
+      {
+        "_key": "dee-lasprogata",
+        "bio": [
+          "Our founder, Dee Lasprogata has over 30 years of experience in fashion, working in New York, Los Angeles, Rome, Milan, and Lake Como. She arrived to the shores of Lake Como 20 years ago and has been back and forth ever since.",
+          "With roots in Philadelphia, Dee grew up surrounded by couture as her grandmother operated a custom gown atelier. Later, she graduated from both Vanderbilt University and the Fashion Institute of Design in New York City.",
+          "She has launched a pioneering fashion collections working with celebrities including Valentino, Stevie Wonder and Giada De Laurentiis. Over the years, her visionary work has been featured in major publications in both the USA and Italy, including People, Glamour, Io Donna, Women's Wear Daily (WWD), Fox & Friends, TG5, and Entrepreneur.",
+          "Today, Dee combines her fashion-forward sensibilities with cinematic flair to craft an unforgettable experience; she curates the wardrobe, props, and look for every guest. ",
+          ""
+        ],
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-e60f4c4a969ae568d0975a407795225dbe163a2a-470x558-png",
+            "_type": "reference"
+          },
+          "crop": {
+            "_type": "sanity.imageCrop",
+            "bottom": 0,
+            "left": 0.21337170755346613,
+            "right": 0.22032969526829874,
+            "top": 0
+          },
+          "hotspot": {
+            "_type": "sanity.imageHotspot",
+            "height": 1,
+            "width": 0.5662985971782352,
+            "x": 0.4965210061425837,
+            "y": 0.5
+          }
+        },
+        "name": "Dee Lasprogata",
+        "role": "Founder & Creative Director",
+        "socials": {
+          "instagram": "https://instagram.com/lakecomostyle",
+          "linkedin": "https://linkedin.com/in/deelasprogata"
+        }
+      },
+      {
+        "_key": "stefano-dozza",
+        "bio": [
+          "Stefano Dozza is a filmmaker, photographer, and content producer from Bologna, currently based between Milan and Rome. He has studied and worked in New York, Los Angeles, and the UK. Over the years, his work has spanned corporate and fashion projects, with each video carefully tailored to reflect the unique look and identity of each brand.",
+          "As a versatile creative professional, Stefano brings expertise in filmmaking, photography, copywriting, and podcasting to Lake Como Style. His international experience and artistic vision ensure that every cinematic experience captures the essence of Italian elegance combined with Hollywood production values.",
+          "Stefano's commitment to sustainability and thoughtful content creation aligns perfectly with Lake Como Style's mission to deliver meaningful, memorable experiences that respect both artistry and environment."
+        ],
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-427d578bd9cde9bcce27512c36b3c3eadc4d7ccb-3456x5184-jpg",
+            "_type": "reference"
+          },
+          "crop": {
+            "_type": "sanity.imageCrop",
+            "bottom": 0,
+            "left": 0.011984548843354564,
+            "right": 0,
+            "top": 0
+          },
+          "hotspot": {
+            "_type": "sanity.imageHotspot",
+            "height": 1,
+            "width": 0.9880149025517225,
+            "x": 0.5059925487241388,
+            "y": 0.5
+          }
+        },
+        "name": "Stefano Dozza",
+        "role": "Filmmaker & Visual Director",
+        "socials": {
+          "instagram": "https://instagram.com/johntouche",
+          "website": "https://johntouche.com"
+        }
+      }
+    ],
+    "cta": {
+      "buttonText": "Contact Us",
+      "description": "Join us for an unforgettable immersive experience",
+      "icon": "Your Lake Como Team",
+      "title": "Your Lake Como Team"
+    },
+    "hero": {
+      "description": "Lake Como Style brings immersive, themed experiences to life on the Lake. From our weekly events to private parties, every celebration is carefully styled and designed, allowing guests to step into a world of themed fun. ",
+      "heading": "Your Event Crew",
+      "subHeading": "From the Big Apple to the heart of Milan — our team brings international talent to your celebration"
+    },
+    "heroFeature": {
+      "link": "/contact",
+      "subtitle": "International Expertise",
+      "tag": "2026",
+      "title": "MEET THE TEAM"
+    },
+    "logos": [
+      {
+        "_key": "fdedca647eb8",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-db22b67cdc4c6ad9f1d230c9710b05345e46bb3f-1170x382-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "f4000e6dde3e",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-1abdd77c34d19a7d239ef968514a8ca79dbadb74-656x360-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "f4cac9f0297f",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-458f2cfdae32d8daf86566e6e95bd6c2ad526070-1170x639-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "82d452184cb7",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-183c5b6e64301731b664a70ce2b27210574f738c-1019x538-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "86678aa42272",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-669127a0bcb96a83d790685dd84a4b7827760964-409x160-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "d6b90db1dca8",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-30c40301d0ec7725d209275840ff506e7afe35ec-1169x473-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "357d52a33882",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-9d6ee43623b86c12d4370d83c6b02d2afe0ca089-456x353-jpg",
+          "_type": "reference"
+        }
+      }
+    ],
+    "logosTitle": "featured in",
+    "title": "About "
+  }
+]

@@ -1,0 +1,88 @@
+{
+  "name": "event",
+  "type": "document",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string",
+      "required": true,
+      "isArray": false
+    },
+    {
+      "name": "slug",
+      "type": "slug",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "badge",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "eventType",
+      "type": "string",
+      "required": true,
+      "isArray": false
+    },
+    {
+      "name": "date",
+      "type": "date",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "time",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "image",
+      "type": "image",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "location",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "ctaLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "ctaType",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "pinned",
+      "type": "boolean",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "displayOrder",
+      "type": "number",
+      "required": false,
+      "isArray": false
+    }
+  ],
+  "references": [],
+  "assets": [
+    "image"
+  ]
+}

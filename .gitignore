@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Sanity Migration Engine v3
+# Backups are stored locally only — too large for git
+/sanity-backups/
+# Compiled script output
+/.scripts-dist/
+# Seed & diff reports are ephemeral
+sanity-mirror/seed-report.json
+sanity-mirror/asset-report.json
+# migration-plan.json is ephemeral
+/migration-plan.json

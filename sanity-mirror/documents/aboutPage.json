@@ -1,0 +1,35 @@
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "aboutPage",
+    "_rev": "pTII3WhckjUqxhF3RP1Wj5",
+    "_system": {
+      "base": {
+        "id": "aboutPage",
+        "rev": "mt1cTqOxi4IifpOwCresFJ"
+      }
+    },
+    "_type": "aboutPage",
+    "_updatedAt": "2025-12-29T08:41:41Z",
+    "hero": {
+      "subtitle": "From the Big Apple to the heart of Milan — our team brings international talent to your celebration",
+      "title": "Your Film Crew"
+    },
+    "mission": "Our passion for creating unforgettable cinematic experiences led us to establish Lake Como Style, the premier provider of themed cinematic experiences in Italy. We are an international crew dedicated to bringing the magic of fashion and cinema to life, offering a range of themes and settings to cater to every client's unique vision. Our team is delivers exceptional movie trailers and ensures that every event is a spectacular and memorable occasion for all.",
+    "teamMembers": [
+      {
+        "_key": "tm1",
+        "bio": "Our founder, Dee Lasprogata has over 30 years of experience in fashion, working in New York, Los Angeles, Rome, Milan, and Lake Como, where she resides. She has worked with celebrities including Stevie Wonder and Giada DeLaurentiis, pioneering fashion ventures and collections. With Dee’s expert styling, you don’t simply wear a costume- you embody the timeless elegance and sophistication that movies are made of.",
+        "name": "Dee Lasprogata",
+        "role": "Founder / Stylist"
+      },
+      {
+        "_key": "tm2",
+        "bio": "Stefano has over x years of experience",
+        "name": "Stefano",
+        "role": "Videography Lead"
+      }
+    ],
+    "title": "About Page"
+  }
+]

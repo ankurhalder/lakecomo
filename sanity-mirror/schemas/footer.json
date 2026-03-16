@@ -1,0 +1,44 @@
+{
+  "name": "footer",
+  "type": "document",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "footerTagline",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "phone",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "copyright",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "socialLinks",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    }
+  ],
+  "references": [],
+  "assets": []
+}

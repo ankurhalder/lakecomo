@@ -1,0 +1,69 @@
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "moviePage",
+    "_rev": "UEpPnqaT84vVgQ3Oe7rAJL",
+    "_system": {
+      "base": {
+        "id": "moviePage",
+        "rev": "r5z7poe2OElSjLhxtuoiNJ"
+      }
+    },
+    "_type": "moviePage",
+    "_updatedAt": "2026-02-09T13:25:37Z",
+    "deliverables": [
+      {
+        "_key": "deliverable1",
+        "description": "A fully edited trailer up to 3 minutes in length",
+        "features": [
+          "Includes your choice of music to match the tone and style",
+          "Features custom title and cast names",
+          "Enhanced with special effects to elevate the cinematic impact",
+          "Professional photography"
+        ],
+        "title": "3-Minute Movie Trailer with Professional Photography"
+      },
+      {
+        "_key": "deliverable2",
+        "description": "Shorter versions optimized for social media platforms",
+        "features": [
+          "Perfect for Instagram, TikTok, YouTube, or Facebook",
+          "Designed to grab attention and drive engagement"
+        ],
+        "title": "Social Media Ready Cuts"
+      },
+      {
+        "_key": "deliverable3",
+        "description": "Delivered within 3–4 weeks from event date",
+        "features": [
+          "Professional post-production editing",
+          "Quality assurance review",
+          "Secure digital delivery"
+        ],
+        "title": "Timeline"
+      }
+    ],
+    "hero": {
+      "heading": "Where Every Guest Becomes A Star",
+      "subHeading": "Lights, Camera, Action!",
+      "subSubHeading": "Our professional videographer captures your private event to create your very own 3-minute movie trailer. With custom casting, selected music, and highlights from your special event, we turn your celebration into a cinematic keepsake. The only movie experience on Lake Como, complete with social media–ready clips and your full trailer delivered within 3–4 weeks — making your event truly unforgettable!"
+    },
+    "heroFeature": {
+      "link": "/contact",
+      "subtitle": "Your Cinematic Keepsake",
+      "tag": "Coming Soon",
+      "title": "MOVIE PREMIERE"
+    },
+    "popcornSection": {
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-321c90df5c1ee24afc8168a27d44c0893d84a55f-500x500-png",
+          "_type": "reference"
+        }
+      }
+    },
+    "timeline": "Delivered within 3–4 weeks from event date",
+    "title": "Star in Your Own Trailer"
+  }
+]

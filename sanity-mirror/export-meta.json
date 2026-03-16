@@ -1,0 +1,90 @@
+{
+  "exportedAt": "2026-03-16T17:14:51.143Z",
+  "exportedDate": "2026-03-16",
+  "projectId": "c20abca7",
+  "dataset": "production",
+  "apiVersion": "2025-12-27",
+  "totalDocuments": 17,
+  "types": [
+    {
+      "type": "aboutPage",
+      "count": 1,
+      "file": "aboutPage.json"
+    },
+    {
+      "type": "brandSettings",
+      "count": 1,
+      "file": "brandSettings.json"
+    },
+    {
+      "type": "castPage",
+      "count": 1,
+      "file": "castPage.json"
+    },
+    {
+      "type": "contactPage",
+      "count": 1,
+      "file": "contactPage.json"
+    },
+    {
+      "type": "crewPage",
+      "count": 1,
+      "file": "crewPage.json"
+    },
+    {
+      "type": "event",
+      "count": 2,
+      "file": "event.json"
+    },
+    {
+      "type": "faqPage",
+      "count": 1,
+      "file": "faqPage.json"
+    },
+    {
+      "type": "footer",
+      "count": 1,
+      "file": "footer.json"
+    },
+    {
+      "type": "galleryPage",
+      "count": 1,
+      "file": "galleryPage.json"
+    },
+    {
+      "type": "homepage",
+      "count": 1,
+      "file": "homepage.json"
+    },
+    {
+      "type": "landingPage",
+      "count": 1,
+      "file": "landingPage.json"
+    },
+    {
+      "type": "moviePage",
+      "count": 1,
+      "file": "moviePage.json"
+    },
+    {
+      "type": "navbar",
+      "count": 1,
+      "file": "navbar.json"
+    },
+    {
+      "type": "processPage",
+      "count": 1,
+      "file": "processPage.json"
+    },
+    {
+      "type": "themesPage",
+      "count": 1,
+      "file": "themesPage.json"
+    },
+    {
+      "type": "venuePage",
+      "count": 1,
+      "file": "venuePage.json"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "footer",
+    "_rev": "4DZXQ06MV0KUYSdqrNNRU6",
+    "_system": {
+      "base": {
+        "id": "footer",
+        "rev": "OJl4e2TkVOqlZxtjkNLj8F"
+      }
+    },
+    "_type": "footer",
+    "_updatedAt": "2026-03-16T15:14:05Z",
+    "copyright": "© 2025 Spies of Style",
+    "email": "contact@spiesofstyle.com",
+    "footerTagline": "Your Spy Adventure Awaits",
+    "title": "Global Footer"
+  }
+]

@@ -1,0 +1,185 @@
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "themesPage",
+    "_rev": "OJl4e2TkVOqlZxtjjqr7qF",
+    "_system": {
+      "base": {
+        "id": "themesPage",
+        "rev": "4DZXQ06MV0KUYSdqr2RtRI"
+      }
+    },
+    "_type": "themesPage",
+    "_updatedAt": "2026-03-11T22:05:51Z",
+    "assignmentsSection": {
+      "cards": [
+        {
+          "_key": "card_0",
+          "_type": "object",
+          "ctaLink": "/contact",
+          "ctaText": "Book Dinner Mission",
+          "duration": "3-hour immersive experience",
+          "features": [
+            "Multi-course themed dinner",
+            "Full spy kit & historical dossier",
+            "Interactive historical mission",
+            "Cinematic photo opportunities"
+          ],
+          "title": "Dinner Mission"
+        },
+        {
+          "_key": "card_1",
+          "_type": "object",
+          "ctaLink": "/contact",
+          "ctaText": "Book Cocktail Mission",
+          "duration": "90–120 minute experience",
+          "features": [
+            "Curated cocktails & hors d’oeuvres",
+            "Spy kit and tactical briefing",
+            "Interactive mission puzzles",
+            "Perfect pre-dinner social experience"
+          ],
+          "title": "Cocktail Mission"
+        }
+      ],
+      "sectionTitle": "Choose Your Assignment"
+    },
+    "ctaSection": {
+      "ctas": [
+        {
+          "_key": "cta_0",
+          "_type": "object",
+          "link": "/contact",
+          "text": "Book Dinner Mission"
+        },
+        {
+          "_key": "cta_1",
+          "_type": "object",
+          "link": "/contact",
+          "text": "Book Cocktail Mission"
+        },
+        {
+          "_key": "cta_2",
+          "_type": "object",
+          "link": "/contact",
+          "text": "Inquire About Private Villa Events"
+        }
+      ],
+      "quote": "Step into history, mystery, and glamour on Lake Como. Choose your night, grab your spy kit, and live the adventure.",
+      "title": "Live a True Spy Mission on Lake Como"
+    },
+    "hero": {
+      "blinkingLabel": "Classified Intelligence",
+      "ctaLink": "/contact",
+      "ctaText": "Reserve Your Mission",
+      "headline": "Spies of Style",
+      "subheadline": "Step into the true mission of Cecil Richard Mallaby — a WWII spy whose daring story inspired James Bond — through an immersive dinner or cocktail experience on Lake Como."
+    },
+    "heroSlides": [
+      {
+        "_key": "2db426f2e772",
+        "_type": "image",
+        "alt": "gallery",
+        "asset": {
+          "_ref": "image-43fdff9abb7826d5389b751bf0a0a18949837c2f-1651x868-png",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "273ac1b45a18",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-ef7310f3d34e709483448353cd3497710158fe81-648x439-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "97f02a451a52",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-13ddf4eaa8b4fef3d430916c7f28916f5cf67949-795x502-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "daa1101db1f0",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-cf01fbb4bda2b71a7f4b99c7c1ffa28fc9aa1e42-736x516-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "07566f89e288",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080-png",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "68e30f36fd31",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-0ac9afdecb1586c574770b42545414b5ffea541f-1920x1080-png",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "3adedf59ddf8",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-63492ab2a56fc483754a0cb42e982ac93a54684a-951x913-png",
+          "_type": "reference"
+        }
+      }
+    ],
+    "privateVillaSection": {
+      "ctaLink": "/contact",
+      "ctaText": "Inquire About Private Events",
+      "description": "Bring the mission to your exclusive Lake Como residence. Ideal for private celebrations, corporate retreats, or destination weddings.",
+      "features": [
+        "Personalized storylines for your group",
+        "Optional 3-minute cinematic event trailer",
+        "Full immersive setup & professional cast"
+      ],
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-90bd1a2aac457dc836d3ae0f2ffc6dd150505698-884x519-png",
+          "_type": "reference"
+        }
+      },
+      "title": "Private Villa Operations"
+    },
+    "real007Section": {
+      "bullets": [
+        "Solve the type of codes used by Mallory",
+        "Experience the suspense and strategy of a true spy mission",
+        "Collaborate with teams in a cinematic setting",
+        "Walk in the footsteps of the spy who inspired James Bond"
+      ],
+      "heading": "The Real-Life 007",
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png",
+          "_type": "reference"
+        }
+      },
+      "paragraph1": "During World War II, intelligence operative Cecile Mallory arrived secretly in Cernobbio on Lake Como carrying a critical Allied mission. Her audacious operations, coded messages, and elegant style remain part of the region's wartime history.",
+      "paragraph2": "Historians believe Mallory's daring missions and sophistication inspired elements of Ian Fleming's James Bond, from secret communications to high-stakes espionage in glamorous locations."
+    },
+    "title": "Spies of Style — Cinematic Spy Experience",
+    "whatsIncludedSection": {
+      "items": [
+        "Custom spy kit for every guest",
+        "Historic codes and mission dossiers",
+        "Multi-course dinner or curated cocktail service",
+        "Cinematic photo opportunities",
+        "Optional cinematic trailer for private events"
+      ],
+      "title": "What's Included"
+    }
+  }
+]

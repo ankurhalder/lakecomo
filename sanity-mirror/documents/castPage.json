@@ -1,0 +1,117 @@
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "castPage",
+    "_rev": "kD2Bf5mqCHk08kw0ZdHxu9",
+    "_system": {
+      "base": {
+        "id": "castPage",
+        "rev": "qeHkBtaCAAYzf5RK47DQUg"
+      }
+    },
+    "_type": "castPage",
+    "_updatedAt": "2026-02-23T09:44:58Z",
+    "content": {
+      "paragraphs": [
+        "Choose your theme. Select your venue. Now it’s time to experience the immersive fun!",
+        "We create unforgettable experiences for groups of all sizes. Whether it’s an intimate gathering or a large celebration, our team brings your event to life with style, elegance, and flair.\n",
+        "Guests can choose from our exclusive 2026 themes—from the timeless glamour of La Dolce Vita, to the cinematic sparkle of Hollywood Hustle, or the sophisticated intrigue of Bond. Prefer something truly unique? We also offer custom themes, tailored to your vision and designed to make your occasion one-of-a-kind.",
+        "We provide all themed backdrops and props for Polaroid moments, with the option to personalize backdrops, giving your guests fun, memorable keepsakes.",
+        "Our events are hosted in an array of stunning venues, from exclusive wine cellars, to historic palaces, elegant gardens, and lively terraces, providing the perfect backdrop for every occasion.",
+        "To enhance the experience, we suggest guests come in themed attire, and offer the option of a pop-up fashion rack so guests can purchase curated themed styles on-site.",
+        "We also offer a variety of music options, from DJs to live singers, performing curated playlists for each theme—ensuring the soundtrack perfectly matches the mood and atmosphere.",
+        "For those who wish to capture the magic, we offer professional photography and videography, with the exclusive option to create a custom 3-minute cinematic movie trailer, complete with a personalized cast list and tailored music—bringing your immersive experience fully to life long after the event ends.\n",
+        "With fashion, food, and drinks at the heart of every experience, your private event on Lake Como becomes more than a celebration—it’s an immersive journey your guests will never forget.\n\n"
+      ]
+    },
+    "cta": {
+      "buttonText": "Book Your Private Event",
+      "description": "Immerse yourself in the theme and live the moment",
+      "title": "Celebrate like a Star"
+    },
+    "fallingStars": {
+      "enabled": true
+    },
+    "hero": {
+      "subtitle": "From intimate gatherings to group celebrations",
+      "title": "A Private Spy-Themed Dinner Experience"
+    },
+    "heroFeature": {
+      "subtitle": "2026 Immersive Parties",
+      "title": "Best Private Event"
+    },
+    "showcaseImages": [
+      {
+        "_key": "3d6df0563664",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-437dd49a02ecac575dc481e3535b2dfb4b275442-951x913-png",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "535a8bc3eeea",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080-png",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "84df50742b2a",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "f04308ce24ac",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "e1373c9c247e",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "007532703661",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080-png",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "616e8ab5c483",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
+            "_type": "reference"
+          }
+        }
+      }
+    ],
+    "title": "Private Events"
+  }
+]

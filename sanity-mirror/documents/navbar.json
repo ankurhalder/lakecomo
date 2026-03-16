@@ -1,0 +1,56 @@
+[
+  {
+    "_createdAt": "2025-12-27T05:29:58Z",
+    "_id": "navbar",
+    "_rev": "MjdSXFelIF5IivE650eSaO",
+    "_system": {
+      "base": {
+        "id": "navbar",
+        "rev": "OJl4e2TkVOqlZxtjkMIdqF"
+      }
+    },
+    "_type": "navbar",
+    "_updatedAt": "2026-03-16T15:19:24Z",
+    "ctaLink": "/contact",
+    "ctaText": "Book Now",
+    "links": [
+      {
+        "_key": "nav_0",
+        "_type": "object",
+        "label": "The Story",
+        "url": "/#story"
+      },
+      {
+        "_key": "nav_1",
+        "_type": "object",
+        "label": "The Experience",
+        "url": "/#experience"
+      },
+      {
+        "_key": "nav_2",
+        "_type": "object",
+        "label": "The Assignment",
+        "url": "/#assignment"
+      },
+      {
+        "_key": "nav_3",
+        "_type": "object",
+        "label": "Private Events",
+        "url": "/#private-events"
+      },
+      {
+        "_key": "f3faedacfaad",
+        "label": "Upcoming Events",
+        "url": "#events"
+      },
+      {
+        "_key": "nav_4",
+        "_type": "object",
+        "label": "Inquire",
+        "url": "/#contact"
+      }
+    ],
+    "logoText": "SPIES OF STYLE",
+    "title": "Main Navigation"
+  }
+]

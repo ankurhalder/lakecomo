@@ -1,0 +1,106 @@
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "processPage",
+    "_rev": "4KpL12pTcFQhaPHLTZwfrh",
+    "_system": {
+      "base": {
+        "id": "processPage",
+        "rev": "7Xg1Kgf6r9PsjobGMjPbjO"
+      }
+    },
+    "_type": "processPage",
+    "_updatedAt": "2026-02-04T12:40:25Z",
+    "hero": {
+      "description": "Our 2026 themed experiences invite guests into a one-of-a-kind atmosphere on Lake Como, featuring photo-ready backdrops and a curated selection of props for spontaneous, playful photo moments. Guests are welcome to come dressed to theme or simply grab an accessory and join in. \n\nSignature cocktails, menus, and music guide the evening—often transforming dinner into dancing.\n\nWith candid Polaroid moments captured throughout the night, and plenty of opportunities to share your own, our weekly aperitivos and pre-fixed dinners are designed to be social, immersive, and unforgettable.",
+      "heading": "Seasonal Weekly Events",
+      "subHeading": "From Drinks to Dinner to Dancing Under the Stars"
+    },
+    "heroFeature": {
+      "link": "/themes",
+      "subtitle": "Dive into the World of Cinematic Creativity",
+      "tag": "Choose Your Theme",
+      "title": "THEMED CINEMATIC PARTIES"
+    },
+    "steps": [
+      {
+        "_key": "step1",
+        "body": "Select from our signature themes: International Agents of Style, Hollywood Hussle, La Dolce Vita, Pink Ladies, Angels & Demons or create a custom theme. With over 3,000 costumes and props, your celebration can be uniquely tailored to your group. We consult with you to build any themed story - the sky is the limit with us! \n\nGuests may take the lead on screen, step into select moments, or simply enjoy the experience while our professional actors bring the story to life.\n\nWhether you want to star in your own cinematic trailer or watch the drama unfold around you, the film is crafted seamlessly around your level of participation, comfort, and style.\n\nExample Customized Storytelling – Corporate Brand Dinner Show:\n\nA company invites key clients, partners, or employees to an exclusive dinner, either at our historic palace in the heart of Como or a venue of their choice. The evening transforms into an immersive storytelling experience, where the brand’s story is enacted through performances, cinematic content, and thematic moments woven seamlessly into the dining experience. Guests are not just observers—they actively engage with the narrative, creating a sense of participation and exclusivity.\n\nEvery detail—from costumes and props to custom backdrops and interactive set pieces—is designed to reflect the brand’s identity, creating a luxurious and memorable atmosphere. Throughout the evening, the experience is filmed as a short cinematic production, culminating in a 3-minute movie trailer that serves as a lasting memento. Experiencing the brand in such a personalized and captivating way fosters deeper connections, strengthens loyalty, and leaves an impression that extends far beyond the event itself.\n\n",
+        "heading": "Choose or Create Your Story",
+        "stepNumber": 1,
+        "tagline": "LA DOLCE VITA to BOND",
+        "titleLines": [
+          "SELECT",
+          "YOUR",
+          "THEME"
+        ]
+      },
+      {
+        "_key": "step2",
+        "body": "Decide where your cinematic experience will take place:\n\n• Our Venue: Our Turnkey setup with cocktails, gourmet popcorn with DJ & dancing\n• Luxury Hotel: Partnering with selected hotels for seamless events offering guests an exclusive experience\n• Your Chosen Venue: We bring all props, costumes, step & repeat backdrops, and filming to your location. We do travel to various locations with advance requests.\n• We offer 1/2 day & full day filming with boats, vespas, costumes and props for groups wanting a day group event. A perfect memorabilia and adventure for guests.\n\nExample Concept – Lake Como Bachelor/Bachelorette Experience:\n\nA wedding party travels to Lake Como and wants to create a truly unforgettable bachelor or bachelorette celebration. Our team designs an immersive experience, guiding guests through iconic locations across the city—capturing moments with cinematic, movie-trailer-style storytelling that feels both playful and elegant.\n\nThe experience can be tailored to fit either a half-day (4–5 hours) or a full-day (7–8 hours) journey. A half-day option allows for a focused, energetic adventure that concludes with a refined cocktail reception, while a full-day experience offers a complete narrative arc with multiple locations and interactive moments, culminating in a luxurious finale.\n\nIn both cases, the journey ends at our historic palace venue in the heart of Como. Guests enjoy an exclusive cocktail reception where highlights from the day are presented in cinematic form, all within the palace’s elegant interiors. This combination of immersive storytelling, city exploration, and a luxurious finale transforms the celebration into an experience that guests will remember—and share—long after the wedding.",
+        "heading": "Pick Your Location",
+        "stepNumber": 2,
+        "tagline": "YOU NAME IT",
+        "titleLines": [
+          "SELECT",
+          "YOUR",
+          "VENUE"
+        ]
+      },
+      {
+        "_key": "step3",
+        "body": "Our team curates every detail to bring your theme to life. From custom step & repeat backdrops and curated props to music and storylines, we transform venues into a cinematic setting. Our stylist works directly with you to ensure all props, costumes and backdrops are ready for your film. We curate and manage a bespoke cast of professional actors who can enact the full story, should guests choose this option. You relax while we handle all the production details.\n\nProduction & Client Collaboration:\n\nOur immersive experiences are fully collaborative, giving clients the opportunity to shape the narrative of their event from start to finish. We provide storyboards, visual mock-ups, and thematic suggestions for each scene, allowing the experience to be carefully tailored to the client’s identity and objectives.\n\nClients can customize performances, costumes, props, and backdrops to reflect their unique vision, ensuring every element aligns with their story. By engaging directly in the creative process, clients become active partners in the production, resulting in a one-of-a-kind immersive experience that leaves a lasting impression on participants and reinforces the brand’s connection with its audience.",
+        "heading": "Production Design",
+        "stepNumber": 3,
+        "tagline": "PROPS & COSTUMES",
+        "titleLines": [
+          "WE DESIGN",
+          "YOUR",
+          "EVENT"
+        ]
+      },
+      {
+        "_key": "step4",
+        "body": "On the day of your event, guests step into a world of intrigue, glamour, and cinematic storytelling. With guidance from our production team, everyone gets to act out key scenes from your chosen theme, making the experience interactive and unforgettable. Our professional videographer captures both spontaneous and directed moments, ensuring every guest shines on camera while enjoying an elevated, immersive celebration.\n\nNo acting experience is required—guests can choose how much they want to engage in the storytelling. Some clients prefer to simply observe and enjoy the narrative as it unfolds, while others can take on lead roles and fully immerse themselves in the performances. You can take on a starring role, appear in stylish cameo moments, or relax while professional actors enact the full narrative around you. Every scene is designed to feel effortless, elegant, and unmistakably cinematic. This flexibility ensures that every participant feels comfortable and can enjoy the experience in a way that suits their personality, creating a welcoming, inclusive atmosphere while still maintaining the immersive, cinematic impact of the event.\n\n",
+        "heading": "The Big Day",
+        "stepNumber": 4,
+        "tagline": "TIME TO SHINE",
+        "titleLines": [
+          "CELEBRATE",
+          "IN",
+          "STYLE"
+        ]
+      },
+      {
+        "_key": "step5",
+        "body": "Within 3–4 weeks, we deliver a beautifully produced 3-minute cinematic trailer, along with social media-ready clips. \n\nThe cinematic trailer of the experience is fully crafted to reflect the client’s vision. Clients provide the title, cast names, and music selection, and we integrate these elements seamlessly into our cinematic production. Before the trailer is shared with guests, we confirm every element with the client to ensure it perfectly represents their story and meets their expectations. This attention to detail guarantees a polished, professional, and memorable keepsake that reinforces the impact of the immersive experience.",
+        "heading": "Post-Production Magic",
+        "stepNumber": 5,
+        "tagline": "YOUR SILVER SCREEN",
+        "titleLines": [
+          "YOUR MOVIE &",
+          "SOCIAL",
+          "MEDIA CLIPS"
+        ]
+      },
+      {
+        "_key": "step6",
+        "body": "Your personalized movie trailer can be treasured for years to come — the perfect way to relive the magic of your event.\n\nThe immersive event is captured and packaged as a 3-minute cinematic movie, creating a long-lasting keepsake. Clients can share the trailer virtually via Zoom or by hosting their own in-person movie screening party. This allows the event to live on far beyond the actual day, extending the impact of the immersive experience, strengthening connections with guests, and creating ongoing engagement with the brand or celebration.",
+        "heading": "Keep the Story Alive",
+        "stepNumber": 6,
+        "tagline": "POPCORN TIME",
+        "titleLines": [
+          "RELIVE",
+          "THE",
+          "EXPERIENCE"
+        ]
+      }
+    ],
+    "title": "Seasonal Weekly Events",
+    "videoSection": {
+      "enabled": true,
+      "heading": "List of 2026 Venues",
+      "subHeading": "- Ristorante Locando Milano 1973 \n- Ristorante Terzo Crotto"
+    }
+  }
+]

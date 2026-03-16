@@ -1,0 +1,58 @@
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "contactPage",
+    "_rev": "2yyToag4MGCbwD1sbLaJP5",
+    "_system": {
+      "base": {
+        "id": "contactPage",
+        "rev": "r5z7poe2OElSjLhxtxe4BD"
+      }
+    },
+    "_type": "contactPage",
+    "_updatedAt": "2026-02-09T11:52:57Z",
+    "cameraImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-708cec19ac0d52a98033e50246ca0cb168209f2f-414x600-jpg",
+        "_type": "reference"
+      }
+    },
+    "form": {
+      "emailLabel": "Email",
+      "emailPlaceholder": "john@example.com",
+      "eventDateLabel": "Date of Event",
+      "firstNameLabel": "First Name",
+      "firstNamePlaceholder": "John",
+      "formTitle": "Step Into the Scene",
+      "groupSizeDefaultOption": "Select group size",
+      "groupSizeLabel": "How many will you be?",
+      "groupSizeOptions": [
+        "2-5 people",
+        "6-10 people",
+        "11-20 people",
+        "21-50 people",
+        "50+ people"
+      ],
+      "lastNameLabel": "Last Name",
+      "lastNamePlaceholder": "Doe",
+      "messageLabel": "Event Inquiry",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "555 123-4567",
+      "submitButtonLoadingText": "Sending...",
+      "submitButtonText": "Join the Vibe"
+    },
+    "hero": {
+      "description": "Drop us a message and step into the experience.",
+      "mainHeading": "Join the Party in Style",
+      "preHeading": "Get in Touch"
+    },
+    "success": {
+      "buttonLink": "/",
+      "buttonText": "Back to Home",
+      "message": "Thank you for reaching out. We'll be in touch soon to help you create your unforgettable cinematic experience.",
+      "title": "The Spotlight Awaits!"
+    },
+    "title": "Contact Us"
+  }
+]

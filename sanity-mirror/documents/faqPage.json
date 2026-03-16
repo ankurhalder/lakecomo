@@ -1,0 +1,64 @@
+[
+  {
+    "_createdAt": "2026-01-06T10:10:10Z",
+    "_id": "faqPage",
+    "_rev": "2yyToag4MGCbwD1sbMlVXZ",
+    "_system": {
+      "base": {
+        "id": "faqPage",
+        "rev": "2yyToag4MGCbwD1sbMisnb"
+      }
+    },
+    "_type": "faqPage",
+    "_updatedAt": "2026-02-09T13:35:08Z",
+    "contactCta": {
+      "buttonLink": "/contact",
+      "buttonText": "Contact Us",
+      "text": "Still have questions?"
+    },
+    "faqs": [
+      {
+        "_key": "ac4db1b75c4f",
+        "answer": "Yes! We host weekly events for all guests visiting Lake Como, ranging from casual aperitivi to pre-fixed dinners at select lakeside locations. Each week offers a unique experience, allowing guests to enjoy the best of local cuisine, stunning views, and the vibrant atmosphere of the Lake.\n\nFor details on dates, times, and locations, feel free to check out our weekly events schedule.",
+        "question": "Are there weekly events open to all guests visiting Lake Como?"
+      },
+      {
+        "_key": "faq2",
+        "answer": "Yes! We offer private events tailored for bachelorettes, tour groups, corporate functions, and other special gatherings. Whether it’s a curated aperitivo, a pre-fixed dinner, or a full lakeside experience, we can customize the event to suit your group’s needs and create a memorable experience on Lake Como.",
+        "category": "experience",
+        "question": "Can I book a private event for a bachelorette, rehearsal dinner or tour group gathering?"
+      },
+      {
+        "_key": "faq1",
+        "answer": "We offer a collection of over 3,000 couture costumes and props, spanning multiple time periods, styles, and themes. The collection includes elegant, theatrical, historical, fantasy, and bespoke pieces, each selected for its craftsmanship, visual impact, and suitability for immersive, high-end events.",
+        "category": "experience",
+        "question": "What backdrops and props do you offer?"
+      },
+      {
+        "_key": "faq4",
+        "answer": "We recommend booking private events at least 2–4 weeks in advance to ensure availability and allow us time to tailor the experience to your group. For larger groups or peak season dates, we suggest booking as early as possible to secure your preferred date and location on Lake Como.",
+        "category": "logistics",
+        "question": "How long in advance do I need to book a private event?"
+      },
+      {
+        "_key": "faq5",
+        "answer": "Yes. We offer private presentations and curated previews, either in person or virtually, allowing clients to explore themes, venues, and all backdrops and props in advance.",
+        "category": "experience",
+        "question": "Do you offer a sneak peek of the experience before confirming a private party reservation?"
+      },
+      {
+        "_key": "faq7",
+        "answer": "For our seasonal weekly events, we recommend booking at least 1–2 weeks in advance to secure your spot, as these events can fill up quickly during peak season. For larger groups or special dates, booking earlier is advised to ensure availability and the best experience on Lake Como.",
+        "category": "booking",
+        "question": "For seasonal weekly events, how far in advance should we book?"
+      }
+    ],
+    "hero": {
+      "description": "Join our immersive themed events",
+      "mainHeading": "2026 Seasonal Events",
+      "preHeading": "Your Immersive Style Adventure Awaits",
+      "searchPlaceholder": "Search questions..."
+    },
+    "title": "2026 Open Ticketed Experiences"
+  }
+]
