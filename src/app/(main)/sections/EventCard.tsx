@@ -65,13 +65,10 @@ export default function EventCard({
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
-          } else if (hasVideo && videoRef.current) {
-            // Pause video when offscreen for performance
-            videoRef.current.pause();
           }
         });
       },
-      { rootMargin: "100px" }, // Start loading 100px before entering viewport
+      { rootMargin: "100px" },
     );
 
     observer.observe(mediaRef.current);
