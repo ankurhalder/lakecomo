@@ -9,9 +9,7 @@ lakecomo/
 │   ├── favicon.ico
 │   └── robots.txt
 ├── scripts/
-│   ├── crawl-project.js
-│   ├── seed-events.mjs
-│   └── seed-landing-page.mjs
+│   └── crawl-project.js
 ├── src/
 │   ├── app/
 │   │   ├── (main)/
@@ -54,21 +52,22 @@ lakecomo/
 │   │       ├── FallingStars.tsx
 │   │       ├── PageError.tsx
 │   │       └── PageLoading.tsx
-│   └── sanity/
-│       ├── lib/
-│       │   ├── client.ts
-│       │   ├── getLandingPage.ts
-│       │   ├── getLayoutData.ts
-│       │   ├── image.ts
-│       │   └── live.ts
-│       ├── schemaTypes/
-│       │   ├── event.ts
-│       │   ├── footer.ts
-│       │   ├── index.ts
-│       │   ├── landingPage.ts
-│       │   └── navbar.ts
-│       ├── env.ts
-│       └── structure.ts
+│   ├── sanity/
+│   │   ├── lib/
+│   │   │   ├── client.ts
+│   │   │   ├── getLandingPage.ts
+│   │   │   ├── getLayoutData.ts
+│   │   │   ├── image.ts
+│   │   │   └── live.ts
+│   │   ├── schemaTypes/
+│   │   │   ├── event.ts
+│   │   │   ├── footer.ts
+│   │   │   ├── index.ts
+│   │   │   ├── landingPage.ts
+│   │   │   └── navbar.ts
+│   │   ├── env.ts
+│   │   └── structure.ts
+│   └── proxy.ts
 ├── .gitattributes
 ├── .gitignore
 ├── complete-codebase.txt
@@ -180,16 +179,6 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: "/webmail",
-        destination: "https://webmail.lakecomostyle.it",
-        permanent: true,
-      },
-      {
-        source: "/cpanel",
-        destination: "https://server322.web-hosting.com/cpanel",
-        permanent: true,
-      },
       { source: "/themes", destination: "/#story", permanent: true },
       { source: "/cast", destination: "/#experience", permanent: true },
       { source: "/contact", destination: "/#contact", permanent: true },
@@ -276,7 +265,7 @@ Disallow: /admin
 Disallow: /admin/*
 Disallow: /api/*
 
-Sitemap: https://lakecomostyle.it/sitemap.xml
+Sitemap: https://spiesofstyle.com/sitemap.xml
 
 
 ================================================================================
@@ -1041,466 +1030,6 @@ main();
 
 
 ================================================================================
-FILE: scripts\seed-events.mjs
-================================================================================
-
-/**
- * seed-events.mjs
- *
- * Creates two example Event documents in Sanity CMS for the Upcoming Events
- * section on the landing page.
- *
- * SAFE TO RE-RUN — uses createOrReplace (idempotent).
- *
- * Usage:
- *   node scripts/seed-events.mjs
- *
- * Required env (in .env.local):
- *   NEXT_PUBLIC_SANITY_PROJECT_ID
- *   NEXT_PUBLIC_SANITY_DATASET
- *   SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS
- */
-
-import { createClient } from "@sanity/client";
-import dotenv from "dotenv";
-
-dotenv.config({ path: ".env.local" });
-
-const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-  apiVersion: "2025-12-27",
-  token: process.env.SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS,
-  useCdn: false,
-});
-
-// ─── EVENT DATA ───────────────────────────────────────────────────────────────
-
-const EVENTS = [
-  {
-    _id: "event-corso-eleganza-2026",
-    _type: "event",
-    title: "Corso Eleganza 2026 Season Kick Off Cocktail Party",
-    slug: { _type: "slug", current: "corso-eleganza-2026-season-kick-off" },
-    badge: "Season Premiere",
-    eventType: "single_event",
-    date: "2026-05-16",
-    time: "5:00 PM – 8:00 PM",
-    description:
-      "Inaugurate the season in spectacular style at the renowned Corso Eleganza. " +
-      "Join us for an exclusive cocktail evening surrounded by classic automotive beauty " +
-      "and unparalleled Lake Como elegance.",
-    location: "Terzo Crotto, Cernobbio",
-    ctaLabel: "RSVP / DETAILS",
-    ctaType: "scroll_contact",
-    pinned: true,
-    displayOrder: 1,
-  },
-  {
-    _id: "event-weekly-spies-of-style",
-    _type: "event",
-    title: "Weekly Spies of Style Dinners",
-    slug: { _type: "slug", current: "weekly-spies-of-style-dinners" },
-    badge: "Weekly Residency",
-    eventType: "recurring_event",
-    description:
-      "Experience the mystery and luxury on a weekly basis high above the lake. " +
-      "Enjoy bespoke cocktails, curated styling sessions, and the unparalleled ambiance " +
-      "of a historic retreat.",
-    location: "Locanda Milano 1873, Brunate",
-    ctaLabel: "VIEW SCHEDULE",
-    ctaType: "scroll_contact",
-    pinned: false,
-    displayOrder: 2,
-  },
-];
-
-// ─── SEED ─────────────────────────────────────────────────────────────────────
-
-async function seed() {
-  console.log("🎬 Seeding Upcoming Events...\n");
-
-  // Verify connection
-  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
-  if (!projectId) {
-    console.error(
-      "ERROR: NEXT_PUBLIC_SANITY_PROJECT_ID is not set in .env.local",
-    );
-    process.exit(1);
-  }
-  if (!process.env.SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS) {
-    console.error(
-      "ERROR: SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS is not set in .env.local",
-    );
-    process.exit(1);
-  }
-
-  console.log(`   Project: ${projectId}`);
-  console.log(`   Dataset: ${dataset}\n`);
-
-  for (const event of EVENTS) {
-    console.log(
-      `   → ${event.pinned ? "📌 " : "   "}Creating: "${event.title}"`,
-    );
-    await client.createOrReplace(event);
-    console.log(`      ✓ Saved as _id: "${event._id}"\n`);
-  }
-
-  console.log("✅ Events seeded successfully.\n");
-  console.log("   Next steps:");
-  console.log("   1. Open /admin → Events to view and edit the seeded events.");
-  console.log("   2. Upload images via the 'Event Image' field on each event.");
-  console.log(
-    "   3. The Upcoming Events section will appear on the landing page.\n",
-  );
-}
-
-seed().catch((err) => {
-  console.error("\n❌ Seed failed:", err.message || err);
-  process.exit(1);
-});
-
-
-================================================================================
-FILE: scripts\seed-landing-page.mjs
-================================================================================
-
-/**
- * seed-landing-page.mjs
- *
- * Migrates content from existing Sanity documents (homepage, themesPage,
- * castPage, contactPage) into the new unified landingPage document.
- * Also updates the navbar document links to use anchor hashes.
- *
- * SAFE TO RE-RUN (idempotent):
- *   - .set()          → always overwrites text fields
- *   - .setIfMissing() → only writes on FIRST run for arrays/assets
- *
- * Does NOT delete any source documents.
- *
- * Usage:
- *   node scripts/seed-landing-page.mjs
- *
- * Required env (in .env.local):
- *   NEXT_PUBLIC_SANITY_PROJECT_ID
- *   NEXT_PUBLIC_SANITY_DATASET
- *   SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS
- */
-
-import { createClient } from "@sanity/client";
-import dotenv from "dotenv";
-
-dotenv.config({ path: ".env.local" });
-
-const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-  apiVersion: "2025-12-27",
-  token: process.env.SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS,
-  useCdn: false,
-});
-
-const key = (prefix, index) => `${prefix}_${index}`;
-
-async function migrate() {
-  console.log("🎬 Starting landing page migration...\n");
-
-  // ── Step 1: Fetch all source documents ─────────────────────────────────────
-  console.log("📥 Fetching source documents...");
-  const { homepage, themesPage, castPage, contactPage, navbar } =
-    await client.fetch(`{
-    "homepage":    *[_type == "homepage"][0],
-    "themesPage":  *[_type == "themesPage"][0],
-    "castPage":    *[_type == "castPage"][0],
-    "contactPage": *[_type == "contactPage"][0],
-    "navbar":      *[_type == "navbar"][0]
-  }`);
-
-  console.log(
-    `   ✓ homepage:    ${homepage ? "found" : "not found (will use defaults)"}`,
-  );
-  console.log(
-    `   ✓ themesPage:  ${themesPage ? "found" : "not found (will use defaults)"}`,
-  );
-  console.log(
-    `   ✓ castPage:    ${castPage ? "found" : "not found (will use defaults)"}`,
-  );
-  console.log(
-    `   ✓ contactPage: ${contactPage ? "found" : "not found (will use defaults)"}`,
-  );
-  console.log(
-    `   ✓ navbar:      ${navbar ? "found" : "not found (will skip link update)"}`,
-  );
-
-  // ── Step 2: Create landingPage skeleton ────────────────────────────────────
-  console.log("\n📄 Ensuring landingPage document exists...");
-  await client.createIfNotExists({ _id: "landingPage", _type: "landingPage" });
-  console.log("   ✓ Document ready");
-
-  // ── Step 3: Map and patch text fields ──────────────────────────────────────
-  console.log("\n✏️  Patching text fields...");
-
-  const hero = homepage?.heroSection || {};
-  const story = themesPage?.hero || {};
-  const real007 = themesPage?.real007Section || {};
-  const assignments = themesPage?.assignmentsSection || {};
-  const contactHero = contactPage?.hero || {};
-  const castContent = castPage?.content || {};
-
-  await client
-    .patch("landingPage")
-    .set({
-      title: "Lake Como Style — Landing Page",
-
-      // ── Hero ──────────────────────────────────────────────────
-      "hero.preHeading": hero.preHeading || "Presenting Our Guests With",
-      "hero.mainHeading": hero.mainHeading || "A Cinematic Event Experience",
-      "hero.subHeading": hero.subHeading || "Lake Como, Italy",
-      "hero.playIndicatorText":
-        hero.playIndicatorText || "Tap to see the magic",
-
-      // ── Story ─────────────────────────────────────────────────
-      "story.blinkingLabel": story.blinkingLabel || "Classified Intelligence",
-      "story.headline": story.headline || "Spies of Style",
-      "story.subheadline":
-        story.subheadline ||
-        "Step into the true mission of Cecil Richard Mallaby — a WWII spy whose daring story inspired James Bond — through an immersive dinner or cocktail experience on Lake Como.",
-
-      // ── Story — Real 007 ──────────────────────────────────────
-      "story.real007.heading": real007.heading || "The Real-Life 007",
-      "story.real007.paragraph1":
-        real007.paragraph1 ||
-        "During World War II, intelligence operative Cecile Mallory arrived secretly in Cernobbio on Lake Como carrying a critical Allied mission. Her audacious operations, coded messages, and elegant style remain part of the region's wartime history.",
-      "story.real007.paragraph2":
-        real007.paragraph2 ||
-        "Historians believe Mallory's daring missions and sophistication inspired elements of Ian Fleming's James Bond, from secret communications to high-stakes espionage in glamorous locations.",
-
-      // ── Experience ────────────────────────────────────────────
-      "experience.sectionTitle": "Step Into the Spotlight",
-      "experience.sectionSubtitle":
-        castContent.subtitle ||
-        "Every character, every scene — crafted for your event.",
-
-      // ── Assignment ────────────────────────────────────────────
-      "assignment.sectionTitle":
-        assignments.sectionTitle || "Choose Your Assignment",
-
-      // ── Private Events ────────────────────────────────────────
-      "privateEvents.label": "LAKE COMO EXCLUSIVE",
-      "privateEvents.title": "Private Spy Missions",
-      "privateEvents.subtitle": "Host Your Bond-Inspired Spy Experience",
-      "privateEvents.description":
-        "Bring the thrill of espionage to Lake Como with a fully immersive, cinematic spy experience. Perfect for private villas or pre- and post-wedding celebrations.",
-      "privateEvents.ctaText": "DISCOVER HOW IT WORKS",
-      "privateEvents.ctaLink": "#contact",
-      "privateEvents.videographyLabel": "A TRULY UNIQUE OFFERING",
-      "privateEvents.videographyTitle": "Photography & Videography",
-      "privateEvents.videographySubtitle":
-        "We offer an exclusive cinematic video experience — the only spy event videography of its kind on Lake Como.",
-      "privateEvents.videographyHighlights": [
-        'Bespoke 5-minute cinematic "movie trailer" of your mission',
-        "Custom cast names for each guest and tailored music",
-        "Fully produced and delivered within 10 days",
-        "Includes short social media clips for sharing",
-      ],
-      "privateEvents.photographyHighlights": [
-        "Professional images capturing the drama and elegance",
-        "Guests interacting with spy kits, props, and backdrops",
-        "Perfect for keepsakes, social media, or personal mementos",
-      ],
-      "privateEvents.features": [
-        {
-          _key: key("feat", 0),
-          _type: "object",
-          icon: "target",
-          text: "Choose your mission: Spy Mission Dinner or Cocktail Party",
-        },
-        {
-          _key: key("feat", 1),
-          _type: "object",
-          icon: "map-pin",
-          text: "Fully tailored for your specific location and guest count",
-        },
-        {
-          _key: key("feat", 2),
-          _type: "object",
-          icon: "martini",
-          text: "Gourmet dining, cocktails, immersive storytelling",
-        },
-        {
-          _key: key("feat", 3),
-          _type: "object",
-          icon: "briefcase",
-          text: "Complete with cinematic backdrops, spy props, and spy kits",
-        },
-      ],
-
-      // ── Inquire ───────────────────────────────────────────────
-      "inquire.preHeading": contactHero.preHeading || "Get in Touch",
-      "inquire.mainHeading": contactHero.mainHeading || "The Spotlight Awaits",
-      "inquire.description": contactHero.description || "",
-
-      // ── Inquire form ──────────────────────────────────────────
-      "inquire.form.formTitle":
-        contactPage?.form?.formTitle || "Create Your Cinematic Event",
-      "inquire.form.firstNameLabel":
-        contactPage?.form?.firstNameLabel || "First Name",
-      "inquire.form.firstNamePlaceholder":
-        contactPage?.form?.firstNamePlaceholder || "John",
-      "inquire.form.lastNameLabel":
-        contactPage?.form?.lastNameLabel || "Last Name",
-      "inquire.form.lastNamePlaceholder":
-        contactPage?.form?.lastNamePlaceholder || "Doe",
-      "inquire.form.emailLabel": contactPage?.form?.emailLabel || "Email",
-      "inquire.form.emailPlaceholder":
-        contactPage?.form?.emailPlaceholder || "john@example.com",
-      "inquire.form.phoneLabel": contactPage?.form?.phoneLabel || "Phone",
-      "inquire.form.phonePlaceholder":
-        contactPage?.form?.phonePlaceholder || "555 123-4567",
-      "inquire.form.groupSizeLabel":
-        contactPage?.form?.groupSizeLabel || "How many will you be?",
-      "inquire.form.groupSizeDefaultOption":
-        contactPage?.form?.groupSizeDefaultOption || "Select group size",
-      "inquire.form.eventDateLabel":
-        contactPage?.form?.eventDateLabel || "Date of Event",
-      "inquire.form.messageLabel":
-        contactPage?.form?.messageLabel || "Tell us about your vision",
-      "inquire.form.messagePlaceholder":
-        contactPage?.form?.messagePlaceholder ||
-        "Describe your dream cinematic event...",
-      "inquire.form.submitButtonText":
-        contactPage?.form?.submitButtonText || "Be A Star",
-      "inquire.form.submitButtonLoadingText":
-        contactPage?.form?.submitButtonLoadingText || "Sending...",
-
-      // ── Inquire success ───────────────────────────────────────
-      "inquire.success.title":
-        contactPage?.success?.successTitle || "The Spotlight Awaits!",
-      "inquire.success.message":
-        contactPage?.success?.successMessage ||
-        "Thank you for reaching out. We'll be in touch soon to help you create your unforgettable cinematic experience.",
-      "inquire.success.buttonText":
-        contactPage?.success?.successButtonText || "Back to Top",
-
-      // ── Content arrays + images — always overwrite from source ────
-      "story.real007.image": real007.image || null,
-      "story.real007.bullets": real007.bullets || [
-        "Solve the type of codes used by Mallory",
-        "Experience the suspense and strategy of a true spy mission",
-        "Collaborate with teams in a cinematic setting",
-        "Walk in the footsteps of the spy who inspired James Bond",
-      ],
-
-      "experience.showcaseImages": (castPage?.showcaseImages || []).map(
-        (img, idx) => ({
-          _key: key("exp", idx),
-          _type: "object",
-          image: img.image || img,
-          title: img.title || null,
-          role: img.role || null,
-        }),
-      ),
-
-      "experience.paragraphs": (castContent.paragraphs || []).filter(
-        (p) => typeof p === "string" && p.length > 0,
-      ),
-
-      "assignment.cards": (assignments.cards || []).map((card, idx) => ({
-        _key: key("card", idx),
-        _type: "object",
-        title: card.title,
-        duration: card.duration,
-        features: card.features || [],
-        ctaText: card.ctaText || "Book Now",
-        image: card.image || null,
-      })),
-    })
-    .setIfMissing({
-      // Hero media — only on first run to preserve Studio uploads
-      "hero.videoFile": hero.videoFile,
-      "hero.mobileVideoFile": hero.mobileVideoFile,
-      "hero.posterImage": hero.posterImage,
-
-      "inquire.form.groupSizeOptions": contactPage?.form?.groupSizeOptions || [
-        "2-5 people",
-        "6-10 people",
-        "11-20 people",
-        "21-50 people",
-        "50+ people",
-      ],
-    })
-    .commit();
-
-  console.log("   ✓ landingPage patched successfully");
-
-  // ── Step 4: Update navbar links to anchor hashes ───────────────────────────
-  if (navbar?._id) {
-    console.log("\n🔗 Updating navbar links to anchor hashes...");
-    await client
-      .patch(navbar._id)
-      .set({
-        links: [
-          {
-            _key: key("nav", 0),
-            _type: "object",
-            label: "Story",
-            url: "/#story",
-          },
-          {
-            _key: key("nav", 1),
-            _type: "object",
-            label: "Experience",
-            url: "/#experience",
-          },
-          {
-            _key: key("nav", 2),
-            _type: "object",
-            label: "Assignment",
-            url: "/#assignment",
-          },
-          {
-            _key: key("nav", 3),
-            _type: "object",
-            label: "Private Events",
-            url: "/#private-events",
-          },
-          {
-            _key: key("nav", 4),
-            _type: "object",
-            label: "Inquire",
-            url: "/#contact",
-          },
-        ],
-      })
-      .commit();
-    console.log("   ✓ Navbar links updated");
-  } else {
-    console.log(
-      "\n⚠️  No navbar document found — skipping link update.\n   Create the navbar document in Sanity Studio and set links manually.",
-    );
-  }
-
-  // ── Step 5: Summary ─────────────────────────────────────────────────────────
-  console.log("\n✅ Migration complete!\n");
-  console.log("📦 Next steps:");
-  console.log(
-    "   1. Open Sanity Studio at /admin and verify the Landing Page document",
-  );
-  console.log(
-    "   2. Upload any missing images in the Story, Experience, and Assignment groups",
-  );
-  console.log("   3. Publish the document");
-  console.log("   4. Verify the site renders correctly at /\n");
-}
-
-migrate().catch((error) => {
-  console.error("❌ Migration failed:", error);
-  process.exit(1);
-});
-
-
-================================================================================
 FILE: src\app\(main)\error.tsx
 ================================================================================
 
@@ -1586,11 +1115,11 @@ import LandingPage from "./sections/LandingPage";
 import PageLoading from "@/components/shared/PageLoading";
 
 export const metadata: Metadata = {
-  title: "Lake Como Style | Cinematic Event Experiences",
+  title: "Spies of Style | Cinematic Event Experiences",
   description:
     "Step into the true mission of Cecil Richard Mallaby — a WWII spy who inspired James Bond — through an immersive dinner or cocktail experience on Lake Como, Italy.",
   openGraph: {
-    title: "Lake Como Style | Cinematic Event Experiences",
+    title: "Spies of Style | Cinematic Event Experiences",
     description:
       "Immersive spy-themed dining and cocktail experiences on Lake Como, Italy. Inspired by the real-life story behind James Bond.",
     type: "website",
@@ -4168,20 +3697,20 @@ export async function GET(request: NextRequest) {
 FILE: src\app\api\send-email\route.ts
 ================================================================================
 
-'use server'
+"use server";
 
-import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
+import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 interface ContactFormData {
-  firstName: string
-  lastName: string
-  email: string
-  phone: string
-  countryCode: string
-  groupSize: string
-  eventDate: string
-  message: string
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  countryCode: string;
+  groupSize: string;
+  eventDate: string;
+  message: string;
 }
 
 const transporter = nodemailer.createTransport({
@@ -4192,17 +3721,17 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-})
+});
 
 function generateAdminEmailHtml(data: ContactFormData): string {
-  const eventDateFormatted = data.eventDate 
-    ? new Date(data.eventDate).toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+  const eventDateFormatted = data.eventDate
+    ? new Date(data.eventDate).toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
       })
-    : 'Not specified'
+    : "Not specified";
 
   return `
 <!DOCTYPE html>
@@ -4220,7 +3749,7 @@ function generateAdminEmailHtml(data: ContactFormData): string {
           <tr>
             <td style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 40px 40px 30px; text-align: center; border-bottom: 1px solid rgba(255,215,0,0.3);">
               <div style="font-size: 14px; letter-spacing: 6px; color: rgba(255,215,0,0.8); text-transform: uppercase; margin-bottom: 12px;">New Inquiry</div>
-              <h1 style="margin: 0; font-size: 32px; font-weight: 300; color: #ffffff; letter-spacing: 2px;">Lake Como Style</h1>
+              <h1 style="margin: 0; font-size: 32px; font-weight: 300; color: #ffffff; letter-spacing: 2px;">Spies of Style</h1>
               <div style="width: 60px; height: 2px; background: linear-gradient(90deg, transparent, #ffd700, transparent); margin: 20px auto 0;"></div>
             </td>
           </tr>
@@ -4249,7 +3778,7 @@ function generateAdminEmailHtml(data: ContactFormData): string {
                         </td>
                         <td width="50%" style="vertical-align: top; padding-left: 15px;">
                           <div style="color: rgba(255,215,0,0.7); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px;">Phone</div>
-                          <div style="color: #ffffff; font-size: 16px;">${data.countryCode} ${data.phone || 'Not provided'}</div>
+                          <div style="color: #ffffff; font-size: 16px;">${data.countryCode} ${data.phone || "Not provided"}</div>
                         </td>
                       </tr>
                     </table>
@@ -4263,7 +3792,7 @@ function generateAdminEmailHtml(data: ContactFormData): string {
                       <tr>
                         <td width="50%" style="vertical-align: top; padding-right: 15px;">
                           <div style="color: rgba(255,215,0,0.7); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px;">Group Size</div>
-                          <div style="color: #ffffff; font-size: 16px;">${data.groupSize || 'Not specified'}</div>
+                          <div style="color: #ffffff; font-size: 16px;">${data.groupSize || "Not specified"}</div>
                         </td>
                         <td width="50%" style="vertical-align: top; padding-left: 15px;">
                           <div style="color: rgba(255,215,0,0.7); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px;">Event Date</div>
@@ -4275,7 +3804,9 @@ function generateAdminEmailHtml(data: ContactFormData): string {
                   </td>
                 </tr>
                 
-                ${data.message ? `
+                ${
+                  data.message
+                    ? `
                 <tr>
                   <td style="padding-bottom: 20px;">
                     <div style="color: rgba(255,215,0,0.7); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px;">Message</div>
@@ -4284,7 +3815,9 @@ function generateAdminEmailHtml(data: ContactFormData): string {
                     </div>
                   </td>
                 </tr>
-                ` : ''}
+                `
+                    : ""
+                }
                 
               </table>
             </td>
@@ -4292,7 +3825,7 @@ function generateAdminEmailHtml(data: ContactFormData): string {
           
           <tr>
             <td style="background: rgba(255,215,0,0.05); padding: 25px 40px; text-align: center; border-top: 1px solid rgba(255,215,0,0.2);">
-              <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin: 0; letter-spacing: 1px;">Received via Lake Como Style Contact Form</p>
+              <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin: 0; letter-spacing: 1px;">Received via Spies of Style Contact Form</p>
             </td>
           </tr>
           
@@ -4302,7 +3835,7 @@ function generateAdminEmailHtml(data: ContactFormData): string {
   </table>
 </body>
 </html>
-`
+`;
 }
 
 function generateConfirmationEmailHtml(data: ContactFormData): string {
@@ -4335,7 +3868,7 @@ function generateConfirmationEmailHtml(data: ContactFormData): string {
               <p style="color: #ffffff; font-size: 20px; font-weight: 300; margin: 0 0 24px; line-height: 1.6;">Dear ${data.firstName},</p>
               
               <p style="color: rgba(255,255,255,0.8); font-size: 16px; line-height: 1.8; margin: 0 0 24px;">
-                We have received your inquiry and are thrilled that you're considering Lake Como Style for your unforgettable cinematic experience.
+                We have received your inquiry and are thrilled that you're considering Spies of Style for your unforgettable cinematic experience.
               </p>
               
               <p style="color: rgba(255,255,255,0.8); font-size: 16px; line-height: 1.8; margin: 0 0 32px;">
@@ -4349,18 +3882,26 @@ function generateConfirmationEmailHtml(data: ContactFormData): string {
                     <td style="color: rgba(255,255,255,0.6); font-size: 13px; padding: 8px 0;">Name:</td>
                     <td style="color: #ffffff; font-size: 13px; padding: 8px 0; text-align: right;">${data.firstName} ${data.lastName}</td>
                   </tr>
-                  ${data.groupSize ? `
+                  ${
+                    data.groupSize
+                      ? `
                   <tr>
                     <td style="color: rgba(255,255,255,0.6); font-size: 13px; padding: 8px 0;">Group Size:</td>
                     <td style="color: #ffffff; font-size: 13px; padding: 8px 0; text-align: right;">${data.groupSize}</td>
                   </tr>
-                  ` : ''}
-                  ${data.eventDate ? `
+                  `
+                      : ""
+                  }
+                  ${
+                    data.eventDate
+                      ? `
                   <tr>
                     <td style="color: rgba(255,255,255,0.6); font-size: 13px; padding: 8px 0;">Event Date:</td>
-                    <td style="color: #ffffff; font-size: 13px; padding: 8px 0; text-align: right;">${new Date(data.eventDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
+                    <td style="color: #ffffff; font-size: 13px; padding: 8px 0; text-align: right;">${new Date(data.eventDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</td>
                   </tr>
-                  ` : ''}
+                  `
+                      : ""
+                  }
                 </table>
               </div>
               
@@ -4371,21 +3912,21 @@ function generateConfirmationEmailHtml(data: ContactFormData): string {
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 32px;">
                 <tr>
                   <td align="center">
-                    <a href="https://lakecomostyle.it/gallery" style="display: inline-block; background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%); color: #0a0a0a; text-decoration: none; padding: 16px 40px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">View Our Gallery</a>
+                    <a href="https://spiesofstyle.com" style="display: inline-block; background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%); color: #0a0a0a; text-decoration: none; padding: 16px 40px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">Visit Our Website</a>
                   </td>
                 </tr>
               </table>
               
               <p style="color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.7; margin: 0;">
                 Warm regards,<br>
-                <strong style="color: #ffffff;">The Lake Como Style Team</strong>
+                <strong style="color: #ffffff;">The Spies of Style Team</strong>
               </p>
             </td>
           </tr>
           
           <tr>
             <td style="background: rgba(255,215,0,0.05); padding: 30px 40px; text-align: center; border-top: 1px solid rgba(255,215,0,0.2);">
-              <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin: 0 0 8px; letter-spacing: 1px;">Lake Como Style</p>
+              <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin: 0 0 8px; letter-spacing: 1px;">Spies of Style</p>
               <p style="color: rgba(255,255,255,0.4); font-size: 11px; margin: 0;">Creating Unforgettable Cinematic Experiences in Italy</p>
             </td>
           </tr>
@@ -4396,53 +3937,52 @@ function generateConfirmationEmailHtml(data: ContactFormData): string {
   </table>
 </body>
 </html>
-`
+`;
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const body: ContactFormData = await request.json()
+    const body: ContactFormData = await request.json();
 
     if (!body.firstName || !body.lastName || !body.email) {
       return NextResponse.json(
-        { error: 'First name, last name, and email are required' },
-        { status: 400 }
-      )
+        { error: "First name, last name, and email are required" },
+        { status: 400 },
+      );
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(body.email)) {
       return NextResponse.json(
-        { error: 'Invalid email address' },
-        { status: 400 }
-      )
+        { error: "Invalid email address" },
+        { status: 400 },
+      );
     }
 
     await transporter.sendMail({
-      from: `"Lake Como Style" <${process.env.EMAIL_USER}>`,
+      from: `"Spies of Style" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       subject: `New Inquiry from ${body.firstName} ${body.lastName}`,
       html: generateAdminEmailHtml(body),
-    })
+    });
 
     await transporter.sendMail({
-      from: `"Lake Como Style" <${process.env.EMAIL_USER}>`,
+      from: `"Spies of Style" <${process.env.EMAIL_USER}>`,
       to: body.email,
-      subject: 'Thank You for Contacting Lake Como Style ✨',
+      subject: "Thank You for Contacting Spies of Style",
       html: generateConfirmationEmailHtml(body),
-    })
+    });
 
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Emails sent successfully' 
-    })
-
+    return NextResponse.json({
+      success: true,
+      message: "Emails sent successfully",
+    });
   } catch (error) {
-    console.error('Email sending failed:', error)
+    console.error("Email sending failed:", error);
     return NextResponse.json(
-      { error: 'Failed to send email. Please try again later.' },
-      { status: 500 }
-    )
+      { error: "Failed to send email. Please try again later." },
+      { status: 500 },
+    );
   }
 }
 
@@ -4692,25 +4232,25 @@ const courierPrime = Courier_Prime({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lakecomostyle.it"),
-  title: "Lake Como Style",
+  metadataBase: new URL("https://spiesofstyle.com"),
+  title: "Spies of Style",
   description:
-    "Transform your celebration into an unforgettable cinematic experience. Themed parties, professional videography, and custom movie trailers in Lake Como, Italy.",
+    "Luxury Lake Como experiences inspired by cinematic elegance and timeless sophistication.",
   keywords: [
     "Lake Como",
     "cinematic events",
-    "themed parties",
-    "movie trailers",
+    "spy experiences",
+    "luxury events",
     "Italy events",
-    "wedding videography",
+    "immersive dining",
   ],
-  authors: [{ name: "Lake Como Style" }],
+  authors: [{ name: "Spies of Style" }],
   openGraph: {
-    title: "Lake Como Style | Cinematic Event Experiences",
+    title: "Spies of Style | Cinematic Event Experiences",
     description:
-      "Transform your celebration into an unforgettable cinematic experience in Lake Como, Italy.",
-    url: "https://lakecomostyle.it",
-    siteName: "Lake Como Style",
+      "Luxury Lake Como experiences inspired by cinematic elegance and timeless sophistication.",
+    url: "https://spiesofstyle.com",
+    siteName: "Spies of Style",
     locale: "en_US",
     type: "website",
     images: [
@@ -4718,15 +4258,15 @@ export const metadata: Metadata = {
         url: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=630&fit=crop",
         width: 1200,
         height: 630,
-        alt: "Lake Como Style - Cinematic Event Experiences",
+        alt: "Spies of Style - Cinematic Event Experiences",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lake Como Style | Cinematic Event Experiences",
+    title: "Spies of Style | Cinematic Event Experiences",
     description:
-      "Transform your celebration into an unforgettable cinematic experience in Lake Como, Italy.",
+      "Luxury Lake Como experiences inspired by cinematic elegance and timeless sophistication.",
     images: [
       "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=630&fit=crop",
     ],
@@ -4765,49 +4305,49 @@ export default function RootLayout({
 FILE: src\app\not-found.tsx
 ================================================================================
 
-import Link from 'next/link'
-import type { Metadata } from 'next'
+import Link from "next/link";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: '404 - Page Not Found | Lake Como Style',
-  description: 'The page you are looking for could not be found.',
-}
+  title: "404 - Page Not Found | Spies of Style",
+  description: "The page you are looking for could not be found.",
+};
 
 export default function NotFound() {
   return (
-    <main 
+    <main
       id="main-content"
       className="min-h-screen flex items-center justify-center px-4"
-      style={{ backgroundColor: 'var(--bg-primary)' }}
+      style={{ backgroundColor: "var(--bg-primary)" }}
     >
       <div className="text-center max-w-md">
         <div className="text-8xl mb-6">🎬</div>
-        
-        <h1 
+
+        <h1
           className="text-4xl md:text-5xl font-bold mb-4"
-          style={{ color: 'var(--text-primary)' }}
+          style={{ color: "var(--text-primary)" }}
         >
           Scene Not Found
         </h1>
-        
-        <p 
-          className="text-lg mb-8"
-          style={{ color: 'var(--text-secondary)' }}
-        >
-          Looks like this scene didn&apos;t make the final cut. 
-          Let&apos;s get you back to the main show.
+
+        <p className="text-lg mb-8" style={{ color: "var(--text-secondary)" }}>
+          Looks like this scene didn&apos;t make the final cut. Let&apos;s get
+          you back to the main show.
         </p>
-        
-        <Link 
+
+        <Link
           href="/"
           className="inline-flex items-center justify-center gap-2 px-8 py-4 font-bold uppercase tracking-widest rounded-full transition-all hover:scale-105"
-          style={{ backgroundColor: 'var(--accent)', color: 'var(--accent-text)' }}
+          style={{
+            backgroundColor: "var(--accent)",
+            color: "var(--accent-text)",
+          }}
         >
           Back to Home
         </Link>
       </div>
     </main>
-  )
+  );
 }
 
 
@@ -4815,33 +4355,19 @@ export default function NotFound() {
 FILE: src\app\sitemap.ts
 ================================================================================
 
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://lakecomostyle.it'
-  
-  const routes = [
-    '',
-    '/cast',
-    '/contact',
-    '/crew',
-    '/faq',
-    '/gallery',
-    '/movie',
-    '/process',
-    '/themes',
-    '/venue',
-  
+  const baseUrl = "https://spiesofstyle.com";
 
-  
-  ]
-  
+  const routes = [""];
+
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
-  }))
+    changeFrequency: "weekly" as const,
+    priority: route === "" ? 1 : 0.8,
+  }));
 }
 
 
@@ -4892,13 +4418,13 @@ export default function Footer({ data }: { data: FooterData }) {
     >
       <div className="flex flex-col items-center md:items-start gap-0.5 md:gap-1 order-2 md:order-1">
         <span style={{ color: "var(--text-secondary)" }}>
-          {data?.copyright || "© 2025 Lake Como Style"}
+          {data?.copyright || "© 2025 Spies of Style"}
         </span>
         <a
           href={`mailto:${data?.email}`}
           className="hover:opacity-70 transition-opacity hidden md:block"
         >
-          {data?.email || "info@lakecomostyle.it"}
+          {data?.email || "contact@spiesofstyle.com"}
         </a>
         {data?.phone && (
           <a
@@ -4912,7 +4438,7 @@ export default function Footer({ data }: { data: FooterData }) {
 
       <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
         <span className="block font-bold uppercase tracking-[0.15em] lg:tracking-[0.2em] text-xs lg:text-sm mb-0.5">
-          Lake Como Style
+          Spies of Style
         </span>
         <span
           className="block font-light italic text-[10px] lg:text-xs"
@@ -4976,7 +4502,7 @@ export default function Header({ data }: { data: HeaderData }) {
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
 
-  const logoText = data?.logoText || "Lake Como Style";
+  const logoText = data?.logoText || "Spies of Style";
   const allLinks = data?.links?.length ? data.links : DEFAULT_LINKS;
   const navLinks = allLinks.slice(0, -1);
   const ctaLink = allLinks[allLinks.length - 1];
@@ -5490,15 +5016,15 @@ export default function CastCarousel({ images }: CastCarouselProps) {
 FILE: src\components\shared\CompanyPreloader.tsx
 ================================================================================
 
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
 export default function CompanyPreloader() {
   return (
-    <div 
+    <div
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center"
-      style={{ backgroundColor: 'var(--bg-primary)' }}
+      style={{ backgroundColor: "var(--bg-primary)" }}
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -5508,17 +5034,17 @@ export default function CompanyPreloader() {
       >
         <motion.h1
           className="font-limelight text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-wide mb-4"
-          style={{ color: 'var(--text-primary)' }}
+          style={{ color: "var(--text-primary)" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          Lake Como Style
+          Spies of Style
         </motion.h1>
-        
+
         <motion.p
           className="text-xs sm:text-sm uppercase tracking-[0.3em] mb-8"
-          style={{ color: 'var(--text-secondary)', opacity: 0.6 }}
+          style={{ color: "var(--text-secondary)", opacity: 0.6 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.6 }}
           transition={{ delay: 0.5, duration: 0.5 }}
@@ -5526,7 +5052,7 @@ export default function CompanyPreloader() {
           Cinematic Event Experiences
         </motion.p>
 
-        <motion.div 
+        <motion.div
           className="flex items-center justify-center gap-1"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -5536,16 +5062,16 @@ export default function CompanyPreloader() {
             <motion.div
               key={i}
               className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: 'var(--accent)' }}
+              style={{ backgroundColor: "var(--accent)" }}
               animate={{
                 scale: [1, 1.2, 1],
-                opacity: [0.5, 1, 0.5]
+                opacity: [0.5, 1, 0.5],
               }}
               transition={{
                 duration: 1,
                 repeat: Infinity,
                 delay: i * 0.15,
-                ease: 'easeInOut'
+                ease: "easeInOut",
               }}
             />
           ))}
@@ -5558,15 +5084,15 @@ export default function CompanyPreloader() {
         animate={{ opacity: 0.4 }}
         transition={{ delay: 1, duration: 0.5 }}
       >
-        <p 
+        <p
           className="text-[10px] uppercase tracking-widest"
-          style={{ color: 'var(--text-secondary)' }}
+          style={{ color: "var(--text-secondary)" }}
         >
           Loading your experience
         </p>
       </motion.div>
     </div>
-  )
+  );
 }
 
 
@@ -6052,6 +5578,33 @@ export default function PageLoading({
     </div>
   )
 }
+
+
+================================================================================
+FILE: src\proxy.ts
+================================================================================
+
+import { NextRequest, NextResponse } from "next/server";
+
+const OLD_HOSTS = ["lakecomostyle.it", "www.lakecomostyle.it"];
+
+export function proxy(request: NextRequest) {
+  const host = request.headers.get("host")?.split(":")[0] ?? "";
+
+  if (OLD_HOSTS.includes(host)) {
+    const url = new URL(request.url);
+    url.hostname = "spiesofstyle.com";
+    url.protocol = "https:";
+    url.port = "";
+    return NextResponse.redirect(url.toString(), 301);
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|admin).*)"],
+};
 
 
 ================================================================================
@@ -6790,58 +6343,59 @@ export default defineType({
 FILE: src\sanity\schemaTypes\footer.ts
 ================================================================================
 
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: 'footer',
-  title: 'Footer',
-  type: 'document',
+  name: "footer",
+  title: "Footer",
+  type: "document",
   fields: [
     defineField({
-      name: 'title',
-      title: 'Internal Title',
-      type: 'string',
+      name: "title",
+      title: "Internal Title",
+      type: "string",
     }),
     defineField({
-      name: 'footerTagline',
-      title: 'Tagline',
-      type: 'string',
-      initialValue: 'Your Adventure in Style Awaits'
+      name: "footerTagline",
+      title: "Tagline",
+      type: "string",
+      initialValue: "Your Adventure in Style Awaits",
     }),
     defineField({
-      name: 'email',
-      title: 'Contact Email',
-      type: 'string',
-      initialValue: 'info@lakecomostyle.it'
+      name: "email",
+      title: "Contact Email",
+      type: "string",
+      initialValue: "contact@spiesofstyle.com",
     }),
     defineField({
-      name: 'phone',
-      title: 'Contact Phone',
-      type: 'string',
-      description: 'Phone number with country code (e.g., +39 123 456 7890)'
+      name: "phone",
+      title: "Contact Phone",
+      type: "string",
+      description: "Phone number with country code (e.g., +39 123 456 7890)",
     }),
     defineField({
-      name: 'copyright',
-      title: 'Copyright Text',
-      type: 'string',
-      initialValue: '© 2025 by Lake Como Style'
+      name: "copyright",
+      title: "Copyright Text",
+      type: "string",
+      initialValue: "© 2025 by Spies of Style",
     }),
     defineField({
-      name: 'socialLinks',
-      title: 'Social Media',
-      type: 'array',
+      name: "socialLinks",
+      title: "Social Media",
+      type: "array",
       of: [
         {
-          type: 'object',
+          type: "object",
           fields: [
-            { name: 'platform', type: 'string', title: 'Platform Name' },
-            { name: 'url', type: 'url', title: 'URL' }
-          ]
-        }
-      ]
-    })
-  ]
-})
+            { name: "platform", type: "string", title: "Platform Name" },
+            { name: "url", type: "url", title: "URL" },
+          ],
+        },
+      ],
+    }),
+  ],
+});
+
 
 ================================================================================
 FILE: src\sanity\schemaTypes\index.ts
