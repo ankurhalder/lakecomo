@@ -38,7 +38,8 @@ lakecomo/
 │   ├── asset-report.json
 │   ├── diff-report.json
 │   ├── export-meta.json
-│   └── schema-map.json
+│   ├── schema-map.json
+│   └── seed-report.json
 ├── scripts/
 │   ├── sanity/
 │   │   ├── config.ts
@@ -643,16 +644,82 @@ FILE: sanity-mirror\diff-report.json
 ================================================================================
 
 {
-  "generatedAt": "2026-03-16T17:15:50.714Z",
+  "generatedAt": "2026-03-16T17:45:38.230Z",
   "date": "2026-03-16",
   "summary": {
     "total": 17,
     "new": 0,
-    "updated": 0,
+    "updated": 1,
     "removed": 0,
-    "unchanged": 17
+    "unchanged": 16
   },
-  "changes": []
+  "changes": [
+    {
+      "_id": "landingPage",
+      "_type": "landingPage",
+      "status": "UPDATED",
+      "fieldChanges": [
+        {
+          "field": "_system",
+          "old": {
+            "base": {
+              "id": "landingPage",
+              "rev": "OJl4e2TkVOqlZxtjkNpNSF"
+            }
+          },
+          "new": {
+            "base": {
+              "id": "landingPage",
+              "rev": "MjdSXFelIF5IivE650jWbW"
+            }
+          }
+        },
+        {
+          "field": "hero",
+          "old": {
+            "mainHeading": "An Immersive Spy-Themed Dinner on Lake Como",
+            "mobileVideoFile": {
+              "_type": "file",
+              "asset": {
+                "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4",
+                "_type": "reference"
+              }
+            },
+            "playIndicatorText": "hear the story",
+            "preHeading": "Step Into the Shadows of History",
+            "subHeading": "Based on the daring missions of Cecil Mallaby, a WWII secret agent who is said to have inspired James Bond, your evening blends espionage, gourmet cuisine, and immersive storytelling",
+            "videoFile": {
+              "_type": "file",
+              "asset": {
+                "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4",
+                "_type": "reference"
+              }
+            }
+          },
+          "new": {
+            "mainHeading": "An Immersive Spy-Themed Dinner on Lake Como",
+            "mobileVideoFile": {
+              "_type": "file",
+              "asset": {
+                "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4",
+                "_type": "reference"
+              }
+            },
+            "playIndicatorText": "hear the story",
+            "preHeading": "Step Into the Shadows of History",
+            "subHeading": "Inspired by the daring missions of Cecil Mallaby, one of WWII’s real-life secret agents, your evening will be a thrilling blend of espionage, gourmet cuisine, and immersive storytelling",
+            "videoFile": {
+              "_type": "file",
+              "asset": {
+                "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4",
+                "_type": "reference"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
 }
 
 
@@ -2028,7 +2095,7 @@ FILE: sanity-mirror\documents\navbar.json
       {
         "_key": "f3faedacfaad",
         "label": "Upcoming Events",
-        "url": "#events"
+        "url": "/#upcoming-events"
       },
       {
         "_key": "nav_4",
@@ -2555,6 +2622,7 @@ FILE: sanity-mirror\schema-map.json
       "eventType",
       "date",
       "time",
+      "media",
       "image",
       "description",
       "location",
@@ -2721,6 +2789,12 @@ FILE: sanity-mirror\schemas\event.json
     {
       "name": "time",
       "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "media",
+      "type": "object",
       "required": false,
       "isArray": false
     },
@@ -3287,6 +3361,129 @@ FILE: sanity-mirror\schemas\navbar.json
   "references": [],
   "assets": [
     "logoImage"
+  ]
+}
+
+
+================================================================================
+FILE: sanity-mirror\seed-report.json
+================================================================================
+
+{
+  "seededAt": "2026-03-16T17:53:59.867Z",
+  "date": "2026-03-16",
+  "dryRun": false,
+  "typeFilter": null,
+  "summary": {
+    "create": 0,
+    "update": 17,
+    "skip": 0,
+    "failed": 0,
+    "total": 17
+  },
+  "results": [
+    {
+      "_id": "aboutPage",
+      "_type": "aboutPage",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "brandSettings",
+      "_type": "brandSettings",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "castPage",
+      "_type": "castPage",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "contactPage",
+      "_type": "contactPage",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "3d2JLpUTPM5qppQf883Uxu",
+      "_type": "crewPage",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "event-corso-eleganza-2026",
+      "_type": "event",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "event-weekly-spies-of-style",
+      "_type": "event",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "faqPage",
+      "_type": "faqPage",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "footer",
+      "_type": "footer",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "galleryPage",
+      "_type": "galleryPage",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "homepage",
+      "_type": "homepage",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "landingPage",
+      "_type": "landingPage",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "moviePage",
+      "_type": "moviePage",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "navbar",
+      "_type": "navbar",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "processPage",
+      "_type": "processPage",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "themesPage",
+      "_type": "themesPage",
+      "action": "update",
+      "success": true
+    },
+    {
+      "_id": "3d2JLpUTPM5qppQf88BJIs",
+      "_type": "venuePage",
+      "action": "update",
+      "success": true
+    }
   ]
 }
 
@@ -6683,6 +6880,7 @@ FILE: src\app\(main)\sections\EventCard.tsx
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { MapPin, Clock, RefreshCw } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import type { EventData } from "@/sanity/lib/getLandingPage";
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
@@ -6720,10 +6918,50 @@ export default function EventCard({
     location,
     ctaLabel,
     imageUrl,
+    videoUrl,
   } = event;
+
+  // Lazy loading state
+  const [isVisible, setIsVisible] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const mediaRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const isRecurring = eventType === "recurring_event";
   const dateLabel = isRecurring ? "Every Week" : date ? formatDate(date) : null;
+  const hasVideo = !!videoUrl;
+  const hasImage = !!imageUrl;
+
+  // IntersectionObserver for lazy loading
+  useEffect(() => {
+    if (!mediaRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          } else if (hasVideo && videoRef.current) {
+            // Pause video when offscreen for performance
+            videoRef.current.pause();
+          }
+        });
+      },
+      { rootMargin: "100px" }, // Start loading 100px before entering viewport
+    );
+
+    observer.observe(mediaRef.current);
+    return () => observer.disconnect();
+  }, [hasVideo]);
+
+  // Resume video playback when visible
+  useEffect(() => {
+    if (isVisible && videoLoaded && videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Autoplay blocked - user interaction required
+      });
+    }
+  }, [isVisible, videoLoaded]);
 
   return (
     <motion.div
@@ -6732,7 +6970,7 @@ export default function EventCard({
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
       whileHover={{ y: -6, boxShadow: "0 24px 48px rgba(0,0,0,0.6)" }}
-      className="flex flex-col rounded-sm overflow-hidden border"
+      className="flex flex-col rounded-sm overflow-hidden border group"
       style={{
         backgroundColor: "var(--bg-secondary)",
         borderColor: "var(--border-color)",
@@ -6740,30 +6978,73 @@ export default function EventCard({
         transition: "box-shadow 0.3s ease",
       }}
     >
-      {/* ── Image (object-contain + black letterbox bg) ── */}
+      {/* ── Media (video or image with object-contain + black letterbox bg) ── */}
       <div
+        ref={mediaRef}
         className="relative w-full overflow-hidden shrink-0"
         style={{
           aspectRatio: "16 / 9",
           backgroundColor: "#000",
         }}
       >
-        {imageUrl ? (
+        {hasVideo ? (
+          // Video rendering with lazy load + cinematic effects
           <motion.div
             className="absolute inset-0"
-            whileHover={{ scale: 1.04 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            {isVisible ? (
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                onLoadedData={() => setVideoLoaded(true)}
+                className="w-full h-full object-contain transition-all duration-500 group-hover:brightness-110"
+                style={{
+                  filter: "brightness(0.9)",
+                }}
+              >
+                <source src={videoUrl} type="video/mp4" />
+              </video>
+            ) : (
+              // Placeholder while video loads
+              <div
+                className="absolute inset-0 flex items-center justify-center"
+                style={{
+                  backgroundColor: "#000",
+                  color: "var(--text-muted)",
+                }}
+              >
+                <span className="text-xs uppercase tracking-widest">
+                  Loading...
+                </span>
+              </div>
+            )}
+          </motion.div>
+        ) : hasImage ? (
+          // Image rendering with zoom effect
+          <motion.div
+            className="absolute inset-0"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <Image
               src={imageUrl}
               alt={title}
               fill
-              className="object-contain"
+              className="object-contain transition-all duration-500 group-hover:brightness-110"
               sizes="(max-width: 768px) 100vw, 50vw"
+              style={{
+                filter: "brightness(0.95)",
+              }}
             />
           </motion.div>
         ) : (
-          // Placeholder when no image is set in CMS
+          // Placeholder when no media is set in CMS
           <div
             className="absolute inset-0 flex items-center justify-center border border-dashed"
             style={{
@@ -6772,14 +7053,26 @@ export default function EventCard({
             }}
           >
             <span className="text-xs uppercase tracking-widest">
-              Event Image
+              Event Media
             </span>
           </div>
         )}
 
-        {/* Subtle bottom fade for smooth transition to card body */}
-        {imageUrl && (
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+        {/* Cinematic gradient overlay — fades on hover */}
+        {(hasVideo || hasImage) && (
+          <div
+            className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, transparent 70%)",
+              opacity: 1,
+            }}
+          />
+        )}
+
+        {/* Additional overlay that fades on hover for depth */}
+        {(hasVideo || hasImage) && (
+          <div className="absolute inset-0 bg-black/40 pointer-events-none transition-opacity duration-500 group-hover:opacity-15" />
         )}
       </div>
 
@@ -7571,7 +7864,13 @@ export default function InquireSection({
 
   return (
     <section id="contact" style={{ backgroundColor: "var(--bg-secondary)" }}>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingTop: "var(--section-py)", paddingBottom: "var(--section-py)" }}>
+      <div
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{
+          paddingTop: "var(--section-py)",
+          paddingBottom: "var(--section-py)",
+        }}
+      >
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -7586,9 +7885,7 @@ export default function InquireSection({
                 className="h-px w-8"
                 style={{ backgroundColor: "var(--accent)" }}
               />
-              <span
-                className="text-xs uppercase tracking-[0.3em] font-light gold-text"
-              >
+              <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
                 {preHeading}
               </span>
               <span
@@ -7599,7 +7896,11 @@ export default function InquireSection({
           )}
           <h2
             className="font-bold"
-            style={{ fontFamily: "var(--font-limelight)", fontSize: "var(--fs-h2)", color: "var(--text-primary)" }}
+            style={{
+              fontFamily: "var(--font-limelight)",
+              fontSize: "var(--fs-h2)",
+              color: "var(--text-primary)",
+            }}
           >
             {mainHeading}
           </h2>
@@ -7635,7 +7936,11 @@ export default function InquireSection({
               </div>
               <h3
                 className="font-bold"
-                style={{ fontFamily: "var(--font-limelight)", fontSize: "var(--fs-h3)", color: "var(--text-primary)" }}
+                style={{
+                  fontFamily: "var(--font-limelight)",
+                  fontSize: "var(--fs-h3)",
+                  color: "var(--text-primary)",
+                }}
               >
                 {s.title || "The Spotlight Awaits!"}
               </h3>
@@ -7668,7 +7973,13 @@ export default function InquireSection({
               {f.formTitle && (
                 <h3
                   className="font-semibold mb-6 text-center"
-                  style={{ fontFamily: "var(--font-limelight)", fontSize: "var(--fs-label)", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text-muted)" }}
+                  style={{
+                    fontFamily: "var(--font-limelight)",
+                    fontSize: "var(--fs-label)",
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: "var(--text-muted)",
+                  }}
                 >
                   {f.formTitle}
                 </h3>
@@ -7690,7 +8001,7 @@ export default function InquireSection({
                 </motion.div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-3">
+              <form onSubmit={handleSubmit} className="space-y-3 relative">
                 {/* Name row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
@@ -7848,8 +8159,8 @@ export default function InquireSection({
                 </div>
 
                 {/* Group size + Date */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-50">
+                  <div className="space-y-1.5 relative z-50">
                     <label
                       className="text-xs uppercase tracking-widest font-light"
                       style={{ color: "var(--text-muted)" }}
@@ -7865,6 +8176,7 @@ export default function InquireSection({
                       style={{
                         ...inputStyle,
                         borderColor: "var(--border-color)",
+                        appearance: "auto",
                       }}
                     >
                       <option value="">
@@ -8743,14 +9055,17 @@ export default function UpcomingEventsSection({
   const displayEvents = events && events.length > 0 ? events : DEFAULT_EVENTS;
 
   const scrollToContact = () => {
-    const el = document.querySelector("#contact");
-    if (el) {
-      lenisRef.current?.scrollTo(el as HTMLElement, { offset: -48 });
+    const element = document.querySelector("#contact");
+    if (element && lenisRef.current) {
+      lenisRef.current.scrollTo(element as HTMLElement, { offset: -48 });
     }
   };
 
   return (
-    <section id="events" style={{ backgroundColor: "var(--bg-primary)" }}>
+    <section
+      id="upcoming-events"
+      style={{ backgroundColor: "var(--bg-primary)" }}
+    >
       <div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         style={{
@@ -9487,6 +9802,26 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
+/* Form select elements — ensure dropdown visibility */
+select {
+  appearance: auto;
+  background-color: var(--surface-raised);
+  color: var(--text-primary);
+}
+
+/* Improve option visibility in dropdown */
+select option {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 8px;
+}
+
+select option:checked {
+  background: linear-gradient(var(--accent), var(--accent));
+  background-color: var(--accent);
+  color: var(--accent-text);
+}
+
 
 ================================================================================
 FILE: src\app\layout.tsx
@@ -9764,12 +10099,12 @@ interface HeaderData {
 }
 
 const DEFAULT_LINKS: NavLink[] = [
-  { label: "Story",           url: "/#story"          },
-  { label: "Experience",      url: "/#experience"     },
-  { label: "Assignment",      url: "/#assignment"     },
-  { label: "Private Events",  url: "/#private-events" },
-  { label: "Upcoming Events", url: "/#events"         },
-  { label: "Inquire",         url: "/#contact"        },
+  { label: "Story", url: "/#story" },
+  { label: "Experience", url: "/#experience" },
+  { label: "Assignment", url: "/#assignment" },
+  { label: "Private Events", url: "/#private-events" },
+  { label: "Upcoming Events", url: "/#upcoming-events" },
+  { label: "Inquire", url: "/#contact" },
 ];
 
 export default function Header({ data }: { data: HeaderData }) {
@@ -9825,8 +10160,20 @@ export default function Header({ data }: { data: HeaderData }) {
 
   const scrollToHash = (url: string) => {
     const hash = url.replace("/", "");
-    const el = document.querySelector(hash);
-    if (el) lenisRef.current?.scrollTo(el as HTMLElement, { offset: -48 });
+    const element = document.querySelector(hash);
+
+    if (!element) {
+      console.warn(`[Scroll] Element not found: ${hash}`);
+      return;
+    }
+
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(element as HTMLElement, { offset: -48 });
+    } else {
+      console.warn(`[Scroll] Lenis not initialized, using fallback`);
+      element.scrollIntoView({ behavior: 'smooth' });
+      window.scrollBy(0, -48);
+    }
   };
 
   const handleNavClick = (url: string | null | undefined) => {
@@ -10930,13 +11277,14 @@ export interface EventData {
   title: string;
   badge?: string;
   eventType: "single_event" | "recurring_event";
-  date?: string;       // ISO date string "YYYY-MM-DD"
+  date?: string; // ISO date string "YYYY-MM-DD"
   time?: string;
   description?: string;
   location?: string;
   ctaLabel?: string;
   ctaType?: "scroll_contact";
   imageUrl?: string | null;
+  videoUrl?: string | null; // New: video media support
   pinned?: boolean;
   displayOrder?: number;
 }
@@ -11145,6 +11493,10 @@ const eventsQuery = `
     ctaType,
     pinned,
     displayOrder,
+    media {
+      image { asset->{ url }, hotspot, crop },
+      video { asset->{ url } }
+    },
     image { asset->{ url }, hotspot, crop }
   }
 `;
@@ -11294,6 +11646,10 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           ctaType?: string;
           pinned?: boolean;
           displayOrder?: number;
+          media?: {
+            image?: { asset?: { url?: string } };
+            video?: { asset?: { url?: string } };
+          };
           image?: { asset?: { url?: string } };
         }): EventData => ({
           _id: ev._id,
@@ -11308,8 +11664,12 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           description: ev.description,
           location: ev.location,
           ctaLabel: ev.ctaLabel,
-          ctaType: ev.ctaType === "scroll_contact" ? "scroll_contact" : undefined,
+          ctaType:
+            ev.ctaType === "scroll_contact" ? "scroll_contact" : undefined,
+          videoUrl: ev.media?.video?.asset?.url ?? null,
           imageUrl:
+            ev.media?.image?.asset?.url ??
+            processImageToUrl(ev.media?.image, 900) ??
             ev.image?.asset?.url ??
             processImageToUrl(ev.image, 900) ??
             null,
@@ -11506,13 +11866,51 @@ export default defineType({
     // ─── CONTENT ─────────────────────────────────────────────────────────────
 
     defineField({
+      name: "media",
+      title: "Event Media",
+      type: "object",
+      group: "content",
+      description:
+        "Choose either an image or video for the event card. Only one can be active at a time. Video will autoplay on hover with cinematic effects.",
+      fields: [
+        {
+          name: "image",
+          title: "Image",
+          type: "image",
+          options: { hotspot: true },
+          description:
+            "Photo for the event card. Never cropped — black letterboxing preserves aspect ratio.",
+        },
+        {
+          name: "video",
+          title: "Video",
+          type: "file",
+          options: {
+            accept: "video/mp4,video/webm",
+          },
+          description:
+            "Video for the event card (MP4 or WebM). Will autoplay muted on loop. Lazy-loaded for performance.",
+        },
+      ],
+      validation: (Rule) =>
+        Rule.custom((media: { image?: unknown; video?: unknown } | undefined) => {
+          if (!media) return true;
+          if (media.image && media.video) {
+            return "Please use either an image OR a video, not both.";
+          }
+          return true;
+        }),
+    }),
+
+    defineField({
       name: "image",
-      title: "Event Image",
+      title: "Event Image (Legacy)",
       type: "image",
       group: "content",
       options: { hotspot: true },
       description:
-        "Photo for the event card. The image is never cropped — black letterboxing is added if the aspect ratio doesn't match.",
+        "DEPRECATED: Use 'Event Media' above instead. This field is kept for backward compatibility with existing events.",
+      hidden: true,
     }),
 
     defineField({
