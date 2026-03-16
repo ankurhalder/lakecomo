@@ -107,11 +107,18 @@ lakecomo/
 │   │       ├── CompanyPreloader.tsx
 │   │       ├── ErrorBoundary.tsx
 │   │       ├── FallingStars.tsx
+│   │       ├── JsonLd.tsx
 │   │       ├── PageError.tsx
 │   │       └── PageLoading.tsx
+│   ├── lib/
+│   │   └── seo/
+│   │       ├── generateMetadata.ts
+│   │       ├── seoConfig.ts
+│   │       └── structuredData.ts
 │   ├── sanity/
 │   │   ├── lib/
 │   │   │   ├── client.ts
+│   │   │   ├── getFaqPage.ts
 │   │   │   ├── getLandingPage.ts
 │   │   │   ├── getLayoutData.ts
 │   │   │   ├── getMissionExperiencePage.ts
@@ -659,78 +666,195 @@ FILE: sanity-mirror\diff-report.json
 ================================================================================
 
 {
-  "generatedAt": "2026-03-16T17:45:38.230Z",
+  "generatedAt": "2026-03-16T20:20:56.857Z",
   "date": "2026-03-16",
   "summary": {
-    "total": 17,
+    "total": 18,
     "new": 0,
     "updated": 1,
     "removed": 0,
-    "unchanged": 16
+    "unchanged": 17
   },
   "changes": [
     {
-      "_id": "landingPage",
-      "_type": "landingPage",
+      "_id": "missionExperiencePage",
+      "_type": "missionExperiencePage",
       "status": "UPDATED",
       "fieldChanges": [
         {
-          "field": "_system",
+          "field": "hero",
           "old": {
-            "base": {
-              "id": "landingPage",
-              "rev": "OJl4e2TkVOqlZxtjkNpNSF"
-            }
+            "backgroundImage": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-79132de350e04bbbc6b7ef367748d4040a5393d3-1375x768-jpg"
+              }
+            },
+            "subtitle": "An immersive social experience where guests become part of a sophisticated espionage mission set on the shores of Lake Como.",
+            "title": "The Spies of Style Mission Experience"
           },
           "new": {
-            "base": {
-              "id": "landingPage",
-              "rev": "MjdSXFelIF5IivE650jWbW"
-            }
+            "backgroundImage": {
+              "_type": "image",
+              "asset": {
+                "_ref": "image-79132de350e04bbbc6b7ef367748d4040a5393d3-1375x768-jpg",
+                "_type": "reference"
+              }
+            },
+            "subtitle": "An immersive social experience where guests become part of a sophisticated espionage mission set on the shores of Lake Como.",
+            "title": "The Spies of Style Mission Experience"
           }
         },
         {
-          "field": "hero",
-          "old": {
-            "mainHeading": "An Immersive Spy-Themed Dinner on Lake Como",
-            "mobileVideoFile": {
-              "_type": "file",
-              "asset": {
-                "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4",
-                "_type": "reference"
-              }
+          "field": "phases",
+          "old": [
+            {
+              "_key": "phase-1",
+              "description": "At the beginning of the event, guests receive their first intelligence briefing. Using a custom illustrated map of Lake Como, participants follow embedded clues to uncover the secret codename of the evening's central spy.\n\nClues are hidden across key locations around the lake, encouraging guests to examine the map closely while working together to solve the puzzle.\n\nAccess the Mission Through:\n• Interactive mobile app experience\n• Printed intelligence dossier and map\n• Physical clues embedded in the event program\n\nOnce the clues are solved, guests reveal the agent's secret codename and move to the next phase of the mission.",
+              "icon": "lock",
+              "images": [
+                {
+                  "_key": "22ed3be76699",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-ebf26646916f92eab7f54cda065601216b050ff5-1375x768-jpg"
+                  }
+                },
+                {
+                  "_key": "1d1297251e07",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-5500f0cf417e77a3d6f2869debb8c431169c4d6a-746x297-png"
+                  }
+                }
+              ],
+              "order": 1,
+              "title": "Unlock the Spy Identity"
             },
-            "playIndicatorText": "hear the story",
-            "preHeading": "Step Into the Shadows of History",
-            "subHeading": "Based on the daring missions of Cecil Mallaby, a WWII secret agent who is said to have inspired James Bond, your evening blends espionage, gourmet cuisine, and immersive storytelling",
-            "videoFile": {
-              "_type": "file",
-              "asset": {
-                "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4",
-                "_type": "reference"
-              }
-            }
-          },
-          "new": {
-            "mainHeading": "An Immersive Spy-Themed Dinner on Lake Como",
-            "mobileVideoFile": {
-              "_type": "file",
-              "asset": {
-                "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4",
-                "_type": "reference"
-              }
+            {
+              "_key": "phase-2",
+              "description": "Once the spy identity is revealed, guests unlock the classified mission statement. This transmission reveals the purpose of the operation and introduces the story behind the espionage activity that once took place on Lake Como during the war.\n\nParticipants receive a coded message that must be deciphered collectively during the dinner or cocktail reception.",
+              "icon": "file-text",
+              "images": [
+                {
+                  "_key": "746a8309c766",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-7bce0bd30fcf9024e6d5ebf56034daac4156893b-758x317-png"
+                  }
+                },
+                {
+                  "_key": "28ec4f8f5a18",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-79132de350e04bbbc6b7ef367748d4040a5393d3-1375x768-jpg"
+                  }
+                }
+              ],
+              "order": 2,
+              "title": "The Mission Briefing"
             },
-            "playIndicatorText": "hear the story",
-            "preHeading": "Step Into the Shadows of History",
-            "subHeading": "Inspired by the daring missions of Cecil Mallaby, one of WWII’s real-life secret agents, your evening will be a thrilling blend of espionage, gourmet cuisine, and immersive storytelling",
-            "videoFile": {
-              "_type": "file",
-              "asset": {
-                "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4",
-                "_type": "reference"
-              }
+            {
+              "_key": "phase-3",
+              "description": "Throughout the evening, guests work together to decode the mission. The experience is intentionally designed to encourage conversation and interaction between guests.\n\nAs clues are discussed and theories emerge, the room becomes part of the investigation.\n\nBy the end of the evening, the group successfully completes the mission and reveals the final intelligence transmission.",
+              "icon": "users",
+              "images": [
+                {
+                  "_key": "d6c16d2f93c3",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-ba5f6dfd964460ab3b21b84df27888022854c06e-799x760-png"
+                  }
+                },
+                {
+                  "_key": "651fd4f1a0cd",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-5e582f3fcc1fe6fdd946cf565d7585b6f6546fef-740x698-png"
+                  }
+                }
+              ],
+              "order": 3,
+              "title": "Collaborative Code Breaking"
             }
-          }
+          ],
+          "new": [
+            {
+              "_key": "phase-1",
+              "description": "At the beginning of the event, guests receive their first intelligence briefing. Using a custom illustrated map of Lake Como, participants follow embedded clues to uncover the secret codename of the evening's central spy.\n\nClues are hidden across key locations around the lake, encouraging guests to examine the map closely while working together to solve the puzzle.\n\nAccess the Mission Through:\n• Interactive mobile app experience\n• Printed intelligence dossier and map\n• Physical clues embedded in the event program\n\nOnce the clues are solved, guests reveal the agent's secret codename and move to the next phase of the mission.",
+              "icon": "lock",
+              "images": [
+                {
+                  "_key": "22ed3be76699",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-ebf26646916f92eab7f54cda065601216b050ff5-1375x768-jpg",
+                    "_type": "reference"
+                  }
+                },
+                {
+                  "_key": "1d1297251e07",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-5500f0cf417e77a3d6f2869debb8c431169c4d6a-746x297-png",
+                    "_type": "reference"
+                  }
+                }
+              ],
+              "order": 1,
+              "title": "Unlock the Spy Identity"
+            },
+            {
+              "_key": "phase-2",
+              "description": "Once the spy identity is revealed, guests unlock the classified mission statement. This transmission reveals the purpose of the operation and introduces the story behind the espionage activity that once took place on Lake Como during the war.\n\nParticipants receive a coded message that must be deciphered collectively during the dinner or cocktail reception.",
+              "icon": "file-text",
+              "images": [
+                {
+                  "_key": "746a8309c766",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-7bce0bd30fcf9024e6d5ebf56034daac4156893b-758x317-png",
+                    "_type": "reference"
+                  }
+                },
+                {
+                  "_key": "28ec4f8f5a18",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-79132de350e04bbbc6b7ef367748d4040a5393d3-1375x768-jpg",
+                    "_type": "reference"
+                  }
+                }
+              ],
+              "order": 2,
+              "title": "The Mission Briefing"
+            },
+            {
+              "_key": "phase-3",
+              "description": "Throughout the evening, guests work together to decode the mission. The experience is intentionally designed to encourage conversation and interaction between guests.\n\nAs clues are discussed and theories emerge, the room becomes part of the investigation.\n\nBy the end of the evening, the group successfully completes the mission and reveals the final intelligence transmission.",
+              "icon": "users",
+              "images": [
+                {
+                  "_key": "d6c16d2f93c3",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-ba5f6dfd964460ab3b21b84df27888022854c06e-799x760-png",
+                    "_type": "reference"
+                  }
+                },
+                {
+                  "_key": "651fd4f1a0cd",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-5e582f3fcc1fe6fdd946cf565d7585b6f6546fef-740x698-png",
+                    "_type": "reference"
+                  }
+                }
+              ],
+              "order": 3,
+              "title": "Collaborative Code Breaking"
+            }
+          ]
         }
       ]
     }
@@ -752,7 +876,7 @@ FILE: sanity-mirror\documents\aboutPage.json
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "aboutPage",
-    "_rev": "pTII3WhckjUqxhF3RP1Wj5",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "aboutPage",
@@ -760,7 +884,7 @@ FILE: sanity-mirror\documents\aboutPage.json
       }
     },
     "_type": "aboutPage",
-    "_updatedAt": "2025-12-29T08:41:41Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "hero": {
       "subtitle": "From the Big Apple to the heart of Milan — our team brings international talent to your celebration",
       "title": "Your Film Crew"
@@ -793,9 +917,9 @@ FILE: sanity-mirror\documents\brandSettings.json
   {
     "_createdAt": "2026-02-17T02:27:44Z",
     "_id": "brandSettings",
-    "_rev": "A2LnutMwXMZdsIPiEJCmW9",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_type": "brandSettings",
-    "_updatedAt": "2026-02-18T07:03:01Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "colors": {
       "accent300": "#9ACDE6",
       "accent500": "#6AB8DC",
@@ -913,7 +1037,7 @@ FILE: sanity-mirror\documents\castPage.json
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "castPage",
-    "_rev": "kD2Bf5mqCHk08kw0ZdHxu9",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "castPage",
@@ -921,7 +1045,7 @@ FILE: sanity-mirror\documents\castPage.json
       }
     },
     "_type": "castPage",
-    "_updatedAt": "2026-02-23T09:44:58Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "content": {
       "paragraphs": [
         "Choose your theme. Select your venue. Now it’s time to experience the immersive fun!",
@@ -957,8 +1081,7 @@ FILE: sanity-mirror\documents\castPage.json
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-437dd49a02ecac575dc481e3535b2dfb4b275442-951x913-png",
-            "_type": "reference"
+            "_ref": "image-437dd49a02ecac575dc481e3535b2dfb4b275442-951x913-png"
           }
         }
       },
@@ -967,8 +1090,7 @@ FILE: sanity-mirror\documents\castPage.json
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080-png",
-            "_type": "reference"
+            "_ref": "image-06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080-png"
           }
         }
       },
@@ -977,8 +1099,7 @@ FILE: sanity-mirror\documents\castPage.json
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg",
-            "_type": "reference"
+            "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg"
           }
         }
       },
@@ -987,8 +1108,7 @@ FILE: sanity-mirror\documents\castPage.json
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg",
-            "_type": "reference"
+            "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg"
           }
         }
       },
@@ -997,8 +1117,7 @@ FILE: sanity-mirror\documents\castPage.json
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png",
-            "_type": "reference"
+            "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png"
           }
         }
       },
@@ -1007,8 +1126,7 @@ FILE: sanity-mirror\documents\castPage.json
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080-png",
-            "_type": "reference"
+            "_ref": "image-4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080-png"
           }
         }
       },
@@ -1017,8 +1135,7 @@ FILE: sanity-mirror\documents\castPage.json
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
-            "_type": "reference"
+            "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg"
           }
         }
       }
@@ -1036,7 +1153,7 @@ FILE: sanity-mirror\documents\contactPage.json
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "contactPage",
-    "_rev": "2yyToag4MGCbwD1sbLaJP5",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "contactPage",
@@ -1044,12 +1161,11 @@ FILE: sanity-mirror\documents\contactPage.json
       }
     },
     "_type": "contactPage",
-    "_updatedAt": "2026-02-09T11:52:57Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "cameraImage": {
       "_type": "image",
       "asset": {
-        "_ref": "image-708cec19ac0d52a98033e50246ca0cb168209f2f-414x600-jpg",
-        "_type": "reference"
+        "_ref": "image-708cec19ac0d52a98033e50246ca0cb168209f2f-414x600-jpg"
       }
     },
     "form": {
@@ -1100,7 +1216,7 @@ FILE: sanity-mirror\documents\crewPage.json
   {
     "_createdAt": "2026-01-01T08:32:51Z",
     "_id": "3d2JLpUTPM5qppQf883Uxu",
-    "_rev": "qeHkBtaCAAYzf5RK473Y26",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "3d2JLpUTPM5qppQf883Uxu",
@@ -1108,7 +1224,7 @@ FILE: sanity-mirror\documents\crewPage.json
       }
     },
     "_type": "crewPage",
-    "_updatedAt": "2026-02-23T06:29:42Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "crewMembers": [
       {
         "_key": "dee-lasprogata",
@@ -1122,8 +1238,7 @@ FILE: sanity-mirror\documents\crewPage.json
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-e60f4c4a969ae568d0975a407795225dbe163a2a-470x558-png",
-            "_type": "reference"
+            "_ref": "image-e60f4c4a969ae568d0975a407795225dbe163a2a-470x558-png"
           },
           "crop": {
             "_type": "sanity.imageCrop",
@@ -1157,8 +1272,7 @@ FILE: sanity-mirror\documents\crewPage.json
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-427d578bd9cde9bcce27512c36b3c3eadc4d7ccb-3456x5184-jpg",
-            "_type": "reference"
+            "_ref": "image-427d578bd9cde9bcce27512c36b3c3eadc4d7ccb-3456x5184-jpg"
           },
           "crop": {
             "_type": "sanity.imageCrop",
@@ -1205,56 +1319,49 @@ FILE: sanity-mirror\documents\crewPage.json
         "_key": "fdedca647eb8",
         "_type": "image",
         "asset": {
-          "_ref": "image-db22b67cdc4c6ad9f1d230c9710b05345e46bb3f-1170x382-jpg",
-          "_type": "reference"
+          "_ref": "image-db22b67cdc4c6ad9f1d230c9710b05345e46bb3f-1170x382-jpg"
         }
       },
       {
         "_key": "f4000e6dde3e",
         "_type": "image",
         "asset": {
-          "_ref": "image-1abdd77c34d19a7d239ef968514a8ca79dbadb74-656x360-jpg",
-          "_type": "reference"
+          "_ref": "image-1abdd77c34d19a7d239ef968514a8ca79dbadb74-656x360-jpg"
         }
       },
       {
         "_key": "f4cac9f0297f",
         "_type": "image",
         "asset": {
-          "_ref": "image-458f2cfdae32d8daf86566e6e95bd6c2ad526070-1170x639-jpg",
-          "_type": "reference"
+          "_ref": "image-458f2cfdae32d8daf86566e6e95bd6c2ad526070-1170x639-jpg"
         }
       },
       {
         "_key": "82d452184cb7",
         "_type": "image",
         "asset": {
-          "_ref": "image-183c5b6e64301731b664a70ce2b27210574f738c-1019x538-jpg",
-          "_type": "reference"
+          "_ref": "image-183c5b6e64301731b664a70ce2b27210574f738c-1019x538-jpg"
         }
       },
       {
         "_key": "86678aa42272",
         "_type": "image",
         "asset": {
-          "_ref": "image-669127a0bcb96a83d790685dd84a4b7827760964-409x160-jpg",
-          "_type": "reference"
+          "_ref": "image-669127a0bcb96a83d790685dd84a4b7827760964-409x160-jpg"
         }
       },
       {
         "_key": "d6b90db1dca8",
         "_type": "image",
         "asset": {
-          "_ref": "image-30c40301d0ec7725d209275840ff506e7afe35ec-1169x473-jpg",
-          "_type": "reference"
+          "_ref": "image-30c40301d0ec7725d209275840ff506e7afe35ec-1169x473-jpg"
         }
       },
       {
         "_key": "357d52a33882",
         "_type": "image",
         "asset": {
-          "_ref": "image-9d6ee43623b86c12d4370d83c6b02d2afe0ca089-456x353-jpg",
-          "_type": "reference"
+          "_ref": "image-9d6ee43623b86c12d4370d83c6b02d2afe0ca089-456x353-jpg"
         }
       }
     ],
@@ -1272,15 +1379,15 @@ FILE: sanity-mirror\documents\event.json
   {
     "_createdAt": "2026-03-15T20:13:19Z",
     "_id": "event-corso-eleganza-2026",
-    "_rev": "MjdSXFelIF5IivE650mFMI",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "event-corso-eleganza-2026",
-        "rev": "MjdSXFelIF5IivE650lyTQ"
+        "rev": "OJl4e2TkVOqlZxtjkQ65KF"
       }
     },
     "_type": "event",
-    "_updatedAt": "2026-03-16T16:23:54Z",
+    "_updatedAt": "2026-03-16T21:11:03Z",
     "badge": "Season Premiere",
     "ctaLabel": "RSVP / DETAILS",
     "ctaType": "scroll_contact",
@@ -1291,8 +1398,7 @@ FILE: sanity-mirror\documents\event.json
     "image": {
       "_type": "image",
       "asset": {
-        "_ref": "image-f7fb40e8509c177fda1bc073449b4949b7fe71c5-964x644-png",
-        "_type": "reference"
+        "_ref": "image-f7fb40e8509c177fda1bc073449b4949b7fe71c5-964x644-png"
       },
       "crop": {
         "_type": "sanity.imageCrop",
@@ -1310,6 +1416,14 @@ FILE: sanity-mirror\documents\event.json
       }
     },
     "location": "Terzo Crotto, Cernobbio",
+    "media": {
+      "video": {
+        "_type": "file",
+        "asset": {
+          "_ref": "file-b44ce50d57b6e417e9f2297db03642ca4dc3f953-mp4"
+        }
+      }
+    },
     "pinned": true,
     "slug": {
       "_type": "slug",
@@ -1321,7 +1435,7 @@ FILE: sanity-mirror\documents\event.json
   {
     "_createdAt": "2026-03-15T20:13:21Z",
     "_id": "event-weekly-spies-of-style",
-    "_rev": "MjdSXFelIF5IivE650fUke",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "event-weekly-spies-of-style",
@@ -1329,7 +1443,7 @@ FILE: sanity-mirror\documents\event.json
       }
     },
     "_type": "event",
-    "_updatedAt": "2026-03-16T15:26:24Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "badge": "Weekly Residency",
     "ctaLabel": "VIEW SCHEDULE",
     "ctaType": "scroll_contact",
@@ -1339,8 +1453,7 @@ FILE: sanity-mirror\documents\event.json
     "image": {
       "_type": "image",
       "asset": {
-        "_ref": "image-e6b2a0824991d31387e6ddad31a821e838d667cf-1539x782-png",
-        "_type": "reference"
+        "_ref": "image-e6b2a0824991d31387e6ddad31a821e838d667cf-1539x782-png"
       }
     },
     "location": "Locanda Milano 1873, Brunate",
@@ -1362,7 +1475,7 @@ FILE: sanity-mirror\documents\faqPage.json
   {
     "_createdAt": "2026-01-06T10:10:10Z",
     "_id": "faqPage",
-    "_rev": "2yyToag4MGCbwD1sbMlVXZ",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "faqPage",
@@ -1370,7 +1483,7 @@ FILE: sanity-mirror\documents\faqPage.json
       }
     },
     "_type": "faqPage",
-    "_updatedAt": "2026-02-09T13:35:08Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "contactCta": {
       "buttonLink": "/contact",
       "buttonText": "Contact Us",
@@ -1432,7 +1545,7 @@ FILE: sanity-mirror\documents\footer.json
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "footer",
-    "_rev": "4DZXQ06MV0KUYSdqrNNRU6",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "footer",
@@ -1440,7 +1553,7 @@ FILE: sanity-mirror\documents\footer.json
       }
     },
     "_type": "footer",
-    "_updatedAt": "2026-03-16T15:14:05Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "copyright": "© 2025 Spies of Style",
     "email": "contact@spiesofstyle.com",
     "footerTagline": "Your Spy Adventure Awaits",
@@ -1457,7 +1570,7 @@ FILE: sanity-mirror\documents\galleryPage.json
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "galleryPage",
-    "_rev": "A2LnutMwXMZdsIPiElMlbR",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "galleryPage",
@@ -1465,7 +1578,7 @@ FILE: sanity-mirror\documents\galleryPage.json
       }
     },
     "_type": "galleryPage",
-    "_updatedAt": "2026-02-23T09:54:30Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "hero": {
       "heading": "Scenes from the Experience",
       "subHeading": "Snapshots — clandestine exchanges, dinner finales, Lake Como scenery"
@@ -1481,64 +1594,56 @@ FILE: sanity-mirror\documents\galleryPage.json
         "_key": "8a8a0b7b2327",
         "_type": "image",
         "asset": {
-          "_ref": "image-89307f3fef09feb106360e6380de44b5e9bb536c-1582x821-png",
-          "_type": "reference"
+          "_ref": "image-89307f3fef09feb106360e6380de44b5e9bb536c-1582x821-png"
         }
       },
       {
         "_key": "a2602c8ee182",
         "_type": "image",
         "asset": {
-          "_ref": "image-388b2d0430dbd54b63706e771f3a00cf16086aae-3024x2179-jpg",
-          "_type": "reference"
+          "_ref": "image-388b2d0430dbd54b63706e771f3a00cf16086aae-3024x2179-jpg"
         }
       },
       {
         "_key": "48568cd88a86",
         "_type": "image",
         "asset": {
-          "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg",
-          "_type": "reference"
+          "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg"
         }
       },
       {
         "_key": "60840378ce63",
         "_type": "image",
         "asset": {
-          "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png",
-          "_type": "reference"
+          "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png"
         }
       },
       {
         "_key": "8fae42bc4d51",
         "_type": "image",
         "asset": {
-          "_ref": "image-91472121a6a46f2e4be72ab8cebb4a232978c1d5-1775x892-png",
-          "_type": "reference"
+          "_ref": "image-91472121a6a46f2e4be72ab8cebb4a232978c1d5-1775x892-png"
         }
       },
       {
         "_key": "45215e10ce46",
         "_type": "image",
         "asset": {
-          "_ref": "image-ccd733b1ba903f27752dccddac1eaba559934d87-1788x673-png",
-          "_type": "reference"
+          "_ref": "image-ccd733b1ba903f27752dccddac1eaba559934d87-1788x673-png"
         }
       },
       {
         "_key": "09155facfe8d",
         "_type": "image",
         "asset": {
-          "_ref": "image-9c7cbf0d082b55c42bddd5af0ff9a80563785bc0-1040x576-png",
-          "_type": "reference"
+          "_ref": "image-9c7cbf0d082b55c42bddd5af0ff9a80563785bc0-1040x576-png"
         }
       },
       {
         "_key": "32beb12ed299",
         "_type": "image",
         "asset": {
-          "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
-          "_type": "reference"
+          "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg"
         }
       }
     ],
@@ -1555,7 +1660,7 @@ FILE: sanity-mirror\documents\homepage.json
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "homepage",
-    "_rev": "A2LnutMwXMZdsIPiElAzGr",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "homepage",
@@ -1563,7 +1668,7 @@ FILE: sanity-mirror\documents\homepage.json
       }
     },
     "_type": "homepage",
-    "_updatedAt": "2026-02-23T09:15:43Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "heroSection": {
       "ctaLink": "/contact",
       "eventShowcase": {
@@ -1580,8 +1685,7 @@ FILE: sanity-mirror\documents\homepage.json
       "mobileVideoFile": {
         "_type": "file",
         "asset": {
-          "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4",
-          "_type": "reference"
+          "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4"
         }
       },
       "playIndicatorText": "hear the story",
@@ -1591,8 +1695,7 @@ FILE: sanity-mirror\documents\homepage.json
       "videoFile": {
         "_type": "file",
         "asset": {
-          "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4",
-          "_type": "reference"
+          "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4"
         }
       }
     },
@@ -1609,15 +1712,15 @@ FILE: sanity-mirror\documents\landingPage.json
   {
     "_createdAt": "2026-03-13T13:18:59Z",
     "_id": "landingPage",
-    "_rev": "OJl4e2TkVOqlZxtjkNpNSF",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "landingPage",
-        "rev": "MjdSXFelIF5IivE650jWbW"
+        "rev": "4DZXQ06MV0KUYSdqrP2ebw"
       }
     },
     "_type": "landingPage",
-    "_updatedAt": "2026-03-16T15:59:50Z",
+    "_updatedAt": "2026-03-16T21:11:03Z",
     "assignment": {
       "cards": [
         {
@@ -1634,8 +1737,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-ef7310f3d34e709483448353cd3497710158fe81-648x439-jpg",
-              "_type": "reference"
+              "_ref": "image-ef7310f3d34e709483448353cd3497710158fe81-648x439-jpg"
             }
           },
           "title": "Dinner Mission"
@@ -1654,8 +1756,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080-png",
-              "_type": "reference"
+              "_ref": "image-a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080-png"
             }
           },
           "title": "Cocktail Mission"
@@ -1664,6 +1765,9 @@ FILE: sanity-mirror\documents\landingPage.json
       "sectionTitle": "Choose Your Assignment"
     },
     "experience": {
+      "ctaLabel": "Mission Experience",
+      "ctaLink": "/mission-experience",
+      "eyebrowLabel": "The Experience",
       "sectionSubtitle": "Unlock the codes, solve the mission, and reveal the secret together",
       "sectionTitle": "Step Into A True Spy Story ",
       "showcaseImages": [
@@ -1673,8 +1777,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-437dd49a02ecac575dc481e3535b2dfb4b275442-951x913-png",
-              "_type": "reference"
+              "_ref": "image-437dd49a02ecac575dc481e3535b2dfb4b275442-951x913-png"
             }
           },
           "role": null,
@@ -1686,8 +1789,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080-png",
-              "_type": "reference"
+              "_ref": "image-06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080-png"
             }
           },
           "role": null,
@@ -1699,8 +1801,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg",
-              "_type": "reference"
+              "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg"
             }
           },
           "role": null,
@@ -1712,8 +1813,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg",
-              "_type": "reference"
+              "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg"
             }
           },
           "role": null,
@@ -1725,8 +1825,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png",
-              "_type": "reference"
+              "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png"
             }
           },
           "role": null,
@@ -1738,8 +1837,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080-png",
-              "_type": "reference"
+              "_ref": "image-4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080-png"
             }
           },
           "role": null,
@@ -1751,8 +1849,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
-              "_type": "reference"
+              "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg"
             }
           },
           "role": null,
@@ -1763,8 +1860,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-ff848c34f0e4d18b76ce18d7653bc133cf7ee52e-736x516-jpg",
-              "_type": "reference"
+              "_ref": "image-ff848c34f0e4d18b76ce18d7653bc133cf7ee52e-736x516-jpg"
             }
           }
         },
@@ -1773,8 +1869,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-6d1ef85025398394ca2dd5d30064762f43fe9b5a-915x737-png",
-              "_type": "reference"
+              "_ref": "image-6d1ef85025398394ca2dd5d30064762f43fe9b5a-915x737-png"
             }
           }
         },
@@ -1783,8 +1878,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-8019461d97fc4bc1607db2396ef1822f25266ef6-695x1140-jpg",
-              "_type": "reference"
+              "_ref": "image-8019461d97fc4bc1607db2396ef1822f25266ef6-695x1140-jpg"
             }
           }
         },
@@ -1793,8 +1887,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-fd866ca52e4b811cb176080a9b9468a723e607c2-550x412-jpg",
-              "_type": "reference"
+              "_ref": "image-fd866ca52e4b811cb176080a9b9468a723e607c2-550x412-jpg"
             }
           }
         },
@@ -1803,8 +1896,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-cb13e56d31943c3cad8b71d76748325afe0459ab-694x669-png",
-              "_type": "reference"
+              "_ref": "image-cb13e56d31943c3cad8b71d76748325afe0459ab-694x669-png"
             }
           }
         },
@@ -1813,8 +1905,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-ebf26646916f92eab7f54cda065601216b050ff5-1375x768-jpg",
-              "_type": "reference"
+              "_ref": "image-ebf26646916f92eab7f54cda065601216b050ff5-1375x768-jpg"
             }
           }
         },
@@ -1823,8 +1914,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-5ec94db9b43dc9f38411b9afc7baceefce5f9063-366x250-png",
-              "_type": "reference"
+              "_ref": "image-5ec94db9b43dc9f38411b9afc7baceefce5f9063-366x250-png"
             }
           }
         },
@@ -1833,8 +1923,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-5afc725ce12a60443a425e51f1647174b57cd9d2-750x1702-jpg",
-              "_type": "reference"
+              "_ref": "image-5afc725ce12a60443a425e51f1647174b57cd9d2-750x1702-jpg"
             }
           }
         },
@@ -1843,8 +1932,7 @@ FILE: sanity-mirror\documents\landingPage.json
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-7b6ce535dc43c19c9716fd77679558f88a508057-795x502-jpg",
-              "_type": "reference"
+              "_ref": "image-7b6ce535dc43c19c9716fd77679558f88a508057-795x502-jpg"
             }
           }
         }
@@ -1855,18 +1943,16 @@ FILE: sanity-mirror\documents\landingPage.json
       "mobileVideoFile": {
         "_type": "file",
         "asset": {
-          "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4",
-          "_type": "reference"
+          "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4"
         }
       },
       "playIndicatorText": "hear the story",
       "preHeading": "Step Into the Shadows of History",
-      "subHeading": "Inspired by the daring missions of Cecil Mallaby, one of WWII’s real-life secret agents, your evening will be a thrilling blend of espionage, gourmet cuisine, and immersive storytelling",
+      "subHeading": "The only immersive spy experience on Lake Como based on a true World War II story, inspired by the daring missions of British intelligence officer Cecil Mallaby, believed to have influenced the creation of James Bond",
       "videoFile": {
         "_type": "file",
         "asset": {
-          "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4",
-          "_type": "reference"
+          "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4"
         }
       }
     },
@@ -1938,8 +2024,7 @@ FILE: sanity-mirror\documents\landingPage.json
       "image": {
         "_type": "image",
         "asset": {
-          "_ref": "image-e35fa47785930f581efceed9baffd9ca853abe1a-884x519-png",
-          "_type": "reference"
+          "_ref": "image-e35fa47785930f581efceed9baffd9ca853abe1a-884x519-png"
         }
       },
       "label": "LAKE COMO EXCLUSIVE",
@@ -1974,8 +2059,7 @@ FILE: sanity-mirror\documents\landingPage.json
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png",
-            "_type": "reference"
+            "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png"
           }
         },
         "paragraph1": "During World War II, intelligence operative Cecile Mallory arrived secretly in Cernobbio on Lake Como carrying a critical Allied mission. Her audacious operations, coded messages, and elegant style remain part of the region's wartime history.",
@@ -1994,43 +2078,103 @@ FILE: sanity-mirror\documents\missionExperiencePage.json
 
 [
   {
+    "_createdAt": "2026-03-16T19:09:51Z",
     "_id": "missionExperiencePage",
-    "_type": "missionExperiencePage",
-    "title": "Mission Experience Page",
-    "hero": {
-      "title": "The Spies of Style Mission Experience",
-      "subtitle": "An immersive social experience where guests become part of a sophisticated espionage mission set on the shores of Lake Como."
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
+    "_system": {
+      "base": {
+        "id": "missionExperiencePage",
+        "rev": "MjdSXFelIF5IivE6510Gnc"
+      }
     },
-    "setup": {
-      "title": "The Setup",
-      "description": "Through a series of clues, maps, and coded transmissions, guests work together throughout the evening to uncover the identity and mission of a secret agent connected to real wartime intrigue on Lake Como.\n\nThe experience unfolds organically during the event, encouraging interaction, collaboration, and discovery."
+    "_type": "missionExperiencePage",
+    "_updatedAt": "2026-03-16T20:20:58Z",
+    "hero": {
+      "backgroundImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-79132de350e04bbbc6b7ef367748d4040a5393d3-1375x768-jpg"
+        }
+      },
+      "subtitle": "An immersive social experience where guests become part of a sophisticated espionage mission set on the shores of Lake Como.",
+      "title": "The Spies of Style Mission Experience"
     },
     "phases": [
       {
         "_key": "phase-1",
-        "title": "Unlock the Spy Identity",
-        "description": "At the beginning of the event, guests receive their first intelligence briefing. Using a custom illustrated map of Lake Como, participants follow embedded clues to uncover the secret codename of the evening's central spy.\n\nClues are hidden across key locations around the lake, encouraging guests to examine the map closely while working together to solve the puzzle.\n\nAccess the Mission Through:\n\u2022 Interactive mobile app experience\n\u2022 Printed intelligence dossier and map\n\u2022 Physical clues embedded in the event program\n\nOnce the clues are solved, guests reveal the agent's secret codename and move to the next phase of the mission.",
+        "description": "At the beginning of the event, guests receive their first intelligence briefing. Using a custom illustrated map of Lake Como, participants follow embedded clues to uncover the secret codename of the evening's central spy.\n\nClues are hidden across key locations around the lake, encouraging guests to examine the map closely while working together to solve the puzzle.\n\nAccess the Mission Through:\n• Interactive mobile app experience\n• Printed intelligence dossier and map\n• Physical clues embedded in the event program\n\nOnce the clues are solved, guests reveal the agent's secret codename and move to the next phase of the mission.",
         "icon": "lock",
-        "images": [],
-        "order": 1
+        "images": [
+          {
+            "_key": "22ed3be76699",
+            "_type": "image",
+            "asset": {
+              "_ref": "image-ebf26646916f92eab7f54cda065601216b050ff5-1375x768-jpg"
+            }
+          },
+          {
+            "_key": "1d1297251e07",
+            "_type": "image",
+            "asset": {
+              "_ref": "image-5500f0cf417e77a3d6f2869debb8c431169c4d6a-746x297-png"
+            }
+          }
+        ],
+        "order": 1,
+        "title": "Unlock the Spy Identity"
       },
       {
         "_key": "phase-2",
-        "title": "The Mission Briefing",
         "description": "Once the spy identity is revealed, guests unlock the classified mission statement. This transmission reveals the purpose of the operation and introduces the story behind the espionage activity that once took place on Lake Como during the war.\n\nParticipants receive a coded message that must be deciphered collectively during the dinner or cocktail reception.",
         "icon": "file-text",
-        "images": [],
-        "order": 2
+        "images": [
+          {
+            "_key": "746a8309c766",
+            "_type": "image",
+            "asset": {
+              "_ref": "image-7bce0bd30fcf9024e6d5ebf56034daac4156893b-758x317-png"
+            }
+          },
+          {
+            "_key": "28ec4f8f5a18",
+            "_type": "image",
+            "asset": {
+              "_ref": "image-79132de350e04bbbc6b7ef367748d4040a5393d3-1375x768-jpg"
+            }
+          }
+        ],
+        "order": 2,
+        "title": "The Mission Briefing"
       },
       {
         "_key": "phase-3",
-        "title": "Collaborative Code Breaking",
         "description": "Throughout the evening, guests work together to decode the mission. The experience is intentionally designed to encourage conversation and interaction between guests.\n\nAs clues are discussed and theories emerge, the room becomes part of the investigation.\n\nBy the end of the evening, the group successfully completes the mission and reveals the final intelligence transmission.",
         "icon": "users",
-        "images": [],
-        "order": 3
+        "images": [
+          {
+            "_key": "d6c16d2f93c3",
+            "_type": "image",
+            "asset": {
+              "_ref": "image-ba5f6dfd964460ab3b21b84df27888022854c06e-799x760-png"
+            }
+          },
+          {
+            "_key": "651fd4f1a0cd",
+            "_type": "image",
+            "asset": {
+              "_ref": "image-5e582f3fcc1fe6fdd946cf565d7585b6f6546fef-740x698-png"
+            }
+          }
+        ],
+        "order": 3,
+        "title": "Collaborative Code Breaking"
       }
-    ]
+    ],
+    "setup": {
+      "description": "Through a series of clues, maps, and coded transmissions, guests work together throughout the evening to uncover the identity and mission of a secret agent connected to real wartime intrigue on Lake Como.\n\nThe experience unfolds organically during the event, encouraging interaction, collaboration, and discovery.",
+      "title": "The Setup"
+    },
+    "title": "Mission Experience Page"
   }
 ]
 
@@ -2043,7 +2187,7 @@ FILE: sanity-mirror\documents\moviePage.json
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "moviePage",
-    "_rev": "UEpPnqaT84vVgQ3Oe7rAJL",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "moviePage",
@@ -2051,7 +2195,7 @@ FILE: sanity-mirror\documents\moviePage.json
       }
     },
     "_type": "moviePage",
-    "_updatedAt": "2026-02-09T13:25:37Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "deliverables": [
       {
         "_key": "deliverable1",
@@ -2099,8 +2243,7 @@ FILE: sanity-mirror\documents\moviePage.json
       "image": {
         "_type": "image",
         "asset": {
-          "_ref": "image-321c90df5c1ee24afc8168a27d44c0893d84a55f-500x500-png",
-          "_type": "reference"
+          "_ref": "image-321c90df5c1ee24afc8168a27d44c0893d84a55f-500x500-png"
         }
       }
     },
@@ -2118,7 +2261,7 @@ FILE: sanity-mirror\documents\navbar.json
   {
     "_createdAt": "2025-12-27T05:29:58Z",
     "_id": "navbar",
-    "_rev": "MjdSXFelIF5IivE650eSaO",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "navbar",
@@ -2126,7 +2269,7 @@ FILE: sanity-mirror\documents\navbar.json
       }
     },
     "_type": "navbar",
-    "_updatedAt": "2026-03-16T15:19:24Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "ctaLink": "/contact",
     "ctaText": "Book Now",
     "links": [
@@ -2180,7 +2323,7 @@ FILE: sanity-mirror\documents\processPage.json
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "processPage",
-    "_rev": "4KpL12pTcFQhaPHLTZwfrh",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "processPage",
@@ -2188,7 +2331,7 @@ FILE: sanity-mirror\documents\processPage.json
       }
     },
     "_type": "processPage",
-    "_updatedAt": "2026-02-04T12:40:25Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "hero": {
       "description": "Our 2026 themed experiences invite guests into a one-of-a-kind atmosphere on Lake Como, featuring photo-ready backdrops and a curated selection of props for spontaneous, playful photo moments. Guests are welcome to come dressed to theme or simply grab an accessory and join in. \n\nSignature cocktails, menus, and music guide the evening—often transforming dinner into dancing.\n\nWith candid Polaroid moments captured throughout the night, and plenty of opportunities to share your own, our weekly aperitivos and pre-fixed dinners are designed to be social, immersive, and unforgettable.",
       "heading": "Seasonal Weekly Events",
@@ -2292,7 +2435,7 @@ FILE: sanity-mirror\documents\themesPage.json
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "themesPage",
-    "_rev": "OJl4e2TkVOqlZxtjjqr7qF",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "themesPage",
@@ -2300,7 +2443,7 @@ FILE: sanity-mirror\documents\themesPage.json
       }
     },
     "_type": "themesPage",
-    "_updatedAt": "2026-03-11T22:05:51Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "assignmentsSection": {
       "cards": [
         {
@@ -2371,56 +2514,49 @@ FILE: sanity-mirror\documents\themesPage.json
         "_type": "image",
         "alt": "gallery",
         "asset": {
-          "_ref": "image-43fdff9abb7826d5389b751bf0a0a18949837c2f-1651x868-png",
-          "_type": "reference"
+          "_ref": "image-43fdff9abb7826d5389b751bf0a0a18949837c2f-1651x868-png"
         }
       },
       {
         "_key": "273ac1b45a18",
         "_type": "image",
         "asset": {
-          "_ref": "image-ef7310f3d34e709483448353cd3497710158fe81-648x439-jpg",
-          "_type": "reference"
+          "_ref": "image-ef7310f3d34e709483448353cd3497710158fe81-648x439-jpg"
         }
       },
       {
         "_key": "97f02a451a52",
         "_type": "image",
         "asset": {
-          "_ref": "image-13ddf4eaa8b4fef3d430916c7f28916f5cf67949-795x502-jpg",
-          "_type": "reference"
+          "_ref": "image-13ddf4eaa8b4fef3d430916c7f28916f5cf67949-795x502-jpg"
         }
       },
       {
         "_key": "daa1101db1f0",
         "_type": "image",
         "asset": {
-          "_ref": "image-cf01fbb4bda2b71a7f4b99c7c1ffa28fc9aa1e42-736x516-jpg",
-          "_type": "reference"
+          "_ref": "image-cf01fbb4bda2b71a7f4b99c7c1ffa28fc9aa1e42-736x516-jpg"
         }
       },
       {
         "_key": "07566f89e288",
         "_type": "image",
         "asset": {
-          "_ref": "image-a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080-png",
-          "_type": "reference"
+          "_ref": "image-a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080-png"
         }
       },
       {
         "_key": "68e30f36fd31",
         "_type": "image",
         "asset": {
-          "_ref": "image-0ac9afdecb1586c574770b42545414b5ffea541f-1920x1080-png",
-          "_type": "reference"
+          "_ref": "image-0ac9afdecb1586c574770b42545414b5ffea541f-1920x1080-png"
         }
       },
       {
         "_key": "3adedf59ddf8",
         "_type": "image",
         "asset": {
-          "_ref": "image-63492ab2a56fc483754a0cb42e982ac93a54684a-951x913-png",
-          "_type": "reference"
+          "_ref": "image-63492ab2a56fc483754a0cb42e982ac93a54684a-951x913-png"
         }
       }
     ],
@@ -2436,8 +2572,7 @@ FILE: sanity-mirror\documents\themesPage.json
       "image": {
         "_type": "image",
         "asset": {
-          "_ref": "image-90bd1a2aac457dc836d3ae0f2ffc6dd150505698-884x519-png",
-          "_type": "reference"
+          "_ref": "image-90bd1a2aac457dc836d3ae0f2ffc6dd150505698-884x519-png"
         }
       },
       "title": "Private Villa Operations"
@@ -2453,8 +2588,7 @@ FILE: sanity-mirror\documents\themesPage.json
       "image": {
         "_type": "image",
         "asset": {
-          "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png",
-          "_type": "reference"
+          "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png"
         }
       },
       "paragraph1": "During World War II, intelligence operative Cecile Mallory arrived secretly in Cernobbio on Lake Como carrying a critical Allied mission. Her audacious operations, coded messages, and elegant style remain part of the region's wartime history.",
@@ -2483,7 +2617,7 @@ FILE: sanity-mirror\documents\venuePage.json
   {
     "_createdAt": "2026-01-01T09:02:51Z",
     "_id": "3d2JLpUTPM5qppQf88BJIs",
-    "_rev": "UEpPnqaT84vVgQ3Oe813F7",
+    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
     "_system": {
       "base": {
         "id": "3d2JLpUTPM5qppQf88BJIs",
@@ -2491,7 +2625,7 @@ FILE: sanity-mirror\documents\venuePage.json
       }
     },
     "_type": "venuePage",
-    "_updatedAt": "2026-02-09T13:45:43Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "cta": {
       "buttonText": "Join Our Events",
       "description": "Create unforgettable moments on Lake Como ",
@@ -2509,48 +2643,42 @@ FILE: sanity-mirror\documents\venuePage.json
         "_key": "aa448d5f00fc",
         "_type": "image",
         "asset": {
-          "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
-          "_type": "reference"
+          "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg"
         }
       },
       {
         "_key": "9e462a1053bc",
         "_type": "image",
         "asset": {
-          "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg",
-          "_type": "reference"
+          "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg"
         }
       },
       {
         "_key": "fcb9ddbbb171",
         "_type": "image",
         "asset": {
-          "_ref": "image-fd866ca52e4b811cb176080a9b9468a723e607c2-550x412-jpg",
-          "_type": "reference"
+          "_ref": "image-fd866ca52e4b811cb176080a9b9468a723e607c2-550x412-jpg"
         }
       },
       {
         "_key": "52016409cd4a",
         "_type": "image",
         "asset": {
-          "_ref": "image-fe3de70117969f48e5c4357717bf3229402161a3-1284x961-webp",
-          "_type": "reference"
+          "_ref": "image-fe3de70117969f48e5c4357717bf3229402161a3-1284x961-webp"
         }
       },
       {
         "_key": "968d2da3a474",
         "_type": "image",
         "asset": {
-          "_ref": "image-e75d690f4207cc816d6f73b1d03eb20453755760-1920x1280-webp",
-          "_type": "reference"
+          "_ref": "image-e75d690f4207cc816d6f73b1d03eb20453755760-1920x1280-webp"
         }
       },
       {
         "_key": "66d438d46c23",
         "_type": "image",
         "asset": {
-          "_ref": "image-89ca9a0352a0628203ef4387bb8245a7d17e8d19-1030x682-png",
-          "_type": "reference"
+          "_ref": "image-89ca9a0352a0628203ef4387bb8245a7d17e8d19-1030x682-png"
         }
       }
     ],
@@ -2574,12 +2702,12 @@ FILE: sanity-mirror\export-meta.json
 ================================================================================
 
 {
-  "exportedAt": "2026-03-16T17:14:51.143Z",
+  "exportedAt": "2026-03-16T21:11:10.784Z",
   "exportedDate": "2026-03-16",
   "projectId": "c20abca7",
   "dataset": "production",
   "apiVersion": "2025-12-27",
-  "totalDocuments": 17,
+  "totalDocuments": 18,
   "types": [
     {
       "type": "aboutPage",
@@ -2635,6 +2763,11 @@ FILE: sanity-mirror\export-meta.json
       "type": "landingPage",
       "count": 1,
       "file": "landingPage.json"
+    },
+    {
+      "type": "missionExperiencePage",
+      "count": 1,
+      "file": "missionExperiencePage.json"
     },
     {
       "type": "moviePage",
@@ -3432,13 +3565,13 @@ FILE: sanity-mirror\seed-report.json
 ================================================================================
 
 {
-  "seededAt": "2026-03-16T19:09:52.014Z",
+  "seededAt": "2026-03-16T21:11:18.232Z",
   "date": "2026-03-16",
   "dryRun": false,
   "typeFilter": null,
   "summary": {
-    "create": 1,
-    "update": 17,
+    "create": 0,
+    "update": 18,
     "skip": 0,
     "failed": 0,
     "total": 18
@@ -3519,7 +3652,7 @@ FILE: sanity-mirror\seed-report.json
     {
       "_id": "missionExperiencePage",
       "_type": "missionExperiencePage",
-      "action": "create",
+      "action": "update",
       "success": true
     },
     {
@@ -6662,39 +6795,75 @@ FILE: src\app\(main)\page.tsx
 ================================================================================
 
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { getLandingPageData } from "@/sanity/lib/getLandingPage";
+import { getFaqPageData } from "@/sanity/lib/getFaqPage";
 import LandingPage from "./sections/LandingPage";
-import PageLoading from "@/components/shared/PageLoading";
+import { generateMetadata as createMetadata } from "@/lib/seo/generateMetadata";
+import {
+  getEventJsonLd,
+  getFaqJsonLd,
+  getTouristExperienceJsonLd,
+} from "@/lib/seo/structuredData";
+import JsonLd from "@/components/shared/JsonLd";
 
-export const metadata: Metadata = {
-  title: "Spies of Style | Cinematic Event Experiences",
-  description:
-    "Step into the true mission of Cecil Richard Mallaby — a WWII spy who inspired James Bond — through an immersive dinner or cocktail experience on Lake Como, Italy.",
-  openGraph: {
-    title: "Spies of Style | Cinematic Event Experiences",
-    description:
-      "Immersive spy-themed dining and cocktail experiences on Lake Como, Italy. Inspired by the real-life story behind James Bond.",
-    type: "website",
-  },
-};
-
-async function LandingContent() {
+export async function generateMetadata(): Promise<Metadata> {
   const data = await getLandingPageData();
-  if (!data) return null;
-  return <LandingPage data={data} />;
+
+  return createMetadata({
+    title:
+      data?.seo?.seoTitle ||
+      "Spies of Style | Immersive Spy Experiences on Lake Como",
+    description:
+      data?.seo?.seoDescription ||
+      "Step into an immersive espionage experience on the shores of Lake Como. Solve clues, uncover secret missions, and enjoy cinematic themed dinners inspired by real WWII spy stories.",
+    canonical: data?.seo?.canonicalUrl || "/",
+    keywords: [
+      "Lake Como experiences",
+      "spy themed dinner",
+      "Lake Como private events",
+      "immersive dinner Italy",
+      "luxury Lake Como events",
+      "interactive dinner experience",
+    ],
+    openGraph: {
+      type: "website",
+      image: data?.seo?.seoImageUrl || undefined,
+    },
+    twitter: {
+      image: data?.seo?.seoImageUrl || undefined,
+    },
+  });
 }
 
 export default async function Home() {
+  const [data, faqData] = await Promise.all([
+    getLandingPageData(),
+    getFaqPageData(),
+  ]);
+
+  if (!data) return null;
+
+  const eventJsonLd = getEventJsonLd(data.events || []);
+  const touristExperienceJsonLd = getTouristExperienceJsonLd();
+  const faqJsonLd = getFaqJsonLd(faqData?.faqs || []);
+
   return (
     <main
       id="main-content"
       className="min-h-screen"
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
-      <Suspense fallback={<PageLoading />}>
-        <LandingContent />
-      </Suspense>
+      {eventJsonLd.map((eventSchema, index) => (
+        <JsonLd key={`event-jsonld-${index}`} data={eventSchema} />
+      ))}
+      {touristExperienceJsonLd.map((experienceSchema, index) => (
+        <JsonLd
+          key={`tourist-experience-jsonld-${index}`}
+          data={experienceSchema}
+        />
+      ))}
+      {faqJsonLd ? <JsonLd data={faqJsonLd} /> : null}
+      <LandingPage data={data} />
     </main>
   );
 }
@@ -6958,7 +7127,7 @@ FILE: src\app\(main)\sections\EventCard.tsx
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MapPin, Clock, RefreshCw } from "lucide-react";
+import { MapPin, Clock, RefreshCw, Volume2, VolumeX } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import type { EventData } from "@/sanity/lib/getLandingPage";
 
@@ -7003,6 +7172,7 @@ export default function EventCard({
   // Lazy loading state
   const [isVisible, setIsVisible] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const mediaRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -7020,13 +7190,10 @@ export default function EventCard({
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
-          } else if (hasVideo && videoRef.current) {
-            // Pause video when offscreen for performance
-            videoRef.current.pause();
           }
         });
       },
-      { rootMargin: "100px" }, // Start loading 100px before entering viewport
+      { rootMargin: "100px" },
     );
 
     observer.observe(mediaRef.current);
@@ -7041,6 +7208,18 @@ export default function EventCard({
       });
     }
   }, [isVisible, videoLoaded]);
+
+  // Sync muted state to video element
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsMuted((prev) => !prev);
+  };
 
   return (
     <motion.div
@@ -7113,7 +7292,7 @@ export default function EventCard({
           >
             <Image
               src={imageUrl}
-              alt={title}
+              alt={title || "Upcoming event on Lake Como"}
               fill
               className="object-contain transition-all duration-500 group-hover:brightness-110"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -7152,6 +7331,22 @@ export default function EventCard({
         {/* Additional overlay that fades on hover for depth */}
         {(hasVideo || hasImage) && (
           <div className="absolute inset-0 bg-black/40 pointer-events-none transition-opacity duration-500 group-hover:opacity-15" />
+        )}
+
+        {/* Mute toggle — only for video cards */}
+        {hasVideo && (
+          <button
+            onClick={toggleMute}
+            className="absolute bottom-2 right-2 z-10 w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm border transition-opacity duration-200 opacity-60 hover:opacity-100"
+            style={{
+              backgroundColor: "rgba(0,0,0,0.55)",
+              borderColor: "rgba(255,255,255,0.25)",
+              color: "rgba(255,255,255,0.9)",
+            }}
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+          >
+            {isMuted ? <VolumeX size={13} /> : <Volume2 size={13} />}
+          </button>
         )}
       </div>
 
@@ -7285,6 +7480,7 @@ FILE: src\app\(main)\sections\ExperienceSection.tsx
 
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useLenis } from "@/components/providers/SmoothScroll";
 import CastCarousel from "@/components/shared/CastCarousel";
 import type { LandingPageData } from "@/sanity/lib/getLandingPage";
 
@@ -7293,8 +7489,16 @@ export default function ExperienceSection({
 }: {
   data: LandingPageData["experience"];
 }) {
-  const { sectionTitle, sectionSubtitle, showcaseImages } = data;
+  const {
+    sectionTitle,
+    sectionSubtitle,
+    eyebrowLabel,
+    ctaLabel,
+    ctaLink,
+    showcaseImages,
+  } = data;
   const router = useRouter();
+  const { lenisRef } = useLenis();
 
   return (
     <section id="experience" style={{ backgroundColor: "var(--bg-secondary)" }}>
@@ -7319,7 +7523,7 @@ export default function ExperienceSection({
               style={{ backgroundColor: "var(--accent)" }}
             />
             <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
-              The Experience
+              {eyebrowLabel ?? "The Experience"}
             </span>
             <span
               className="h-px w-8"
@@ -7367,7 +7571,18 @@ export default function ExperienceSection({
           className="text-center mt-8"
         >
           <button
-            onClick={() => router.push("/mission-experience")}
+            onClick={() => {
+              if (ctaLink?.startsWith("/")) {
+                router.push(ctaLink);
+              } else if (ctaLink?.startsWith("#")) {
+                const element = document.querySelector(ctaLink);
+                if (element && lenisRef.current) {
+                  lenisRef.current.scrollTo(element as HTMLElement, {
+                    offset: -48,
+                  });
+                }
+              }
+            }}
             className="relative group"
           >
             <motion.span
@@ -7382,7 +7597,7 @@ export default function ExperienceSection({
                 color: "var(--accent-text)",
               }}
             >
-              Mission Experience
+              {ctaLabel ?? "Mission Experience"}
             </motion.span>
           </button>
         </motion.div>
@@ -7464,7 +7679,9 @@ export default function HeroSection({
   const [isMobile, setIsMobile] = useState(false);
   const [showPlayIndicator, setShowPlayIndicator] = useState(true);
   const [userInteracted, setUserInteracted] = useState(false);
+  const [heroVisible, setHeroVisible] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const hasPlayedRef = useRef(false);
   const playCheckTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -7480,6 +7697,17 @@ export default function HeroSection({
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroVisible(entry.isIntersecting),
+      { threshold: 0.05 },
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -7580,6 +7808,7 @@ export default function HeroSection({
 
   return (
     <div
+      ref={sectionRef}
       id="hero"
       className="relative w-full min-h-[100dvh] overflow-y-auto overflow-x-hidden bg-black font-sans flex flex-col"
     >
@@ -7592,7 +7821,7 @@ export default function HeroSection({
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster={posterImageUrl || undefined}
           className="absolute inset-0 w-full h-full object-contain z-0 bg-black"
           style={{ objectFit: "contain" }}
@@ -7646,7 +7875,10 @@ export default function HeroSection({
             initial="hidden"
             animate="visible"
             className="font-bold text-white leading-[1.15] tracking-tight mb-2 drop-shadow-2xl px-2"
-            style={{ fontSize: "var(--fs-hero)", fontFamily: "var(--font-limelight)" }}
+            style={{
+              fontSize: "var(--fs-hero)",
+              fontFamily: "var(--font-limelight)",
+            }}
           >
             {renderGoldWord(mainHeading ?? "", "Spy")}
           </motion.h1>
@@ -7717,7 +7949,10 @@ export default function HeroSection({
               initial="hidden"
               animate="visible"
               className="font-bold text-white leading-[1.15] tracking-tight mb-3 drop-shadow-2xl"
-              style={{ fontSize: "var(--fs-hero)", fontFamily: "var(--font-limelight)" }}
+              style={{
+                fontSize: "var(--fs-hero)",
+                fontFamily: "var(--font-limelight)",
+              }}
             >
               {renderGoldWord(mainHeading ?? "", "Spy")}
             </motion.h1>
@@ -7749,7 +7984,8 @@ export default function HeroSection({
         </div>
       </div>
 
-      {/* Mute toggle */}
+      {/* Mute toggle — only visible while hero is in view */}
+      {heroVisible && (
       <div className="fixed bottom-8 md:bottom-10 right-4 md:right-6 z-50">
         <AnimatePresence>
           {showPlayIndicator && !userInteracted && (
@@ -7831,6 +8067,7 @@ export default function HeroSection({
           </motion.div>
         </motion.button>
       </div>
+      )}
     </div>
   );
 }
@@ -9948,6 +10185,10 @@ FILE: src\app\layout.tsx
 import type { Metadata } from "next";
 import { Inter, Limelight, Courier_Prime } from "next/font/google";
 import "./globals.css";
+import { generateMetadata } from "@/lib/seo/generateMetadata";
+import { getOrganizationJsonLd } from "@/lib/seo/structuredData";
+import { getLayoutData } from "@/sanity/lib/getLayoutData";
+import JsonLd from "@/components/shared/JsonLd";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const limelight = Limelight({
@@ -9961,60 +10202,27 @@ const courierPrime = Courier_Prime({
   variable: "--font-courier",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://spiesofstyle.com"),
-  title: "Spies of Style",
-  description:
-    "Luxury Lake Como experiences inspired by cinematic elegance and timeless sophistication.",
-  keywords: [
-    "Lake Como",
-    "cinematic events",
-    "spy experiences",
-    "luxury events",
-    "Italy events",
-    "immersive dining",
-  ],
-  authors: [{ name: "Spies of Style" }],
-  openGraph: {
-    title: "Spies of Style | Cinematic Event Experiences",
-    description:
-      "Luxury Lake Como experiences inspired by cinematic elegance and timeless sophistication.",
-    url: "https://spiesofstyle.com",
-    siteName: "Spies of Style",
-    locale: "en_US",
-    type: "website",
-    images: [
-      {
-        url: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=630&fit=crop",
-        width: 1200,
-        height: 630,
-        alt: "Spies of Style - Cinematic Event Experiences",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Spies of Style | Cinematic Event Experiences",
-    description:
-      "Luxury Lake Como experiences inspired by cinematic elegance and timeless sophistication.",
-    images: [
-      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=630&fit=crop",
-    ],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export const metadata: Metadata = generateMetadata();
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const layoutData = await getLayoutData();
+  const organizationJsonLd = getOrganizationJsonLd({
+    logo: layoutData?.navbar?.logoUrl,
+    email: layoutData?.footer?.email,
+    sameAs: (layoutData?.footer?.socialLinks ?? [])
+      .map((social: { url?: string }) => social.url)
+      .filter(Boolean),
+  });
+
   return (
     <html lang="en">
-      <head />
+      <head>
+        <JsonLd data={organizationJsonLd} />
+      </head>
       <body
         className={`${inter.variable} ${limelight.variable} ${courierPrime.variable} font-sans overflow-x-hidden relative`}
       >
@@ -10043,9 +10251,10 @@ import Image from "next/image";
 
 interface PhaseCarouselProps {
   images: string[];
+  altBase?: string;
 }
 
-export default function PhaseCarousel({ images }: PhaseCarouselProps) {
+export default function PhaseCarousel({ images, altBase }: PhaseCarouselProps) {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
@@ -10106,7 +10315,7 @@ export default function PhaseCarousel({ images }: PhaseCarouselProps) {
         >
           <Image
             src={images[current]}
-            alt={`Phase image ${current + 1}`}
+            alt={`${altBase || "Mission phase"} image ${current + 1}`}
             fill
             className="object-contain"
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -10179,26 +10388,33 @@ FILE: src\app\mission-experience\page.tsx
 ================================================================================
 
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { getMissionExperiencePageData } from "@/sanity/lib/getMissionExperiencePage";
 import MissionHero from "./sections/MissionHero";
 import MissionSetup from "./sections/MissionSetup";
 import MissionPhases from "./sections/MissionPhases";
 import MissionFooter from "./sections/MissionFooter";
 import MissionHeader from "./sections/MissionHeader";
-import PageLoading from "@/components/shared/PageLoading";
+import { generateMetadata as createMetadata } from "@/lib/seo/generateMetadata";
+import JsonLd from "@/components/shared/JsonLd";
 
-export const metadata: Metadata = {
-  title: "Spies of Style Mission Experience",
-  description:
-    "An immersive espionage experience on Lake Como inspired by real WWII intelligence missions.",
-  openGraph: {
-    title: "Spies of Style Mission Experience",
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getMissionExperiencePageData();
+
+  return createMetadata({
+    title: data?.seo?.seoTitle || "Mission Experience | Spies of Style",
     description:
+      data?.seo?.seoDescription ||
       "An immersive espionage experience on Lake Como inspired by real WWII intelligence missions.",
-    type: "website",
-  },
-};
+    canonical: data?.seo?.canonicalUrl || "/mission-experience",
+    openGraph: {
+      type: "website",
+      image: data?.seo?.seoImageUrl || undefined,
+    },
+    twitter: {
+      image: data?.seo?.seoImageUrl || undefined,
+    },
+  });
+}
 
 async function MissionContent() {
   const data = await getMissionExperiencePageData();
@@ -10219,15 +10435,29 @@ async function MissionContent() {
 }
 
 export default async function MissionExperiencePage() {
+  const missionStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "TouristExperience",
+    name: "Mission Experience",
+    description:
+      "A cinematic mission-led tourist experience on Lake Como inspired by real WWII intelligence stories.",
+    provider: {
+      "@type": "Organization",
+      name: "Spies of Style",
+      url: "https://spiesofstyle.com",
+    },
+    url: "https://spiesofstyle.com/mission-experience",
+    areaServed: "Lake Como, Italy",
+  };
+
   return (
     <main
       id="main-content"
       className="min-h-screen"
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
-      <Suspense fallback={<PageLoading />}>
-        <MissionContent />
-      </Suspense>
+      <JsonLd data={missionStructuredData} />
+      <MissionContent />
     </main>
   );
 }
@@ -10294,19 +10524,32 @@ export default function MissionFooter() {
             Confidential Property &bull; Do Not Duplicate
           </p>
 
-          <Link href="/#experience">
-            <motion.span
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-block px-6 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full cursor-pointer"
-              style={{
-                background: "var(--accent-gradient)",
-                color: "var(--accent-text)",
-              }}
-            >
-              Return to Base
-            </motion.span>
-          </Link>
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <Link href="/#experience">
+              <motion.span
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-block px-6 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full cursor-pointer"
+                style={{
+                  background: "var(--accent-gradient)",
+                  color: "var(--accent-text)",
+                }}
+              >
+                Return to Base
+              </motion.span>
+            </Link>
+            <Link href="/#contact">
+              <span
+                className="inline-block px-6 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full border"
+                style={{
+                  borderColor: "var(--accent)",
+                  color: "var(--text-primary)",
+                }}
+              >
+                Contact Concierge
+              </span>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </footer>
@@ -10433,7 +10676,7 @@ export default function MissionHero({
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             poster={backgroundImageUrl || undefined}
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -10718,7 +10961,10 @@ function PhaseRow({ phase, index }: { phase: MissionPhase; index: number }) {
       <div className="flex-1 min-w-0 w-full max-w-lg lg:max-w-none relative z-10 overflow-hidden rounded-lg">
         <motion.div style={{ y: imageY }}>
           {phase.imageUrls.length > 0 ? (
-            <PhaseCarousel images={phase.imageUrls} />
+            <PhaseCarousel
+              images={phase.imageUrls}
+              altBase={phase.title || "Mission phase"}
+            />
           ) : (
             <div
               className="w-full aspect-video rounded-lg border flex items-center justify-center"
@@ -10981,11 +11227,17 @@ FILE: src\app\not-found.tsx
 
 import Link from "next/link";
 import type { Metadata } from "next";
+import { generateMetadata } from "@/lib/seo/generateMetadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateMetadata({
   title: "404 - Page Not Found | Spies of Style",
   description: "The page you are looking for could not be found.",
-};
+  canonical: "/404",
+  robots: {
+    index: false,
+    follow: false,
+  },
+});
 
 export default function NotFound() {
   return (
@@ -11031,17 +11283,27 @@ FILE: src\app\sitemap.ts
 
 import { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://spiesofstyle.com";
 
-  const routes = [""];
+  const now = new Date();
 
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: route === "" ? 1 : 0.8,
-  }));
+  const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/mission-experience`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+  ];
+
+  return staticRoutes;
 }
 
 
@@ -12061,6 +12323,26 @@ export default function FallingStars({
 
 
 ================================================================================
+FILE: src\components\shared\JsonLd.tsx
+================================================================================
+
+interface JsonLdProps {
+  data: unknown;
+}
+
+export default function JsonLd({ data }: JsonLdProps) {
+  if (!data) return null;
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+
+================================================================================
 FILE: src\components\shared\PageError.tsx
 ================================================================================
 
@@ -12267,6 +12549,267 @@ export default function PageLoading({
 
 
 ================================================================================
+FILE: src\lib\seo\generateMetadata.ts
+================================================================================
+
+import type { Metadata } from "next";
+import { seoConfig } from "./seoConfig";
+
+type OpenGraphType = "website" | "article" | "profile";
+
+export interface SeoMetadataInput {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  openGraph?: {
+    title?: string;
+    description?: string;
+    image?: string;
+    type?: OpenGraphType;
+    url?: string;
+  };
+  twitter?: {
+    title?: string;
+    description?: string;
+    image?: string;
+  };
+  robots?: Metadata["robots"];
+  keywords?: string[];
+  alternates?: Metadata["alternates"];
+}
+
+function toAbsoluteUrl(pathOrUrl: string): string {
+  if (pathOrUrl.startsWith("http://") || pathOrUrl.startsWith("https://")) {
+    return pathOrUrl;
+  }
+  const normalizedPath = pathOrUrl.startsWith("/")
+    ? pathOrUrl
+    : `/${pathOrUrl}`;
+  return `${seoConfig.siteUrl}${normalizedPath}`;
+}
+
+export function generateMetadata(input: SeoMetadataInput = {}): Metadata {
+  const title = input.title || seoConfig.defaultTitle;
+  const description = input.description || seoConfig.defaultDescription;
+
+  const canonical = input.canonical
+    ? toAbsoluteUrl(input.canonical)
+    : seoConfig.siteUrl;
+
+  const ogImage = toAbsoluteUrl(
+    input.openGraph?.image || seoConfig.defaultImage,
+  );
+  const twitterImage = toAbsoluteUrl(
+    input.twitter?.image || input.openGraph?.image || seoConfig.defaultImage,
+  );
+  const ogUrl = toAbsoluteUrl(input.openGraph?.url || canonical);
+
+  return {
+    metadataBase: new URL(seoConfig.siteUrl),
+    title,
+    description,
+    keywords: input.keywords,
+    alternates: input.alternates || { canonical },
+    robots: input.robots || {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+    openGraph: {
+      title: input.openGraph?.title || title,
+      description: input.openGraph?.description || description,
+      url: ogUrl,
+      type: input.openGraph?.type || "website",
+      siteName: seoConfig.siteName,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: input.openGraph?.title || title,
+        },
+      ],
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      creator: seoConfig.twitterHandle,
+      title: input.twitter?.title || title,
+      description: input.twitter?.description || description,
+      images: [twitterImage],
+    },
+  };
+}
+
+
+================================================================================
+FILE: src\lib\seo\seoConfig.ts
+================================================================================
+
+export const seoConfig = {
+  siteName: "Spies of Style",
+  siteUrl: "https://spiesofstyle.com",
+  defaultTitle: "Spies of Style | Immersive Spy Experiences on Lake Como",
+  defaultDescription:
+    "Step into an immersive espionage experience on Lake Como. Solve clues, uncover secret missions, and enjoy cinematic themed dinners inspired by real WWII spy stories.",
+  defaultImage: "/opengraph.jpg",
+  twitterHandle: "@spiesofstyle",
+} as const;
+
+
+================================================================================
+FILE: src\lib\seo\structuredData.ts
+================================================================================
+
+import { seoConfig } from "./seoConfig";
+import type { EventData } from "@/sanity/lib/getLandingPage";
+
+export interface OrganizationData {
+  logo?: string | null;
+  email?: string;
+  sameAs?: string[];
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+function absoluteUrl(pathOrUrl: string): string {
+  if (pathOrUrl.startsWith("http://") || pathOrUrl.startsWith("https://")) {
+    return pathOrUrl;
+  }
+  const normalizedPath = pathOrUrl.startsWith("/")
+    ? pathOrUrl
+    : `/${pathOrUrl}`;
+  return `${seoConfig.siteUrl}${normalizedPath}`;
+}
+
+export function getOrganizationJsonLd(data: OrganizationData) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: seoConfig.siteName,
+    url: seoConfig.siteUrl,
+    logo: data.logo
+      ? absoluteUrl(data.logo)
+      : absoluteUrl(seoConfig.defaultImage),
+    email: data.email,
+    sameAs: data.sameAs || [],
+  };
+}
+
+export function getEventJsonLd(events: EventData[]) {
+  return events
+    .filter((event) => !!event.date)
+    .map((event) => ({
+      "@context": "https://schema.org",
+      "@type": "Event",
+      name: event.title,
+      description:
+        event.description ||
+        `Immersive spy event by ${seoConfig.siteName} on Lake Como.`,
+      startDate: event.date,
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      eventStatus: "https://schema.org/EventScheduled",
+      image: event.imageUrl
+        ? [absoluteUrl(event.imageUrl)]
+        : [absoluteUrl(seoConfig.defaultImage)],
+      organizer: {
+        "@type": "Organization",
+        name: seoConfig.siteName,
+        url: seoConfig.siteUrl,
+      },
+      location: {
+        "@type": "Place",
+        name: event.location || "Lake Como",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Lake Como",
+          addressCountry: "IT",
+        },
+      },
+      offers: {
+        "@type": "Offer",
+        url: `${seoConfig.siteUrl}/#contact`,
+        availability: "https://schema.org/InStock",
+        priceCurrency: "EUR",
+      },
+    }));
+}
+
+export function getTouristExperienceJsonLd() {
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristExperience",
+      name: "Mission Experience",
+      description:
+        "A cinematic mission-led tourist experience on Lake Como inspired by real WWII intelligence stories.",
+      provider: {
+        "@type": "Organization",
+        name: seoConfig.siteName,
+        url: seoConfig.siteUrl,
+      },
+      url: `${seoConfig.siteUrl}/mission-experience`,
+      areaServed: "Lake Como, Italy",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristExperience",
+      name: "Private Events",
+      description:
+        "Private spy-themed events and immersive luxury gatherings tailored for villas and destination celebrations on Lake Como.",
+      provider: {
+        "@type": "Organization",
+        name: seoConfig.siteName,
+        url: seoConfig.siteUrl,
+      },
+      url: `${seoConfig.siteUrl}/#private-events`,
+      areaServed: "Lake Como, Italy",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristExperience",
+      name: "Weekly Events",
+      description:
+        "Recurring immersive weekly experiences and themed dinners around Lake Como.",
+      provider: {
+        "@type": "Organization",
+        name: seoConfig.siteName,
+        url: seoConfig.siteUrl,
+      },
+      url: `${seoConfig.siteUrl}/#upcoming-events`,
+      areaServed: "Lake Como, Italy",
+    },
+  ];
+}
+
+export function getFaqJsonLd(items: FaqItem[]) {
+  if (!items.length) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+
+================================================================================
 FILE: src\proxy.ts
 ================================================================================
 
@@ -12325,6 +12868,72 @@ export const DEFAULT_REVALIDATE = 1;
 
 
 ================================================================================
+FILE: src\sanity\lib\getFaqPage.ts
+================================================================================
+
+import { client, DEFAULT_REVALIDATE } from "./client";
+import { unstable_cache } from "next/cache";
+
+export interface FaqPageData {
+  hero?: {
+    preHeading?: string;
+    mainHeading?: string;
+    description?: string;
+  };
+  faqs: { question: string; answer: string }[];
+}
+
+const query = `
+  *[_type == "faqPage"][0] {
+    hero {
+      preHeading,
+      mainHeading,
+      description
+    },
+    "faqs": faqs[] {
+      question,
+      answer
+    }
+  }
+`;
+
+const fetchFaqPageData = async (): Promise<FaqPageData | null> => {
+  try {
+    const raw = await client.fetch(query);
+    if (!raw) return null;
+
+    return {
+      hero: raw.hero,
+      faqs: (raw.faqs ?? [])
+        .filter(
+          (item: { question?: string; answer?: string }) =>
+            item.question && item.answer,
+        )
+        .map((item: { question: string; answer: string }) => ({
+          question: item.question,
+          answer: item.answer,
+        })),
+    };
+  } catch (error) {
+    console.error("Error fetching faq page data:", error);
+    return null;
+  }
+};
+
+const cachedFetch = unstable_cache(fetchFaqPageData, ["faqPage"], {
+  revalidate: DEFAULT_REVALIDATE,
+  tags: ["faqPage", "content"],
+});
+
+export async function getFaqPageData(): Promise<FaqPageData | null> {
+  if (process.env.NODE_ENV === "development") {
+    return await fetchFaqPageData();
+  }
+  return await cachedFetch();
+}
+
+
+================================================================================
 FILE: src\sanity\lib\getLandingPage.ts
 ================================================================================
 
@@ -12337,6 +12946,7 @@ import { urlFor } from "./image";
 export interface EventData {
   _id: string;
   title: string;
+  slug?: string;
   badge?: string;
   eventType: "single_event" | "recurring_event";
   date?: string; // ISO date string "YYYY-MM-DD"
@@ -12346,12 +12956,23 @@ export interface EventData {
   ctaLabel?: string;
   ctaType?: "scroll_contact";
   imageUrl?: string | null;
+  seoTitle?: string;
+  seoDescription?: string;
+  canonicalUrl?: string;
+  seoImageUrl?: string | null;
   videoUrl?: string | null; // New: video media support
   pinned?: boolean;
   displayOrder?: number;
 }
 
 export interface LandingPageData {
+  seo?: {
+    seoTitle?: string;
+    seoDescription?: string;
+    canonicalUrl?: string;
+    seoImageUrl?: string | null;
+  };
+
   hero: {
     videoUrl?: string;
     mobileVideoUrl?: string;
@@ -12378,6 +12999,9 @@ export interface LandingPageData {
   experience: {
     sectionTitle?: string;
     sectionSubtitle?: string;
+    eyebrowLabel?: string;
+    ctaLabel?: string;
+    ctaLink?: string;
     showcaseImages: { url: string; title?: string; role?: string }[];
     paragraphs?: string[];
   };
@@ -12446,6 +13070,11 @@ export interface LandingPageData {
 
 const query = `
   *[_type == "landingPage"][0] {
+    seoTitle,
+    seoDescription,
+    canonicalUrl,
+    seoImage,
+
     hero {
       videoFile { asset->{ url } },
       mobileVideoFile { asset->{ url } },
@@ -12472,6 +13101,9 @@ const query = `
     experience {
       sectionTitle,
       sectionSubtitle,
+      eyebrowLabel,
+      ctaLabel,
+      ctaLink,
       "showcaseImages": showcaseImages[] {
         image { asset->{ url }, hotspot, crop },
         title,
@@ -12545,6 +13177,7 @@ const eventsQuery = `
   *[_type == "event"] | order(pinned desc, date asc) {
     _id,
     title,
+    "slug": slug.current,
     badge,
     eventType,
     date,
@@ -12553,6 +13186,10 @@ const eventsQuery = `
     location,
     ctaLabel,
     ctaType,
+    seoTitle,
+    seoDescription,
+    canonicalUrl,
+    seoImage,
     pinned,
     displayOrder,
     media {
@@ -12589,6 +13226,16 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
     if (!raw) return null;
 
     const data: LandingPageData = {
+      seo: {
+        seoTitle: raw.seoTitle,
+        seoDescription: raw.seoDescription,
+        canonicalUrl: raw.canonicalUrl,
+        seoImageUrl:
+          raw.seoImage?.asset?.url ??
+          processImageToUrl(raw.seoImage, 1200) ??
+          null,
+      },
+
       hero: {
         videoUrl: raw.hero?.videoFile?.asset?.url ?? undefined,
         mobileVideoUrl: raw.hero?.mobileVideoFile?.asset?.url ?? undefined,
@@ -12621,6 +13268,9 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
       experience: {
         sectionTitle: raw.experience?.sectionTitle ?? "Step Into the Spotlight",
         sectionSubtitle: raw.experience?.sectionSubtitle,
+        eyebrowLabel: raw.experience?.eyebrowLabel ?? "The Experience",
+        ctaLabel: raw.experience?.ctaLabel ?? "Mission Experience",
+        ctaLink: raw.experience?.ctaLink ?? "/mission-experience",
         showcaseImages: (raw.experience?.showcaseImages ?? [])
           .map(
             (item: {
@@ -12698,6 +13348,7 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
         (ev: {
           _id: string;
           title?: string;
+          slug?: string;
           badge?: string;
           eventType?: string;
           date?: string;
@@ -12706,6 +13357,10 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           location?: string;
           ctaLabel?: string;
           ctaType?: string;
+          seoTitle?: string;
+          seoDescription?: string;
+          canonicalUrl?: string;
+          seoImage?: { asset?: { url?: string } };
           pinned?: boolean;
           displayOrder?: number;
           media?: {
@@ -12716,6 +13371,7 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
         }): EventData => ({
           _id: ev._id,
           title: ev.title ?? "",
+          slug: ev.slug,
           badge: ev.badge,
           eventType:
             ev.eventType === "recurring_event"
@@ -12728,6 +13384,13 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           ctaLabel: ev.ctaLabel,
           ctaType:
             ev.ctaType === "scroll_contact" ? "scroll_contact" : undefined,
+          seoTitle: ev.seoTitle,
+          seoDescription: ev.seoDescription,
+          canonicalUrl: ev.canonicalUrl,
+          seoImageUrl:
+            ev.seoImage?.asset?.url ??
+            processImageToUrl(ev.seoImage, 1200) ??
+            null,
           videoUrl: ev.media?.video?.asset?.url ?? null,
           imageUrl:
             ev.media?.image?.asset?.url ??
@@ -12825,6 +13488,13 @@ export interface MissionPhase {
 }
 
 export interface MissionExperiencePageData {
+  seo?: {
+    seoTitle?: string;
+    seoDescription?: string;
+    canonicalUrl?: string;
+    seoImageUrl?: string | null;
+  };
+
   hero: {
     title?: string;
     subtitle?: string;
@@ -12844,6 +13514,11 @@ export interface MissionExperiencePageData {
 
 const query = `
   *[_type == "missionExperiencePage"][0] {
+    seoTitle,
+    seoDescription,
+    canonicalUrl,
+    seoImage,
+
     hero {
       title,
       subtitle,
@@ -12890,6 +13565,16 @@ const fetchMissionExperiencePageData =
       if (!raw) return null;
 
       const data: MissionExperiencePageData = {
+        seo: {
+          seoTitle: raw.seoTitle,
+          seoDescription: raw.seoDescription,
+          canonicalUrl: raw.canonicalUrl,
+          seoImageUrl:
+            raw.seoImage?.asset?.url ??
+            processImageToUrl(raw.seoImage, 1200) ??
+            null,
+        },
+
         hero: {
           title: raw.hero?.title,
           subtitle: raw.hero?.subtitle,
@@ -12994,6 +13679,7 @@ export default defineType({
   groups: [
     { name: "details", title: "Event Details", default: true },
     { name: "content", title: "Content" },
+    { name: "seo", title: "SEO" },
     { name: "settings", title: "Settings" },
   ],
   fields: [
@@ -13099,13 +13785,15 @@ export default defineType({
         },
       ],
       validation: (Rule) =>
-        Rule.custom((media: { image?: unknown; video?: unknown } | undefined) => {
-          if (!media) return true;
-          if (media.image && media.video) {
-            return "Please use either an image OR a video, not both.";
-          }
-          return true;
-        }),
+        Rule.custom(
+          (media: { image?: unknown; video?: unknown } | undefined) => {
+            if (!media) return true;
+            if (media.image && media.video) {
+              return "Please use either an image OR a video, not both.";
+            }
+            return true;
+          },
+        ),
     }),
 
     defineField({
@@ -13165,6 +13853,39 @@ export default defineType({
       initialValue: "scroll_contact",
       description:
         "What happens when the button is clicked. Currently: smoothly scrolls to the Inquire / contact form.",
+    }),
+
+    defineField({
+      name: "seoTitle",
+      title: "SEO Title",
+      type: "string",
+      group: "seo",
+      validation: (Rule) => Rule.max(65),
+    }),
+
+    defineField({
+      name: "seoDescription",
+      title: "SEO Description",
+      type: "text",
+      rows: 3,
+      group: "seo",
+      validation: (Rule) => Rule.max(160),
+    }),
+
+    defineField({
+      name: "seoImage",
+      title: "SEO Image",
+      type: "image",
+      group: "seo",
+      options: { hotspot: true },
+      description: "Social preview image. Recommended size: 1200x630.",
+    }),
+
+    defineField({
+      name: "canonicalUrl",
+      title: "Canonical URL",
+      type: "url",
+      group: "seo",
     }),
 
     // ─── SETTINGS ────────────────────────────────────────────────────────────
@@ -13305,6 +14026,7 @@ export default defineType({
   title: "Landing Page",
   type: "document",
   groups: [
+    { name: "seo", title: "SEO" },
     { name: "hero", title: "Hero (Video)", default: true },
     { name: "story", title: "Our Story" },
     { name: "experience", title: "The Experience" },
@@ -13318,6 +14040,40 @@ export default defineType({
       title: "Internal Title",
       type: "string",
       group: "hero",
+    }),
+
+    defineField({
+      name: "seoTitle",
+      title: "SEO Title",
+      type: "string",
+      group: "seo",
+      description:
+        "Custom page title used for search engines and social previews.",
+      validation: (Rule) => Rule.max(65),
+    }),
+    defineField({
+      name: "seoDescription",
+      title: "SEO Description",
+      type: "text",
+      rows: 3,
+      group: "seo",
+      description: "Meta description shown in search results.",
+      validation: (Rule) => Rule.max(160),
+    }),
+    defineField({
+      name: "seoImage",
+      title: "SEO Image",
+      type: "image",
+      group: "seo",
+      options: { hotspot: true },
+      description: "Open Graph and Twitter image. Recommended size: 1200x630.",
+    }),
+    defineField({
+      name: "canonicalUrl",
+      title: "Canonical URL",
+      type: "url",
+      group: "seo",
+      description: "Override canonical URL if needed.",
     }),
 
     // ─── HERO ────────────────────────────────────────────────────
@@ -13459,6 +14215,26 @@ export default defineType({
           name: "sectionSubtitle",
           title: "Section Subtitle",
           type: "string",
+        }),
+        defineField({
+          name: "eyebrowLabel",
+          title: "Eyebrow Label",
+          type: "string",
+          initialValue: "The Experience",
+          description: "Small text above the section title.",
+        }),
+        defineField({
+          name: "ctaLabel",
+          title: "CTA Button Label",
+          type: "string",
+          initialValue: "Mission Experience",
+        }),
+        defineField({
+          name: "ctaLink",
+          title: "CTA Button Link",
+          type: "string",
+          initialValue: "/mission-experience",
+          description: "Internal path or anchor, e.g. /mission-experience",
         }),
         defineField({
           name: "showcaseImages",
@@ -13871,6 +14647,7 @@ export default defineType({
   title: "Mission Experience Page",
   type: "document",
   groups: [
+    { name: "seo", title: "SEO" },
     { name: "hero", title: "Hero", default: true },
     { name: "setup", title: "The Setup" },
     { name: "phases", title: "Mission Phases" },
@@ -13881,6 +14658,35 @@ export default defineType({
       title: "Internal Title",
       type: "string",
       group: "hero",
+    }),
+
+    defineField({
+      name: "seoTitle",
+      title: "SEO Title",
+      type: "string",
+      group: "seo",
+      validation: (Rule) => Rule.max(65),
+    }),
+    defineField({
+      name: "seoDescription",
+      title: "SEO Description",
+      type: "text",
+      rows: 3,
+      group: "seo",
+      validation: (Rule) => Rule.max(160),
+    }),
+    defineField({
+      name: "seoImage",
+      title: "SEO Image",
+      type: "image",
+      group: "seo",
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: "canonicalUrl",
+      title: "Canonical URL",
+      type: "url",
+      group: "seo",
     }),
 
     // ─── HERO ────────────────────────────────────────────────────
