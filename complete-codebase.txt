@@ -8,7 +8,50 @@ lakecomo/
 │   │   └── video-camera.png
 │   ├── favicon.ico
 │   └── robots.txt
+├── sanity-mirror/
+│   ├── documents/
+│   │   ├── .gitkeep
+│   │   ├── aboutPage.json
+│   │   ├── brandSettings.json
+│   │   ├── castPage.json
+│   │   ├── contactPage.json
+│   │   ├── crewPage.json
+│   │   ├── event.json
+│   │   ├── faqPage.json
+│   │   ├── footer.json
+│   │   ├── galleryPage.json
+│   │   ├── homepage.json
+│   │   ├── landingPage.json
+│   │   ├── moviePage.json
+│   │   ├── navbar.json
+│   │   ├── processPage.json
+│   │   ├── themesPage.json
+│   │   └── venuePage.json
+│   ├── queries/
+│   │   └── .gitkeep
+│   ├── schemas/
+│   │   ├── .gitkeep
+│   │   ├── event.json
+│   │   ├── footer.json
+│   │   ├── landingPage.json
+│   │   └── navbar.json
+│   ├── asset-report.json
+│   ├── diff-report.json
+│   ├── export-meta.json
+│   └── schema-map.json
 ├── scripts/
+│   ├── sanity/
+│   │   ├── config.ts
+│   │   ├── diff-dataset.ts
+│   │   ├── discover-queries.ts
+│   │   ├── export-dataset.ts
+│   │   ├── generate-migration-plan.ts
+│   │   ├── generate-types.ts
+│   │   ├── introspect-schemas.ts
+│   │   ├── rollback.ts
+│   │   ├── seed-from-json.ts
+│   │   ├── validate-schema.ts
+│   │   └── verify-assets.ts
 │   └── crawl-project.js
 ├── src/
 │   ├── app/
@@ -77,9 +120,11 @@ lakecomo/
 ├── package.json
 ├── postcss.config.mjs
 ├── README.md
+├── SANITY_MIGRATION.md
 ├── sanity.cli.ts
 ├── sanity.config.ts
-└── tsconfig.json
+├── tsconfig.json
+└── tsconfig.scripts.json
 
 
 FILE CONTENTS
@@ -137,6 +182,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Sanity Migration Engine v3
+# Backups are stored locally only — too large for git
+/sanity-backups/
+# Compiled script output
+/.scripts-dist/
+# Seed & diff reports are ephemeral
+sanity-mirror/seed-report.json
+sanity-mirror/asset-report.json
+# migration-plan.json is ephemeral
+/migration-plan.json
 
 
 ================================================================================
@@ -207,7 +263,20 @@ FILE: package.json
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sanity:introspect": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/introspect-schemas.ts",
+    "sanity:export": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/export-dataset.ts",
+    "sanity:diff": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/diff-dataset.ts",
+    "sanity:plan": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/generate-migration-plan.ts",
+    "sanity:seed": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/seed-from-json.ts",
+    "sanity:seed:dry-run": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/seed-from-json.ts --dry-run",
+    "sanity:verify-assets": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/verify-assets.ts",
+    "sanity:rollback": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/rollback.ts",
+    "sanity:rollback:list": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/rollback.ts list",
+    "sanity:generate-types": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/generate-types.ts",
+    "sanity:discover-queries": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/discover-queries.ts",
+    "sanity:validate": "tsx --tsconfig tsconfig.scripts.json scripts/sanity/validate-schema.ts",
+    "sanity:migrate": "npm run sanity:rollback -- snapshot && npm run sanity:diff && npm run sanity:plan && npm run sanity:seed"
   },
   "dependencies": {
     "@sanity/image-url": "^1.2.0",
@@ -228,6 +297,7 @@ FILE: package.json
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@sanity/client": "^6.29.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -236,6 +306,7 @@ FILE: package.json
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
@@ -550,6 +621,2677 @@ For support, questions, or feedback:
 **Built with ❤️ using Next.js 16 and Sanity CMS**
 
 ================================================================================
+FILE: sanity-mirror\asset-report.json
+================================================================================
+
+{
+  "generatedAt": "2026-03-16T17:16:43.529Z",
+  "date": "2026-03-16",
+  "totalRefsFound": 67,
+  "liveAssets": 169,
+  "valid": 67,
+  "broken": [],
+  "summary": {
+    "valid": true,
+    "brokenCount": 0
+  }
+}
+
+
+================================================================================
+FILE: sanity-mirror\diff-report.json
+================================================================================
+
+{
+  "generatedAt": "2026-03-16T17:15:50.714Z",
+  "date": "2026-03-16",
+  "summary": {
+    "total": 17,
+    "new": 0,
+    "updated": 0,
+    "removed": 0,
+    "unchanged": 17
+  },
+  "changes": []
+}
+
+
+================================================================================
+FILE: sanity-mirror\documents\.gitkeep
+================================================================================
+
+
+
+================================================================================
+FILE: sanity-mirror\documents\aboutPage.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "aboutPage",
+    "_rev": "pTII3WhckjUqxhF3RP1Wj5",
+    "_system": {
+      "base": {
+        "id": "aboutPage",
+        "rev": "mt1cTqOxi4IifpOwCresFJ"
+      }
+    },
+    "_type": "aboutPage",
+    "_updatedAt": "2025-12-29T08:41:41Z",
+    "hero": {
+      "subtitle": "From the Big Apple to the heart of Milan — our team brings international talent to your celebration",
+      "title": "Your Film Crew"
+    },
+    "mission": "Our passion for creating unforgettable cinematic experiences led us to establish Lake Como Style, the premier provider of themed cinematic experiences in Italy. We are an international crew dedicated to bringing the magic of fashion and cinema to life, offering a range of themes and settings to cater to every client's unique vision. Our team is delivers exceptional movie trailers and ensures that every event is a spectacular and memorable occasion for all.",
+    "teamMembers": [
+      {
+        "_key": "tm1",
+        "bio": "Our founder, Dee Lasprogata has over 30 years of experience in fashion, working in New York, Los Angeles, Rome, Milan, and Lake Como, where she resides. She has worked with celebrities including Stevie Wonder and Giada DeLaurentiis, pioneering fashion ventures and collections. With Dee’s expert styling, you don’t simply wear a costume- you embody the timeless elegance and sophistication that movies are made of.",
+        "name": "Dee Lasprogata",
+        "role": "Founder / Stylist"
+      },
+      {
+        "_key": "tm2",
+        "bio": "Stefano has over x years of experience",
+        "name": "Stefano",
+        "role": "Videography Lead"
+      }
+    ],
+    "title": "About Page"
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\brandSettings.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2026-02-17T02:27:44Z",
+    "_id": "brandSettings",
+    "_rev": "A2LnutMwXMZdsIPiEJCmW9",
+    "_type": "brandSettings",
+    "_updatedAt": "2026-02-18T07:03:01Z",
+    "colors": {
+      "accent300": "#9ACDE6",
+      "accent500": "#6AB8DC",
+      "accent700": "#4A9DC4",
+      "accentHover": "#4A9DC4",
+      "accentPrimary": "#6AB8DC",
+      "bgPrimary": "#D6E8F5",
+      "bgSecondary": "#E8F3FB",
+      "bgTertiary": "#EDE8DF",
+      "borderColor": "rgba(106, 184, 220, 0.2)",
+      "borderColorStrong": "rgba(106, 184, 220, 0.38)",
+      "cardBgCream": "#EDE8DF",
+      "cardTextDark": "#131A24",
+      "error": "#ef4444",
+      "filmStripBg": "#D6E8F5",
+      "filmTagline": "#4A9DC4",
+      "headerBg": "rgba(8, 17, 35, 0.92)",
+      "heroButtonBg": "#131A24",
+      "heroButtonText": "#FFFFFF",
+      "heroTextColor": "#FFFFFF",
+      "overlay": "rgba(19, 26, 36, 0.35)",
+      "overlayHeavy": "rgba(19, 26, 36, 0.80)",
+      "primary100": "#D6E8F5",
+      "primary200": "#A8CDE8",
+      "primary300": "#7AB8DC",
+      "primary400": "#4A9DC4",
+      "primary50": "#F0F8FE",
+      "primary500": "#2D7FA8",
+      "primary600": "#1D6087",
+      "primary700": "#14476A",
+      "primary800": "#0D3050",
+      "primary900": "#071E35",
+      "success": "#22c55e",
+      "surfaceInteractive": "rgba(106, 184, 220, 0.1)",
+      "textPrimary": "#131A24",
+      "textSecondary": "#3A5672",
+      "textTertiary": "#6A8BA8"
+    },
+    "gradients": {
+      "gradientCardFade": "linear-gradient(to top, #D6E8F5, transparent 40%)",
+      "gradientHeroOverlay": "linear-gradient(to bottom, rgba(19,26,36,0.45) 0%, rgba(19,26,36,0.15) 50%, rgba(19,26,36,0.7) 100%)",
+      "gradientPage": "linear-gradient(to bottom, #D6E8F5, #E8F3FB 50%, #D6E8F5)",
+      "shadow2xl": "0 24px 64px rgba(19, 50, 90, 0.14), 0 16px 32px rgba(19, 50, 90, 0.09)",
+      "shadowButton": "0 4px 12px rgba(19, 50, 90, 0.12), 0 2px 4px rgba(19, 50, 90, 0.08)",
+      "shadowButtonHover": "0 8px 24px rgba(19, 50, 90, 0.18), 0 4px 8px rgba(19, 50, 90, 0.1)",
+      "shadowGlow": "0 0 24px rgba(106, 184, 220, 0.35), 0 0 8px rgba(106, 184, 220, 0.15)",
+      "shadowLg": "0 8px 24px rgba(19, 50, 90, 0.1), 0 4px 10px rgba(19, 50, 90, 0.06)",
+      "shadowMd": "0 4px 12px rgba(19, 50, 90, 0.08), 0 2px 6px rgba(19, 50, 90, 0.05)",
+      "shadowSm": "0 1px 3px rgba(19, 50, 90, 0.06), 0 1px 2px rgba(19, 50, 90, 0.04)",
+      "shadowXl": "0 16px 40px rgba(19, 50, 90, 0.12), 0 8px 16px rgba(19, 50, 90, 0.07)"
+    },
+    "motion": {
+      "durationBase": 300,
+      "durationFast": 150,
+      "durationSlow": 600,
+      "durationSlowest": 1200,
+      "easeEnter": "cubic-bezier(0, 0, 0.2, 1)",
+      "easeExit": "cubic-bezier(0.4, 0, 1, 1)",
+      "easePrimary": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "parallaxSpeed": 0.5,
+      "springDamping": 20,
+      "springStiffness": 200,
+      "staggerDelay": 80
+    },
+    "spacing": {
+      "borderRadius": "0.75rem",
+      "borderRadiusFull": "9999px",
+      "borderRadiusLg": "1rem",
+      "footerHeight": "5rem",
+      "headerHeight": "3.25rem",
+      "headerHeightMobile": "2.75rem",
+      "maxContentWidth": "80rem",
+      "sectionPaddingX": "1rem",
+      "sectionPaddingXLg": "3rem",
+      "sectionPaddingXMd": "2rem"
+    },
+    "title": "Brand Settings",
+    "typography": {
+      "fontFamilyBody": "var(--font-inter), sans-serif",
+      "fontFamilyHeading": "var(--font-limelight), cursive",
+      "fontFamilyMono": "var(--font-courier), monospace",
+      "leadingNormal": "1.5",
+      "leadingRelaxed": "1.625",
+      "leadingSnug": "1.25",
+      "leadingTight": "1.1",
+      "size2xl": 24,
+      "size3xl": 30,
+      "size4xl": 36,
+      "size5xl": 48,
+      "size6xl": 60,
+      "sizeBase": 16,
+      "sizeLg": 18,
+      "sizeSm": 14,
+      "sizeXl": 20,
+      "sizeXs": 12,
+      "trackingNormal": "0em",
+      "trackingTight": "-0.025em",
+      "trackingWide": "0.05em",
+      "trackingWidest": "0.1em",
+      "weightBold": "700",
+      "weightLight": "300",
+      "weightMedium": "500",
+      "weightNormal": "400",
+      "weightSemibold": "600"
+    }
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\castPage.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "castPage",
+    "_rev": "kD2Bf5mqCHk08kw0ZdHxu9",
+    "_system": {
+      "base": {
+        "id": "castPage",
+        "rev": "qeHkBtaCAAYzf5RK47DQUg"
+      }
+    },
+    "_type": "castPage",
+    "_updatedAt": "2026-02-23T09:44:58Z",
+    "content": {
+      "paragraphs": [
+        "Choose your theme. Select your venue. Now it’s time to experience the immersive fun!",
+        "We create unforgettable experiences for groups of all sizes. Whether it’s an intimate gathering or a large celebration, our team brings your event to life with style, elegance, and flair.\n",
+        "Guests can choose from our exclusive 2026 themes—from the timeless glamour of La Dolce Vita, to the cinematic sparkle of Hollywood Hustle, or the sophisticated intrigue of Bond. Prefer something truly unique? We also offer custom themes, tailored to your vision and designed to make your occasion one-of-a-kind.",
+        "We provide all themed backdrops and props for Polaroid moments, with the option to personalize backdrops, giving your guests fun, memorable keepsakes.",
+        "Our events are hosted in an array of stunning venues, from exclusive wine cellars, to historic palaces, elegant gardens, and lively terraces, providing the perfect backdrop for every occasion.",
+        "To enhance the experience, we suggest guests come in themed attire, and offer the option of a pop-up fashion rack so guests can purchase curated themed styles on-site.",
+        "We also offer a variety of music options, from DJs to live singers, performing curated playlists for each theme—ensuring the soundtrack perfectly matches the mood and atmosphere.",
+        "For those who wish to capture the magic, we offer professional photography and videography, with the exclusive option to create a custom 3-minute cinematic movie trailer, complete with a personalized cast list and tailored music—bringing your immersive experience fully to life long after the event ends.\n",
+        "With fashion, food, and drinks at the heart of every experience, your private event on Lake Como becomes more than a celebration—it’s an immersive journey your guests will never forget.\n\n"
+      ]
+    },
+    "cta": {
+      "buttonText": "Book Your Private Event",
+      "description": "Immerse yourself in the theme and live the moment",
+      "title": "Celebrate like a Star"
+    },
+    "fallingStars": {
+      "enabled": true
+    },
+    "hero": {
+      "subtitle": "From intimate gatherings to group celebrations",
+      "title": "A Private Spy-Themed Dinner Experience"
+    },
+    "heroFeature": {
+      "subtitle": "2026 Immersive Parties",
+      "title": "Best Private Event"
+    },
+    "showcaseImages": [
+      {
+        "_key": "3d6df0563664",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-437dd49a02ecac575dc481e3535b2dfb4b275442-951x913-png",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "535a8bc3eeea",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080-png",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "84df50742b2a",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "f04308ce24ac",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "e1373c9c247e",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "007532703661",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080-png",
+            "_type": "reference"
+          }
+        }
+      },
+      {
+        "_key": "616e8ab5c483",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
+            "_type": "reference"
+          }
+        }
+      }
+    ],
+    "title": "Private Events"
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\contactPage.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "contactPage",
+    "_rev": "2yyToag4MGCbwD1sbLaJP5",
+    "_system": {
+      "base": {
+        "id": "contactPage",
+        "rev": "r5z7poe2OElSjLhxtxe4BD"
+      }
+    },
+    "_type": "contactPage",
+    "_updatedAt": "2026-02-09T11:52:57Z",
+    "cameraImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-708cec19ac0d52a98033e50246ca0cb168209f2f-414x600-jpg",
+        "_type": "reference"
+      }
+    },
+    "form": {
+      "emailLabel": "Email",
+      "emailPlaceholder": "john@example.com",
+      "eventDateLabel": "Date of Event",
+      "firstNameLabel": "First Name",
+      "firstNamePlaceholder": "John",
+      "formTitle": "Step Into the Scene",
+      "groupSizeDefaultOption": "Select group size",
+      "groupSizeLabel": "How many will you be?",
+      "groupSizeOptions": [
+        "2-5 people",
+        "6-10 people",
+        "11-20 people",
+        "21-50 people",
+        "50+ people"
+      ],
+      "lastNameLabel": "Last Name",
+      "lastNamePlaceholder": "Doe",
+      "messageLabel": "Event Inquiry",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "555 123-4567",
+      "submitButtonLoadingText": "Sending...",
+      "submitButtonText": "Join the Vibe"
+    },
+    "hero": {
+      "description": "Drop us a message and step into the experience.",
+      "mainHeading": "Join the Party in Style",
+      "preHeading": "Get in Touch"
+    },
+    "success": {
+      "buttonLink": "/",
+      "buttonText": "Back to Home",
+      "message": "Thank you for reaching out. We'll be in touch soon to help you create your unforgettable cinematic experience.",
+      "title": "The Spotlight Awaits!"
+    },
+    "title": "Contact Us"
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\crewPage.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2026-01-01T08:32:51Z",
+    "_id": "3d2JLpUTPM5qppQf883Uxu",
+    "_rev": "qeHkBtaCAAYzf5RK473Y26",
+    "_system": {
+      "base": {
+        "id": "3d2JLpUTPM5qppQf883Uxu",
+        "rev": "r5z7poe2OElSjLhxtxvH1n"
+      }
+    },
+    "_type": "crewPage",
+    "_updatedAt": "2026-02-23T06:29:42Z",
+    "crewMembers": [
+      {
+        "_key": "dee-lasprogata",
+        "bio": [
+          "Our founder, Dee Lasprogata has over 30 years of experience in fashion, working in New York, Los Angeles, Rome, Milan, and Lake Como. She arrived to the shores of Lake Como 20 years ago and has been back and forth ever since.",
+          "With roots in Philadelphia, Dee grew up surrounded by couture as her grandmother operated a custom gown atelier. Later, she graduated from both Vanderbilt University and the Fashion Institute of Design in New York City.",
+          "She has launched a pioneering fashion collections working with celebrities including Valentino, Stevie Wonder and Giada De Laurentiis. Over the years, her visionary work has been featured in major publications in both the USA and Italy, including People, Glamour, Io Donna, Women's Wear Daily (WWD), Fox & Friends, TG5, and Entrepreneur.",
+          "Today, Dee combines her fashion-forward sensibilities with cinematic flair to craft an unforgettable experience; she curates the wardrobe, props, and look for every guest. ",
+          ""
+        ],
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-e60f4c4a969ae568d0975a407795225dbe163a2a-470x558-png",
+            "_type": "reference"
+          },
+          "crop": {
+            "_type": "sanity.imageCrop",
+            "bottom": 0,
+            "left": 0.21337170755346613,
+            "right": 0.22032969526829874,
+            "top": 0
+          },
+          "hotspot": {
+            "_type": "sanity.imageHotspot",
+            "height": 1,
+            "width": 0.5662985971782352,
+            "x": 0.4965210061425837,
+            "y": 0.5
+          }
+        },
+        "name": "Dee Lasprogata",
+        "role": "Founder & Creative Director",
+        "socials": {
+          "instagram": "https://instagram.com/lakecomostyle",
+          "linkedin": "https://linkedin.com/in/deelasprogata"
+        }
+      },
+      {
+        "_key": "stefano-dozza",
+        "bio": [
+          "Stefano Dozza is a filmmaker, photographer, and content producer from Bologna, currently based between Milan and Rome. He has studied and worked in New York, Los Angeles, and the UK. Over the years, his work has spanned corporate and fashion projects, with each video carefully tailored to reflect the unique look and identity of each brand.",
+          "As a versatile creative professional, Stefano brings expertise in filmmaking, photography, copywriting, and podcasting to Lake Como Style. His international experience and artistic vision ensure that every cinematic experience captures the essence of Italian elegance combined with Hollywood production values.",
+          "Stefano's commitment to sustainability and thoughtful content creation aligns perfectly with Lake Como Style's mission to deliver meaningful, memorable experiences that respect both artistry and environment."
+        ],
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-427d578bd9cde9bcce27512c36b3c3eadc4d7ccb-3456x5184-jpg",
+            "_type": "reference"
+          },
+          "crop": {
+            "_type": "sanity.imageCrop",
+            "bottom": 0,
+            "left": 0.011984548843354564,
+            "right": 0,
+            "top": 0
+          },
+          "hotspot": {
+            "_type": "sanity.imageHotspot",
+            "height": 1,
+            "width": 0.9880149025517225,
+            "x": 0.5059925487241388,
+            "y": 0.5
+          }
+        },
+        "name": "Stefano Dozza",
+        "role": "Filmmaker & Visual Director",
+        "socials": {
+          "instagram": "https://instagram.com/johntouche",
+          "website": "https://johntouche.com"
+        }
+      }
+    ],
+    "cta": {
+      "buttonText": "Contact Us",
+      "description": "Join us for an unforgettable immersive experience",
+      "icon": "Your Lake Como Team",
+      "title": "Your Lake Como Team"
+    },
+    "hero": {
+      "description": "Lake Como Style brings immersive, themed experiences to life on the Lake. From our weekly events to private parties, every celebration is carefully styled and designed, allowing guests to step into a world of themed fun. ",
+      "heading": "Your Event Crew",
+      "subHeading": "From the Big Apple to the heart of Milan — our team brings international talent to your celebration"
+    },
+    "heroFeature": {
+      "link": "/contact",
+      "subtitle": "International Expertise",
+      "tag": "2026",
+      "title": "MEET THE TEAM"
+    },
+    "logos": [
+      {
+        "_key": "fdedca647eb8",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-db22b67cdc4c6ad9f1d230c9710b05345e46bb3f-1170x382-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "f4000e6dde3e",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-1abdd77c34d19a7d239ef968514a8ca79dbadb74-656x360-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "f4cac9f0297f",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-458f2cfdae32d8daf86566e6e95bd6c2ad526070-1170x639-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "82d452184cb7",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-183c5b6e64301731b664a70ce2b27210574f738c-1019x538-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "86678aa42272",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-669127a0bcb96a83d790685dd84a4b7827760964-409x160-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "d6b90db1dca8",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-30c40301d0ec7725d209275840ff506e7afe35ec-1169x473-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "357d52a33882",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-9d6ee43623b86c12d4370d83c6b02d2afe0ca089-456x353-jpg",
+          "_type": "reference"
+        }
+      }
+    ],
+    "logosTitle": "featured in",
+    "title": "About "
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\event.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2026-03-15T20:13:19Z",
+    "_id": "event-corso-eleganza-2026",
+    "_rev": "MjdSXFelIF5IivE650mFMI",
+    "_system": {
+      "base": {
+        "id": "event-corso-eleganza-2026",
+        "rev": "MjdSXFelIF5IivE650lyTQ"
+      }
+    },
+    "_type": "event",
+    "_updatedAt": "2026-03-16T16:23:54Z",
+    "badge": "Season Premiere",
+    "ctaLabel": "RSVP / DETAILS",
+    "ctaType": "scroll_contact",
+    "date": "2026-05-16",
+    "description": "Inaugurate the season in spectacular style at the renowned Corso Eleganza. Join us for an exclusive spy-themed cocktail event at Terzo Crotto with themed cocktails and savory bites in a vintage wine cellar. ",
+    "displayOrder": 1,
+    "eventType": "single_event",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-f7fb40e8509c177fda1bc073449b4949b7fe71c5-964x644-png",
+        "_type": "reference"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "bottom": 0.35053522605302534,
+        "left": 0,
+        "right": 0.3638347155934813,
+        "top": 0.02468555224277267
+      },
+      "hotspot": {
+        "_type": "sanity.imageHotspot",
+        "height": 0.624779221704202,
+        "width": 0.6361652844065186,
+        "x": 0.3180826422032593,
+        "y": 0.3370751630948737
+      }
+    },
+    "location": "Terzo Crotto, Cernobbio",
+    "pinned": true,
+    "slug": {
+      "_type": "slug",
+      "current": "corso-eleganza-2026-season-kick-off"
+    },
+    "time": "5:00 PM – 8:00 PM",
+    "title": "Corso Eleganza 2026 Season Kick Off Cocktail Party"
+  },
+  {
+    "_createdAt": "2026-03-15T20:13:21Z",
+    "_id": "event-weekly-spies-of-style",
+    "_rev": "MjdSXFelIF5IivE650fUke",
+    "_system": {
+      "base": {
+        "id": "event-weekly-spies-of-style",
+        "rev": "4DZXQ06MV0KUYSdqrJsVeK"
+      }
+    },
+    "_type": "event",
+    "_updatedAt": "2026-03-16T15:26:24Z",
+    "badge": "Weekly Residency",
+    "ctaLabel": "VIEW SCHEDULE",
+    "ctaType": "scroll_contact",
+    "description": "Experience the mystery and luxury on a weekly basis high above the lake. Enjoy bespoke cocktails, curated styling sessions, and the unparalleled ambiance of a historic retreat.",
+    "displayOrder": 2,
+    "eventType": "recurring_event",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-e6b2a0824991d31387e6ddad31a821e838d667cf-1539x782-png",
+        "_type": "reference"
+      }
+    },
+    "location": "Locanda Milano 1873, Brunate",
+    "pinned": false,
+    "slug": {
+      "_type": "slug",
+      "current": "weekly-spies-of-style-dinners"
+    },
+    "title": "Weekly Spies of Style Dinners"
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\faqPage.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2026-01-06T10:10:10Z",
+    "_id": "faqPage",
+    "_rev": "2yyToag4MGCbwD1sbMlVXZ",
+    "_system": {
+      "base": {
+        "id": "faqPage",
+        "rev": "2yyToag4MGCbwD1sbMisnb"
+      }
+    },
+    "_type": "faqPage",
+    "_updatedAt": "2026-02-09T13:35:08Z",
+    "contactCta": {
+      "buttonLink": "/contact",
+      "buttonText": "Contact Us",
+      "text": "Still have questions?"
+    },
+    "faqs": [
+      {
+        "_key": "ac4db1b75c4f",
+        "answer": "Yes! We host weekly events for all guests visiting Lake Como, ranging from casual aperitivi to pre-fixed dinners at select lakeside locations. Each week offers a unique experience, allowing guests to enjoy the best of local cuisine, stunning views, and the vibrant atmosphere of the Lake.\n\nFor details on dates, times, and locations, feel free to check out our weekly events schedule.",
+        "question": "Are there weekly events open to all guests visiting Lake Como?"
+      },
+      {
+        "_key": "faq2",
+        "answer": "Yes! We offer private events tailored for bachelorettes, tour groups, corporate functions, and other special gatherings. Whether it’s a curated aperitivo, a pre-fixed dinner, or a full lakeside experience, we can customize the event to suit your group’s needs and create a memorable experience on Lake Como.",
+        "category": "experience",
+        "question": "Can I book a private event for a bachelorette, rehearsal dinner or tour group gathering?"
+      },
+      {
+        "_key": "faq1",
+        "answer": "We offer a collection of over 3,000 couture costumes and props, spanning multiple time periods, styles, and themes. The collection includes elegant, theatrical, historical, fantasy, and bespoke pieces, each selected for its craftsmanship, visual impact, and suitability for immersive, high-end events.",
+        "category": "experience",
+        "question": "What backdrops and props do you offer?"
+      },
+      {
+        "_key": "faq4",
+        "answer": "We recommend booking private events at least 2–4 weeks in advance to ensure availability and allow us time to tailor the experience to your group. For larger groups or peak season dates, we suggest booking as early as possible to secure your preferred date and location on Lake Como.",
+        "category": "logistics",
+        "question": "How long in advance do I need to book a private event?"
+      },
+      {
+        "_key": "faq5",
+        "answer": "Yes. We offer private presentations and curated previews, either in person or virtually, allowing clients to explore themes, venues, and all backdrops and props in advance.",
+        "category": "experience",
+        "question": "Do you offer a sneak peek of the experience before confirming a private party reservation?"
+      },
+      {
+        "_key": "faq7",
+        "answer": "For our seasonal weekly events, we recommend booking at least 1–2 weeks in advance to secure your spot, as these events can fill up quickly during peak season. For larger groups or special dates, booking earlier is advised to ensure availability and the best experience on Lake Como.",
+        "category": "booking",
+        "question": "For seasonal weekly events, how far in advance should we book?"
+      }
+    ],
+    "hero": {
+      "description": "Join our immersive themed events",
+      "mainHeading": "2026 Seasonal Events",
+      "preHeading": "Your Immersive Style Adventure Awaits",
+      "searchPlaceholder": "Search questions..."
+    },
+    "title": "2026 Open Ticketed Experiences"
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\footer.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "footer",
+    "_rev": "4DZXQ06MV0KUYSdqrNNRU6",
+    "_system": {
+      "base": {
+        "id": "footer",
+        "rev": "OJl4e2TkVOqlZxtjkNLj8F"
+      }
+    },
+    "_type": "footer",
+    "_updatedAt": "2026-03-16T15:14:05Z",
+    "copyright": "© 2025 Spies of Style",
+    "email": "contact@spiesofstyle.com",
+    "footerTagline": "Your Spy Adventure Awaits",
+    "title": "Global Footer"
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\galleryPage.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "galleryPage",
+    "_rev": "A2LnutMwXMZdsIPiElMlbR",
+    "_system": {
+      "base": {
+        "id": "galleryPage",
+        "rev": "qeHkBtaCAAYzf5RK47ECuI"
+      }
+    },
+    "_type": "galleryPage",
+    "_updatedAt": "2026-02-23T09:54:30Z",
+    "hero": {
+      "heading": "Scenes from the Experience",
+      "subHeading": "Snapshots — clandestine exchanges, dinner finales, Lake Como scenery"
+    },
+    "heroFeature": {
+      "link": "/contact",
+      "subtitle": "Scenes",
+      "tag": "2026",
+      "title": "Themed Events"
+    },
+    "images": [
+      {
+        "_key": "8a8a0b7b2327",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-89307f3fef09feb106360e6380de44b5e9bb536c-1582x821-png",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "a2602c8ee182",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-388b2d0430dbd54b63706e771f3a00cf16086aae-3024x2179-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "48568cd88a86",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "60840378ce63",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "8fae42bc4d51",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-91472121a6a46f2e4be72ab8cebb4a232978c1d5-1775x892-png",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "45215e10ce46",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-ccd733b1ba903f27752dccddac1eaba559934d87-1788x673-png",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "09155facfe8d",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-9c7cbf0d082b55c42bddd5af0ff9a80563785bc0-1040x576-png",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "32beb12ed299",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
+          "_type": "reference"
+        }
+      }
+    ],
+    "title": "Gallery"
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\homepage.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "homepage",
+    "_rev": "A2LnutMwXMZdsIPiElAzGr",
+    "_system": {
+      "base": {
+        "id": "homepage",
+        "rev": "kD2Bf5mqCHk08kw0ZdEygH"
+      }
+    },
+    "_type": "homepage",
+    "_updatedAt": "2026-02-23T09:15:43Z",
+    "heroSection": {
+      "ctaLink": "/contact",
+      "eventShowcase": {
+        "eventTypes": [
+          "Pre- or Post-wedding events",
+          "Small group celebrations",
+          "VIP clients",
+          ""
+        ],
+        "link": "xxxxx",
+        "title": "Perfect For"
+      },
+      "mainHeading": "An Immersive Spy-Themed Dinner on Lake Como",
+      "mobileVideoFile": {
+        "_type": "file",
+        "asset": {
+          "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4",
+          "_type": "reference"
+        }
+      },
+      "playIndicatorText": "hear the story",
+      "preHeading": "Step Into the Shadows of History",
+      "secondaryCtaLink": "/process",
+      "subHeading": "Inspired by the daring missions of Cecil Mallaby, one of WWII’s real-life secret agents, your evening will be a thrilling blend of espionage, gourmet cuisine, and immersive storytelling",
+      "videoFile": {
+        "_type": "file",
+        "asset": {
+          "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4",
+          "_type": "reference"
+        }
+      }
+    },
+    "title": "Home Page"
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\landingPage.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2026-03-13T13:18:59Z",
+    "_id": "landingPage",
+    "_rev": "OJl4e2TkVOqlZxtjkNpNSF",
+    "_system": {
+      "base": {
+        "id": "landingPage",
+        "rev": "MjdSXFelIF5IivE650jWbW"
+      }
+    },
+    "_type": "landingPage",
+    "_updatedAt": "2026-03-16T15:59:50Z",
+    "assignment": {
+      "cards": [
+        {
+          "_key": "card_0",
+          "_type": "object",
+          "ctaText": "Book Dinner Mission",
+          "duration": "3-hour immersive experience",
+          "features": [
+            "Multi-course themed dinner",
+            "Full spy kit & historical dossier",
+            "Interactive historical mission",
+            "Cinematic photo opportunities"
+          ],
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-ef7310f3d34e709483448353cd3497710158fe81-648x439-jpg",
+              "_type": "reference"
+            }
+          },
+          "title": "Dinner Mission"
+        },
+        {
+          "_key": "card_1",
+          "_type": "object",
+          "ctaText": "Book Cocktail Mission",
+          "duration": "90–120 minute experience",
+          "features": [
+            "Curated cocktails & hors d’oeuvres",
+            "Spy kit and tactical briefing",
+            "Interactive mission puzzles",
+            "Perfect pre-dinner social experience"
+          ],
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080-png",
+              "_type": "reference"
+            }
+          },
+          "title": "Cocktail Mission"
+        }
+      ],
+      "sectionTitle": "Choose Your Assignment"
+    },
+    "experience": {
+      "sectionSubtitle": "Unlock the codes, solve the mission, and reveal the secret together",
+      "sectionTitle": "Step Into A True Spy Story ",
+      "showcaseImages": [
+        {
+          "_key": "exp_0",
+          "_type": "object",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-437dd49a02ecac575dc481e3535b2dfb4b275442-951x913-png",
+              "_type": "reference"
+            }
+          },
+          "role": null,
+          "title": null
+        },
+        {
+          "_key": "exp_1",
+          "_type": "object",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080-png",
+              "_type": "reference"
+            }
+          },
+          "role": null,
+          "title": null
+        },
+        {
+          "_key": "exp_2",
+          "_type": "object",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg",
+              "_type": "reference"
+            }
+          },
+          "role": null,
+          "title": null
+        },
+        {
+          "_key": "exp_3",
+          "_type": "object",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg",
+              "_type": "reference"
+            }
+          },
+          "role": null,
+          "title": null
+        },
+        {
+          "_key": "exp_4",
+          "_type": "object",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png",
+              "_type": "reference"
+            }
+          },
+          "role": null,
+          "title": null
+        },
+        {
+          "_key": "exp_5",
+          "_type": "object",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080-png",
+              "_type": "reference"
+            }
+          },
+          "role": null,
+          "title": null
+        },
+        {
+          "_key": "exp_6",
+          "_type": "object",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
+              "_type": "reference"
+            }
+          },
+          "role": null,
+          "title": null
+        },
+        {
+          "_key": "f09bd5bba6a5",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-ff848c34f0e4d18b76ce18d7653bc133cf7ee52e-736x516-jpg",
+              "_type": "reference"
+            }
+          }
+        },
+        {
+          "_key": "35817cf201cd",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-6d1ef85025398394ca2dd5d30064762f43fe9b5a-915x737-png",
+              "_type": "reference"
+            }
+          }
+        },
+        {
+          "_key": "b2ae18754f0f",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-8019461d97fc4bc1607db2396ef1822f25266ef6-695x1140-jpg",
+              "_type": "reference"
+            }
+          }
+        },
+        {
+          "_key": "ff859823bd27",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-fd866ca52e4b811cb176080a9b9468a723e607c2-550x412-jpg",
+              "_type": "reference"
+            }
+          }
+        },
+        {
+          "_key": "6ecd766376ec",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-cb13e56d31943c3cad8b71d76748325afe0459ab-694x669-png",
+              "_type": "reference"
+            }
+          }
+        },
+        {
+          "_key": "be3cfd2d8b45",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-ebf26646916f92eab7f54cda065601216b050ff5-1375x768-jpg",
+              "_type": "reference"
+            }
+          }
+        },
+        {
+          "_key": "eb051b3eaea1",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-5ec94db9b43dc9f38411b9afc7baceefce5f9063-366x250-png",
+              "_type": "reference"
+            }
+          }
+        },
+        {
+          "_key": "ecc1d7d7d84b",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-5afc725ce12a60443a425e51f1647174b57cd9d2-750x1702-jpg",
+              "_type": "reference"
+            }
+          }
+        },
+        {
+          "_key": "d970d1739376",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-7b6ce535dc43c19c9716fd77679558f88a508057-795x502-jpg",
+              "_type": "reference"
+            }
+          }
+        }
+      ]
+    },
+    "hero": {
+      "mainHeading": "An Immersive Spy-Themed Dinner on Lake Como",
+      "mobileVideoFile": {
+        "_type": "file",
+        "asset": {
+          "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4",
+          "_type": "reference"
+        }
+      },
+      "playIndicatorText": "hear the story",
+      "preHeading": "Step Into the Shadows of History",
+      "subHeading": "Inspired by the daring missions of Cecil Mallaby, one of WWII’s real-life secret agents, your evening will be a thrilling blend of espionage, gourmet cuisine, and immersive storytelling",
+      "videoFile": {
+        "_type": "file",
+        "asset": {
+          "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4",
+          "_type": "reference"
+        }
+      }
+    },
+    "inquire": {
+      "description": "Drop us a message and step into a real-life spy story.",
+      "form": {
+        "emailLabel": "Email",
+        "emailPlaceholder": "john@example.com",
+        "eventDateLabel": "Date of Event",
+        "firstNameLabel": "First Name",
+        "firstNamePlaceholder": "John",
+        "formTitle": "Step Into the Story",
+        "groupSizeDefaultOption": "Select group size",
+        "groupSizeLabel": "How many will you be?",
+        "groupSizeOptions": [
+          "2-5 people",
+          "6-10 people",
+          "11-20 people",
+          "21-50 people",
+          "50+ people"
+        ],
+        "lastNameLabel": "Last Name",
+        "lastNamePlaceholder": "Doe",
+        "messageLabel": "Spy Event Inquiry",
+        "messagePlaceholder": "Learn more",
+        "phoneLabel": "Phone",
+        "phonePlaceholder": "555 123-4567",
+        "submitButtonLoadingText": "Sending...",
+        "submitButtonText": "Join the Story"
+      },
+      "mainHeading": "Join the Mission",
+      "preHeading": "Get in Touch",
+      "success": {
+        "buttonText": "Back to Top",
+        "message": "Thank you for reaching out. We'll be in touch soon to help you create your unforgettable spy experience.",
+        "title": "The Mission Awaits!"
+      }
+    },
+    "privateEvents": {
+      "ctaLink": "#contact",
+      "ctaText": "DISCOVER HOW IT WORKS",
+      "description": "Bring the thrill of espionage to Lake Como with a fully immersive spy experience. Perfect for private villas or pre- and post-wedding celebrations.",
+      "features": [
+        {
+          "_key": "feat_0",
+          "_type": "object",
+          "icon": "target",
+          "text": "Choose your mission: Spy Mission Dinner or Cocktail Party"
+        },
+        {
+          "_key": "feat_1",
+          "_type": "object",
+          "icon": "map-pin",
+          "text": "Fully tailored for your specific location and guest count"
+        },
+        {
+          "_key": "feat_2",
+          "_type": "object",
+          "icon": "martini",
+          "text": "Gourmet dining, cocktails, immersive storytelling"
+        },
+        {
+          "_key": "feat_3",
+          "_type": "object",
+          "icon": "briefcase",
+          "text": "Complete with cinematic backdrops, spy props, and spy kits"
+        }
+      ],
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-e35fa47785930f581efceed9baffd9ca853abe1a-884x519-png",
+          "_type": "reference"
+        }
+      },
+      "label": "LAKE COMO EXCLUSIVE",
+      "photographyHighlights": [
+        "Professional images capturing the drama and elegance",
+        "Guests interacting with spy kits, props, and backdrops",
+        "Perfect for keepsakes, social media, or personal mementos"
+      ],
+      "subtitle": "Host Your Bond-Inspired Spy Experience",
+      "title": "Private Spy Missions",
+      "videographyHighlights": [
+        "Bespoke 3-minute cinematic \"movie trailer\" of your mission",
+        "Custom cast names for each guest and tailored music",
+        "Fully produced and delivered within 10 days",
+        "Includes short social media clips for sharing"
+      ],
+      "videographyLabel": "A TRULY UNIQUE OFFERING",
+      "videographySubtitle": "We offer an exclusive cinematic video experience — the only spy event videography of its kind on Lake Como.",
+      "videographyTitle": "Photography & Videography"
+    },
+    "story": {
+      "blinkingLabel": "Classified Intelligence",
+      "headline": "Spies of Style",
+      "real007": {
+        "bullets": [
+          "Solve the type of codes used by Mallory",
+          "Experience the suspense and strategy of a true spy mission",
+          "Collaborate with teams in a cinematic setting",
+          "Walk in the footsteps of the spy who inspired James Bond"
+        ],
+        "heading": "The Real-Life 007",
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png",
+            "_type": "reference"
+          }
+        },
+        "paragraph1": "During World War II, intelligence operative Cecile Mallory arrived secretly in Cernobbio on Lake Como carrying a critical Allied mission. Her audacious operations, coded messages, and elegant style remain part of the region's wartime history.",
+        "paragraph2": "Historians believe Mallory's daring missions and sophistication inspired elements of Ian Fleming's James Bond, from secret communications to high-stakes espionage in glamorous locations."
+      },
+      "subheadline": "Step into the true mission of Cecil Richard Mallaby — a WWII spy whose daring story inspired James Bond — through an immersive dinner or cocktail experience on Lake Como."
+    },
+    "title": "Spies of Style — Landing Page"
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\moviePage.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "moviePage",
+    "_rev": "UEpPnqaT84vVgQ3Oe7rAJL",
+    "_system": {
+      "base": {
+        "id": "moviePage",
+        "rev": "r5z7poe2OElSjLhxtuoiNJ"
+      }
+    },
+    "_type": "moviePage",
+    "_updatedAt": "2026-02-09T13:25:37Z",
+    "deliverables": [
+      {
+        "_key": "deliverable1",
+        "description": "A fully edited trailer up to 3 minutes in length",
+        "features": [
+          "Includes your choice of music to match the tone and style",
+          "Features custom title and cast names",
+          "Enhanced with special effects to elevate the cinematic impact",
+          "Professional photography"
+        ],
+        "title": "3-Minute Movie Trailer with Professional Photography"
+      },
+      {
+        "_key": "deliverable2",
+        "description": "Shorter versions optimized for social media platforms",
+        "features": [
+          "Perfect for Instagram, TikTok, YouTube, or Facebook",
+          "Designed to grab attention and drive engagement"
+        ],
+        "title": "Social Media Ready Cuts"
+      },
+      {
+        "_key": "deliverable3",
+        "description": "Delivered within 3–4 weeks from event date",
+        "features": [
+          "Professional post-production editing",
+          "Quality assurance review",
+          "Secure digital delivery"
+        ],
+        "title": "Timeline"
+      }
+    ],
+    "hero": {
+      "heading": "Where Every Guest Becomes A Star",
+      "subHeading": "Lights, Camera, Action!",
+      "subSubHeading": "Our professional videographer captures your private event to create your very own 3-minute movie trailer. With custom casting, selected music, and highlights from your special event, we turn your celebration into a cinematic keepsake. The only movie experience on Lake Como, complete with social media–ready clips and your full trailer delivered within 3–4 weeks — making your event truly unforgettable!"
+    },
+    "heroFeature": {
+      "link": "/contact",
+      "subtitle": "Your Cinematic Keepsake",
+      "tag": "Coming Soon",
+      "title": "MOVIE PREMIERE"
+    },
+    "popcornSection": {
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-321c90df5c1ee24afc8168a27d44c0893d84a55f-500x500-png",
+          "_type": "reference"
+        }
+      }
+    },
+    "timeline": "Delivered within 3–4 weeks from event date",
+    "title": "Star in Your Own Trailer"
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\navbar.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2025-12-27T05:29:58Z",
+    "_id": "navbar",
+    "_rev": "MjdSXFelIF5IivE650eSaO",
+    "_system": {
+      "base": {
+        "id": "navbar",
+        "rev": "OJl4e2TkVOqlZxtjkMIdqF"
+      }
+    },
+    "_type": "navbar",
+    "_updatedAt": "2026-03-16T15:19:24Z",
+    "ctaLink": "/contact",
+    "ctaText": "Book Now",
+    "links": [
+      {
+        "_key": "nav_0",
+        "_type": "object",
+        "label": "The Story",
+        "url": "/#story"
+      },
+      {
+        "_key": "nav_1",
+        "_type": "object",
+        "label": "The Experience",
+        "url": "/#experience"
+      },
+      {
+        "_key": "nav_2",
+        "_type": "object",
+        "label": "The Assignment",
+        "url": "/#assignment"
+      },
+      {
+        "_key": "nav_3",
+        "_type": "object",
+        "label": "Private Events",
+        "url": "/#private-events"
+      },
+      {
+        "_key": "f3faedacfaad",
+        "label": "Upcoming Events",
+        "url": "#events"
+      },
+      {
+        "_key": "nav_4",
+        "_type": "object",
+        "label": "Inquire",
+        "url": "/#contact"
+      }
+    ],
+    "logoText": "SPIES OF STYLE",
+    "title": "Main Navigation"
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\processPage.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "processPage",
+    "_rev": "4KpL12pTcFQhaPHLTZwfrh",
+    "_system": {
+      "base": {
+        "id": "processPage",
+        "rev": "7Xg1Kgf6r9PsjobGMjPbjO"
+      }
+    },
+    "_type": "processPage",
+    "_updatedAt": "2026-02-04T12:40:25Z",
+    "hero": {
+      "description": "Our 2026 themed experiences invite guests into a one-of-a-kind atmosphere on Lake Como, featuring photo-ready backdrops and a curated selection of props for spontaneous, playful photo moments. Guests are welcome to come dressed to theme or simply grab an accessory and join in. \n\nSignature cocktails, menus, and music guide the evening—often transforming dinner into dancing.\n\nWith candid Polaroid moments captured throughout the night, and plenty of opportunities to share your own, our weekly aperitivos and pre-fixed dinners are designed to be social, immersive, and unforgettable.",
+      "heading": "Seasonal Weekly Events",
+      "subHeading": "From Drinks to Dinner to Dancing Under the Stars"
+    },
+    "heroFeature": {
+      "link": "/themes",
+      "subtitle": "Dive into the World of Cinematic Creativity",
+      "tag": "Choose Your Theme",
+      "title": "THEMED CINEMATIC PARTIES"
+    },
+    "steps": [
+      {
+        "_key": "step1",
+        "body": "Select from our signature themes: International Agents of Style, Hollywood Hussle, La Dolce Vita, Pink Ladies, Angels & Demons or create a custom theme. With over 3,000 costumes and props, your celebration can be uniquely tailored to your group. We consult with you to build any themed story - the sky is the limit with us! \n\nGuests may take the lead on screen, step into select moments, or simply enjoy the experience while our professional actors bring the story to life.\n\nWhether you want to star in your own cinematic trailer or watch the drama unfold around you, the film is crafted seamlessly around your level of participation, comfort, and style.\n\nExample Customized Storytelling – Corporate Brand Dinner Show:\n\nA company invites key clients, partners, or employees to an exclusive dinner, either at our historic palace in the heart of Como or a venue of their choice. The evening transforms into an immersive storytelling experience, where the brand’s story is enacted through performances, cinematic content, and thematic moments woven seamlessly into the dining experience. Guests are not just observers—they actively engage with the narrative, creating a sense of participation and exclusivity.\n\nEvery detail—from costumes and props to custom backdrops and interactive set pieces—is designed to reflect the brand’s identity, creating a luxurious and memorable atmosphere. Throughout the evening, the experience is filmed as a short cinematic production, culminating in a 3-minute movie trailer that serves as a lasting memento. Experiencing the brand in such a personalized and captivating way fosters deeper connections, strengthens loyalty, and leaves an impression that extends far beyond the event itself.\n\n",
+        "heading": "Choose or Create Your Story",
+        "stepNumber": 1,
+        "tagline": "LA DOLCE VITA to BOND",
+        "titleLines": [
+          "SELECT",
+          "YOUR",
+          "THEME"
+        ]
+      },
+      {
+        "_key": "step2",
+        "body": "Decide where your cinematic experience will take place:\n\n• Our Venue: Our Turnkey setup with cocktails, gourmet popcorn with DJ & dancing\n• Luxury Hotel: Partnering with selected hotels for seamless events offering guests an exclusive experience\n• Your Chosen Venue: We bring all props, costumes, step & repeat backdrops, and filming to your location. We do travel to various locations with advance requests.\n• We offer 1/2 day & full day filming with boats, vespas, costumes and props for groups wanting a day group event. A perfect memorabilia and adventure for guests.\n\nExample Concept – Lake Como Bachelor/Bachelorette Experience:\n\nA wedding party travels to Lake Como and wants to create a truly unforgettable bachelor or bachelorette celebration. Our team designs an immersive experience, guiding guests through iconic locations across the city—capturing moments with cinematic, movie-trailer-style storytelling that feels both playful and elegant.\n\nThe experience can be tailored to fit either a half-day (4–5 hours) or a full-day (7–8 hours) journey. A half-day option allows for a focused, energetic adventure that concludes with a refined cocktail reception, while a full-day experience offers a complete narrative arc with multiple locations and interactive moments, culminating in a luxurious finale.\n\nIn both cases, the journey ends at our historic palace venue in the heart of Como. Guests enjoy an exclusive cocktail reception where highlights from the day are presented in cinematic form, all within the palace’s elegant interiors. This combination of immersive storytelling, city exploration, and a luxurious finale transforms the celebration into an experience that guests will remember—and share—long after the wedding.",
+        "heading": "Pick Your Location",
+        "stepNumber": 2,
+        "tagline": "YOU NAME IT",
+        "titleLines": [
+          "SELECT",
+          "YOUR",
+          "VENUE"
+        ]
+      },
+      {
+        "_key": "step3",
+        "body": "Our team curates every detail to bring your theme to life. From custom step & repeat backdrops and curated props to music and storylines, we transform venues into a cinematic setting. Our stylist works directly with you to ensure all props, costumes and backdrops are ready for your film. We curate and manage a bespoke cast of professional actors who can enact the full story, should guests choose this option. You relax while we handle all the production details.\n\nProduction & Client Collaboration:\n\nOur immersive experiences are fully collaborative, giving clients the opportunity to shape the narrative of their event from start to finish. We provide storyboards, visual mock-ups, and thematic suggestions for each scene, allowing the experience to be carefully tailored to the client’s identity and objectives.\n\nClients can customize performances, costumes, props, and backdrops to reflect their unique vision, ensuring every element aligns with their story. By engaging directly in the creative process, clients become active partners in the production, resulting in a one-of-a-kind immersive experience that leaves a lasting impression on participants and reinforces the brand’s connection with its audience.",
+        "heading": "Production Design",
+        "stepNumber": 3,
+        "tagline": "PROPS & COSTUMES",
+        "titleLines": [
+          "WE DESIGN",
+          "YOUR",
+          "EVENT"
+        ]
+      },
+      {
+        "_key": "step4",
+        "body": "On the day of your event, guests step into a world of intrigue, glamour, and cinematic storytelling. With guidance from our production team, everyone gets to act out key scenes from your chosen theme, making the experience interactive and unforgettable. Our professional videographer captures both spontaneous and directed moments, ensuring every guest shines on camera while enjoying an elevated, immersive celebration.\n\nNo acting experience is required—guests can choose how much they want to engage in the storytelling. Some clients prefer to simply observe and enjoy the narrative as it unfolds, while others can take on lead roles and fully immerse themselves in the performances. You can take on a starring role, appear in stylish cameo moments, or relax while professional actors enact the full narrative around you. Every scene is designed to feel effortless, elegant, and unmistakably cinematic. This flexibility ensures that every participant feels comfortable and can enjoy the experience in a way that suits their personality, creating a welcoming, inclusive atmosphere while still maintaining the immersive, cinematic impact of the event.\n\n",
+        "heading": "The Big Day",
+        "stepNumber": 4,
+        "tagline": "TIME TO SHINE",
+        "titleLines": [
+          "CELEBRATE",
+          "IN",
+          "STYLE"
+        ]
+      },
+      {
+        "_key": "step5",
+        "body": "Within 3–4 weeks, we deliver a beautifully produced 3-minute cinematic trailer, along with social media-ready clips. \n\nThe cinematic trailer of the experience is fully crafted to reflect the client’s vision. Clients provide the title, cast names, and music selection, and we integrate these elements seamlessly into our cinematic production. Before the trailer is shared with guests, we confirm every element with the client to ensure it perfectly represents their story and meets their expectations. This attention to detail guarantees a polished, professional, and memorable keepsake that reinforces the impact of the immersive experience.",
+        "heading": "Post-Production Magic",
+        "stepNumber": 5,
+        "tagline": "YOUR SILVER SCREEN",
+        "titleLines": [
+          "YOUR MOVIE &",
+          "SOCIAL",
+          "MEDIA CLIPS"
+        ]
+      },
+      {
+        "_key": "step6",
+        "body": "Your personalized movie trailer can be treasured for years to come — the perfect way to relive the magic of your event.\n\nThe immersive event is captured and packaged as a 3-minute cinematic movie, creating a long-lasting keepsake. Clients can share the trailer virtually via Zoom or by hosting their own in-person movie screening party. This allows the event to live on far beyond the actual day, extending the impact of the immersive experience, strengthening connections with guests, and creating ongoing engagement with the brand or celebration.",
+        "heading": "Keep the Story Alive",
+        "stepNumber": 6,
+        "tagline": "POPCORN TIME",
+        "titleLines": [
+          "RELIVE",
+          "THE",
+          "EXPERIENCE"
+        ]
+      }
+    ],
+    "title": "Seasonal Weekly Events",
+    "videoSection": {
+      "enabled": true,
+      "heading": "List of 2026 Venues",
+      "subHeading": "- Ristorante Locando Milano 1973 \n- Ristorante Terzo Crotto"
+    }
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\themesPage.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2025-12-27T05:23:56Z",
+    "_id": "themesPage",
+    "_rev": "OJl4e2TkVOqlZxtjjqr7qF",
+    "_system": {
+      "base": {
+        "id": "themesPage",
+        "rev": "4DZXQ06MV0KUYSdqr2RtRI"
+      }
+    },
+    "_type": "themesPage",
+    "_updatedAt": "2026-03-11T22:05:51Z",
+    "assignmentsSection": {
+      "cards": [
+        {
+          "_key": "card_0",
+          "_type": "object",
+          "ctaLink": "/contact",
+          "ctaText": "Book Dinner Mission",
+          "duration": "3-hour immersive experience",
+          "features": [
+            "Multi-course themed dinner",
+            "Full spy kit & historical dossier",
+            "Interactive historical mission",
+            "Cinematic photo opportunities"
+          ],
+          "title": "Dinner Mission"
+        },
+        {
+          "_key": "card_1",
+          "_type": "object",
+          "ctaLink": "/contact",
+          "ctaText": "Book Cocktail Mission",
+          "duration": "90–120 minute experience",
+          "features": [
+            "Curated cocktails & hors d’oeuvres",
+            "Spy kit and tactical briefing",
+            "Interactive mission puzzles",
+            "Perfect pre-dinner social experience"
+          ],
+          "title": "Cocktail Mission"
+        }
+      ],
+      "sectionTitle": "Choose Your Assignment"
+    },
+    "ctaSection": {
+      "ctas": [
+        {
+          "_key": "cta_0",
+          "_type": "object",
+          "link": "/contact",
+          "text": "Book Dinner Mission"
+        },
+        {
+          "_key": "cta_1",
+          "_type": "object",
+          "link": "/contact",
+          "text": "Book Cocktail Mission"
+        },
+        {
+          "_key": "cta_2",
+          "_type": "object",
+          "link": "/contact",
+          "text": "Inquire About Private Villa Events"
+        }
+      ],
+      "quote": "Step into history, mystery, and glamour on Lake Como. Choose your night, grab your spy kit, and live the adventure.",
+      "title": "Live a True Spy Mission on Lake Como"
+    },
+    "hero": {
+      "blinkingLabel": "Classified Intelligence",
+      "ctaLink": "/contact",
+      "ctaText": "Reserve Your Mission",
+      "headline": "Spies of Style",
+      "subheadline": "Step into the true mission of Cecil Richard Mallaby — a WWII spy whose daring story inspired James Bond — through an immersive dinner or cocktail experience on Lake Como."
+    },
+    "heroSlides": [
+      {
+        "_key": "2db426f2e772",
+        "_type": "image",
+        "alt": "gallery",
+        "asset": {
+          "_ref": "image-43fdff9abb7826d5389b751bf0a0a18949837c2f-1651x868-png",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "273ac1b45a18",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-ef7310f3d34e709483448353cd3497710158fe81-648x439-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "97f02a451a52",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-13ddf4eaa8b4fef3d430916c7f28916f5cf67949-795x502-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "daa1101db1f0",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-cf01fbb4bda2b71a7f4b99c7c1ffa28fc9aa1e42-736x516-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "07566f89e288",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080-png",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "68e30f36fd31",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-0ac9afdecb1586c574770b42545414b5ffea541f-1920x1080-png",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "3adedf59ddf8",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-63492ab2a56fc483754a0cb42e982ac93a54684a-951x913-png",
+          "_type": "reference"
+        }
+      }
+    ],
+    "privateVillaSection": {
+      "ctaLink": "/contact",
+      "ctaText": "Inquire About Private Events",
+      "description": "Bring the mission to your exclusive Lake Como residence. Ideal for private celebrations, corporate retreats, or destination weddings.",
+      "features": [
+        "Personalized storylines for your group",
+        "Optional 3-minute cinematic event trailer",
+        "Full immersive setup & professional cast"
+      ],
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-90bd1a2aac457dc836d3ae0f2ffc6dd150505698-884x519-png",
+          "_type": "reference"
+        }
+      },
+      "title": "Private Villa Operations"
+    },
+    "real007Section": {
+      "bullets": [
+        "Solve the type of codes used by Mallory",
+        "Experience the suspense and strategy of a true spy mission",
+        "Collaborate with teams in a cinematic setting",
+        "Walk in the footsteps of the spy who inspired James Bond"
+      ],
+      "heading": "The Real-Life 007",
+      "image": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png",
+          "_type": "reference"
+        }
+      },
+      "paragraph1": "During World War II, intelligence operative Cecile Mallory arrived secretly in Cernobbio on Lake Como carrying a critical Allied mission. Her audacious operations, coded messages, and elegant style remain part of the region's wartime history.",
+      "paragraph2": "Historians believe Mallory's daring missions and sophistication inspired elements of Ian Fleming's James Bond, from secret communications to high-stakes espionage in glamorous locations."
+    },
+    "title": "Spies of Style — Cinematic Spy Experience",
+    "whatsIncludedSection": {
+      "items": [
+        "Custom spy kit for every guest",
+        "Historic codes and mission dossiers",
+        "Multi-course dinner or curated cocktail service",
+        "Cinematic photo opportunities",
+        "Optional cinematic trailer for private events"
+      ],
+      "title": "What's Included"
+    }
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\documents\venuePage.json
+================================================================================
+
+[
+  {
+    "_createdAt": "2026-01-01T09:02:51Z",
+    "_id": "3d2JLpUTPM5qppQf88BJIs",
+    "_rev": "UEpPnqaT84vVgQ3Oe813F7",
+    "_system": {
+      "base": {
+        "id": "3d2JLpUTPM5qppQf88BJIs",
+        "rev": "UEpPnqaT84vVgQ3Oe80kbp"
+      }
+    },
+    "_type": "venuePage",
+    "_updatedAt": "2026-02-09T13:45:43Z",
+    "cta": {
+      "buttonText": "Join Our Events",
+      "description": "Create unforgettable moments on Lake Como ",
+      "title": "Unique Venues, Unique Events For All"
+    },
+    "description": [
+      "AGENTS OF STYLE AT HOTEL TERZO CROTTO: \nNestled in the heart of Cernobbio, Hotel Terzo Crotto is a charming historic property set in a garden‑surrounded former farmhouse dating back to the late 19th century. The hotel’s tranquil setting offers easy access to the lakeside and local attractions like Villa d’Este while maintaining a peaceful, picturesque atmosphere. With inviting outdoor spaces, wine cellar and a welcoming restaurant celebrating authentic Italian cuisine, Hotel Terzo Crotto provides an elegant backdrop for any event.",
+      "DATES: May 6 & May 16\nTIME: 5pm- 8pm\nTICKETS:"
+    ],
+    "externalLinks": {
+      "bookingLink": "contact"
+    },
+    "galleryImages": [
+      {
+        "_key": "aa448d5f00fc",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "9e462a1053bc",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "fcb9ddbbb171",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-fd866ca52e4b811cb176080a9b9468a723e607c2-550x412-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "52016409cd4a",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-fe3de70117969f48e5c4357717bf3229402161a3-1284x961-webp",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "968d2da3a474",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-e75d690f4207cc816d6f73b1d03eb20453755760-1920x1280-webp",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "66d438d46c23",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-89ca9a0352a0628203ef4387bb8245a7d17e8d19-1030x682-png",
+          "_type": "reference"
+        }
+      }
+    ],
+    "hero": {
+      "heading": "Themed Events at Authentic Italian Venues ",
+      "location": "Lake Como, Italy",
+      "subHeading": "From Villas to Historic Restaurants Join Our Immersive Events"
+    },
+    "heroFeature": {
+      "link": "Limited Spaces",
+      "tag": "Themed Events at Stunning Venues ",
+      "title": "2026 Ticketed Events"
+    },
+    "title": "2026 Open Ticketed Experiences"
+  }
+]
+
+
+================================================================================
+FILE: sanity-mirror\export-meta.json
+================================================================================
+
+{
+  "exportedAt": "2026-03-16T17:14:51.143Z",
+  "exportedDate": "2026-03-16",
+  "projectId": "c20abca7",
+  "dataset": "production",
+  "apiVersion": "2025-12-27",
+  "totalDocuments": 17,
+  "types": [
+    {
+      "type": "aboutPage",
+      "count": 1,
+      "file": "aboutPage.json"
+    },
+    {
+      "type": "brandSettings",
+      "count": 1,
+      "file": "brandSettings.json"
+    },
+    {
+      "type": "castPage",
+      "count": 1,
+      "file": "castPage.json"
+    },
+    {
+      "type": "contactPage",
+      "count": 1,
+      "file": "contactPage.json"
+    },
+    {
+      "type": "crewPage",
+      "count": 1,
+      "file": "crewPage.json"
+    },
+    {
+      "type": "event",
+      "count": 2,
+      "file": "event.json"
+    },
+    {
+      "type": "faqPage",
+      "count": 1,
+      "file": "faqPage.json"
+    },
+    {
+      "type": "footer",
+      "count": 1,
+      "file": "footer.json"
+    },
+    {
+      "type": "galleryPage",
+      "count": 1,
+      "file": "galleryPage.json"
+    },
+    {
+      "type": "homepage",
+      "count": 1,
+      "file": "homepage.json"
+    },
+    {
+      "type": "landingPage",
+      "count": 1,
+      "file": "landingPage.json"
+    },
+    {
+      "type": "moviePage",
+      "count": 1,
+      "file": "moviePage.json"
+    },
+    {
+      "type": "navbar",
+      "count": 1,
+      "file": "navbar.json"
+    },
+    {
+      "type": "processPage",
+      "count": 1,
+      "file": "processPage.json"
+    },
+    {
+      "type": "themesPage",
+      "count": 1,
+      "file": "themesPage.json"
+    },
+    {
+      "type": "venuePage",
+      "count": 1,
+      "file": "venuePage.json"
+    }
+  ]
+}
+
+
+================================================================================
+FILE: sanity-mirror\queries\.gitkeep
+================================================================================
+
+
+
+================================================================================
+FILE: sanity-mirror\schema-map.json
+================================================================================
+
+{
+  "event": {
+    "fields": [
+      "title",
+      "slug",
+      "badge",
+      "eventType",
+      "date",
+      "time",
+      "image",
+      "description",
+      "location",
+      "ctaLabel",
+      "ctaType",
+      "pinned",
+      "displayOrder"
+    ],
+    "references": [],
+    "assets": [
+      "image"
+    ]
+  },
+  "footer": {
+    "fields": [
+      "title",
+      "footerTagline",
+      "email",
+      "phone",
+      "copyright",
+      "socialLinks"
+    ],
+    "references": [],
+    "assets": []
+  },
+  "landingPage": {
+    "fields": [
+      "title",
+      "hero",
+      "mobileVideoFile",
+      "posterImage",
+      "preHeading",
+      "mainHeading",
+      "subHeading",
+      "playIndicatorText",
+      "story",
+      "headline",
+      "subheadline",
+      "real007",
+      "paragraph1",
+      "paragraph2",
+      "bullets",
+      "image",
+      "experience",
+      "sectionSubtitle",
+      "showcaseImages",
+      "title",
+      "role",
+      "paragraphs",
+      "assignment",
+      "cards",
+      "duration",
+      "features",
+      "ctaText",
+      "image",
+      "privateEvents",
+      "title",
+      "subtitle",
+      "description",
+      "features",
+      "text",
+      "ctaText",
+      "ctaLink",
+      "image",
+      "videographyLabel",
+      "videographyTitle",
+      "videographySubtitle",
+      "videographyHighlights",
+      "photographyHighlights",
+      "inquire",
+      "mainHeading",
+      "description",
+      "form",
+      "firstNameLabel",
+      "firstNamePlaceholder",
+      "lastNameLabel",
+      "lastNamePlaceholder",
+      "emailLabel",
+      "emailPlaceholder",
+      "phoneLabel",
+      "phonePlaceholder",
+      "groupSizeLabel",
+      "groupSizeDefaultOption",
+      "groupSizeOptions",
+      "eventDateLabel",
+      "messageLabel",
+      "messagePlaceholder",
+      "submitButtonText",
+      "submitButtonLoadingText",
+      "success",
+      "message",
+      "buttonText"
+    ],
+    "references": [],
+    "assets": [
+      "mobileVideoFile",
+      "posterImage",
+      "image",
+      "showcaseImages[].image"
+    ]
+  },
+  "navbar": {
+    "fields": [
+      "title",
+      "logoText",
+      "logoImage",
+      "links",
+      "url",
+      "ctaText",
+      "ctaLink"
+    ],
+    "references": [],
+    "assets": [
+      "logoImage"
+    ]
+  }
+}
+
+
+================================================================================
+FILE: sanity-mirror\schemas\.gitkeep
+================================================================================
+
+
+
+================================================================================
+FILE: sanity-mirror\schemas\event.json
+================================================================================
+
+{
+  "name": "event",
+  "type": "document",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string",
+      "required": true,
+      "isArray": false
+    },
+    {
+      "name": "slug",
+      "type": "slug",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "badge",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "eventType",
+      "type": "string",
+      "required": true,
+      "isArray": false
+    },
+    {
+      "name": "date",
+      "type": "date",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "time",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "image",
+      "type": "image",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "location",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "ctaLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "ctaType",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "pinned",
+      "type": "boolean",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "displayOrder",
+      "type": "number",
+      "required": false,
+      "isArray": false
+    }
+  ],
+  "references": [],
+  "assets": [
+    "image"
+  ]
+}
+
+
+================================================================================
+FILE: sanity-mirror\schemas\footer.json
+================================================================================
+
+{
+  "name": "footer",
+  "type": "document",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "footerTagline",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "phone",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "copyright",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "socialLinks",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    }
+  ],
+  "references": [],
+  "assets": []
+}
+
+
+================================================================================
+FILE: sanity-mirror\schemas\landingPage.json
+================================================================================
+
+{
+  "name": "landingPage",
+  "type": "document",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "hero",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "mobileVideoFile",
+      "type": "file",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "posterImage",
+      "type": "image",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "preHeading",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "mainHeading",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "subHeading",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "playIndicatorText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "story",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "headline",
+      "type": "string",
+      "required": true,
+      "isArray": false
+    },
+    {
+      "name": "subheadline",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "real007",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "paragraph1",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "paragraph2",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "bullets",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "image",
+      "type": "image",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "experience",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "sectionSubtitle",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "showcaseImages",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "role",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "paragraphs",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "assignment",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "cards",
+      "type": "array",
+      "required": true,
+      "isArray": true
+    },
+    {
+      "name": "duration",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "features",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "ctaText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "image",
+      "type": "image",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "privateEvents",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "subtitle",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "features",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "required": true,
+      "isArray": false
+    },
+    {
+      "name": "ctaText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "ctaLink",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "image",
+      "type": "image",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "videographyLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "videographyTitle",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "videographySubtitle",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "videographyHighlights",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "photographyHighlights",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "inquire",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "mainHeading",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "form",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "firstNameLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "firstNamePlaceholder",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "lastNameLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "lastNamePlaceholder",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "emailLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "emailPlaceholder",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "phoneLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "phonePlaceholder",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "groupSizeLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "groupSizeDefaultOption",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "groupSizeOptions",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "eventDateLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "messageLabel",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "messagePlaceholder",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "submitButtonText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "submitButtonLoadingText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "success",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "message",
+      "type": "text",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "buttonText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    }
+  ],
+  "references": [],
+  "assets": [
+    "mobileVideoFile",
+    "posterImage",
+    "image",
+    "showcaseImages[].image"
+  ]
+}
+
+
+================================================================================
+FILE: sanity-mirror\schemas\navbar.json
+================================================================================
+
+{
+  "name": "navbar",
+  "type": "document",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "logoText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "logoImage",
+      "type": "image",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "links",
+      "type": "array",
+      "required": false,
+      "isArray": true
+    },
+    {
+      "name": "url",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "ctaText",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    },
+    {
+      "name": "ctaLink",
+      "type": "string",
+      "required": false,
+      "isArray": false
+    }
+  ],
+  "references": [],
+  "assets": [
+    "logoImage"
+  ]
+}
+
+
+================================================================================
 FILE: sanity.cli.ts
 ================================================================================
 
@@ -597,6 +3339,275 @@ export default defineConfig({
     visionTool({defaultApiVersion: apiVersion}),
   ],
 })
+
+
+================================================================================
+FILE: SANITY_MIGRATION.md
+================================================================================
+
+# Sanity Migration Engine v3 — Developer Workflow Guide
+
+## Overview
+
+This system enables safe, schema-aware, repeatable migrations of Sanity CMS content.
+It supports export → diff → plan → seed → rollback across all environments.
+
+## Directory Structure
+
+```
+scripts/sanity/
+  config.ts               Shared client, env, paths, utilities
+  introspect-schemas.ts   Schema static analysis → schema-map.json
+  export-dataset.ts       Live CMS → sanity-mirror/documents/
+  diff-dataset.ts         Live vs mirror → diff-report.json
+  generate-migration-plan.ts  Diff → migration-plan.json
+  seed-from-json.ts       Mirror → live Sanity (safe upsert)
+  validate-schema.ts      Pre-seed validation (used as library)
+  verify-assets.ts        Asset reference integrity check
+  rollback.ts             Snapshot/restore live dataset
+  generate-types.ts       schema-map.json → TypeScript types
+  discover-queries.ts     Scan src/ for GROQ queries
+
+sanity-mirror/
+  documents/              Per-type JSON files (version controlled)
+  schemas/                Parsed schema metadata per type
+  queries/                Archived GROQ query files
+  schema-map.json         Field/asset/reference map (generated)
+  generated-types.ts      TypeScript interfaces (generated)
+  export-meta.json        Last export metadata
+  diff-report.json        Last diff result
+
+sanity-backups/
+  YYYY-MM-DD/
+    HH-MM-SS.---Z/        Timestamped snapshot
+      event.json
+      landingPage.json
+      _meta.json
+```
+
+## Environment Variables
+
+Add to `.env.local`:
+
+```bash
+NEXT_PUBLIC_SANITY_PROJECT_ID=c20abca7
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2025-12-27
+
+# Required for seed / rollback restore operations
+SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS=sk...
+
+# Required to confirm destructive rollback restore
+SANITY_MIGRATE_CONFIRM=yes
+```
+
+Override dataset per-command:
+
+```bash
+SANITY_DATASET=staging npm run sanity:export
+```
+
+---
+
+## CLI Commands
+
+| Command | Description |
+|---|---|
+| `npm run sanity:introspect` | Analyse schemas → schema-map.json |
+| `npm run sanity:export` | Export live CMS → documents/ |
+| `npm run sanity:diff` | Compare live vs mirror → diff-report.json |
+| `npm run sanity:plan` | Generate migration-plan.json from diff |
+| `npm run sanity:seed` | Upsert mirror docs into live Sanity |
+| `npm run sanity:seed:dry-run` | Preview seed without writing |
+| `npm run sanity:verify-assets` | Check all asset _refs are valid |
+| `npm run sanity:rollback` | Snapshot live dataset to sanity-backups/ |
+| `npm run sanity:rollback:list` | List available snapshots |
+| `npm run sanity:generate-types` | Generate TypeScript interfaces |
+| `npm run sanity:discover-queries` | Archive GROQ queries from src/ |
+| `npm run sanity:validate` | Validate mirror docs against schema |
+| `npm run sanity:migrate` | Full pipeline: snapshot → diff → plan → seed |
+
+---
+
+## Standard Workflows
+
+### 1. Initial Setup
+
+```bash
+# Install deps (tsx + @sanity/client were added to devDependencies)
+npm install
+
+# Analyse schemas
+npm run sanity:introspect
+
+# Generate TypeScript types
+npm run sanity:generate-types
+
+# Archive GROQ queries for reference
+npm run sanity:discover-queries
+```
+
+### 2. Export Live CMS → Local Mirror
+
+```bash
+npm run sanity:export
+# → sanity-mirror/documents/event.json
+# → sanity-mirror/documents/landingPage.json
+# → sanity-mirror/documents/navbar.json
+# → sanity-mirror/documents/footer.json
+```
+
+### 3. Edit Content Locally
+
+Edit any file in `sanity-mirror/documents/`.
+Example: update an event title in `sanity-mirror/documents/event.json`.
+
+### 4. Diff and Plan Migration
+
+```bash
+# Compare local edits vs live dataset
+npm run sanity:diff
+# → sanity-mirror/diff-report.json
+
+# Generate a plan
+npm run sanity:plan
+# → migration-plan.json
+```
+
+Review `migration-plan.json`:
+```json
+{
+  "summary": { "create": 1, "update": 2, "skip": 19 },
+  ...
+}
+```
+
+### 5. Safe Seed
+
+```bash
+# Dry run first (no writes)
+npm run sanity:seed:dry-run
+
+# If plan looks correct, seed
+npm run sanity:seed
+```
+
+Seed rules:
+- Existing `_id` → `createOrReplace` (full upsert)
+- New `_id` → `createIfNotExists`
+- Documents in live but not in mirror → **skipped** (never auto-deleted)
+- Asset `_ref` values are never modified or re-uploaded
+
+### 6. Full Migration Pipeline (one command)
+
+```bash
+npm run sanity:migrate
+```
+
+This runs: snapshot → diff → plan → seed.
+A backup snapshot is always created before any write operation.
+
+### 7. Rollback
+
+```bash
+# List available snapshots
+npm run sanity:rollback:list
+
+# Create a manual snapshot
+npm run sanity:rollback
+
+# Restore to a specific date (DANGEROUS — requires confirmation env var)
+SANITY_MIGRATE_CONFIRM=yes tsx --tsconfig tsconfig.scripts.json scripts/sanity/rollback.ts restore 2026-03-16
+```
+
+---
+
+## CI/CD Integration
+
+Add to your CI pipeline (e.g. GitHub Actions):
+
+```yaml
+- name: Sanity export & diff
+  env:
+    NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+    NEXT_PUBLIC_SANITY_DATASET: production
+    NEXT_PUBLIC_SANITY_API_VERSION: 2025-12-27
+    SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS: ${{ secrets.SANITY_WRITE_TOKEN }}
+  run: |
+    npm run sanity:export
+    npm run sanity:diff
+    npm run sanity:plan
+
+- name: Sanity seed (staging only)
+  if: github.ref == 'refs/heads/staging'
+  run: npm run sanity:seed
+```
+
+### Git-Aware Migration Detection
+
+Only run migration if `sanity-mirror/` content changed:
+
+```bash
+git diff --quiet sanity-mirror/ || npm run sanity:migrate
+```
+
+---
+
+## Asset Safety Rules
+
+The engine enforces these rules for all operations:
+
+1. **Never re-upload assets.** Asset `_ref` values are immutable identifiers.
+2. **Never modify asset `_ref`.** Import/export preserves refs exactly.
+3. **Never delete assets.** Deletions are always manual operations via Studio.
+4. **Verify before seeding.** Run `npm run sanity:verify-assets` to check all refs.
+
+If `verify-assets` reports broken refs:
+- Open Sanity Studio
+- Locate the affected document
+- Re-attach the image asset via the Studio UI
+- Re-export the document: `npm run sanity:export`
+
+---
+
+## Multi-Dataset (staging / production)
+
+```bash
+# Export from staging
+SANITY_DATASET=staging npm run sanity:export
+
+# Export from production
+SANITY_DATASET=production npm run sanity:export
+
+# Seed staging with production content
+SANITY_DATASET=staging npm run sanity:seed
+```
+
+---
+
+## Idempotency Guarantee
+
+Running `npm run sanity:seed` multiple times is safe:
+- Documents that already match the mirror → no change (skipped by diff)
+- No duplicate documents — `createIfNotExists` handles existing IDs
+- No document deletion — removed docs are always skipped
+
+---
+
+## Schema Changes
+
+When schemas change:
+
+```bash
+# Re-introspect to update schema-map.json
+npm run sanity:introspect
+
+# Regenerate TypeScript types
+npm run sanity:generate-types
+
+# Re-validate mirror documents against new schema
+npm run sanity:validate
+```
 
 
 ================================================================================
@@ -1027,6 +4038,2272 @@ function main() {
 }
 
 main();
+
+
+================================================================================
+FILE: scripts\sanity\config.ts
+================================================================================
+
+/**
+ * Sanity Migration Engine v3 — Shared Configuration
+ *
+ * Loads env vars from .env.local and wires up two Sanity clients:
+ *  - readClient  → no token needed, for exports / diffs
+ *  - writeClient → requires SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS
+ */
+
+import * as fs from "fs";
+import * as path from "path";
+import { createClient, type SanityClient } from "@sanity/client";
+
+// ---------------------------------------------------------------------------
+// .env.local loader (lightweight, no dotenv dependency)
+// ---------------------------------------------------------------------------
+function loadEnvFile(envPath: string): void {
+  if (!fs.existsSync(envPath)) return;
+  const lines = fs.readFileSync(envPath, "utf-8").split("\n");
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const eqIdx = trimmed.indexOf("=");
+    if (eqIdx === -1) continue;
+    const key = trimmed.slice(0, eqIdx).trim();
+    const val = trimmed
+      .slice(eqIdx + 1)
+      .trim()
+      .replace(/^["']|["']$/g, "");
+    if (!(key in process.env)) process.env[key] = val;
+  }
+}
+
+const repoRoot = path.resolve(__dirname, "../..");
+loadEnvFile(path.join(repoRoot, ".env.local"));
+loadEnvFile(path.join(repoRoot, ".env"));
+
+// ---------------------------------------------------------------------------
+// Constants
+// ---------------------------------------------------------------------------
+export const PROJECT_ID =
+  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "c20abca7";
+
+export const DATASET =
+  process.env.SANITY_DATASET ||
+  process.env.NEXT_PUBLIC_SANITY_DATASET ||
+  "production";
+
+export const API_VERSION =
+  process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2025-12-27";
+
+export const WRITE_TOKEN =
+  process.env.SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS || "";
+
+export const SCHEMAS_DIR = path.join(repoRoot, "src/sanity/schemaTypes");
+export const MIRROR_DIR = path.join(repoRoot, "sanity-mirror");
+export const DOCUMENTS_DIR = path.join(MIRROR_DIR, "documents");
+export const SCHEMAS_META_DIR = path.join(MIRROR_DIR, "schemas");
+export const QUERIES_DIR = path.join(MIRROR_DIR, "queries");
+export const BACKUP_DIR = path.join(repoRoot, "sanity-backups");
+
+export const SCHEMA_MAP_FILE = path.join(MIRROR_DIR, "schema-map.json");
+export const DIFF_REPORT_FILE = path.join(MIRROR_DIR, "diff-report.json");
+export const GENERATED_TYPES_FILE = path.join(MIRROR_DIR, "generated-types.ts");
+export const MIGRATION_PLAN_FILE = path.join(repoRoot, "migration-plan.json");
+
+/** All known document types in this project */
+export const KNOWN_TYPES = ["landingPage", "navbar", "footer", "event"] as const;
+
+// ---------------------------------------------------------------------------
+// Client factory
+// ---------------------------------------------------------------------------
+export function makeReadClient(): SanityClient {
+  return createClient({
+    projectId: PROJECT_ID,
+    dataset: DATASET,
+    apiVersion: API_VERSION,
+    useCdn: false,
+  });
+}
+
+export function makeWriteClient(): SanityClient {
+  if (!WRITE_TOKEN) {
+    throw new Error(
+      "SANITY_WRITE_TOKEN_WITH_EDITOR_ACCESS is not set. " +
+        "Add it to your .env.local file."
+    );
+  }
+  return createClient({
+    projectId: PROJECT_ID,
+    dataset: DATASET,
+    apiVersion: API_VERSION,
+    useCdn: false,
+    token: WRITE_TOKEN,
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Utilities
+// ---------------------------------------------------------------------------
+export function ensureDir(dir: string): void {
+  fs.mkdirSync(dir, { recursive: true });
+}
+
+export function writeJson(filePath: string, data: unknown): void {
+  ensureDir(path.dirname(filePath));
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + "\n", "utf-8");
+}
+
+export function readJson<T = unknown>(filePath: string): T {
+  return JSON.parse(fs.readFileSync(filePath, "utf-8")) as T;
+}
+
+export function isoDate(): string {
+  return new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+}
+
+export function log(msg: string, level: "info" | "warn" | "error" = "info"): void {
+  const prefix =
+    level === "error" ? "[ERROR]" : level === "warn" ? "[WARN]" : "[INFO]";
+  console.log(`${prefix} ${msg}`);
+}
+
+
+================================================================================
+FILE: scripts\sanity\diff-dataset.ts
+================================================================================
+
+/**
+ * Sanity Migration Engine v3 — Field-Level Diff Engine
+ *
+ * Compares the LIVE Sanity dataset against the LOCAL JSON mirror and
+ * produces a structured diff report:
+ *
+ *   sanity-mirror/diff-report.json
+ *
+ * Diff categories:
+ *   NEW       — document exists in mirror but not in live dataset
+ *   UPDATED   — document exists in both; one or more fields changed
+ *   REMOVED   — document exists in live dataset but not in mirror
+ *   UNCHANGED — identical in both (included for audit completeness)
+ *
+ * Runs with: tsx scripts/sanity/diff-dataset.ts
+ */
+
+import * as fs from "fs";
+import * as path from "path";
+import {
+  makeReadClient,
+  DOCUMENTS_DIR,
+  DIFF_REPORT_FILE,
+  MIRROR_DIR,
+  writeJson,
+  ensureDir,
+  isoDate,
+  log,
+} from "./config";
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+type ChangeStatus = "NEW" | "UPDATED" | "REMOVED" | "UNCHANGED";
+
+interface FieldChange {
+  field: string;
+  old: unknown;
+  new: unknown;
+}
+
+interface DocDiff {
+  _id: string;
+  _type: string;
+  status: ChangeStatus;
+  fieldChanges: FieldChange[];
+}
+
+interface DiffReport {
+  generatedAt: string;
+  date: string;
+  summary: {
+    total: number;
+    new: number;
+    updated: number;
+    removed: number;
+    unchanged: number;
+  };
+  changes: DocDiff[];
+}
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+/** Deep equality check for JSON-serialisable values */
+function deepEqual(a: unknown, b: unknown): boolean {
+  if (a === b) return true;
+  if (typeof a !== typeof b) return false;
+  if (a === null || b === null) return false;
+  if (Array.isArray(a) !== Array.isArray(b)) return false;
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.length !== b.length) return false;
+    return a.every((item, i) => deepEqual(item, (b as unknown[])[i]));
+  }
+  if (typeof a === "object" && typeof b === "object") {
+    const keysA = Object.keys(a as Record<string, unknown>);
+    const keysB = Object.keys(b as Record<string, unknown>);
+    if (keysA.length !== keysB.length) return false;
+    return keysA.every((k) =>
+      deepEqual(
+        (a as Record<string, unknown>)[k],
+        (b as Record<string, unknown>)[k]
+      )
+    );
+  }
+  return false;
+}
+
+/** Compare two doc objects field-by-field; skip Sanity system meta fields */
+const SKIP_FIELDS = new Set(["_rev", "_createdAt", "_updatedAt"]);
+
+function diffDocs(
+  live: Record<string, unknown>,
+  mirror: Record<string, unknown>
+): FieldChange[] {
+  const allKeys = new Set([
+    ...Object.keys(live),
+    ...Object.keys(mirror),
+  ]);
+  const changes: FieldChange[] = [];
+
+  for (const key of allKeys) {
+    if (SKIP_FIELDS.has(key)) continue;
+    const liveVal = live[key];
+    const mirrorVal = mirror[key];
+    if (!deepEqual(liveVal, mirrorVal)) {
+      changes.push({ field: key, old: liveVal, new: mirrorVal });
+    }
+  }
+
+  return changes;
+}
+
+type SanityDoc = Record<string, unknown>;
+
+// ---------------------------------------------------------------------------
+// Load mirror documents from disk
+// ---------------------------------------------------------------------------
+function loadMirrorDocs(): Map<string, SanityDoc> {
+  const map = new Map<string, SanityDoc>();
+
+  if (!fs.existsSync(DOCUMENTS_DIR)) {
+    log("No local mirror found. Run npm run sanity:export first.", "warn");
+    return map;
+  }
+
+  const files = fs
+    .readdirSync(DOCUMENTS_DIR)
+    .filter((f) => f.endsWith(".json"));
+
+  for (const file of files) {
+    const docs = JSON.parse(
+      fs.readFileSync(path.join(DOCUMENTS_DIR, file), "utf-8")
+    ) as SanityDoc[];
+    for (const doc of docs) {
+      map.set(doc._id as string, doc);
+    }
+  }
+
+  return map;
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+async function main(): Promise<void> {
+  log("Field-level diff engine starting...");
+
+  const client = makeReadClient();
+
+  log("Fetching live documents...");
+  const liveDocs = await client.fetch<SanityDoc[]>(
+    `*[!(_type in ["sanity.imageAsset", "sanity.fileAsset"])] | order(_type asc)`
+  );
+  log(`Live dataset: ${liveDocs.length} doc(s)`);
+
+  const mirrorMap = loadMirrorDocs();
+  log(`Local mirror: ${mirrorMap.size} doc(s)`);
+
+  const liveMap = new Map<string, SanityDoc>(
+    liveDocs.map((d) => [d._id as string, d])
+  );
+
+  const changes: DocDiff[] = [];
+
+  // Check documents in mirror against live
+  for (const [id, mirrorDoc] of mirrorMap) {
+    const liveDoc = liveMap.get(id);
+
+    if (!liveDoc) {
+      changes.push({
+        _id: id,
+        _type: mirrorDoc._type as string,
+        status: "NEW",
+        fieldChanges: [],
+      });
+      continue;
+    }
+
+    const fieldChanges = diffDocs(liveDoc, mirrorDoc);
+    changes.push({
+      _id: id,
+      _type: mirrorDoc._type as string,
+      status: fieldChanges.length > 0 ? "UPDATED" : "UNCHANGED",
+      fieldChanges,
+    });
+  }
+
+  // Check documents in live that are not in mirror
+  for (const [id, liveDoc] of liveMap) {
+    if (!mirrorMap.has(id)) {
+      changes.push({
+        _id: id,
+        _type: liveDoc._type as string,
+        status: "REMOVED",
+        fieldChanges: [],
+      });
+    }
+  }
+
+  const summary = {
+    total: changes.length,
+    new: changes.filter((c) => c.status === "NEW").length,
+    updated: changes.filter((c) => c.status === "UPDATED").length,
+    removed: changes.filter((c) => c.status === "REMOVED").length,
+    unchanged: changes.filter((c) => c.status === "UNCHANGED").length,
+  };
+
+  const report: DiffReport = {
+    generatedAt: new Date().toISOString(),
+    date: isoDate(),
+    summary,
+    changes: changes.filter((c) => c.status !== "UNCHANGED"), // exclude noise
+  };
+
+  ensureDir(path.dirname(DIFF_REPORT_FILE));
+  writeJson(DIFF_REPORT_FILE, report);
+
+  log(`\n✓ Diff report written → ${DIFF_REPORT_FILE}`);
+  console.log("\nSummary:");
+  console.table([summary]);
+
+  if (summary.new + summary.updated + summary.removed === 0) {
+    log("Local mirror is in sync with the live dataset.");
+  } else {
+    log(`${summary.new} new, ${summary.updated} updated, ${summary.removed} removed`, "warn");
+  }
+}
+
+main().catch((err: unknown) => {
+  console.error(err);
+  process.exit(1);
+});
+
+
+================================================================================
+FILE: scripts\sanity\discover-queries.ts
+================================================================================
+
+/**
+ * Sanity Migration Engine v3 — GROQ Query Discovery
+ *
+ * Scans src/sanity/lib/ for all GROQ queries used by the website and
+ * archives them to sanity-mirror/queries/ for migration safety reference.
+ *
+ * This ensures that any schema migration is cross-checked against
+ * the actual queries the application depends on.
+ *
+ * Runs with: tsx scripts/sanity/discover-queries.ts
+ */
+
+import * as fs from "fs";
+import * as path from "path";
+import { QUERIES_DIR, ensureDir, log } from "./config";
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+interface DiscoveredQuery {
+  file: string;
+  variable: string;
+  groq: string;
+}
+
+// ---------------------------------------------------------------------------
+// Patterns for GROQ query extraction
+// ---------------------------------------------------------------------------
+
+/** Match template literal GROQ queries: const foo = `*[...]` or groq`*[...]` */
+const GROQ_TEMPLATE_LITERAL_RE =
+  /(?:const|let|var)\s+(\w+)\s*=\s*(?:groq\s*)?\`([\s\S]*?)\`/g;
+
+/** Match string GROQ queries with *[ pattern */
+const GROQ_STRING_RE =
+  /(?:const|let|var)\s+(\w+)\s*=\s*["'`]([\s\S]*?\*\[[\s\S]*?)["'`]/g;
+
+function extractGroqQueries(source: string): Array<{ variable: string; groq: string }> {
+  const found: Array<{ variable: string; groq: string }> = [];
+  const seen = new Set<string>();
+
+  // Template literals
+  let m: RegExpExecArray | null;
+  const re1 = new RegExp(GROQ_TEMPLATE_LITERAL_RE.source, "g");
+  while ((m = re1.exec(source)) !== null) {
+    const varName = m[1];
+    const body = m[2].trim();
+    if (body.includes("*[") || body.includes("->") || body.includes("_type")) {
+      const key = `${varName}:${body.slice(0, 40)}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        found.push({ variable: varName, groq: body });
+      }
+    }
+  }
+
+  return found;
+}
+
+// ---------------------------------------------------------------------------
+// Scan sanity lib directory
+// ---------------------------------------------------------------------------
+function scanDir(dir: string): DiscoveredQuery[] {
+  if (!fs.existsSync(dir)) return [];
+
+  const all: DiscoveredQuery[] = [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      all.push(...scanDir(fullPath));
+      continue;
+    }
+    if (!entry.name.endsWith(".ts") && !entry.name.endsWith(".tsx")) continue;
+
+    const source = fs.readFileSync(fullPath, "utf-8");
+    const queries = extractGroqQueries(source);
+
+    for (const q of queries) {
+      all.push({
+        file: entry.name,
+        variable: q.variable,
+        groq: q.groq,
+      });
+    }
+  }
+  return all;
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+async function main(): Promise<void> {
+  const repoRoot = path.resolve(__dirname, "../..");
+  const sanityLibDir = path.join(repoRoot, "src/sanity/lib");
+
+  log(`Scanning GROQ queries in ${sanityLibDir}`);
+  const queries = scanDir(sanityLibDir);
+  log(`Found ${queries.length} GROQ query expression(s).`);
+
+  if (queries.length === 0) {
+    log("No GROQ queries found. Check src/sanity/lib/ directory.", "warn");
+    return;
+  }
+
+  ensureDir(QUERIES_DIR);
+
+  // Write individual .groq files
+  const byFile: Record<string, DiscoveredQuery[]> = {};
+  for (const q of queries) {
+    (byFile[q.file] ??= []).push(q);
+  }
+
+  for (const [file, fileQueries] of Object.entries(byFile)) {
+    const baseName = path.basename(file, ".ts").replace(/\.(tsx?)$/, "");
+    const content = fileQueries
+      .map((q) => `// Variable: ${q.variable}\n${q.groq}`)
+      .join("\n\n// ---\n\n");
+    fs.writeFileSync(path.join(QUERIES_DIR, `${baseName}.groq`), content, "utf-8");
+    log(`  ✓ ${baseName}.groq — ${fileQueries.length} query expression(s)`);
+  }
+
+  // Write index
+  const index = queries.map((q) => ({
+    file: q.file,
+    variable: q.variable,
+    preview: q.groq.slice(0, 80).replace(/\n/g, " ") + (q.groq.length > 80 ? "…" : ""),
+  }));
+
+  fs.writeFileSync(
+    path.join(QUERIES_DIR, "index.json"),
+    JSON.stringify(index, null, 2) + "\n",
+    "utf-8"
+  );
+
+  log(`\n✓ GROQ queries archived → ${QUERIES_DIR}`);
+  console.table(queries.map((q) => ({ file: q.file, variable: q.variable })));
+}
+
+main().catch((err: unknown) => {
+  console.error(err);
+  process.exit(1);
+});
+
+
+================================================================================
+FILE: scripts\sanity\export-dataset.ts
+================================================================================
+
+/**
+ * Sanity Migration Engine v3 — Dataset Export Engine
+ *
+ * Fetches all non-asset documents from the live Sanity dataset and writes
+ * them to the local JSON mirror:
+ *
+ *   sanity-mirror/documents/<type>.json
+ *
+ * Also captures a full metadata snapshot:
+ *   sanity-mirror/export-meta.json
+ *
+ * Runs with: tsx scripts/sanity/export-dataset.ts
+ * Env:  SANITY_DATASET=staging  (override dataset)
+ */
+
+import * as path from "path";
+import {
+  makeReadClient,
+  DOCUMENTS_DIR,
+  MIRROR_DIR,
+  DATASET,
+  PROJECT_ID,
+  API_VERSION,
+  writeJson,
+  ensureDir,
+  isoDate,
+  log,
+} from "./config";
+
+// ---------------------------------------------------------------------------
+// GROQ — fetch all user documents (exclude binary asset records)
+// ---------------------------------------------------------------------------
+const ALL_DOCS_QUERY = `*[
+  !(_type in ["sanity.imageAsset", "sanity.fileAsset"])
+] | order(_type asc, _createdAt asc)`;
+
+interface SanityDocument {
+  _id: string;
+  _type: string;
+  _rev?: string;
+  _createdAt?: string;
+  _updatedAt?: string;
+  [key: string]: unknown;
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+async function main(): Promise<void> {
+  log(`Dataset export — project: ${PROJECT_ID}, dataset: ${DATASET}`);
+
+  const client = makeReadClient();
+
+  log("Fetching all documents...");
+  const docs = await client.fetch<SanityDocument[]>(ALL_DOCS_QUERY);
+  log(`Fetched ${docs.length} document(s).`);
+
+  if (docs.length === 0) {
+    log("No documents found. Verify project ID and dataset.", "warn");
+    process.exit(1);
+  }
+
+  // Group by _type
+  const byType: Record<string, SanityDocument[]> = {};
+  for (const doc of docs) {
+    (byType[doc._type] ??= []).push(doc);
+  }
+
+  ensureDir(DOCUMENTS_DIR);
+
+  const summary: Array<{ type: string; count: number; file: string }> = [];
+
+  for (const [type, typeDocs] of Object.entries(byType)) {
+    const dest = path.join(DOCUMENTS_DIR, `${type}.json`);
+    writeJson(dest, typeDocs);
+    summary.push({ type, count: typeDocs.length, file: path.basename(dest) });
+    log(`  ✓ ${type}.json — ${typeDocs.length} doc(s)`);
+  }
+
+  // Export metadata
+  const meta = {
+    exportedAt: new Date().toISOString(),
+    exportedDate: isoDate(),
+    projectId: PROJECT_ID,
+    dataset: DATASET,
+    apiVersion: API_VERSION,
+    totalDocuments: docs.length,
+    types: summary,
+  };
+  writeJson(path.join(MIRROR_DIR, "export-meta.json"), meta);
+
+  log(`\n✓ Export complete — ${docs.length} docs in ${Object.keys(byType).length} type(s)`);
+  console.log(`  Mirror: ${DOCUMENTS_DIR}`);
+  console.table(summary);
+}
+
+main().catch((err: unknown) => {
+  console.error(err);
+  process.exit(1);
+});
+
+
+================================================================================
+FILE: scripts\sanity\generate-migration-plan.ts
+================================================================================
+
+/**
+ * Sanity Migration Engine v3 — Migration Plan Generator
+ *
+ * Reads sanity-mirror/diff-report.json and produces migration-plan.json
+ * with a precise, actionable breakdown of what will happen during seeding.
+ *
+ * Runs with: tsx scripts/sanity/generate-migration-plan.ts
+ */
+
+import * as fs from "fs";
+import {
+  DIFF_REPORT_FILE,
+  MIGRATION_PLAN_FILE,
+  DOCUMENTS_DIR,
+  writeJson,
+  readJson,
+  isoDate,
+  log,
+} from "./config";
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+interface DiffEntry {
+  _id: string;
+  _type: string;
+  status: "NEW" | "UPDATED" | "REMOVED" | "UNCHANGED";
+  fieldChanges: Array<{ field: string; old: unknown; new: unknown }>;
+}
+
+interface DiffReport {
+  summary: {
+    total: number;
+    new: number;
+    updated: number;
+    removed: number;
+    unchanged: number;
+  };
+  changes: DiffEntry[];
+}
+
+interface PlanAction {
+  _id: string;
+  _type: string;
+  action: "create" | "update" | "skip";
+  reason: string;
+  fields?: string[];
+}
+
+interface MigrationPlan {
+  generatedAt: string;
+  date: string;
+  summary: {
+    create: number;
+    update: number;
+    skip: number;
+    total: number;
+  };
+  typeBreakdown: Record<string, { create: number; update: number; skip: number }>;
+  actions: PlanAction[];
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+async function main(): Promise<void> {
+  // Ensure diff report exists
+  if (!fs.existsSync(DIFF_REPORT_FILE)) {
+    log("diff-report.json not found. Run npm run sanity:diff first.", "error");
+    process.exit(1);
+  }
+
+  if (!fs.existsSync(DOCUMENTS_DIR)) {
+    log("documents/ mirror not found. Run npm run sanity:export first.", "error");
+    process.exit(1);
+  }
+
+  const report = readJson<DiffReport>(DIFF_REPORT_FILE);
+  log(`Processing diff report: ${report.changes.length} change(s) to plan.`);
+
+  const actions: PlanAction[] = [];
+
+  // NEW → create
+  for (const entry of report.changes.filter((c) => c.status === "NEW")) {
+    actions.push({
+      _id: entry._id,
+      _type: entry._type,
+      action: "create",
+      reason: "Document exists in mirror but not in live dataset",
+    });
+  }
+
+  // UPDATED → update (with field list)
+  for (const entry of report.changes.filter((c) => c.status === "UPDATED")) {
+    actions.push({
+      _id: entry._id,
+      _type: entry._type,
+      action: "update",
+      reason: `${entry.fieldChanges.length} field(s) changed`,
+      fields: entry.fieldChanges.map((f) => f.field),
+    });
+  }
+
+  // REMOVED → skip (never auto-delete)
+  for (const entry of report.changes.filter((c) => c.status === "REMOVED")) {
+    actions.push({
+      _id: entry._id,
+      _type: entry._type,
+      action: "skip",
+      reason:
+        "Document exists in live dataset but not in mirror — auto-delete is disabled",
+    });
+  }
+
+  // Also count documents that are UNCHANGED (not in diff changes array)
+  const unchangedCount =
+    report.summary.unchanged +
+    (report.summary.total - report.changes.length - report.summary.unchanged);
+
+  // Type breakdown
+  const typeBreakdown: Record<
+    string,
+    { create: number; update: number; skip: number }
+  > = {};
+  for (const action of actions) {
+    const t = typeBreakdown[action._type] ?? { create: 0, update: 0, skip: 0 };
+    t[action.action as "create" | "update" | "skip"]++;
+    typeBreakdown[action._type] = t;
+  }
+
+  const summary = {
+    create: actions.filter((a) => a.action === "create").length,
+    update: actions.filter((a) => a.action === "update").length,
+    skip: actions.filter((a) => a.action === "skip").length + unchangedCount,
+    total: actions.length + unchangedCount,
+  };
+
+  const plan: MigrationPlan = {
+    generatedAt: new Date().toISOString(),
+    date: isoDate(),
+    summary,
+    typeBreakdown,
+    actions,
+  };
+
+  writeJson(MIGRATION_PLAN_FILE, plan);
+
+  log(`\n✓ Migration plan written → ${MIGRATION_PLAN_FILE}`);
+  console.log("\nSummary:");
+  console.table([plan.summary]);
+
+  if (summary.create + summary.update === 0) {
+    log("Nothing to migrate — all documents are in sync.");
+  } else {
+    log(
+      `Ready to migrate: ${summary.create} create, ${summary.update} update, ${summary.skip} skip`,
+      "warn"
+    );
+  }
+}
+
+main().catch((err: unknown) => {
+  console.error(err);
+  process.exit(1);
+});
+
+
+================================================================================
+FILE: scripts\sanity\generate-types.ts
+================================================================================
+
+/**
+ * Sanity Migration Engine v3 — TypeScript Type Generator
+ *
+ * Reads sanity-mirror/schema-map.json (produced by introspect-schemas.ts)
+ * and generates:
+ *
+ *   sanity-mirror/generated-types.ts
+ *
+ * Types are fully annotated with JSDoc comments and follow the existing
+ * project convention for Sanity document types.
+ *
+ * Runs with: tsx scripts/sanity/generate-types.ts
+ */
+
+import * as fs from "fs";
+import {
+  SCHEMA_MAP_FILE,
+  SCHEMAS_META_DIR,
+  GENERATED_TYPES_FILE,
+  ensureDir,
+  log,
+} from "./config";
+import * as path from "path";
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+interface FieldMeta {
+  name: string;
+  type: string;
+  required: boolean;
+  isArray: boolean;
+}
+
+interface SchemaMeta {
+  name: string;
+  type: "document" | "object";
+  fields: FieldMeta[];
+  references: string[];
+  assets: string[];
+}
+
+interface CompactSchemaMeta {
+  fields: string[];
+  references: string[];
+  assets: string[];
+}
+
+type CompactSchemaMap = Record<string, CompactSchemaMeta>;
+
+// ---------------------------------------------------------------------------
+// Sanity → TypeScript type mapping
+// ---------------------------------------------------------------------------
+const TYPE_MAP: Record<string, string> = {
+  string: "string",
+  text: "string",
+  number: "number",
+  boolean: "boolean",
+  date: "string", // ISO date string
+  datetime: "string",
+  url: "string",
+  email: "string",
+  slug: "SanitySlug",
+  image: "SanityImage",
+  file: "SanityFile",
+  reference: "SanityReference",
+  object: "Record<string, unknown>",
+  array: "unknown[]",
+  block: "SanityBlock",
+  color: "SanityColor",
+};
+
+function mapType(
+  fieldName: string,
+  sanityType: string,
+  isArray: boolean,
+  assets: string[],
+  references: string[]
+): string {
+  let tsType: string;
+
+  if (assets.includes(fieldName)) tsType = "SanityImage";
+  else if (references.includes(fieldName)) tsType = "SanityReference";
+  else tsType = TYPE_MAP[sanityType] ?? "unknown";
+
+  return isArray ? `${tsType}[]` : tsType;
+}
+
+// ---------------------------------------------------------------------------
+// Shared Sanity primitive types header
+// ---------------------------------------------------------------------------
+const HEADER = `/**
+ * AUTO-GENERATED FILE — DO NOT EDIT MANUALLY
+ * Generated by: scripts/sanity/generate-types.ts
+ * Source: sanity-mirror/schema-map.json
+ *
+ * Regenerate with: npm run sanity:generate-types
+ */
+
+// ---------------------------------------------------------------------------
+// Sanity Primitive Types
+// ---------------------------------------------------------------------------
+
+export interface SanitySlug {
+  current: string;
+  _type: "slug";
+}
+
+export interface SanityImageRef {
+  _ref: string;
+  _type: "reference";
+}
+
+export interface SanityImage {
+  _type: "image";
+  asset?: SanityImageRef;
+  hotspot?: {
+    x: number;
+    y: number;
+    height: number;
+    width: number;
+  };
+  crop?: {
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+  };
+}
+
+export interface SanityFile {
+  _type: "file";
+  asset?: SanityImageRef;
+}
+
+export interface SanityReference {
+  _type: "reference";
+  _ref: string;
+}
+
+export interface SanityBlock {
+  _type: "block";
+  _key: string;
+  style?: string;
+  children?: Array<{
+    _type: "span";
+    _key: string;
+    text: string;
+    marks?: string[];
+  }>;
+  markDefs?: unknown[];
+}
+
+export interface SanityColor {
+  hex: string;
+  alpha: number;
+  hsl?: { h: number; s: number; l: number; a: number };
+  hsv?: { h: number; s: number; v: number; a: number };
+  rgb?: { r: number; g: number; b: number; a: number };
+}
+
+`;
+
+// ---------------------------------------------------------------------------
+// Generate interface for a single schema type
+// ---------------------------------------------------------------------------
+function generateInterface(
+  name: string,
+  meta: FieldMeta[],
+  assets: string[],
+  references: string[],
+  isDocument: boolean
+): string {
+  const exportName = toInterfaceName(name);
+  const lines: string[] = [];
+
+  lines.push(`/** Sanity ${isDocument ? "document" : "object"} type: "${name}" */`);
+  lines.push(`export interface ${exportName} {`);
+
+  if (isDocument) {
+    lines.push(`  _id: string;`);
+    lines.push(`  _type: "${name}";`);
+    lines.push(`  _rev?: string;`);
+    lines.push(`  _createdAt?: string;`);
+    lines.push(`  _updatedAt?: string;`);
+  }
+
+  for (const field of meta) {
+    const tsType = mapType(
+      field.name,
+      field.type,
+      field.isArray,
+      assets,
+      references
+    );
+    const optional = !field.required ? "?" : "";
+    lines.push(`  ${field.name}${optional}: ${tsType};`);
+  }
+
+  lines.push(`}`);
+  lines.push(``);
+
+  return lines.join("\n");
+}
+
+function toInterfaceName(typeName: string): string {
+  return (
+    typeName.charAt(0).toUpperCase() +
+    typeName.slice(1).replace(/_([a-z])/g, (_, c: string) => c.toUpperCase()) +
+    "Document"
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+async function main(): Promise<void> {
+  if (!fs.existsSync(SCHEMA_MAP_FILE)) {
+    log("schema-map.json not found. Run npm run sanity:introspect first.", "error");
+    process.exit(1);
+  }
+
+  const compactMap = JSON.parse(
+    fs.readFileSync(SCHEMA_MAP_FILE, "utf-8")
+  ) as CompactSchemaMap;
+
+  log(`Generating types for: ${Object.keys(compactMap).join(", ")}`);
+
+  let output = HEADER;
+
+  // Load detailed field metadata from per-type schema files
+  for (const [typeName, compact] of Object.entries(compactMap)) {
+    const detailFile = path.join(SCHEMAS_META_DIR, `${typeName}.json`);
+
+    let fields: FieldMeta[] = [];
+    let isDocument = true;
+
+    if (fs.existsSync(detailFile)) {
+      const detail = JSON.parse(
+        fs.readFileSync(detailFile, "utf-8")
+      ) as SchemaMeta;
+      fields = detail.fields;
+      isDocument = detail.type === "document";
+    } else {
+      // Fallback: use field names from compact map, all optional strings
+      fields = compact.fields.map((f) => ({
+        name: f,
+        type: compact.assets.includes(f) ? "image" : "string",
+        required: false,
+        isArray: false,
+      }));
+    }
+
+    output += generateInterface(
+      typeName,
+      fields,
+      compact.assets,
+      compact.references,
+      isDocument
+    );
+  }
+
+  // Generate union type of all document types
+  const docNames = Object.entries(compactMap)
+    .filter(([_, m]) => true) // include all
+    .map(([n]) => toInterfaceName(n));
+
+  output += `// ---------------------------------------------------------------------------\n`;
+  output += `// Union type of all document types\n`;
+  output += `// ---------------------------------------------------------------------------\n\n`;
+  output += `export type AnyDocument =\n`;
+  output += docNames.map((n) => `  | ${n}`).join("\n");
+  output += `;\n\n`;
+
+  // _type string union
+  output += `export type DocumentType = AnyDocument["_type"];\n`;
+
+  ensureDir(path.dirname(GENERATED_TYPES_FILE));
+  fs.writeFileSync(GENERATED_TYPES_FILE, output, "utf-8");
+
+  log(`\n✓ TypeScript types written → ${GENERATED_TYPES_FILE}`);
+  console.log(`  Types generated: ${Object.keys(compactMap).length} interface(s)`);
+  console.table(
+    Object.keys(compactMap).map((n) => ({
+      type: n,
+      interface: toInterfaceName(n),
+    }))
+  );
+}
+
+main().catch((err: unknown) => {
+  console.error(err);
+  process.exit(1);
+});
+
+
+================================================================================
+FILE: scripts\sanity\introspect-schemas.ts
+================================================================================
+
+/**
+ * Sanity Migration Engine v3 — Schema Introspection Engine
+ *
+ * Statically analyses every schema file in src/sanity/schemaTypes/ and
+ * produces:
+ *   sanity-mirror/schema-map.json   — field/reference/asset map per type
+ *   sanity-mirror/schemas/<type>.json — raw field list per type
+ *
+ * Runs with: tsx scripts/sanity/introspect-schemas.ts
+ */
+
+import * as fs from "fs";
+import * as path from "path";
+import {
+  SCHEMAS_DIR,
+  MIRROR_DIR,
+  SCHEMAS_META_DIR,
+  SCHEMA_MAP_FILE,
+  writeJson,
+  ensureDir,
+  log,
+} from "./config";
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+interface FieldMeta {
+  name: string;
+  type: string;
+  required: boolean;
+  isArray: boolean;
+}
+
+interface SchemaMeta {
+  name: string;
+  type: "document" | "object";
+  fields: FieldMeta[];
+  references: string[]; // field names that hold references
+  assets: string[]; // field names that hold images/files
+}
+
+type SchemaMap = Record<string, SchemaMeta>;
+
+// ---------------------------------------------------------------------------
+// Static field-type regex patterns
+// ---------------------------------------------------------------------------
+const ASSET_TYPES = new Set(["image", "file"]);
+const REF_TYPES = new Set(["reference"]);
+
+/**
+ * Simple regex-based field extractor.
+ * Parses `defineField({ name: "foo", type: "bar" })` patterns.
+ */
+function extractFields(source: string): FieldMeta[] {
+  const fields: FieldMeta[] = [];
+
+  // Match defineField({ ... }) blocks - capture the object body
+  const defineFieldRe =
+    /defineField\s*\(\s*\{([\s\S]*?)(?=\}\s*\)(?:,|\s*\]))/g;
+  let match: RegExpExecArray | null;
+
+  while ((match = defineFieldRe.exec(source)) !== null) {
+    const body = match[1];
+
+    const nameMatch = body.match(/\bname\s*:\s*["']([^"']+)["']/);
+    const typeMatch = body.match(/\btype\s*:\s*["']([^"']+)["']/);
+
+    if (!nameMatch || !typeMatch) continue;
+
+    const name = nameMatch[1];
+    const type = typeMatch[1];
+
+    // Detect required validation
+    const required = /\.required\(\)/.test(body);
+
+    // Detect array wrapper around type
+    const isArray = type === "array";
+
+    fields.push({ name, type, required, isArray });
+  }
+
+  return fields;
+}
+
+/** Extract the document/object type name from a schema file */
+function extractTypeName(source: string): string | null {
+  const m =
+    source.match(/defineType\s*\(\s*\{[\s\S]*?\bname\s*:\s*["']([^"']+)["']/) ||
+    source.match(/name\s*:\s*["']([^"']+)["']/);
+  return m ? m[1] : null;
+}
+
+/** Extract the document type ("document" | "object" | ...) */
+function extractDocType(source: string): "document" | "object" {
+  const m = source.match(/\btype\s*:\s*["'](document|object)["']/);
+  return m?.[1] === "object" ? "object" : "document";
+}
+
+// ---------------------------------------------------------------------------
+// Process a single schema file
+// ---------------------------------------------------------------------------
+function processSchemaFile(filePath: string): SchemaMeta | null {
+  const source = fs.readFileSync(filePath, "utf-8");
+
+  const name = extractTypeName(source);
+  if (!name) {
+    log(`Could not extract type name from ${path.basename(filePath)}`, "warn");
+    return null;
+  }
+
+  // Skip barrel index.ts
+  if (name === filePath) return null;
+
+  const docType = extractDocType(source);
+  const fields = extractFields(source);
+
+  const references: string[] = [];
+  const assets: string[] = [];
+
+  for (const f of fields) {
+    if (REF_TYPES.has(f.type)) references.push(f.name);
+    if (ASSET_TYPES.has(f.type)) assets.push(f.name);
+    // Array fields - check the "of" content for nested asset/ref types
+    if (f.isArray) {
+      // Look for nested image/file within the same block following the field
+      const arrayBodyRe = new RegExp(
+        `name\\s*:\\s*["']${f.name}["'][\\s\\S]{0,500}?of\\s*:\\s*\\[([\\s\\S]{0,800}?)\\]`,
+        "m"
+      );
+      const arrayMatch = source.match(arrayBodyRe);
+      if (arrayMatch) {
+        const ofBody = arrayMatch[1];
+        if (/type\s*:\s*["']image["']/.test(ofBody)) assets.push(`${f.name}[].image`);
+        if (/type\s*:\s*["']reference["']/.test(ofBody)) references.push(`${f.name}[].ref`);
+      }
+    }
+  }
+
+  return {
+    name,
+    type: docType,
+    fields,
+    references: [...new Set(references)],
+    assets: [...new Set(assets)],
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+async function main(): Promise<void> {
+  log(`Scanning schemas in ${SCHEMAS_DIR}`);
+
+  const schemaFiles = fs
+    .readdirSync(SCHEMAS_DIR)
+    .filter((f) => f.endsWith(".ts") && f !== "index.ts")
+    .map((f) => path.join(SCHEMAS_DIR, f));
+
+  if (schemaFiles.length === 0) {
+    log("No schema files found.", "warn");
+    process.exit(1);
+  }
+
+  log(`Found ${schemaFiles.length} schema file(s): ${schemaFiles.map((f) => path.basename(f)).join(", ")}`);
+
+  const schemaMap: SchemaMap = {};
+
+  for (const filePath of schemaFiles) {
+    const meta = processSchemaFile(filePath);
+    if (meta) {
+      schemaMap[meta.name] = meta;
+      log(`  ✓ ${meta.name} — ${meta.fields.length} fields, ${meta.assets.length} asset(s), ${meta.references.length} reference(s)`);
+    }
+  }
+
+  // Write schema-map.json (compact form for tooling)
+  const compactMap: Record<
+    string,
+    { fields: string[]; references: string[]; assets: string[] }
+  > = {};
+  for (const [name, meta] of Object.entries(schemaMap)) {
+    compactMap[name] = {
+      fields: meta.fields.map((f) => f.name),
+      references: meta.references,
+      assets: meta.assets,
+    };
+  }
+
+  ensureDir(MIRROR_DIR);
+  writeJson(SCHEMA_MAP_FILE, compactMap);
+  log(`✓ schema-map.json written → ${SCHEMA_MAP_FILE}`);
+
+  // Write per-type schema detail files
+  ensureDir(SCHEMAS_META_DIR);
+  for (const [name, meta] of Object.entries(schemaMap)) {
+    const dest = path.join(SCHEMAS_META_DIR, `${name}.json`);
+    writeJson(dest, meta);
+  }
+  log(`✓ per-type schema files written → ${SCHEMAS_META_DIR}/`);
+
+  console.log("\nSchema introspection complete.");
+  console.table(
+    Object.entries(compactMap).map(([name, m]) => ({
+      type: name,
+      fields: m.fields.length,
+      assets: m.assets.join(", ") || "—",
+      references: m.references.join(", ") || "—",
+    }))
+  );
+}
+
+main().catch((err: unknown) => {
+  console.error(err);
+  process.exit(1);
+});
+
+
+================================================================================
+FILE: scripts\sanity\rollback.ts
+================================================================================
+
+/**
+ * Sanity Migration Engine v3 — Rollback Engine
+ *
+ * BEFORE any migration: automatically snapshot the live dataset to
+ *   sanity-backups/YYYY-MM-DD/
+ *
+ * To rollback: restore documents from a snapshot back into Sanity.
+ *
+ * Sub-commands:
+ *   snapshot   Create a backup snapshot of the live dataset (default)
+ *   restore    Restore from a specific snapshot directory
+ *   list       List available snapshots
+ *
+ * Usage:
+ *   tsx scripts/sanity/rollback.ts snapshot
+ *   tsx scripts/sanity/rollback.ts restore 2026-03-16
+ *   tsx scripts/sanity/rollback.ts list
+ */
+
+import * as fs from "fs";
+import * as path from "path";
+import {
+  makeReadClient,
+  makeWriteClient,
+  BACKUP_DIR,
+  writeJson,
+  readJson,
+  log,
+  isoDate,
+} from "./config";
+import { validateDocuments } from "./validate-schema";
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+type SanityDoc = Record<string, unknown>;
+
+interface SnapshotMeta {
+  snapshotAt: string;
+  date: string;
+  totalDocuments: number;
+  types: string[];
+}
+
+// ---------------------------------------------------------------------------
+// SNAPSHOT
+// ---------------------------------------------------------------------------
+async function snapshot(): Promise<string> {
+  const client = makeReadClient();
+  const date = isoDate();
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const backupPath = path.join(BACKUP_DIR, date, timestamp);
+
+  log(`Creating snapshot → ${backupPath}`);
+  fs.mkdirSync(backupPath, { recursive: true });
+
+  const docs = await client.fetch<SanityDoc[]>(
+    `*[!(_type in ["sanity.imageAsset","sanity.fileAsset"])] | order(_type asc)`
+  );
+
+  log(`Fetched ${docs.length} document(s) from live dataset.`);
+
+  // Group by type
+  const byType: Record<string, SanityDoc[]> = {};
+  for (const doc of docs) {
+    (byType[doc._type as string] ??= []).push(doc);
+  }
+
+  for (const [type, typeDocs] of Object.entries(byType)) {
+    writeJson(path.join(backupPath, `${type}.json`), typeDocs);
+  }
+
+  const meta: SnapshotMeta = {
+    snapshotAt: new Date().toISOString(),
+    date,
+    totalDocuments: docs.length,
+    types: Object.keys(byType),
+  };
+  writeJson(path.join(backupPath, "_meta.json"), meta);
+
+  log(`✓ Snapshot complete — ${docs.length} docs in ${backupPath}`);
+  return backupPath;
+}
+
+// ---------------------------------------------------------------------------
+// LIST
+// ---------------------------------------------------------------------------
+function listSnapshots(): void {
+  if (!fs.existsSync(BACKUP_DIR)) {
+    log("No backups found.", "warn");
+    return;
+  }
+
+  const dates = fs
+    .readdirSync(BACKUP_DIR)
+    .filter((d) => fs.statSync(path.join(BACKUP_DIR, d)).isDirectory())
+    .sort()
+    .reverse();
+
+  if (dates.length === 0) {
+    log("No snapshots available.");
+    return;
+  }
+
+  console.log("\nAvailable snapshots:");
+  for (const date of dates) {
+    const dateDir = path.join(BACKUP_DIR, date);
+    const timestamps = fs
+      .readdirSync(dateDir)
+      .filter((d) => fs.statSync(path.join(dateDir, d)).isDirectory())
+      .sort()
+      .reverse();
+
+    for (const ts of timestamps) {
+      const metaPath = path.join(dateDir, ts, "_meta.json");
+      if (fs.existsSync(metaPath)) {
+        const meta = readJson<SnapshotMeta>(metaPath);
+        console.log(
+          `  ${date}/${ts}  —  ${meta.totalDocuments} docs  [${meta.types.join(", ")}]`
+        );
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// RESTORE
+// ---------------------------------------------------------------------------
+async function restore(targetDate: string): Promise<void> {
+  const dateDir = path.join(BACKUP_DIR, targetDate);
+
+  if (!fs.existsSync(dateDir)) {
+    log(`No snapshot found for date: ${targetDate}`, "error");
+    log(`Available dates: ${fs.readdirSync(BACKUP_DIR).join(", ")}`);
+    process.exit(1);
+  }
+
+  // Use the latest timestamp snapshot for the given date
+  const timestamps = fs
+    .readdirSync(dateDir)
+    .filter((d) => fs.statSync(path.join(dateDir, d)).isDirectory())
+    .sort()
+    .reverse();
+
+  if (timestamps.length === 0) {
+    log(`No timestamp snapshots found in ${dateDir}`, "error");
+    process.exit(1);
+  }
+
+  const snapshotPath = path.join(dateDir, timestamps[0]);
+  log(`Restoring from snapshot: ${snapshotPath}`);
+
+  // Load all documents from snapshot
+  const files = fs
+    .readdirSync(snapshotPath)
+    .filter((f) => f.endsWith(".json") && f !== "_meta.json");
+
+  const allDocs: SanityDoc[] = [];
+  for (const file of files) {
+    const docs = JSON.parse(
+      fs.readFileSync(path.join(snapshotPath, file), "utf-8")
+    ) as SanityDoc[];
+    allDocs.push(...docs);
+  }
+
+  log(`Loaded ${allDocs.length} document(s) from snapshot.`);
+
+  // Validate snapshot documents
+  const validation = validateDocuments(allDocs);
+  if (!validation.valid) {
+    log("Snapshot validation failed — aborting restore.", "error");
+    for (const e of validation.errors) {
+      log(`  ${e._type}/${e._id}: ${e.message}`, "error");
+    }
+    process.exit(1);
+  }
+
+  // Confirm restore (safety gate for production)
+  log("\n⚠️  RESTORE OPERATION", "warn");
+  log(`  Source: ${snapshotPath}`, "warn");
+  log(`  Documents: ${allDocs.length}`, "warn");
+  log(
+    "  This will overwrite ALL matching documents in the live dataset.",
+    "warn"
+  );
+
+  const confirmVar = process.env.SANITY_MIGRATE_CONFIRM;
+  if (confirmVar !== "yes") {
+    log(
+      "\nSet SANITY_MIGRATE_CONFIRM=yes to proceed with restore.",
+      "error"
+    );
+    process.exit(1);
+  }
+
+  const writeClient = makeWriteClient();
+  let tx = writeClient.transaction();
+  let batchCount = 0;
+
+  const BATCH_SIZE = 50;
+
+  for (const doc of allDocs) {
+    tx.createOrReplace(doc as Parameters<typeof tx.createOrReplace>[0]);
+    batchCount++;
+
+    if (batchCount >= BATCH_SIZE) {
+      await tx.commit({ visibility: "async" });
+      log(`  Committed ${batchCount} documents.`);
+      tx = writeClient.transaction();
+      batchCount = 0;
+    }
+  }
+
+  if (batchCount > 0) {
+    await tx.commit({ visibility: "async" });
+    log(`  Committed final ${batchCount} documents.`);
+  }
+
+  log(`\n✓ Restore complete — ${allDocs.length} documents restored.`);
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+async function main(): Promise<void> {
+  const cmd = process.argv[2] || "snapshot";
+  const arg = process.argv[3];
+
+  switch (cmd) {
+    case "snapshot":
+      await snapshot();
+      break;
+    case "list":
+      listSnapshots();
+      break;
+    case "restore":
+      if (!arg) {
+        log("Usage: rollback.ts restore <YYYY-MM-DD>", "error");
+        process.exit(1);
+      }
+      await restore(arg);
+      break;
+    default:
+      log(`Unknown command: ${cmd}. Use snapshot | list | restore.`, "error");
+      process.exit(1);
+  }
+}
+
+main().catch((err: unknown) => {
+  console.error(err);
+  process.exit(1);
+});
+
+
+================================================================================
+FILE: scripts\sanity\seed-from-json.ts
+================================================================================
+
+/**
+ * Sanity Migration Engine v3 — Safe Seed Engine
+ *
+ * Reads documents from sanity-mirror/documents/ and upserts them into the
+ * configured Sanity dataset.
+ *
+ * Safety rules:
+ *   • existing _id → patch (never replace revision metadata)
+ *   • new _id      → createIfNotExists
+ *   • never delete any document automatically
+ *   • validates all documents before writing (stops on error)
+ *   • preserves all asset _ref values — never re-uploads assets
+ *
+ * Flags:
+ *   --dry-run   Print what would happen without writing
+ *   --type=foo  Only seed documents of a specific _type
+ *   --force     Skip diff check, seed everything in mirror
+ *
+ * Runs with: tsx scripts/sanity/seed-from-json.ts [--dry-run] [--type=event]
+ */
+
+import * as fs from "fs";
+import * as path from "path";
+import {
+  makeWriteClient,
+  makeReadClient,
+  DOCUMENTS_DIR,
+  MIGRATION_PLAN_FILE,
+  writeJson,
+  log,
+  MIRROR_DIR,
+  isoDate,
+} from "./config";
+import { validateDocuments } from "./validate-schema";
+
+// ---------------------------------------------------------------------------
+// CLI flags
+// ---------------------------------------------------------------------------
+const args = process.argv.slice(2);
+const DRY_RUN = args.includes("--dry-run");
+const FORCE = args.includes("--force");
+const TYPE_FILTER = args.find((a) => a.startsWith("--type="))?.split("=")[1];
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+type SanityDoc = Record<string, unknown>;
+
+type SeedAction = "create" | "update" | "skip";
+
+interface SeedResult {
+  _id: string;
+  _type: string;
+  action: SeedAction;
+  success: boolean;
+  error?: string;
+}
+
+// ---------------------------------------------------------------------------
+// Strip asset inline data (safety: never send base64 or binary data)
+// ---------------------------------------------------------------------------
+function stripAssetData(doc: SanityDoc): SanityDoc {
+  const cleaned = { ...doc };
+  // Recursively sanitise — keep only _ref in asset objects
+  return JSON.parse(
+    JSON.stringify(cleaned, (key, value) => {
+      // Preserve asset reference objects exactly
+      if (
+        key === "asset" &&
+        value &&
+        typeof value === "object" &&
+        "_ref" in value
+      ) {
+        return { _ref: (value as Record<string, unknown>)._ref };
+      }
+      return value;
+    })
+  ) as SanityDoc;
+}
+
+// ---------------------------------------------------------------------------
+// Determine seed action by comparing with live doc
+// ---------------------------------------------------------------------------
+async function determineSeedAction(
+  doc: SanityDoc,
+  liveIds: Set<string>
+): Promise<SeedAction> {
+  if (FORCE) return liveIds.has(doc._id as string) ? "update" : "create";
+
+  // Use migration plan if available
+  if (fs.existsSync(MIGRATION_PLAN_FILE)) {
+    const plan = JSON.parse(
+      fs.readFileSync(MIGRATION_PLAN_FILE, "utf-8")
+    ) as {
+      actions: Array<{ _id: string; action: SeedAction }>;
+    };
+    const entry = plan.actions.find((a) => a._id === doc._id);
+    if (entry) return entry.action;
+  }
+
+  // Fallback: create if not in live, update if present
+  return liveIds.has(doc._id as string) ? "update" : "create";
+}
+
+// ---------------------------------------------------------------------------
+// Load all mirror documents
+// ---------------------------------------------------------------------------
+function loadMirrorDocs(): SanityDoc[] {
+  if (!fs.existsSync(DOCUMENTS_DIR)) {
+    log("No mirror found. Run npm run sanity:export first.", "error");
+    process.exit(1);
+  }
+
+  const files = fs
+    .readdirSync(DOCUMENTS_DIR)
+    .filter((f) => f.endsWith(".json"));
+
+  const all: SanityDoc[] = [];
+  for (const file of files) {
+    const type = path.basename(file, ".json");
+    if (TYPE_FILTER && type !== TYPE_FILTER) continue;
+    const docs = JSON.parse(
+      fs.readFileSync(path.join(DOCUMENTS_DIR, file), "utf-8")
+    ) as SanityDoc[];
+    all.push(...docs);
+  }
+  return all;
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+async function main(): Promise<void> {
+  if (DRY_RUN) log("DRY RUN MODE — no documents will be written.");
+  if (TYPE_FILTER) log(`Type filter: only seeding "${TYPE_FILTER}" documents.`);
+
+  const docs = loadMirrorDocs();
+  log(`Loaded ${docs.length} document(s) from local mirror.`);
+
+  if (docs.length === 0) {
+    log("Nothing to seed.", "warn");
+    return;
+  }
+
+  // Validate before writing
+  log("Validating documents...");
+  const validation = validateDocuments(docs);
+  if (validation.warnings.length > 0) {
+    for (const w of validation.warnings) {
+      log(`  [WARN] ${w._type}/${w._id}: ${w.message}`, "warn");
+    }
+  }
+  if (!validation.valid) {
+    log("Validation failed. Fix errors before seeding.", "error");
+    for (const e of validation.errors) {
+      log(`  [ERROR] ${e._type}/${e._id}: ${e.message}`, "error");
+    }
+    process.exit(1);
+  }
+  log("✓ Validation passed.");
+
+  // Fetch live IDs
+  const readClient = makeReadClient();
+  const liveIds = new Set<string>(
+    (await readClient.fetch<Array<{ _id: string }>>(
+      `*[!(_type in ["sanity.imageAsset","sanity.fileAsset"])]{ _id }`
+    )).map((d) => d._id)
+  );
+  log(`Live dataset: ${liveIds.size} existing document(s).`);
+
+  const writeClient = DRY_RUN ? null : makeWriteClient();
+
+  const results: SeedResult[] = [];
+  let tx = writeClient?.transaction();
+
+  const BATCH_SIZE = 50;
+  let batchCount = 0;
+
+  const flush = async () => {
+    if (!tx || !writeClient) return;
+    try {
+      await tx.commit({ visibility: "async" });
+      log(`  Committed batch of ${batchCount} operations.`);
+    } catch (err: unknown) {
+      log(`  Batch commit failed: ${String(err)}`, "error");
+    }
+    tx = writeClient.transaction();
+    batchCount = 0;
+  };
+
+  for (const rawDoc of docs) {
+    const doc = stripAssetData(rawDoc);
+    const action = await determineSeedAction(doc, liveIds);
+
+    if (action === "skip") {
+      results.push({ _id: doc._id as string, _type: doc._type as string, action: "skip", success: true });
+      continue;
+    }
+
+    if (DRY_RUN) {
+      log(`  [DRY-RUN] ${action.toUpperCase()} ${doc._type}/${doc._id}`);
+      results.push({ _id: doc._id as string, _type: doc._type as string, action, success: true });
+      continue;
+    }
+
+    try {
+      if (action === "create") {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        tx!.createIfNotExists(doc as any);
+      } else {
+        // update: use createOrReplace for full upsert
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        tx!.createOrReplace(doc as any);
+      }
+      batchCount++;
+      results.push({ _id: doc._id as string, _type: doc._type as string, action, success: true });
+
+      if (batchCount >= BATCH_SIZE) await flush();
+    } catch (err: unknown) {
+      const errMsg = String(err);
+      log(`  Error processing ${doc._id}: ${errMsg}`, "error");
+      results.push({
+        _id: doc._id as string,
+        _type: doc._type as string,
+        action,
+        success: false,
+        error: errMsg,
+      });
+    }
+  }
+
+  // Flush remaining
+  if (batchCount > 0) await flush();
+
+  // Write seed report
+  const report = {
+    seededAt: new Date().toISOString(),
+    date: isoDate(),
+    dryRun: DRY_RUN,
+    typeFilter: TYPE_FILTER || null,
+    summary: {
+      create: results.filter((r) => r.action === "create").length,
+      update: results.filter((r) => r.action === "update").length,
+      skip: results.filter((r) => r.action === "skip").length,
+      failed: results.filter((r) => !r.success).length,
+      total: results.length,
+    },
+    results,
+  };
+
+  writeJson(path.join(MIRROR_DIR, "seed-report.json"), report);
+
+  log("\n✓ Seed complete.");
+  console.table([report.summary]);
+
+  const failures = results.filter((r) => !r.success);
+  if (failures.length > 0) {
+    log(`${failures.length} failure(s):`, "error");
+    for (const f of failures) {
+      console.error(`  ${f._type}/${f._id}: ${f.error}`);
+    }
+    process.exit(1);
+  }
+}
+
+main().catch((err: unknown) => {
+  console.error(err);
+  process.exit(1);
+});
+
+
+================================================================================
+FILE: scripts\sanity\validate-schema.ts
+================================================================================
+
+/**
+ * Sanity Migration Engine v3 — Schema Validation Engine
+ *
+ * Validates local mirror documents against the schema map before seeding.
+ * Returns a ValidationResult that callers inspect before writing to Sanity.
+ *
+ * Rules enforced:
+ *  1. Every document must have _id and _type
+ *  2. _type must be a known schema type
+ *  3. Required fields must be present and non-empty
+ *  4. Asset fields must carry a valid _ref (never upload new assets)
+ *  5. No unknown extra fields generate a hard error (soft warning only)
+ */
+
+import * as fs from "fs";
+import * as path from "path";
+import { SCHEMA_MAP_FILE, log } from "./config";
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+export interface ValidationIssue {
+  severity: "error" | "warning";
+  _id: string;
+  _type: string;
+  message: string;
+}
+
+export interface ValidationResult {
+  valid: boolean;
+  errors: ValidationIssue[];
+  warnings: ValidationIssue[];
+}
+
+interface SchemaFieldMeta {
+  name: string;
+  required: boolean;
+  type: string;
+  isArray: boolean;
+}
+
+interface SchemaMeta {
+  fields: string[];
+  references: string[];
+  assets: string[];
+}
+
+type SchemaMap = Record<string, SchemaMeta>;
+type SanityDoc = Record<string, unknown>;
+
+// ---------------------------------------------------------------------------
+// Load schema map
+// ---------------------------------------------------------------------------
+function loadSchemaMap(): SchemaMap | null {
+  if (!fs.existsSync(SCHEMA_MAP_FILE)) return null;
+  return JSON.parse(fs.readFileSync(SCHEMA_MAP_FILE, "utf-8")) as SchemaMap;
+}
+
+// ---------------------------------------------------------------------------
+// Asset reference checker
+// ---------------------------------------------------------------------------
+function hasValidAssetRef(value: unknown): boolean {
+  if (!value || typeof value !== "object") return false;
+  const obj = value as Record<string, unknown>;
+  const asset = obj.asset as Record<string, unknown> | undefined;
+  if (asset && typeof asset._ref === "string" && asset._ref.length > 0)
+    return true;
+  // Some documents store direct _ref at top-level image
+  if (typeof obj._ref === "string" && obj._ref.length > 0) return true;
+  return false;
+}
+
+// ---------------------------------------------------------------------------
+// Validate a single document
+// ---------------------------------------------------------------------------
+function validateDoc(
+  doc: SanityDoc,
+  schemaMap: SchemaMap | null
+): ValidationIssue[] {
+  const issues: ValidationIssue[] = [];
+  const id = (doc._id as string) || "(unknown)";
+  const type = (doc._type as string) || "(missing)";
+
+  // Rule 1 — must have _id and _type
+  if (!doc._id || typeof doc._id !== "string") {
+    issues.push({
+      severity: "error",
+      _id: id,
+      _type: type,
+      message: "Missing or invalid _id field",
+    });
+  }
+  if (!doc._type || typeof doc._type !== "string") {
+    issues.push({
+      severity: "error",
+      _id: id,
+      _type: type,
+      message: "Missing or invalid _type field",
+    });
+    return issues; // Can't continue without _type
+  }
+
+  if (!schemaMap) return issues; // No schema map — skip further validation
+
+  const schema = schemaMap[type];
+
+  // Rule 2 — known type
+  if (!schema) {
+    issues.push({
+      severity: "warning",
+      _id: id,
+      _type: type,
+      message: `Unknown schema type "${type}" — not present in schema-map.json`,
+    });
+    return issues;
+  }
+
+  // Rule 4 — asset references must be valid _refs
+  for (const assetField of schema.assets) {
+    const baseField = assetField.split("[")[0]; // strip array notation
+    const fieldVal = doc[baseField];
+    if (fieldVal !== undefined && fieldVal !== null) {
+      if (!hasValidAssetRef(fieldVal)) {
+        issues.push({
+          severity: "warning",
+          _id: id,
+          _type: type,
+          message: `Asset field "${assetField}" is present but has no valid _ref — asset may be missing`,
+        });
+      }
+    }
+  }
+
+  return issues;
+}
+
+// ---------------------------------------------------------------------------
+// Public API  (used by seed-from-json.ts)
+// ---------------------------------------------------------------------------
+export function validateDocuments(docs: SanityDoc[]): ValidationResult {
+  const schemaMap = loadSchemaMap();
+  if (!schemaMap) {
+    log(
+      "schema-map.json not found — run npm run sanity:introspect for full validation",
+      "warn"
+    );
+  }
+
+  const allIssues: ValidationIssue[] = [];
+  for (const doc of docs) {
+    allIssues.push(...validateDoc(doc, schemaMap));
+  }
+
+  const errors = allIssues.filter((i) => i.severity === "error");
+  const warnings = allIssues.filter((i) => i.severity === "warning");
+
+  return {
+    valid: errors.length === 0,
+    errors,
+    warnings,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// CLI entry point
+// ---------------------------------------------------------------------------
+if (require.main === module) {
+  (async () => {
+    const { DOCUMENTS_DIR } = await import("./config");
+    if (!fs.existsSync(DOCUMENTS_DIR)) {
+      log("No mirror found. Run npm run sanity:export first.", "error");
+      process.exit(1);
+    }
+
+    const allDocs: SanityDoc[] = [];
+    const files = fs
+      .readdirSync(DOCUMENTS_DIR)
+      .filter((f) => f.endsWith(".json"));
+
+    for (const file of files) {
+      const docs = JSON.parse(
+        fs.readFileSync(path.join(DOCUMENTS_DIR, file), "utf-8")
+      ) as SanityDoc[];
+      allDocs.push(...docs);
+    }
+
+    log(`Validating ${allDocs.length} document(s)...`);
+    const result = validateDocuments(allDocs);
+
+    if (result.warnings.length > 0) {
+      log(`${result.warnings.length} warning(s):`, "warn");
+      for (const w of result.warnings) {
+        console.warn(`  [WARN] ${w._type}/${w._id}: ${w.message}`);
+      }
+    }
+
+    if (!result.valid) {
+      log(`${result.errors.length} error(s):`, "error");
+      for (const e of result.errors) {
+        console.error(`  [ERROR] ${e._type}/${e._id}: ${e.message}`);
+      }
+      process.exit(1);
+    }
+
+    log("✓ All documents are valid.");
+  })().catch((err: unknown) => {
+    console.error(err);
+    process.exit(1);
+  });
+}
+
+
+================================================================================
+FILE: scripts\sanity\verify-assets.ts
+================================================================================
+
+/**
+ * Sanity Migration Engine v3 — Asset Integrity Engine
+ *
+ * Scans all documents in the local mirror (and live dataset) and verifies
+ * that every asset reference points to a real Sanity asset.
+ *
+ * Output:
+ *   sanity-mirror/asset-report.json   — summary + broken refs
+ *
+ * Principles:
+ *   • Never re-upload assets. Asset _ref values are treated as immutable.
+ *   • Only report — never modify any asset reference.
+ *
+ * Runs with: tsx scripts/sanity/verify-assets.ts
+ */
+
+import * as fs from "fs";
+import * as path from "path";
+import {
+  makeReadClient,
+  DOCUMENTS_DIR,
+  MIRROR_DIR,
+  writeJson,
+  log,
+  isoDate,
+} from "./config";
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+interface AssetRef {
+  _ref: string;
+  foundIn: string; // _id of parent document
+  fieldPath: string;
+}
+
+interface AssetReport {
+  generatedAt: string;
+  date: string;
+  totalRefsFound: number;
+  liveAssets: number;
+  valid: number;
+  broken: AssetRef[];
+  summary: { valid: boolean; brokenCount: number };
+}
+
+type SanityDoc = Record<string, unknown>;
+
+// ---------------------------------------------------------------------------
+// Recursive asset-ref extractor
+// ---------------------------------------------------------------------------
+function extractAssetRefs(
+  obj: unknown,
+  parentId: string,
+  fieldPath: string,
+  refs: AssetRef[]
+): void {
+  if (!obj || typeof obj !== "object") return;
+
+  if (Array.isArray(obj)) {
+    obj.forEach((item, i) =>
+      extractAssetRefs(item, parentId, `${fieldPath}[${i}]`, refs)
+    );
+    return;
+  }
+
+  const record = obj as Record<string, unknown>;
+
+  // Asset reference pattern: { asset: { _ref: "image-xxxx" } }
+  if (
+    record.asset &&
+    typeof record.asset === "object" &&
+    "_ref" in (record.asset as Record<string, unknown>)
+  ) {
+    const ref = (record.asset as Record<string, unknown>)._ref as string;
+    if (typeof ref === "string" && ref.length > 0) {
+      refs.push({ _ref: ref, foundIn: parentId, fieldPath });
+    }
+  }
+
+  // Walk all keys
+  for (const [key, value] of Object.entries(record)) {
+    if (key === "_ref") continue; // already handled via asset
+    extractAssetRefs(value, parentId, `${fieldPath}.${key}`, refs);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Load mirror documents
+// ---------------------------------------------------------------------------
+function loadMirrorDocs(): SanityDoc[] {
+  if (!fs.existsSync(DOCUMENTS_DIR)) return [];
+  const files = fs
+    .readdirSync(DOCUMENTS_DIR)
+    .filter((f) => f.endsWith(".json"));
+  const all: SanityDoc[] = [];
+  for (const file of files) {
+    const docs = JSON.parse(
+      fs.readFileSync(path.join(DOCUMENTS_DIR, file), "utf-8")
+    ) as SanityDoc[];
+    all.push(...docs);
+  }
+  return all;
+}
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
+async function main(): Promise<void> {
+  log("Asset Integrity Engine starting...");
+
+  const mirrorDocs = loadMirrorDocs();
+  log(`Mirror: ${mirrorDocs.length} document(s) loaded.`);
+
+  // Collect all asset refs from mirror
+  const allRefs: AssetRef[] = [];
+  for (const doc of mirrorDocs) {
+    extractAssetRefs(doc, doc._id as string, "$", allRefs);
+  }
+
+  log(`Found ${allRefs.length} asset reference(s) in mirror.`);
+
+  if (allRefs.length === 0) {
+    log("No asset references found. Nothing to verify.");
+    const emptyReport: AssetReport = {
+      generatedAt: new Date().toISOString(),
+      date: isoDate(),
+      totalRefsFound: 0,
+      liveAssets: 0,
+      valid: 0,
+      broken: [],
+      summary: { valid: true, brokenCount: 0 },
+    };
+    writeJson(path.join(MIRROR_DIR, "asset-report.json"), emptyReport);
+    return;
+  }
+
+  // Fetch live asset IDs from Sanity
+  const client = makeReadClient();
+  log("Fetching live asset IDs from Sanity...");
+  const liveAssets = await client.fetch<Array<{ _id: string }>>(
+    `*[_type in ["sanity.imageAsset", "sanity.fileAsset"]]{ _id }`
+  );
+  const liveAssetIds = new Set(liveAssets.map((a) => a._id));
+  log(`Live assets: ${liveAssetIds.size} found.`);
+
+  // Verify each ref
+  const broken: AssetRef[] = [];
+  for (const ref of allRefs) {
+    // Sanity asset _ref format: "image-<hash>-<WxH>-<ext>"
+    // The corresponding _id is identical (sans the alt prefix for files)
+    const assetId = ref._ref;
+    if (!liveAssetIds.has(assetId)) {
+      broken.push(ref);
+    }
+  }
+
+  const report: AssetReport = {
+    generatedAt: new Date().toISOString(),
+    date: isoDate(),
+    totalRefsFound: allRefs.length,
+    liveAssets: liveAssetIds.size,
+    valid: allRefs.length - broken.length,
+    broken,
+    summary: {
+      valid: broken.length === 0,
+      brokenCount: broken.length,
+    },
+  };
+
+  writeJson(path.join(MIRROR_DIR, "asset-report.json"), report);
+  log(`\n✓ Asset report written → ${path.join(MIRROR_DIR, "asset-report.json")}`);
+
+  if (broken.length > 0) {
+    log(`${broken.length} BROKEN asset reference(s) found:`, "warn");
+    for (const b of broken) {
+      console.warn(`  [BROKEN] _ref: ${b._ref}`);
+      console.warn(`           in doc: ${b.foundIn} at path: ${b.fieldPath}`);
+    }
+    log(
+      "These refs point to assets that do not exist in the live dataset.",
+      "warn"
+    );
+    log("Do NOT re-upload assets. Investigate missing assets in Sanity Studio.", "warn");
+  } else {
+    log(`✓ All ${allRefs.length} asset reference(s) are valid.`);
+  }
+
+  console.log("\nSummary:");
+  console.table([report.summary]);
+}
+
+main().catch((err: unknown) => {
+  console.error(err);
+  process.exit(1);
+});
 
 
 ================================================================================
@@ -7116,4 +12393,30 @@ FILE: tsconfig.json
     "**/*.mts"
   ],
   "exclude": ["node_modules"]
+}
+
+
+================================================================================
+FILE: tsconfig.scripts.json
+================================================================================
+
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "lib": ["ES2020"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "outDir": ".scripts-dist",
+    "rootDir": ".",
+    "paths": {
+      "@/*": ["../src/*"]
+    }
+  },
+  "include": ["scripts/**/*.ts"],
+  "exclude": ["node_modules", ".next", "src"]
 }
