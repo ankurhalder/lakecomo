@@ -28,7 +28,9 @@ function toAbsoluteUrl(pathOrUrl: string): string {
   if (pathOrUrl.startsWith("http://") || pathOrUrl.startsWith("https://")) {
     return pathOrUrl;
   }
-  const normalizedPath = pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`;
+  const normalizedPath = pathOrUrl.startsWith("/")
+    ? pathOrUrl
+    : `/${pathOrUrl}`;
   return `${seoConfig.siteUrl}${normalizedPath}`;
 }
 
@@ -40,8 +42,12 @@ export function generateMetadata(input: SeoMetadataInput = {}): Metadata {
     ? toAbsoluteUrl(input.canonical)
     : seoConfig.siteUrl;
 
-  const ogImage = toAbsoluteUrl(input.openGraph?.image || seoConfig.defaultImage);
-  const twitterImage = toAbsoluteUrl(input.twitter?.image || input.openGraph?.image || seoConfig.defaultImage);
+  const ogImage = toAbsoluteUrl(
+    input.openGraph?.image || seoConfig.defaultImage,
+  );
+  const twitterImage = toAbsoluteUrl(
+    input.twitter?.image || input.openGraph?.image || seoConfig.defaultImage,
+  );
   const ogUrl = toAbsoluteUrl(input.openGraph?.url || canonical);
 
   return {

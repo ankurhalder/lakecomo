@@ -16,7 +16,9 @@ function absoluteUrl(pathOrUrl: string): string {
   if (pathOrUrl.startsWith("http://") || pathOrUrl.startsWith("https://")) {
     return pathOrUrl;
   }
-  const normalizedPath = pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`;
+  const normalizedPath = pathOrUrl.startsWith("/")
+    ? pathOrUrl
+    : `/${pathOrUrl}`;
   return `${seoConfig.siteUrl}${normalizedPath}`;
 }
 
@@ -26,7 +28,9 @@ export function getOrganizationJsonLd(data: OrganizationData) {
     "@type": "Organization",
     name: seoConfig.siteName,
     url: seoConfig.siteUrl,
-    logo: data.logo ? absoluteUrl(data.logo) : absoluteUrl(seoConfig.defaultImage),
+    logo: data.logo
+      ? absoluteUrl(data.logo)
+      : absoluteUrl(seoConfig.defaultImage),
     email: data.email,
     sameAs: data.sameAs || [],
   };
@@ -39,11 +43,15 @@ export function getEventJsonLd(events: EventData[]) {
       "@context": "https://schema.org",
       "@type": "Event",
       name: event.title,
-      description: event.description || `Immersive spy event by ${seoConfig.siteName} on Lake Como.`,
+      description:
+        event.description ||
+        `Immersive spy event by ${seoConfig.siteName} on Lake Como.`,
       startDate: event.date,
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       eventStatus: "https://schema.org/EventScheduled",
-      image: event.imageUrl ? [absoluteUrl(event.imageUrl)] : [absoluteUrl(seoConfig.defaultImage)],
+      image: event.imageUrl
+        ? [absoluteUrl(event.imageUrl)]
+        : [absoluteUrl(seoConfig.defaultImage)],
       organizer: {
         "@type": "Organization",
         name: seoConfig.siteName,

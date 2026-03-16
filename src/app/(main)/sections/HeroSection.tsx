@@ -256,7 +256,10 @@ export default function HeroSection({
             initial="hidden"
             animate="visible"
             className="font-bold text-white leading-[1.15] tracking-tight mb-2 drop-shadow-2xl px-2"
-            style={{ fontSize: "var(--fs-hero)", fontFamily: "var(--font-limelight)" }}
+            style={{
+              fontSize: "var(--fs-hero)",
+              fontFamily: "var(--font-limelight)",
+            }}
           >
             {renderGoldWord(mainHeading ?? "", "Spy")}
           </motion.h1>
@@ -347,7 +350,10 @@ export default function HeroSection({
               initial="hidden"
               animate="visible"
               className="font-bold text-white leading-[1.15] tracking-tight mb-3 drop-shadow-2xl"
-              style={{ fontSize: "var(--fs-hero)", fontFamily: "var(--font-limelight)" }}
+              style={{
+                fontSize: "var(--fs-hero)",
+                fontFamily: "var(--font-limelight)",
+              }}
             >
               {renderGoldWord(mainHeading ?? "", "Spy")}
             </motion.h1>

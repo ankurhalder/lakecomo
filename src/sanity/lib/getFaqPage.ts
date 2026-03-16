@@ -32,7 +32,10 @@ const fetchFaqPageData = async (): Promise<FaqPageData | null> => {
     return {
       hero: raw.hero,
       faqs: (raw.faqs ?? [])
-        .filter((item: { question?: string; answer?: string }) => item.question && item.answer)
+        .filter(
+          (item: { question?: string; answer?: string }) =>
+            item.question && item.answer,
+        )
         .map((item: { question: string; answer: string }) => ({
           question: item.question,
           answer: item.answer,

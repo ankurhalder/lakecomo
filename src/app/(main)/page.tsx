@@ -61,7 +61,10 @@ export default async function Home() {
         <JsonLd key={`event-jsonld-${index}`} data={eventSchema} />
       ))}
       {touristExperienceJsonLd.map((experienceSchema, index) => (
-        <JsonLd key={`tourist-experience-jsonld-${index}`} data={experienceSchema} />
+        <JsonLd
+          key={`tourist-experience-jsonld-${index}`}
+          data={experienceSchema}
+        />
       ))}
       {faqJsonLd ? <JsonLd data={faqJsonLd} /> : null}
       <LandingPage data={data} />

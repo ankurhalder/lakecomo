@@ -26,7 +26,8 @@ export default defineType({
       title: "SEO Title",
       type: "string",
       group: "seo",
-      description: "Custom page title used for search engines and social previews.",
+      description:
+        "Custom page title used for search engines and social previews.",
       validation: (Rule) => Rule.max(65),
     }),
     defineField({

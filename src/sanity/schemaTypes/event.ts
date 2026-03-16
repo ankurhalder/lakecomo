@@ -113,13 +113,15 @@ export default defineType({
         },
       ],
       validation: (Rule) =>
-        Rule.custom((media: { image?: unknown; video?: unknown } | undefined) => {
-          if (!media) return true;
-          if (media.image && media.video) {
-            return "Please use either an image OR a video, not both.";
-          }
-          return true;
-        }),
+        Rule.custom(
+          (media: { image?: unknown; video?: unknown } | undefined) => {
+            if (!media) return true;
+            if (media.image && media.video) {
+              return "Please use either an image OR a video, not both.";
+            }
+            return true;
+          },
+        ),
     }),
 
     defineField({
