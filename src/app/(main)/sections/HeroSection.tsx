@@ -3,7 +3,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useMemo } from "react";
 import { Volume2, VolumeX } from "lucide-react";
-import Link from "next/link";
 import { useLenis } from "@/components/providers/SmoothScroll";
 import type { LandingPageData } from "@/sanity/lib/getLandingPage";
 
@@ -181,13 +180,6 @@ export default function HeroSection({
     }
   };
 
-  const scrollToEvents = () => {
-    const el = document.querySelector("#upcoming-events");
-    if (el) {
-      lenisRef.current?.scrollTo(el as HTMLElement, { offset: -48 });
-    }
-  };
-
   return (
     <div
       id="hero"
@@ -290,26 +282,6 @@ export default function HeroSection({
           >
             Discover the Mission
           </motion.button>
-          <button
-            onClick={scrollToEvents}
-            className="w-full px-5 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full border"
-            style={{
-              borderColor: "var(--accent)",
-              color: "var(--text-primary)",
-            }}
-          >
-            Browse Events
-          </button>
-          <Link
-            href="/mission-experience"
-            className="w-full text-center px-5 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full border"
-            style={{
-              borderColor: "var(--border-color)",
-              color: "var(--text-secondary)",
-            }}
-          >
-            Mission Experience
-          </Link>
         </div>
       </div>
 
@@ -381,28 +353,6 @@ export default function HeroSection({
             >
               Discover the Mission
             </motion.button>
-            <div className="flex flex-wrap items-center gap-3 mt-3">
-              <button
-                onClick={scrollToEvents}
-                className="px-5 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full border"
-                style={{
-                  borderColor: "var(--accent)",
-                  color: "var(--text-primary)",
-                }}
-              >
-                Browse Events
-              </button>
-              <Link
-                href="/mission-experience"
-                className="px-5 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full border"
-                style={{
-                  borderColor: "var(--border-color)",
-                  color: "var(--text-secondary)",
-                }}
-              >
-                Mission Experience
-              </Link>
-            </div>
           </motion.div>
         </div>
       </div>

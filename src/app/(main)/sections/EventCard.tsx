@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MapPin, Clock, RefreshCw } from "lucide-react";
+import { MapPin, Clock, RefreshCw, Volume2, VolumeX } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import type { EventData } from "@/sanity/lib/getLandingPage";
 
@@ -47,6 +47,7 @@ export default function EventCard({
   // Lazy loading state
   const [isVisible, setIsVisible] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const mediaRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -85,6 +86,18 @@ export default function EventCard({
       });
     }
   }, [isVisible, videoLoaded]);
+
+  // Sync muted state to video element
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsMuted((prev) => !prev);
+  };
 
   return (
     <motion.div
@@ -196,6 +209,22 @@ export default function EventCard({
         {/* Additional overlay that fades on hover for depth */}
         {(hasVideo || hasImage) && (
           <div className="absolute inset-0 bg-black/40 pointer-events-none transition-opacity duration-500 group-hover:opacity-15" />
+        )}
+
+        {/* Mute toggle — only for video cards */}
+        {hasVideo && (
+          <button
+            onClick={toggleMute}
+            className="absolute bottom-2 right-2 z-10 w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm border transition-opacity duration-200 opacity-60 hover:opacity-100"
+            style={{
+              backgroundColor: "rgba(0,0,0,0.55)",
+              borderColor: "rgba(255,255,255,0.25)",
+              color: "rgba(255,255,255,0.9)",
+            }}
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+          >
+            {isMuted ? <VolumeX size={13} /> : <Volume2 size={13} />}
+          </button>
         )}
       </div>
 
