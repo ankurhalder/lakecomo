@@ -66,7 +66,9 @@ export default function HeroSection({
   const [isMobile, setIsMobile] = useState(false);
   const [showPlayIndicator, setShowPlayIndicator] = useState(true);
   const [userInteracted, setUserInteracted] = useState(false);
+  const [heroVisible, setHeroVisible] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const hasPlayedRef = useRef(false);
   const playCheckTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -82,6 +84,17 @@ export default function HeroSection({
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroVisible(entry.isIntersecting),
+      { threshold: 0.05 },
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -182,6 +195,7 @@ export default function HeroSection({
 
   return (
     <div
+      ref={sectionRef}
       id="hero"
       className="relative w-full min-h-[100dvh] overflow-y-auto overflow-x-hidden bg-black font-sans flex flex-col"
     >
@@ -357,7 +371,8 @@ export default function HeroSection({
         </div>
       </div>
 
-      {/* Mute toggle */}
+      {/* Mute toggle — only visible while hero is in view */}
+      {heroVisible && (
       <div className="fixed bottom-8 md:bottom-10 right-4 md:right-6 z-50">
         <AnimatePresence>
           {showPlayIndicator && !userInteracted && (
@@ -439,6 +454,7 @@ export default function HeroSection({
           </motion.div>
         </motion.button>
       </div>
+      )}
     </div>
   );
 }
