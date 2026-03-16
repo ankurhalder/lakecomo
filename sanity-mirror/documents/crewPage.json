@@ -2,7 +2,7 @@
   {
     "_createdAt": "2026-01-01T08:32:51Z",
     "_id": "3d2JLpUTPM5qppQf883Uxu",
-    "_rev": "qeHkBtaCAAYzf5RK473Y26",
+    "_rev": "MjdSXFelIF5IivE6510Gnc",
     "_system": {
       "base": {
         "id": "3d2JLpUTPM5qppQf883Uxu",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "crewPage",
-    "_updatedAt": "2026-02-23T06:29:42Z",
+    "_updatedAt": "2026-03-16T19:09:51Z",
     "crewMembers": [
       {
         "_key": "dee-lasprogata",
@@ -24,8 +24,7 @@
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-e60f4c4a969ae568d0975a407795225dbe163a2a-470x558-png",
-            "_type": "reference"
+            "_ref": "image-e60f4c4a969ae568d0975a407795225dbe163a2a-470x558-png"
           },
           "crop": {
             "_type": "sanity.imageCrop",
@@ -59,8 +58,7 @@
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-427d578bd9cde9bcce27512c36b3c3eadc4d7ccb-3456x5184-jpg",
-            "_type": "reference"
+            "_ref": "image-427d578bd9cde9bcce27512c36b3c3eadc4d7ccb-3456x5184-jpg"
           },
           "crop": {
             "_type": "sanity.imageCrop",
@@ -107,56 +105,49 @@
         "_key": "fdedca647eb8",
         "_type": "image",
         "asset": {
-          "_ref": "image-db22b67cdc4c6ad9f1d230c9710b05345e46bb3f-1170x382-jpg",
-          "_type": "reference"
+          "_ref": "image-db22b67cdc4c6ad9f1d230c9710b05345e46bb3f-1170x382-jpg"
         }
       },
       {
         "_key": "f4000e6dde3e",
         "_type": "image",
         "asset": {
-          "_ref": "image-1abdd77c34d19a7d239ef968514a8ca79dbadb74-656x360-jpg",
-          "_type": "reference"
+          "_ref": "image-1abdd77c34d19a7d239ef968514a8ca79dbadb74-656x360-jpg"
         }
       },
       {
         "_key": "f4cac9f0297f",
         "_type": "image",
         "asset": {
-          "_ref": "image-458f2cfdae32d8daf86566e6e95bd6c2ad526070-1170x639-jpg",
-          "_type": "reference"
+          "_ref": "image-458f2cfdae32d8daf86566e6e95bd6c2ad526070-1170x639-jpg"
         }
       },
       {
         "_key": "82d452184cb7",
         "_type": "image",
         "asset": {
-          "_ref": "image-183c5b6e64301731b664a70ce2b27210574f738c-1019x538-jpg",
-          "_type": "reference"
+          "_ref": "image-183c5b6e64301731b664a70ce2b27210574f738c-1019x538-jpg"
         }
       },
       {
         "_key": "86678aa42272",
         "_type": "image",
         "asset": {
-          "_ref": "image-669127a0bcb96a83d790685dd84a4b7827760964-409x160-jpg",
-          "_type": "reference"
+          "_ref": "image-669127a0bcb96a83d790685dd84a4b7827760964-409x160-jpg"
         }
       },
       {
         "_key": "d6b90db1dca8",
         "_type": "image",
         "asset": {
-          "_ref": "image-30c40301d0ec7725d209275840ff506e7afe35ec-1169x473-jpg",
-          "_type": "reference"
+          "_ref": "image-30c40301d0ec7725d209275840ff506e7afe35ec-1169x473-jpg"
         }
       },
       {
         "_key": "357d52a33882",
         "_type": "image",
         "asset": {
-          "_ref": "image-9d6ee43623b86c12d4370d83c6b02d2afe0ca089-456x353-jpg",
-          "_type": "reference"
+          "_ref": "image-9d6ee43623b86c12d4370d83c6b02d2afe0ca089-456x353-jpg"
         }
       }
     ],

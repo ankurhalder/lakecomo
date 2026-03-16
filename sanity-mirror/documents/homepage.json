@@ -2,7 +2,7 @@
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "homepage",
-    "_rev": "A2LnutMwXMZdsIPiElAzGr",
+    "_rev": "MjdSXFelIF5IivE6510Gnc",
     "_system": {
       "base": {
         "id": "homepage",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "homepage",
-    "_updatedAt": "2026-02-23T09:15:43Z",
+    "_updatedAt": "2026-03-16T19:09:51Z",
     "heroSection": {
       "ctaLink": "/contact",
       "eventShowcase": {
@@ -27,8 +27,7 @@
       "mobileVideoFile": {
         "_type": "file",
         "asset": {
-          "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4",
-          "_type": "reference"
+          "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4"
         }
       },
       "playIndicatorText": "hear the story",
@@ -38,8 +37,7 @@
       "videoFile": {
         "_type": "file",
         "asset": {
-          "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4",
-          "_type": "reference"
+          "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4"
         }
       }
     },

@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-03-16T17:14:51.143Z",
+  "exportedAt": "2026-03-16T19:47:19.221Z",
   "exportedDate": "2026-03-16",
   "projectId": "c20abca7",
   "dataset": "production",
   "apiVersion": "2025-12-27",
-  "totalDocuments": 17,
+  "totalDocuments": 18,
   "types": [
     {
       "type": "aboutPage",
@@ -60,6 +60,11 @@
       "type": "landingPage",
       "count": 1,
       "file": "landingPage.json"
+    },
+    {
+      "type": "missionExperiencePage",
+      "count": 1,
+      "file": "missionExperiencePage.json"
     },
     {
       "type": "moviePage",

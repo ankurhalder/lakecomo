@@ -2,7 +2,7 @@
   {
     "_createdAt": "2026-01-01T09:02:51Z",
     "_id": "3d2JLpUTPM5qppQf88BJIs",
-    "_rev": "UEpPnqaT84vVgQ3Oe813F7",
+    "_rev": "MjdSXFelIF5IivE6510Gnc",
     "_system": {
       "base": {
         "id": "3d2JLpUTPM5qppQf88BJIs",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "venuePage",
-    "_updatedAt": "2026-02-09T13:45:43Z",
+    "_updatedAt": "2026-03-16T19:09:51Z",
     "cta": {
       "buttonText": "Join Our Events",
       "description": "Create unforgettable moments on Lake Como ",
@@ -28,48 +28,42 @@
         "_key": "aa448d5f00fc",
         "_type": "image",
         "asset": {
-          "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
-          "_type": "reference"
+          "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg"
         }
       },
       {
         "_key": "9e462a1053bc",
         "_type": "image",
         "asset": {
-          "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg",
-          "_type": "reference"
+          "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg"
         }
       },
       {
         "_key": "fcb9ddbbb171",
         "_type": "image",
         "asset": {
-          "_ref": "image-fd866ca52e4b811cb176080a9b9468a723e607c2-550x412-jpg",
-          "_type": "reference"
+          "_ref": "image-fd866ca52e4b811cb176080a9b9468a723e607c2-550x412-jpg"
         }
       },
       {
         "_key": "52016409cd4a",
         "_type": "image",
         "asset": {
-          "_ref": "image-fe3de70117969f48e5c4357717bf3229402161a3-1284x961-webp",
-          "_type": "reference"
+          "_ref": "image-fe3de70117969f48e5c4357717bf3229402161a3-1284x961-webp"
         }
       },
       {
         "_key": "968d2da3a474",
         "_type": "image",
         "asset": {
-          "_ref": "image-e75d690f4207cc816d6f73b1d03eb20453755760-1920x1280-webp",
-          "_type": "reference"
+          "_ref": "image-e75d690f4207cc816d6f73b1d03eb20453755760-1920x1280-webp"
         }
       },
       {
         "_key": "66d438d46c23",
         "_type": "image",
         "asset": {
-          "_ref": "image-89ca9a0352a0628203ef4387bb8245a7d17e8d19-1030x682-png",
-          "_type": "reference"
+          "_ref": "image-89ca9a0352a0628203ef4387bb8245a7d17e8d19-1030x682-png"
         }
       }
     ],

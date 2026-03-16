@@ -2,7 +2,7 @@
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "castPage",
-    "_rev": "kD2Bf5mqCHk08kw0ZdHxu9",
+    "_rev": "MjdSXFelIF5IivE6510Gnc",
     "_system": {
       "base": {
         "id": "castPage",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "castPage",
-    "_updatedAt": "2026-02-23T09:44:58Z",
+    "_updatedAt": "2026-03-16T19:09:51Z",
     "content": {
       "paragraphs": [
         "Choose your theme. Select your venue. Now it’s time to experience the immersive fun!",
@@ -46,8 +46,7 @@
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-437dd49a02ecac575dc481e3535b2dfb4b275442-951x913-png",
-            "_type": "reference"
+            "_ref": "image-437dd49a02ecac575dc481e3535b2dfb4b275442-951x913-png"
           }
         }
       },
@@ -56,8 +55,7 @@
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080-png",
-            "_type": "reference"
+            "_ref": "image-06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080-png"
           }
         }
       },
@@ -66,8 +64,7 @@
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg",
-            "_type": "reference"
+            "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg"
           }
         }
       },
@@ -76,8 +73,7 @@
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg",
-            "_type": "reference"
+            "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg"
           }
         }
       },
@@ -86,8 +82,7 @@
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png",
-            "_type": "reference"
+            "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png"
           }
         }
       },
@@ -96,8 +91,7 @@
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080-png",
-            "_type": "reference"
+            "_ref": "image-4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080-png"
           }
         }
       },
@@ -106,8 +100,7 @@
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
-            "_type": "reference"
+            "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg"
           }
         }
       }

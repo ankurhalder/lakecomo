@@ -2,7 +2,7 @@
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "moviePage",
-    "_rev": "UEpPnqaT84vVgQ3Oe7rAJL",
+    "_rev": "MjdSXFelIF5IivE6510Gnc",
     "_system": {
       "base": {
         "id": "moviePage",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "moviePage",
-    "_updatedAt": "2026-02-09T13:25:37Z",
+    "_updatedAt": "2026-03-16T19:09:51Z",
     "deliverables": [
       {
         "_key": "deliverable1",
@@ -58,8 +58,7 @@
       "image": {
         "_type": "image",
         "asset": {
-          "_ref": "image-321c90df5c1ee24afc8168a27d44c0893d84a55f-500x500-png",
-          "_type": "reference"
+          "_ref": "image-321c90df5c1ee24afc8168a27d44c0893d84a55f-500x500-png"
         }
       }
     },

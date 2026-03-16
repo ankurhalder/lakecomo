@@ -2,7 +2,7 @@
   {
     "_createdAt": "2026-03-15T20:13:19Z",
     "_id": "event-corso-eleganza-2026",
-    "_rev": "MjdSXFelIF5IivE650mFMI",
+    "_rev": "MjdSXFelIF5IivE6510Gnc",
     "_system": {
       "base": {
         "id": "event-corso-eleganza-2026",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "event",
-    "_updatedAt": "2026-03-16T16:23:54Z",
+    "_updatedAt": "2026-03-16T19:09:51Z",
     "badge": "Season Premiere",
     "ctaLabel": "RSVP / DETAILS",
     "ctaType": "scroll_contact",
@@ -21,8 +21,7 @@
     "image": {
       "_type": "image",
       "asset": {
-        "_ref": "image-f7fb40e8509c177fda1bc073449b4949b7fe71c5-964x644-png",
-        "_type": "reference"
+        "_ref": "image-f7fb40e8509c177fda1bc073449b4949b7fe71c5-964x644-png"
       },
       "crop": {
         "_type": "sanity.imageCrop",
@@ -51,7 +50,7 @@
   {
     "_createdAt": "2026-03-15T20:13:21Z",
     "_id": "event-weekly-spies-of-style",
-    "_rev": "MjdSXFelIF5IivE650fUke",
+    "_rev": "MjdSXFelIF5IivE6510Gnc",
     "_system": {
       "base": {
         "id": "event-weekly-spies-of-style",
@@ -59,7 +58,7 @@
       }
     },
     "_type": "event",
-    "_updatedAt": "2026-03-16T15:26:24Z",
+    "_updatedAt": "2026-03-16T19:09:51Z",
     "badge": "Weekly Residency",
     "ctaLabel": "VIEW SCHEDULE",
     "ctaType": "scroll_contact",
@@ -69,8 +68,7 @@
     "image": {
       "_type": "image",
       "asset": {
-        "_ref": "image-e6b2a0824991d31387e6ddad31a821e838d667cf-1539x782-png",
-        "_type": "reference"
+        "_ref": "image-e6b2a0824991d31387e6ddad31a821e838d667cf-1539x782-png"
       }
     },
     "location": "Locanda Milano 1873, Brunate",

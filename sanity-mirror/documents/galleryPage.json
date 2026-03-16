@@ -2,7 +2,7 @@
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "galleryPage",
-    "_rev": "A2LnutMwXMZdsIPiElMlbR",
+    "_rev": "MjdSXFelIF5IivE6510Gnc",
     "_system": {
       "base": {
         "id": "galleryPage",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "galleryPage",
-    "_updatedAt": "2026-02-23T09:54:30Z",
+    "_updatedAt": "2026-03-16T19:09:51Z",
     "hero": {
       "heading": "Scenes from the Experience",
       "subHeading": "Snapshots — clandestine exchanges, dinner finales, Lake Como scenery"
@@ -26,64 +26,56 @@
         "_key": "8a8a0b7b2327",
         "_type": "image",
         "asset": {
-          "_ref": "image-89307f3fef09feb106360e6380de44b5e9bb536c-1582x821-png",
-          "_type": "reference"
+          "_ref": "image-89307f3fef09feb106360e6380de44b5e9bb536c-1582x821-png"
         }
       },
       {
         "_key": "a2602c8ee182",
         "_type": "image",
         "asset": {
-          "_ref": "image-388b2d0430dbd54b63706e771f3a00cf16086aae-3024x2179-jpg",
-          "_type": "reference"
+          "_ref": "image-388b2d0430dbd54b63706e771f3a00cf16086aae-3024x2179-jpg"
         }
       },
       {
         "_key": "48568cd88a86",
         "_type": "image",
         "asset": {
-          "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg",
-          "_type": "reference"
+          "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg"
         }
       },
       {
         "_key": "60840378ce63",
         "_type": "image",
         "asset": {
-          "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png",
-          "_type": "reference"
+          "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png"
         }
       },
       {
         "_key": "8fae42bc4d51",
         "_type": "image",
         "asset": {
-          "_ref": "image-91472121a6a46f2e4be72ab8cebb4a232978c1d5-1775x892-png",
-          "_type": "reference"
+          "_ref": "image-91472121a6a46f2e4be72ab8cebb4a232978c1d5-1775x892-png"
         }
       },
       {
         "_key": "45215e10ce46",
         "_type": "image",
         "asset": {
-          "_ref": "image-ccd733b1ba903f27752dccddac1eaba559934d87-1788x673-png",
-          "_type": "reference"
+          "_ref": "image-ccd733b1ba903f27752dccddac1eaba559934d87-1788x673-png"
         }
       },
       {
         "_key": "09155facfe8d",
         "_type": "image",
         "asset": {
-          "_ref": "image-9c7cbf0d082b55c42bddd5af0ff9a80563785bc0-1040x576-png",
-          "_type": "reference"
+          "_ref": "image-9c7cbf0d082b55c42bddd5af0ff9a80563785bc0-1040x576-png"
         }
       },
       {
         "_key": "32beb12ed299",
         "_type": "image",
         "asset": {
-          "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
-          "_type": "reference"
+          "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg"
         }
       }
     ],

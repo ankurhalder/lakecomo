@@ -2,7 +2,7 @@
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "themesPage",
-    "_rev": "OJl4e2TkVOqlZxtjjqr7qF",
+    "_rev": "MjdSXFelIF5IivE6510Gnc",
     "_system": {
       "base": {
         "id": "themesPage",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "themesPage",
-    "_updatedAt": "2026-03-11T22:05:51Z",
+    "_updatedAt": "2026-03-16T19:09:51Z",
     "assignmentsSection": {
       "cards": [
         {
@@ -81,56 +81,49 @@
         "_type": "image",
         "alt": "gallery",
         "asset": {
-          "_ref": "image-43fdff9abb7826d5389b751bf0a0a18949837c2f-1651x868-png",
-          "_type": "reference"
+          "_ref": "image-43fdff9abb7826d5389b751bf0a0a18949837c2f-1651x868-png"
         }
       },
       {
         "_key": "273ac1b45a18",
         "_type": "image",
         "asset": {
-          "_ref": "image-ef7310f3d34e709483448353cd3497710158fe81-648x439-jpg",
-          "_type": "reference"
+          "_ref": "image-ef7310f3d34e709483448353cd3497710158fe81-648x439-jpg"
         }
       },
       {
         "_key": "97f02a451a52",
         "_type": "image",
         "asset": {
-          "_ref": "image-13ddf4eaa8b4fef3d430916c7f28916f5cf67949-795x502-jpg",
-          "_type": "reference"
+          "_ref": "image-13ddf4eaa8b4fef3d430916c7f28916f5cf67949-795x502-jpg"
         }
       },
       {
         "_key": "daa1101db1f0",
         "_type": "image",
         "asset": {
-          "_ref": "image-cf01fbb4bda2b71a7f4b99c7c1ffa28fc9aa1e42-736x516-jpg",
-          "_type": "reference"
+          "_ref": "image-cf01fbb4bda2b71a7f4b99c7c1ffa28fc9aa1e42-736x516-jpg"
         }
       },
       {
         "_key": "07566f89e288",
         "_type": "image",
         "asset": {
-          "_ref": "image-a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080-png",
-          "_type": "reference"
+          "_ref": "image-a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080-png"
         }
       },
       {
         "_key": "68e30f36fd31",
         "_type": "image",
         "asset": {
-          "_ref": "image-0ac9afdecb1586c574770b42545414b5ffea541f-1920x1080-png",
-          "_type": "reference"
+          "_ref": "image-0ac9afdecb1586c574770b42545414b5ffea541f-1920x1080-png"
         }
       },
       {
         "_key": "3adedf59ddf8",
         "_type": "image",
         "asset": {
-          "_ref": "image-63492ab2a56fc483754a0cb42e982ac93a54684a-951x913-png",
-          "_type": "reference"
+          "_ref": "image-63492ab2a56fc483754a0cb42e982ac93a54684a-951x913-png"
         }
       }
     ],
@@ -146,8 +139,7 @@
       "image": {
         "_type": "image",
         "asset": {
-          "_ref": "image-90bd1a2aac457dc836d3ae0f2ffc6dd150505698-884x519-png",
-          "_type": "reference"
+          "_ref": "image-90bd1a2aac457dc836d3ae0f2ffc6dd150505698-884x519-png"
         }
       },
       "title": "Private Villa Operations"
@@ -163,8 +155,7 @@
       "image": {
         "_type": "image",
         "asset": {
-          "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png",
-          "_type": "reference"
+          "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png"
         }
       },
       "paragraph1": "During World War II, intelligence operative Cecile Mallory arrived secretly in Cernobbio on Lake Como carrying a critical Allied mission. Her audacious operations, coded messages, and elegant style remain part of the region's wartime history.",

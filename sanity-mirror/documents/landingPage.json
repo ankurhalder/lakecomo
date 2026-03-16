@@ -2,7 +2,7 @@
   {
     "_createdAt": "2026-03-13T13:18:59Z",
     "_id": "landingPage",
-    "_rev": "OJl4e2TkVOqlZxtjkNpNSF",
+    "_rev": "MjdSXFelIF5IivE6510Gnc",
     "_system": {
       "base": {
         "id": "landingPage",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "landingPage",
-    "_updatedAt": "2026-03-16T15:59:50Z",
+    "_updatedAt": "2026-03-16T19:09:51Z",
     "assignment": {
       "cards": [
         {
@@ -27,8 +27,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-ef7310f3d34e709483448353cd3497710158fe81-648x439-jpg",
-              "_type": "reference"
+              "_ref": "image-ef7310f3d34e709483448353cd3497710158fe81-648x439-jpg"
             }
           },
           "title": "Dinner Mission"
@@ -47,8 +46,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080-png",
-              "_type": "reference"
+              "_ref": "image-a0f16f767bf61d4c5e8637d47665f9ddb774fbb2-1920x1080-png"
             }
           },
           "title": "Cocktail Mission"
@@ -66,8 +64,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-437dd49a02ecac575dc481e3535b2dfb4b275442-951x913-png",
-              "_type": "reference"
+              "_ref": "image-437dd49a02ecac575dc481e3535b2dfb4b275442-951x913-png"
             }
           },
           "role": null,
@@ -79,8 +76,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080-png",
-              "_type": "reference"
+              "_ref": "image-06e1175d3bde3e3a5a3d37ad7841001a66cdd2ce-1920x1080-png"
             }
           },
           "role": null,
@@ -92,8 +88,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg",
-              "_type": "reference"
+              "_ref": "image-5bdb7664d902978a660db843d80ca21424de53bf-960x720-jpg"
             }
           },
           "role": null,
@@ -105,8 +100,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg",
-              "_type": "reference"
+              "_ref": "image-7abf86da2007f97d3ecd6995e236a27f5bd7036e-648x439-jpg"
             }
           },
           "role": null,
@@ -118,8 +112,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png",
-              "_type": "reference"
+              "_ref": "image-2b0e63b6b7ff63ac55b21b759be3b82b85f181e7-1672x798-png"
             }
           },
           "role": null,
@@ -131,8 +124,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080-png",
-              "_type": "reference"
+              "_ref": "image-4a9627f5efe3853cab3c8506b3d41602d9576f45-1920x1080-png"
             }
           },
           "role": null,
@@ -144,8 +136,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg",
-              "_type": "reference"
+              "_ref": "image-bdfedf714bf67f3384a2a0f05294fb2222c2c744-1008x756-jpg"
             }
           },
           "role": null,
@@ -156,8 +147,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-ff848c34f0e4d18b76ce18d7653bc133cf7ee52e-736x516-jpg",
-              "_type": "reference"
+              "_ref": "image-ff848c34f0e4d18b76ce18d7653bc133cf7ee52e-736x516-jpg"
             }
           }
         },
@@ -166,8 +156,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-6d1ef85025398394ca2dd5d30064762f43fe9b5a-915x737-png",
-              "_type": "reference"
+              "_ref": "image-6d1ef85025398394ca2dd5d30064762f43fe9b5a-915x737-png"
             }
           }
         },
@@ -176,8 +165,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-8019461d97fc4bc1607db2396ef1822f25266ef6-695x1140-jpg",
-              "_type": "reference"
+              "_ref": "image-8019461d97fc4bc1607db2396ef1822f25266ef6-695x1140-jpg"
             }
           }
         },
@@ -186,8 +174,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-fd866ca52e4b811cb176080a9b9468a723e607c2-550x412-jpg",
-              "_type": "reference"
+              "_ref": "image-fd866ca52e4b811cb176080a9b9468a723e607c2-550x412-jpg"
             }
           }
         },
@@ -196,8 +183,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-cb13e56d31943c3cad8b71d76748325afe0459ab-694x669-png",
-              "_type": "reference"
+              "_ref": "image-cb13e56d31943c3cad8b71d76748325afe0459ab-694x669-png"
             }
           }
         },
@@ -206,8 +192,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-ebf26646916f92eab7f54cda065601216b050ff5-1375x768-jpg",
-              "_type": "reference"
+              "_ref": "image-ebf26646916f92eab7f54cda065601216b050ff5-1375x768-jpg"
             }
           }
         },
@@ -216,8 +201,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-5ec94db9b43dc9f38411b9afc7baceefce5f9063-366x250-png",
-              "_type": "reference"
+              "_ref": "image-5ec94db9b43dc9f38411b9afc7baceefce5f9063-366x250-png"
             }
           }
         },
@@ -226,8 +210,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-5afc725ce12a60443a425e51f1647174b57cd9d2-750x1702-jpg",
-              "_type": "reference"
+              "_ref": "image-5afc725ce12a60443a425e51f1647174b57cd9d2-750x1702-jpg"
             }
           }
         },
@@ -236,8 +219,7 @@
           "image": {
             "_type": "image",
             "asset": {
-              "_ref": "image-7b6ce535dc43c19c9716fd77679558f88a508057-795x502-jpg",
-              "_type": "reference"
+              "_ref": "image-7b6ce535dc43c19c9716fd77679558f88a508057-795x502-jpg"
             }
           }
         }
@@ -248,8 +230,7 @@
       "mobileVideoFile": {
         "_type": "file",
         "asset": {
-          "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4",
-          "_type": "reference"
+          "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4"
         }
       },
       "playIndicatorText": "hear the story",
@@ -258,8 +239,7 @@
       "videoFile": {
         "_type": "file",
         "asset": {
-          "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4",
-          "_type": "reference"
+          "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4"
         }
       }
     },
@@ -331,8 +311,7 @@
       "image": {
         "_type": "image",
         "asset": {
-          "_ref": "image-e35fa47785930f581efceed9baffd9ca853abe1a-884x519-png",
-          "_type": "reference"
+          "_ref": "image-e35fa47785930f581efceed9baffd9ca853abe1a-884x519-png"
         }
       },
       "label": "LAKE COMO EXCLUSIVE",
@@ -367,8 +346,7 @@
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png",
-            "_type": "reference"
+            "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png"
           }
         },
         "paragraph1": "During World War II, intelligence operative Cecile Mallory arrived secretly in Cernobbio on Lake Como carrying a critical Allied mission. Her audacious operations, coded messages, and elegant style remain part of the region's wartime history.",
