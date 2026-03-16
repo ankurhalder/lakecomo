@@ -16,12 +16,12 @@ interface HeaderData {
 }
 
 const DEFAULT_LINKS: NavLink[] = [
-  { label: "Story",           url: "/#story"          },
-  { label: "Experience",      url: "/#experience"     },
-  { label: "Assignment",      url: "/#assignment"     },
-  { label: "Private Events",  url: "/#private-events" },
-  { label: "Upcoming Events", url: "/#events"         },
-  { label: "Inquire",         url: "/#contact"        },
+  { label: "Story", url: "/#story" },
+  { label: "Experience", url: "/#experience" },
+  { label: "Assignment", url: "/#assignment" },
+  { label: "Private Events", url: "/#private-events" },
+  { label: "Upcoming Events", url: "/#upcoming-events" },
+  { label: "Inquire", url: "/#contact" },
 ];
 
 export default function Header({ data }: { data: HeaderData }) {
@@ -77,8 +77,20 @@ export default function Header({ data }: { data: HeaderData }) {
 
   const scrollToHash = (url: string) => {
     const hash = url.replace("/", "");
-    const el = document.querySelector(hash);
-    if (el) lenisRef.current?.scrollTo(el as HTMLElement, { offset: -48 });
+    const element = document.querySelector(hash);
+
+    if (!element) {
+      console.warn(`[Scroll] Element not found: ${hash}`);
+      return;
+    }
+
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(element as HTMLElement, { offset: -48 });
+    } else {
+      console.warn(`[Scroll] Lenis not initialized, using fallback`);
+      element.scrollIntoView({ behavior: 'smooth' });
+      window.scrollBy(0, -48);
+    }
   };
 
   const handleNavClick = (url: string | null | undefined) => {

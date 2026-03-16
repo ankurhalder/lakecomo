@@ -1,12 +1,78 @@
 {
-  "generatedAt": "2026-03-16T17:15:50.714Z",
+  "generatedAt": "2026-03-16T17:45:38.230Z",
   "date": "2026-03-16",
   "summary": {
     "total": 17,
     "new": 0,
-    "updated": 0,
+    "updated": 1,
     "removed": 0,
-    "unchanged": 17
+    "unchanged": 16
   },
-  "changes": []
+  "changes": [
+    {
+      "_id": "landingPage",
+      "_type": "landingPage",
+      "status": "UPDATED",
+      "fieldChanges": [
+        {
+          "field": "_system",
+          "old": {
+            "base": {
+              "id": "landingPage",
+              "rev": "OJl4e2TkVOqlZxtjkNpNSF"
+            }
+          },
+          "new": {
+            "base": {
+              "id": "landingPage",
+              "rev": "MjdSXFelIF5IivE650jWbW"
+            }
+          }
+        },
+        {
+          "field": "hero",
+          "old": {
+            "mainHeading": "An Immersive Spy-Themed Dinner on Lake Como",
+            "mobileVideoFile": {
+              "_type": "file",
+              "asset": {
+                "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4",
+                "_type": "reference"
+              }
+            },
+            "playIndicatorText": "hear the story",
+            "preHeading": "Step Into the Shadows of History",
+            "subHeading": "Based on the daring missions of Cecil Mallaby, a WWII secret agent who is said to have inspired James Bond, your evening blends espionage, gourmet cuisine, and immersive storytelling",
+            "videoFile": {
+              "_type": "file",
+              "asset": {
+                "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4",
+                "_type": "reference"
+              }
+            }
+          },
+          "new": {
+            "mainHeading": "An Immersive Spy-Themed Dinner on Lake Como",
+            "mobileVideoFile": {
+              "_type": "file",
+              "asset": {
+                "_ref": "file-7f033daf9c31e19f11828b8abc68c39c9b5e94f2-mp4",
+                "_type": "reference"
+              }
+            },
+            "playIndicatorText": "hear the story",
+            "preHeading": "Step Into the Shadows of History",
+            "subHeading": "Inspired by the daring missions of Cecil Mallaby, one of WWII’s real-life secret agents, your evening will be a thrilling blend of espionage, gourmet cuisine, and immersive storytelling",
+            "videoFile": {
+              "_type": "file",
+              "asset": {
+                "_ref": "file-1699843ef9d7d0f546f69a3458c63fe8289b0d82-mp4",
+                "_type": "reference"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
 }

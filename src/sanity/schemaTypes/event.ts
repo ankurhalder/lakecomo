@@ -85,13 +85,51 @@ export default defineType({
     // ─── CONTENT ─────────────────────────────────────────────────────────────
 
     defineField({
+      name: "media",
+      title: "Event Media",
+      type: "object",
+      group: "content",
+      description:
+        "Choose either an image or video for the event card. Only one can be active at a time. Video will autoplay on hover with cinematic effects.",
+      fields: [
+        {
+          name: "image",
+          title: "Image",
+          type: "image",
+          options: { hotspot: true },
+          description:
+            "Photo for the event card. Never cropped — black letterboxing preserves aspect ratio.",
+        },
+        {
+          name: "video",
+          title: "Video",
+          type: "file",
+          options: {
+            accept: "video/mp4,video/webm",
+          },
+          description:
+            "Video for the event card (MP4 or WebM). Will autoplay muted on loop. Lazy-loaded for performance.",
+        },
+      ],
+      validation: (Rule) =>
+        Rule.custom((media: { image?: unknown; video?: unknown } | undefined) => {
+          if (!media) return true;
+          if (media.image && media.video) {
+            return "Please use either an image OR a video, not both.";
+          }
+          return true;
+        }),
+    }),
+
+    defineField({
       name: "image",
-      title: "Event Image",
+      title: "Event Image (Legacy)",
       type: "image",
       group: "content",
       options: { hotspot: true },
       description:
-        "Photo for the event card. The image is never cropped — black letterboxing is added if the aspect ratio doesn't match.",
+        "DEPRECATED: Use 'Event Media' above instead. This field is kept for backward compatibility with existing events.",
+      hidden: true,
     }),
 
     defineField({

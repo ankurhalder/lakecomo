@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { MapPin, Clock, RefreshCw } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import type { EventData } from "@/sanity/lib/getLandingPage";
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
@@ -40,10 +41,50 @@ export default function EventCard({
     location,
     ctaLabel,
     imageUrl,
+    videoUrl,
   } = event;
+
+  // Lazy loading state
+  const [isVisible, setIsVisible] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const mediaRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const isRecurring = eventType === "recurring_event";
   const dateLabel = isRecurring ? "Every Week" : date ? formatDate(date) : null;
+  const hasVideo = !!videoUrl;
+  const hasImage = !!imageUrl;
+
+  // IntersectionObserver for lazy loading
+  useEffect(() => {
+    if (!mediaRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          } else if (hasVideo && videoRef.current) {
+            // Pause video when offscreen for performance
+            videoRef.current.pause();
+          }
+        });
+      },
+      { rootMargin: "100px" }, // Start loading 100px before entering viewport
+    );
+
+    observer.observe(mediaRef.current);
+    return () => observer.disconnect();
+  }, [hasVideo]);
+
+  // Resume video playback when visible
+  useEffect(() => {
+    if (isVisible && videoLoaded && videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Autoplay blocked - user interaction required
+      });
+    }
+  }, [isVisible, videoLoaded]);
 
   return (
     <motion.div
@@ -52,7 +93,7 @@ export default function EventCard({
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
       whileHover={{ y: -6, boxShadow: "0 24px 48px rgba(0,0,0,0.6)" }}
-      className="flex flex-col rounded-sm overflow-hidden border"
+      className="flex flex-col rounded-sm overflow-hidden border group"
       style={{
         backgroundColor: "var(--bg-secondary)",
         borderColor: "var(--border-color)",
@@ -60,30 +101,73 @@ export default function EventCard({
         transition: "box-shadow 0.3s ease",
       }}
     >
-      {/* ── Image (object-contain + black letterbox bg) ── */}
+      {/* ── Media (video or image with object-contain + black letterbox bg) ── */}
       <div
+        ref={mediaRef}
         className="relative w-full overflow-hidden shrink-0"
         style={{
           aspectRatio: "16 / 9",
           backgroundColor: "#000",
         }}
       >
-        {imageUrl ? (
+        {hasVideo ? (
+          // Video rendering with lazy load + cinematic effects
           <motion.div
             className="absolute inset-0"
-            whileHover={{ scale: 1.04 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            {isVisible ? (
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                onLoadedData={() => setVideoLoaded(true)}
+                className="w-full h-full object-contain transition-all duration-500 group-hover:brightness-110"
+                style={{
+                  filter: "brightness(0.9)",
+                }}
+              >
+                <source src={videoUrl} type="video/mp4" />
+              </video>
+            ) : (
+              // Placeholder while video loads
+              <div
+                className="absolute inset-0 flex items-center justify-center"
+                style={{
+                  backgroundColor: "#000",
+                  color: "var(--text-muted)",
+                }}
+              >
+                <span className="text-xs uppercase tracking-widest">
+                  Loading...
+                </span>
+              </div>
+            )}
+          </motion.div>
+        ) : hasImage ? (
+          // Image rendering with zoom effect
+          <motion.div
+            className="absolute inset-0"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <Image
               src={imageUrl}
               alt={title}
               fill
-              className="object-contain"
+              className="object-contain transition-all duration-500 group-hover:brightness-110"
               sizes="(max-width: 768px) 100vw, 50vw"
+              style={{
+                filter: "brightness(0.95)",
+              }}
             />
           </motion.div>
         ) : (
-          // Placeholder when no image is set in CMS
+          // Placeholder when no media is set in CMS
           <div
             className="absolute inset-0 flex items-center justify-center border border-dashed"
             style={{
@@ -92,14 +176,26 @@ export default function EventCard({
             }}
           >
             <span className="text-xs uppercase tracking-widest">
-              Event Image
+              Event Media
             </span>
           </div>
         )}
 
-        {/* Subtle bottom fade for smooth transition to card body */}
-        {imageUrl && (
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+        {/* Cinematic gradient overlay — fades on hover */}
+        {(hasVideo || hasImage) && (
+          <div
+            className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, transparent 70%)",
+              opacity: 1,
+            }}
+          />
+        )}
+
+        {/* Additional overlay that fades on hover for depth */}
+        {(hasVideo || hasImage) && (
+          <div className="absolute inset-0 bg-black/40 pointer-events-none transition-opacity duration-500 group-hover:opacity-15" />
         )}
       </div>
 

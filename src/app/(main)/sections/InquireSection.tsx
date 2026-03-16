@@ -140,7 +140,13 @@ export default function InquireSection({
 
   return (
     <section id="contact" style={{ backgroundColor: "var(--bg-secondary)" }}>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingTop: "var(--section-py)", paddingBottom: "var(--section-py)" }}>
+      <div
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{
+          paddingTop: "var(--section-py)",
+          paddingBottom: "var(--section-py)",
+        }}
+      >
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -155,9 +161,7 @@ export default function InquireSection({
                 className="h-px w-8"
                 style={{ backgroundColor: "var(--accent)" }}
               />
-              <span
-                className="text-xs uppercase tracking-[0.3em] font-light gold-text"
-              >
+              <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
                 {preHeading}
               </span>
               <span
@@ -168,7 +172,11 @@ export default function InquireSection({
           )}
           <h2
             className="font-bold"
-            style={{ fontFamily: "var(--font-limelight)", fontSize: "var(--fs-h2)", color: "var(--text-primary)" }}
+            style={{
+              fontFamily: "var(--font-limelight)",
+              fontSize: "var(--fs-h2)",
+              color: "var(--text-primary)",
+            }}
           >
             {mainHeading}
           </h2>
@@ -204,7 +212,11 @@ export default function InquireSection({
               </div>
               <h3
                 className="font-bold"
-                style={{ fontFamily: "var(--font-limelight)", fontSize: "var(--fs-h3)", color: "var(--text-primary)" }}
+                style={{
+                  fontFamily: "var(--font-limelight)",
+                  fontSize: "var(--fs-h3)",
+                  color: "var(--text-primary)",
+                }}
               >
                 {s.title || "The Spotlight Awaits!"}
               </h3>
@@ -237,7 +249,13 @@ export default function InquireSection({
               {f.formTitle && (
                 <h3
                   className="font-semibold mb-6 text-center"
-                  style={{ fontFamily: "var(--font-limelight)", fontSize: "var(--fs-label)", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text-muted)" }}
+                  style={{
+                    fontFamily: "var(--font-limelight)",
+                    fontSize: "var(--fs-label)",
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: "var(--text-muted)",
+                  }}
                 >
                   {f.formTitle}
                 </h3>
@@ -259,7 +277,7 @@ export default function InquireSection({
                 </motion.div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-3">
+              <form onSubmit={handleSubmit} className="space-y-3 relative">
                 {/* Name row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
@@ -417,8 +435,8 @@ export default function InquireSection({
                 </div>
 
                 {/* Group size + Date */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-50">
+                  <div className="space-y-1.5 relative z-50">
                     <label
                       className="text-xs uppercase tracking-widest font-light"
                       style={{ color: "var(--text-muted)" }}
@@ -434,6 +452,7 @@ export default function InquireSection({
                       style={{
                         ...inputStyle,
                         borderColor: "var(--border-color)",
+                        appearance: "auto",
                       }}
                     >
                       <option value="">

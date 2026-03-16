@@ -39,6 +39,12 @@
       "isArray": false
     },
     {
+      "name": "media",
+      "type": "object",
+      "required": false,
+      "isArray": false
+    },
+    {
       "name": "image",
       "type": "image",
       "required": false,

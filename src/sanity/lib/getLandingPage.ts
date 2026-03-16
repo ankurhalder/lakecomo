@@ -9,13 +9,14 @@ export interface EventData {
   title: string;
   badge?: string;
   eventType: "single_event" | "recurring_event";
-  date?: string;       // ISO date string "YYYY-MM-DD"
+  date?: string; // ISO date string "YYYY-MM-DD"
   time?: string;
   description?: string;
   location?: string;
   ctaLabel?: string;
   ctaType?: "scroll_contact";
   imageUrl?: string | null;
+  videoUrl?: string | null; // New: video media support
   pinned?: boolean;
   displayOrder?: number;
 }
@@ -224,6 +225,10 @@ const eventsQuery = `
     ctaType,
     pinned,
     displayOrder,
+    media {
+      image { asset->{ url }, hotspot, crop },
+      video { asset->{ url } }
+    },
     image { asset->{ url }, hotspot, crop }
   }
 `;
@@ -373,6 +378,10 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           ctaType?: string;
           pinned?: boolean;
           displayOrder?: number;
+          media?: {
+            image?: { asset?: { url?: string } };
+            video?: { asset?: { url?: string } };
+          };
           image?: { asset?: { url?: string } };
         }): EventData => ({
           _id: ev._id,
@@ -387,8 +396,12 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           description: ev.description,
           location: ev.location,
           ctaLabel: ev.ctaLabel,
-          ctaType: ev.ctaType === "scroll_contact" ? "scroll_contact" : undefined,
+          ctaType:
+            ev.ctaType === "scroll_contact" ? "scroll_contact" : undefined,
+          videoUrl: ev.media?.video?.asset?.url ?? null,
           imageUrl:
+            ev.media?.image?.asset?.url ??
+            processImageToUrl(ev.media?.image, 900) ??
             ev.image?.asset?.url ??
             processImageToUrl(ev.image, 900) ??
             null,

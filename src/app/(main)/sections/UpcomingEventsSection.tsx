@@ -51,14 +51,17 @@ export default function UpcomingEventsSection({
   const displayEvents = events && events.length > 0 ? events : DEFAULT_EVENTS;
 
   const scrollToContact = () => {
-    const el = document.querySelector("#contact");
-    if (el) {
-      lenisRef.current?.scrollTo(el as HTMLElement, { offset: -48 });
+    const element = document.querySelector("#contact");
+    if (element && lenisRef.current) {
+      lenisRef.current.scrollTo(element as HTMLElement, { offset: -48 });
     }
   };
 
   return (
-    <section id="events" style={{ backgroundColor: "var(--bg-primary)" }}>
+    <section
+      id="upcoming-events"
+      style={{ backgroundColor: "var(--bg-primary)" }}
+    >
       <div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         style={{
