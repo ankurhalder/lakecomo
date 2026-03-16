@@ -55,19 +55,32 @@ export default function MissionFooter() {
             Confidential Property &bull; Do Not Duplicate
           </p>
 
-          <Link href="/#experience">
-            <motion.span
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-block px-6 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full cursor-pointer"
-              style={{
-                background: "var(--accent-gradient)",
-                color: "var(--accent-text)",
-              }}
-            >
-              Return to Base
-            </motion.span>
-          </Link>
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <Link href="/#experience">
+              <motion.span
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-block px-6 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full cursor-pointer"
+                style={{
+                  background: "var(--accent-gradient)",
+                  color: "var(--accent-text)",
+                }}
+              >
+                Return to Base
+              </motion.span>
+            </Link>
+            <Link href="/#contact">
+              <span
+                className="inline-block px-6 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full border"
+                style={{
+                  borderColor: "var(--accent)",
+                  color: "var(--text-primary)",
+                }}
+              >
+                Contact Concierge
+              </span>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </footer>

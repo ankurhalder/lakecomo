@@ -59,7 +59,7 @@ export default function MissionHero({
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             poster={backgroundImageUrl || undefined}
             className="absolute inset-0 w-full h-full object-cover"
           />

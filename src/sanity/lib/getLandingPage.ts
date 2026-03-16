@@ -7,6 +7,7 @@ import { urlFor } from "./image";
 export interface EventData {
   _id: string;
   title: string;
+  slug?: string;
   badge?: string;
   eventType: "single_event" | "recurring_event";
   date?: string; // ISO date string "YYYY-MM-DD"
@@ -16,12 +17,23 @@ export interface EventData {
   ctaLabel?: string;
   ctaType?: "scroll_contact";
   imageUrl?: string | null;
+  seoTitle?: string;
+  seoDescription?: string;
+  canonicalUrl?: string;
+  seoImageUrl?: string | null;
   videoUrl?: string | null; // New: video media support
   pinned?: boolean;
   displayOrder?: number;
 }
 
 export interface LandingPageData {
+  seo?: {
+    seoTitle?: string;
+    seoDescription?: string;
+    canonicalUrl?: string;
+    seoImageUrl?: string | null;
+  };
+
   hero: {
     videoUrl?: string;
     mobileVideoUrl?: string;
@@ -116,6 +128,11 @@ export interface LandingPageData {
 
 const query = `
   *[_type == "landingPage"][0] {
+    seoTitle,
+    seoDescription,
+    canonicalUrl,
+    seoImage,
+
     hero {
       videoFile { asset->{ url } },
       mobileVideoFile { asset->{ url } },
@@ -215,6 +232,7 @@ const eventsQuery = `
   *[_type == "event"] | order(pinned desc, date asc) {
     _id,
     title,
+    "slug": slug.current,
     badge,
     eventType,
     date,
@@ -223,6 +241,10 @@ const eventsQuery = `
     location,
     ctaLabel,
     ctaType,
+    seoTitle,
+    seoDescription,
+    canonicalUrl,
+    seoImage,
     pinned,
     displayOrder,
     media {
@@ -259,6 +281,16 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
     if (!raw) return null;
 
     const data: LandingPageData = {
+      seo: {
+        seoTitle: raw.seoTitle,
+        seoDescription: raw.seoDescription,
+        canonicalUrl: raw.canonicalUrl,
+        seoImageUrl:
+          raw.seoImage?.asset?.url ??
+          processImageToUrl(raw.seoImage, 1200) ??
+          null,
+      },
+
       hero: {
         videoUrl: raw.hero?.videoFile?.asset?.url ?? undefined,
         mobileVideoUrl: raw.hero?.mobileVideoFile?.asset?.url ?? undefined,
@@ -368,6 +400,7 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
         (ev: {
           _id: string;
           title?: string;
+          slug?: string;
           badge?: string;
           eventType?: string;
           date?: string;
@@ -376,6 +409,10 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           location?: string;
           ctaLabel?: string;
           ctaType?: string;
+          seoTitle?: string;
+          seoDescription?: string;
+          canonicalUrl?: string;
+          seoImage?: { asset?: { url?: string } };
           pinned?: boolean;
           displayOrder?: number;
           media?: {
@@ -386,6 +423,7 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
         }): EventData => ({
           _id: ev._id,
           title: ev.title ?? "",
+          slug: ev.slug,
           badge: ev.badge,
           eventType:
             ev.eventType === "recurring_event"
@@ -398,6 +436,13 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           ctaLabel: ev.ctaLabel,
           ctaType:
             ev.ctaType === "scroll_contact" ? "scroll_contact" : undefined,
+          seoTitle: ev.seoTitle,
+          seoDescription: ev.seoDescription,
+          canonicalUrl: ev.canonicalUrl,
+          seoImageUrl:
+            ev.seoImage?.asset?.url ??
+            processImageToUrl(ev.seoImage, 1200) ??
+            null,
           videoUrl: ev.media?.video?.asset?.url ?? null,
           imageUrl:
             ev.media?.image?.asset?.url ??

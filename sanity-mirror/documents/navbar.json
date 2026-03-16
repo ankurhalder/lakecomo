@@ -2,7 +2,7 @@
   {
     "_createdAt": "2025-12-27T05:29:58Z",
     "_id": "navbar",
-    "_rev": "MjdSXFelIF5IivE6510Gnc",
+    "_rev": "4DZXQ06MV0KUYSdqrP2ebw",
     "_system": {
       "base": {
         "id": "navbar",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "navbar",
-    "_updatedAt": "2026-03-16T19:09:51Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "ctaLink": "/contact",
     "ctaText": "Book Now",
     "links": [

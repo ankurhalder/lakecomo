@@ -5,6 +5,7 @@ export default defineType({
   title: "Landing Page",
   type: "document",
   groups: [
+    { name: "seo", title: "SEO" },
     { name: "hero", title: "Hero (Video)", default: true },
     { name: "story", title: "Our Story" },
     { name: "experience", title: "The Experience" },
@@ -18,6 +19,39 @@ export default defineType({
       title: "Internal Title",
       type: "string",
       group: "hero",
+    }),
+
+    defineField({
+      name: "seoTitle",
+      title: "SEO Title",
+      type: "string",
+      group: "seo",
+      description: "Custom page title used for search engines and social previews.",
+      validation: (Rule) => Rule.max(65),
+    }),
+    defineField({
+      name: "seoDescription",
+      title: "SEO Description",
+      type: "text",
+      rows: 3,
+      group: "seo",
+      description: "Meta description shown in search results.",
+      validation: (Rule) => Rule.max(160),
+    }),
+    defineField({
+      name: "seoImage",
+      title: "SEO Image",
+      type: "image",
+      group: "seo",
+      options: { hotspot: true },
+      description: "Open Graph and Twitter image. Recommended size: 1200x630.",
+    }),
+    defineField({
+      name: "canonicalUrl",
+      title: "Canonical URL",
+      type: "url",
+      group: "seo",
+      description: "Override canonical URL if needed.",
     }),
 
     // ─── HERO ────────────────────────────────────────────────────

@@ -7,6 +7,7 @@ export default defineType({
   groups: [
     { name: "details", title: "Event Details", default: true },
     { name: "content", title: "Content" },
+    { name: "seo", title: "SEO" },
     { name: "settings", title: "Settings" },
   ],
   fields: [
@@ -178,6 +179,39 @@ export default defineType({
       initialValue: "scroll_contact",
       description:
         "What happens when the button is clicked. Currently: smoothly scrolls to the Inquire / contact form.",
+    }),
+
+    defineField({
+      name: "seoTitle",
+      title: "SEO Title",
+      type: "string",
+      group: "seo",
+      validation: (Rule) => Rule.max(65),
+    }),
+
+    defineField({
+      name: "seoDescription",
+      title: "SEO Description",
+      type: "text",
+      rows: 3,
+      group: "seo",
+      validation: (Rule) => Rule.max(160),
+    }),
+
+    defineField({
+      name: "seoImage",
+      title: "SEO Image",
+      type: "image",
+      group: "seo",
+      options: { hotspot: true },
+      description: "Social preview image. Recommended size: 1200x630.",
+    }),
+
+    defineField({
+      name: "canonicalUrl",
+      title: "Canonical URL",
+      type: "url",
+      group: "seo",
     }),
 
     // ─── SETTINGS ────────────────────────────────────────────────────────────

@@ -1,24 +1,31 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { getMissionExperiencePageData } from "@/sanity/lib/getMissionExperiencePage";
 import MissionHero from "./sections/MissionHero";
 import MissionSetup from "./sections/MissionSetup";
 import MissionPhases from "./sections/MissionPhases";
 import MissionFooter from "./sections/MissionFooter";
 import MissionHeader from "./sections/MissionHeader";
-import PageLoading from "@/components/shared/PageLoading";
+import { generateMetadata as createMetadata } from "@/lib/seo/generateMetadata";
+import JsonLd from "@/components/shared/JsonLd";
 
-export const metadata: Metadata = {
-  title: "Spies of Style Mission Experience",
-  description:
-    "An immersive espionage experience on Lake Como inspired by real WWII intelligence missions.",
-  openGraph: {
-    title: "Spies of Style Mission Experience",
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getMissionExperiencePageData();
+
+  return createMetadata({
+    title: data?.seo?.seoTitle || "Mission Experience | Spies of Style",
     description:
+      data?.seo?.seoDescription ||
       "An immersive espionage experience on Lake Como inspired by real WWII intelligence missions.",
-    type: "website",
-  },
-};
+    canonical: data?.seo?.canonicalUrl || "/mission-experience",
+    openGraph: {
+      type: "website",
+      image: data?.seo?.seoImageUrl || undefined,
+    },
+    twitter: {
+      image: data?.seo?.seoImageUrl || undefined,
+    },
+  });
+}
 
 async function MissionContent() {
   const data = await getMissionExperiencePageData();
@@ -39,15 +46,29 @@ async function MissionContent() {
 }
 
 export default async function MissionExperiencePage() {
+  const missionStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "TouristExperience",
+    name: "Mission Experience",
+    description:
+      "A cinematic mission-led tourist experience on Lake Como inspired by real WWII intelligence stories.",
+    provider: {
+      "@type": "Organization",
+      name: "Spies of Style",
+      url: "https://spiesofstyle.com",
+    },
+    url: "https://spiesofstyle.com/mission-experience",
+    areaServed: "Lake Como, Italy",
+  };
+
   return (
     <main
       id="main-content"
       className="min-h-screen"
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
-      <Suspense fallback={<PageLoading />}>
-        <MissionContent />
-      </Suspense>
+      <JsonLd data={missionStructuredData} />
+      <MissionContent />
     </main>
   );
 }

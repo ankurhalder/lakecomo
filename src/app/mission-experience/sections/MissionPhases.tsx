@@ -170,7 +170,10 @@ function PhaseRow({ phase, index }: { phase: MissionPhase; index: number }) {
       <div className="flex-1 min-w-0 w-full max-w-lg lg:max-w-none relative z-10 overflow-hidden rounded-lg">
         <motion.div style={{ y: imageY }}>
           {phase.imageUrls.length > 0 ? (
-            <PhaseCarousel images={phase.imageUrls} />
+            <PhaseCarousel
+              images={phase.imageUrls}
+              altBase={phase.title || "Mission phase"}
+            />
           ) : (
             <div
               className="w-full aspect-video rounded-lg border flex items-center justify-center"

@@ -6,9 +6,10 @@ import Image from "next/image";
 
 interface PhaseCarouselProps {
   images: string[];
+  altBase?: string;
 }
 
-export default function PhaseCarousel({ images }: PhaseCarouselProps) {
+export default function PhaseCarousel({ images, altBase }: PhaseCarouselProps) {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
@@ -69,7 +70,7 @@ export default function PhaseCarousel({ images }: PhaseCarouselProps) {
         >
           <Image
             src={images[current]}
-            alt={`Phase image ${current + 1}`}
+            alt={`${altBase || "Mission phase"} image ${current + 1}`}
             fill
             className="object-contain"
             sizes="(max-width: 768px) 100vw, 50vw"

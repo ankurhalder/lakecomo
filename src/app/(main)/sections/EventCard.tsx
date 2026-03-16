@@ -157,7 +157,7 @@ export default function EventCard({
           >
             <Image
               src={imageUrl}
-              alt={title}
+              alt={title || "Upcoming event on Lake Como"}
               fill
               className="object-contain transition-all duration-500 group-hover:brightness-110"
               sizes="(max-width: 768px) 100vw, 50vw"

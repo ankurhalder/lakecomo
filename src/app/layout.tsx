@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Limelight, Courier_Prime } from "next/font/google";
 import "./globals.css";
+import { generateMetadata } from "@/lib/seo/generateMetadata";
+import { getOrganizationJsonLd } from "@/lib/seo/structuredData";
+import { getLayoutData } from "@/sanity/lib/getLayoutData";
+import JsonLd from "@/components/shared/JsonLd";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const limelight = Limelight({
@@ -14,60 +18,27 @@ const courierPrime = Courier_Prime({
   variable: "--font-courier",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://spiesofstyle.com"),
-  title: "Spies of Style",
-  description:
-    "Luxury Lake Como experiences inspired by cinematic elegance and timeless sophistication.",
-  keywords: [
-    "Lake Como",
-    "cinematic events",
-    "spy experiences",
-    "luxury events",
-    "Italy events",
-    "immersive dining",
-  ],
-  authors: [{ name: "Spies of Style" }],
-  openGraph: {
-    title: "Spies of Style | Cinematic Event Experiences",
-    description:
-      "Luxury Lake Como experiences inspired by cinematic elegance and timeless sophistication.",
-    url: "https://spiesofstyle.com",
-    siteName: "Spies of Style",
-    locale: "en_US",
-    type: "website",
-    images: [
-      {
-        url: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=630&fit=crop",
-        width: 1200,
-        height: 630,
-        alt: "Spies of Style - Cinematic Event Experiences",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Spies of Style | Cinematic Event Experiences",
-    description:
-      "Luxury Lake Como experiences inspired by cinematic elegance and timeless sophistication.",
-    images: [
-      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&h=630&fit=crop",
-    ],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export const metadata: Metadata = generateMetadata();
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const layoutData = await getLayoutData();
+  const organizationJsonLd = getOrganizationJsonLd({
+    logo: layoutData?.navbar?.logoUrl,
+    email: layoutData?.footer?.email,
+    sameAs: (layoutData?.footer?.socialLinks ?? [])
+      .map((social: { url?: string }) => social.url)
+      .filter(Boolean),
+  });
+
   return (
     <html lang="en">
-      <head />
+      <head>
+        <JsonLd data={organizationJsonLd} />
+      </head>
       <body
         className={`${inter.variable} ${limelight.variable} ${courierPrime.variable} font-sans overflow-x-hidden relative`}
       >

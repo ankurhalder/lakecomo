@@ -5,6 +5,7 @@ export default defineType({
   title: "Mission Experience Page",
   type: "document",
   groups: [
+    { name: "seo", title: "SEO" },
     { name: "hero", title: "Hero", default: true },
     { name: "setup", title: "The Setup" },
     { name: "phases", title: "Mission Phases" },
@@ -15,6 +16,35 @@ export default defineType({
       title: "Internal Title",
       type: "string",
       group: "hero",
+    }),
+
+    defineField({
+      name: "seoTitle",
+      title: "SEO Title",
+      type: "string",
+      group: "seo",
+      validation: (Rule) => Rule.max(65),
+    }),
+    defineField({
+      name: "seoDescription",
+      title: "SEO Description",
+      type: "text",
+      rows: 3,
+      group: "seo",
+      validation: (Rule) => Rule.max(160),
+    }),
+    defineField({
+      name: "seoImage",
+      title: "SEO Image",
+      type: "image",
+      group: "seo",
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: "canonicalUrl",
+      title: "Canonical URL",
+      type: "url",
+      group: "seo",
     }),
 
     // ─── HERO ────────────────────────────────────────────────────

@@ -2,7 +2,7 @@
   {
     "_createdAt": "2025-12-27T05:23:56Z",
     "_id": "processPage",
-    "_rev": "MjdSXFelIF5IivE6510Gnc",
+    "_rev": "4DZXQ06MV0KUYSdqrP2ebw",
     "_system": {
       "base": {
         "id": "processPage",
@@ -10,7 +10,7 @@
       }
     },
     "_type": "processPage",
-    "_updatedAt": "2026-03-16T19:09:51Z",
+    "_updatedAt": "2026-03-16T20:20:58Z",
     "hero": {
       "description": "Our 2026 themed experiences invite guests into a one-of-a-kind atmosphere on Lake Como, featuring photo-ready backdrops and a curated selection of props for spontaneous, playful photo moments. Guests are welcome to come dressed to theme or simply grab an accessory and join in. \n\nSignature cocktails, menus, and music guide the evening—often transforming dinner into dancing.\n\nWith candid Polaroid moments captured throughout the night, and plenty of opportunities to share your own, our weekly aperitivos and pre-fixed dinners are designed to be social, immersive, and unforgettable.",
       "heading": "Seasonal Weekly Events",

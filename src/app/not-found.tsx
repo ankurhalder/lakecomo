@@ -1,10 +1,16 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { generateMetadata } from "@/lib/seo/generateMetadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateMetadata({
   title: "404 - Page Not Found | Spies of Style",
   description: "The page you are looking for could not be found.",
-};
+  canonical: "/404",
+  robots: {
+    index: false,
+    follow: false,
+  },
+});
 
 export default function NotFound() {
   return (

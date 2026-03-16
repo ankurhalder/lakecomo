@@ -13,6 +13,13 @@ export interface MissionPhase {
 }
 
 export interface MissionExperiencePageData {
+  seo?: {
+    seoTitle?: string;
+    seoDescription?: string;
+    canonicalUrl?: string;
+    seoImageUrl?: string | null;
+  };
+
   hero: {
     title?: string;
     subtitle?: string;
@@ -32,6 +39,11 @@ export interface MissionExperiencePageData {
 
 const query = `
   *[_type == "missionExperiencePage"][0] {
+    seoTitle,
+    seoDescription,
+    canonicalUrl,
+    seoImage,
+
     hero {
       title,
       subtitle,
@@ -78,6 +90,16 @@ const fetchMissionExperiencePageData =
       if (!raw) return null;
 
       const data: MissionExperiencePageData = {
+        seo: {
+          seoTitle: raw.seoTitle,
+          seoDescription: raw.seoDescription,
+          canonicalUrl: raw.canonicalUrl,
+          seoImageUrl:
+            raw.seoImage?.asset?.url ??
+            processImageToUrl(raw.seoImage, 1200) ??
+            null,
+        },
+
         hero: {
           title: raw.hero?.title,
           subtitle: raw.hero?.subtitle,
