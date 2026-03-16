@@ -2,15 +2,15 @@
   {
     "_createdAt": "2026-03-13T13:18:59Z",
     "_id": "landingPage",
-    "_rev": "4DZXQ06MV0KUYSdqrP2ebw",
+    "_rev": "MjdSXFelIF5IivE65181za",
     "_system": {
       "base": {
         "id": "landingPage",
-        "rev": "MjdSXFelIF5IivE650jWbW"
+        "rev": "4DZXQ06MV0KUYSdqrP2ebw"
       }
     },
     "_type": "landingPage",
-    "_updatedAt": "2026-03-16T20:20:58Z",
+    "_updatedAt": "2026-03-16T20:28:36Z",
     "assignment": {
       "cards": [
         {
@@ -235,7 +235,7 @@
       },
       "playIndicatorText": "hear the story",
       "preHeading": "Step Into the Shadows of History",
-      "subHeading": "Inspired by the daring missions of Cecil Mallaby, one of WWII’s real-life secret agents, your evening will be a thrilling blend of espionage, gourmet cuisine, and immersive storytelling",
+      "subHeading": "The only immersive spy experience on Lake Como based on a true World War II story, inspired by the daring missions of British intelligence officer Cecil Mallaby, believed to have influenced the creation of James Bond",
       "videoFile": {
         "_type": "file",
         "asset": {
