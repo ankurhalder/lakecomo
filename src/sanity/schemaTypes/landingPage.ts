@@ -5,12 +5,13 @@ export default defineType({
   title: "Landing Page",
   type: "document",
   groups: [
-    { name: "seo", title: "SEO" },
-    { name: "hero", title: "Hero (Video)", default: true },
+    { name: "seo", title: "SEO & Metadata" },
+    { name: "hero", title: "Hero — Video Banner", default: true },
     { name: "story", title: "Our Story" },
     { name: "experience", title: "The Experience" },
     { name: "assignment", title: "Your Assignment" },
     { name: "privateEvents", title: "Private Events" },
+    { name: "upcomingEvents", title: "Upcoming Events" },
     { name: "inquire", title: "Inquire / Contact" },
   ],
   fields: [
@@ -340,10 +341,19 @@ export default defineType({
                     }),
                     defineField({
                       name: "icon",
-                      title: "Icon Name",
+                      title: "Icon",
                       type: "string",
-                      description:
-                        "Lucide icon key: lock, file-text, users, key, target, etc.",
+                      options: {
+                        list: [
+                          { title: "Lock — Secrecy / Intel", value: "lock" },
+                          { title: "Document — File / Dossier", value: "file-text" },
+                          { title: "People — Team / Network", value: "users" },
+                          { title: "Key — Access / Entry", value: "key" },
+                          { title: "Target — Mission / Objective", value: "target" },
+                        ],
+                        layout: "radio",
+                      },
+                      description: "Icon displayed next to the phase title.",
                     }),
                     defineField({
                       name: "images",
@@ -493,10 +503,18 @@ export default defineType({
               fields: [
                 defineField({
                   name: "icon",
-                  title: "Icon Name",
+                  title: "Icon",
                   type: "string",
-                  description:
-                    "Lucide icon key: target, map-pin, martini, briefcase",
+                  options: {
+                    list: [
+                      { title: "Target / Bullseye", value: "target" },
+                      { title: "Map Pin / Location", value: "map-pin" },
+                      { title: "Martini Glass", value: "martini" },
+                      { title: "Briefcase", value: "briefcase" },
+                    ],
+                    layout: "radio",
+                  },
+                  description: "Icon shown next to the feature bullet.",
                 }),
                 defineField({
                   name: "text",
@@ -561,6 +579,174 @@ export default defineType({
           title: "Photography Highlights",
           type: "array",
           of: [{ type: "string" }],
+        }),
+      ],
+    }),
+
+    // ─── UPCOMING EVENTS ─────────────────────────────────────────────────────
+    defineField({
+      name: "upcomingEvents",
+      title: "Upcoming Events Section",
+      type: "object",
+      group: "upcomingEvents",
+      description:
+        "Manage all events shown in the Upcoming Events section on the website.",
+      options: { collapsible: true, collapsed: false },
+      fields: [
+        defineField({
+          name: "events",
+          title: "Events",
+          type: "array",
+          description:
+            "Add, edit, or remove events. Drag and drop to reorder. Pinned events always appear first on the website.",
+          of: [
+            {
+              type: "object",
+              title: "Event",
+              fields: [
+                defineField({
+                  name: "title",
+                  title: "Event Name",
+                  type: "string",
+                  validation: (Rule) =>
+                    Rule.required().error("Every event needs a name."),
+                  description: "The display name shown on the event card.",
+                }),
+                defineField({
+                  name: "badge",
+                  title: "Badge Label",
+                  type: "string",
+                  description:
+                    "Short label shown as a gold pill on the card (e.g. Season Premiere, Weekly Residency).",
+                }),
+                defineField({
+                  name: "eventType",
+                  title: "Event Type",
+                  type: "string",
+                  options: {
+                    list: [
+                      {
+                        title: "One-off Event — has a specific date",
+                        value: "single_event",
+                      },
+                      {
+                        title:
+                          "Recurring Event — happens every week, no date needed",
+                        value: "recurring_event",
+                      },
+                    ],
+                    layout: "radio",
+                  },
+                  initialValue: "single_event",
+                  validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                  name: "date",
+                  title: "Event Date",
+                  type: "date",
+                  options: { dateFormat: "MMMM D, YYYY" },
+                  description:
+                    "The date of the event. Leave blank for recurring events.",
+                  hidden: ({ parent }) =>
+                    (parent as { eventType?: string })?.eventType ===
+                    "recurring_event",
+                }),
+                defineField({
+                  name: "time",
+                  title: "Event Time",
+                  type: "string",
+                  description:
+                    "Time range displayed on the card (e.g. 5:00 PM – 8:00 PM).",
+                  hidden: ({ parent }) =>
+                    (parent as { eventType?: string })?.eventType ===
+                    "recurring_event",
+                }),
+                defineField({
+                  name: "image",
+                  title: "Event Image",
+                  type: "image",
+                  options: { hotspot: true },
+                  description:
+                    "Photo for the event card. Displayed letterboxed — never cropped.",
+                }),
+                defineField({
+                  name: "videoFile",
+                  title: "Event Video (optional)",
+                  type: "file",
+                  options: { accept: "video/mp4,video/webm" },
+                  description:
+                    "Optional video for the event card — will autoplay on loop. When set, takes priority over the image.",
+                }),
+                defineField({
+                  name: "description",
+                  title: "Event Description",
+                  type: "text",
+                  rows: 3,
+                  description:
+                    "Short evocative text shown on the event card (2–4 sentences recommended).",
+                }),
+                defineField({
+                  name: "location",
+                  title: "Location",
+                  type: "string",
+                  description:
+                    "Venue and area shown below the description (e.g. Terzo Crotto, Cernobbio).",
+                }),
+                defineField({
+                  name: "ctaLabel",
+                  title: "Button Text",
+                  type: "string",
+                  initialValue: "ENQUIRE NOW",
+                  description:
+                    "Text on the call-to-action button (e.g. RSVP / DETAILS, VIEW SCHEDULE).",
+                }),
+                defineField({
+                  name: "pinned",
+                  title: "Pin to Top",
+                  type: "boolean",
+                  initialValue: false,
+                  description:
+                    "Pinned events always appear first in the grid, regardless of date.",
+                }),
+                defineField({
+                  name: "displayOrder",
+                  title: "Display Order",
+                  type: "number",
+                  description:
+                    "Lower numbers appear first within pinned or non-pinned groups. Leave blank for automatic ordering.",
+                }),
+              ],
+              preview: {
+                select: {
+                  title: "title",
+                  badge: "badge",
+                  date: "date",
+                  eventType: "eventType",
+                  media: "image",
+                },
+                prepare({ title, badge, date, eventType, media }) {
+                  const dateStr =
+                    eventType === "recurring_event"
+                      ? "Recurring — Every Week"
+                      : date
+                        ? new Date(date + "T00:00:00").toLocaleDateString(
+                            "en-GB",
+                            {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            },
+                          )
+                        : "No date set";
+                  return {
+                    title: title || "Untitled Event",
+                    subtitle: [badge, dateStr].filter(Boolean).join(" · "),
+                    media,
+                  };
+                },
+              },
+            },
+          ],
         }),
       ],
     }),

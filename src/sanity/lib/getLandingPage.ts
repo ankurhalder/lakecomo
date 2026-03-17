@@ -27,7 +27,6 @@ export interface MissionSetupData {
 export interface EventData {
   _id: string;
   title: string;
-  slug?: string;
   badge?: string;
   eventType: "single_event" | "recurring_event";
   date?: string; // ISO date string "YYYY-MM-DD"
@@ -35,13 +34,8 @@ export interface EventData {
   description?: string;
   location?: string;
   ctaLabel?: string;
-  ctaType?: "scroll_contact";
   imageUrl?: string | null;
-  seoTitle?: string;
-  seoDescription?: string;
-  canonicalUrl?: string;
-  seoImageUrl?: string | null;
-  videoUrl?: string | null; // New: video media support
+  videoUrl?: string | null;
   pinned?: boolean;
   displayOrder?: number;
 }
@@ -272,36 +266,23 @@ const query = `
         message,
         buttonText
       }
-    }
-  }
-`;
-
-// ─── GROQ QUERY — EVENTS ──────────────────────────────────────────────────────
-
-const eventsQuery = `
-  *[_type == "event"] | order(pinned desc, date asc) {
-    _id,
-    title,
-    "slug": slug.current,
-    badge,
-    eventType,
-    date,
-    time,
-    description,
-    location,
-    ctaLabel,
-    ctaType,
-    seoTitle,
-    seoDescription,
-    canonicalUrl,
-    seoImage,
-    pinned,
-    displayOrder,
-    media {
-      image { asset->{ url }, hotspot, crop },
-      video { asset->{ url } }
     },
-    image { asset->{ url }, hotspot, crop }
+
+    "events": upcomingEvents.events[] | order(pinned desc, displayOrder asc) {
+      _key,
+      title,
+      badge,
+      eventType,
+      date,
+      time,
+      description,
+      location,
+      ctaLabel,
+      pinned,
+      displayOrder,
+      image { asset->{ url }, hotspot, crop },
+      videoFile { asset->{ url } }
+    }
   }
 `;
 
@@ -324,10 +305,7 @@ function processImageToUrl(
 
 const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
   try {
-    const [raw, rawEvents] = await Promise.all([
-      client.fetch(query),
-      client.fetch(eventsQuery),
-    ]);
+    const raw = await client.fetch(query);
     if (!raw) return null;
 
     const data: LandingPageData = {
@@ -493,34 +471,27 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
         success: raw.inquire?.success ?? {},
       },
 
-      events: (rawEvents ?? []).map(
-        (ev: {
-          _id: string;
-          title?: string;
-          slug?: string;
-          badge?: string;
-          eventType?: string;
-          date?: string;
-          time?: string;
-          description?: string;
-          location?: string;
-          ctaLabel?: string;
-          ctaType?: string;
-          seoTitle?: string;
-          seoDescription?: string;
-          canonicalUrl?: string;
-          seoImage?: { asset?: { url?: string } };
-          pinned?: boolean;
-          displayOrder?: number;
-          media?: {
+      events: (raw.events ?? []).map(
+        (
+          ev: {
+            _key?: string;
+            title?: string;
+            badge?: string;
+            eventType?: string;
+            date?: string;
+            time?: string;
+            description?: string;
+            location?: string;
+            ctaLabel?: string;
+            pinned?: boolean;
+            displayOrder?: number;
             image?: { asset?: { url?: string } };
-            video?: { asset?: { url?: string } };
-          };
-          image?: { asset?: { url?: string } };
-        }): EventData => ({
-          _id: ev._id,
+            videoFile?: { asset?: { url?: string } };
+          },
+          i: number,
+        ): EventData => ({
+          _id: ev._key ?? `event-${i}`,
           title: ev.title ?? "",
-          slug: ev.slug,
           badge: ev.badge,
           eventType:
             ev.eventType === "recurring_event"
@@ -531,19 +502,8 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           description: ev.description,
           location: ev.location,
           ctaLabel: ev.ctaLabel,
-          ctaType:
-            ev.ctaType === "scroll_contact" ? "scroll_contact" : undefined,
-          seoTitle: ev.seoTitle,
-          seoDescription: ev.seoDescription,
-          canonicalUrl: ev.canonicalUrl,
-          seoImageUrl:
-            ev.seoImage?.asset?.url ??
-            processImageToUrl(ev.seoImage, 1200) ??
-            null,
-          videoUrl: ev.media?.video?.asset?.url ?? null,
+          videoUrl: ev.videoFile?.asset?.url ?? null,
           imageUrl:
-            ev.media?.image?.asset?.url ??
-            processImageToUrl(ev.media?.image, 900) ??
             ev.image?.asset?.url ??
             processImageToUrl(ev.image, 900) ??
             null,

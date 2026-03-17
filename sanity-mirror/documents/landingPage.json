@@ -444,6 +444,48 @@
       },
       "subheadline": "Step into the true mission of Cecil Richard Mallaby — a WWII spy whose daring story inspired James Bond — through an immersive dinner or cocktail experience on Lake Como."
     },
-    "title": "Spies of Style — Landing Page"
+    "title": "Spies of Style — Landing Page",
+    "upcomingEvents": {
+      "events": [
+        {
+          "_key": "event_0",
+          "_type": "object",
+          "badge": "Season Premiere",
+          "ctaLabel": "RSVP / DETAILS",
+          "date": "2026-05-16",
+          "description": "Inaugurate the season in spectacular style at the renowned Corso Eleganza. Join us for an exclusive spy-themed cocktail event at Terzo Crotto with themed cocktails and savory bites in a vintage wine cellar.",
+          "displayOrder": 1,
+          "eventType": "single_event",
+          "location": "Terzo Crotto, Cernobbio",
+          "pinned": true,
+          "time": "5:00 PM – 8:00 PM",
+          "title": "Corso Eleganza 2026 Season Kick Off Cocktail Party",
+          "videoFile": {
+            "_type": "file",
+            "asset": {
+              "_ref": "file-b44ce50d57b6e417e9f2297db03642ca4dc3f953-mp4"
+            }
+          }
+        },
+        {
+          "_key": "event_1",
+          "_type": "object",
+          "badge": "Weekly Residency",
+          "ctaLabel": "VIEW SCHEDULE",
+          "description": "Experience the mystery and luxury on a weekly basis high above the lake. Enjoy bespoke cocktails, curated styling sessions, and the unparalleled ambiance of a historic retreat.",
+          "displayOrder": 2,
+          "eventType": "recurring_event",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-e6b2a0824991d31387e6ddad31a821e838d667cf-1539x782-png"
+            }
+          },
+          "location": "Locanda Milano 1873, Brunate",
+          "pinned": false,
+          "title": "Weekly Spies of Style Dinners"
+        }
+      ]
+    }
   }
 ]

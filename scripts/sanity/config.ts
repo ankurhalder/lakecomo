@@ -68,7 +68,6 @@ export const KNOWN_TYPES = [
   "landingPage",
   "navbar",
   "footer",
-  "event",
 ] as const;
 
 // ---------------------------------------------------------------------------
