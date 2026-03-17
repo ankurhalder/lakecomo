@@ -22,7 +22,6 @@ lakecomo/
 │   │   ├── galleryPage.json
 │   │   ├── homepage.json
 │   │   ├── landingPage.json
-│   │   ├── missionExperiencePage.json
 │   │   ├── moviePage.json
 │   │   ├── navbar.json
 │   │   ├── processPage.json
@@ -80,18 +79,6 @@ lakecomo/
 │   │   │   │   └── route.ts
 │   │   │   └── send-email/
 │   │   │       └── route.ts
-│   │   ├── mission-experience/
-│   │   │   ├── components/
-│   │   │   │   └── PhaseCarousel.tsx
-│   │   │   ├── sections/
-│   │   │   │   ├── MissionFooter.tsx
-│   │   │   │   ├── MissionHeader.tsx
-│   │   │   │   ├── MissionHero.tsx
-│   │   │   │   ├── MissionPhases.tsx
-│   │   │   │   └── MissionSetup.tsx
-│   │   │   ├── layout.tsx
-│   │   │   ├── loading.tsx
-│   │   │   └── page.tsx
 │   │   ├── globals.css
 │   │   ├── layout.tsx
 │   │   ├── not-found.tsx
@@ -102,6 +89,12 @@ lakecomo/
 │   │   │   └── Header.tsx
 │   │   ├── providers/
 │   │   │   └── SmoothScroll.tsx
+│   │   ├── sections/
+│   │   │   └── mission/
+│   │   │       ├── MissionHero.tsx
+│   │   │       ├── MissionPhases.tsx
+│   │   │       ├── MissionSetup.tsx
+│   │   │       └── PhaseCarousel.tsx
 │   │   └── shared/
 │   │       ├── CastCarousel.tsx
 │   │       ├── CompanyPreloader.tsx
@@ -121,7 +114,6 @@ lakecomo/
 │   │   │   ├── getFaqPage.ts
 │   │   │   ├── getLandingPage.ts
 │   │   │   ├── getLayoutData.ts
-│   │   │   ├── getMissionExperiencePage.ts
 │   │   │   ├── image.ts
 │   │   │   └── live.ts
 │   │   ├── schemaTypes/
@@ -129,7 +121,6 @@ lakecomo/
 │   │   │   ├── footer.ts
 │   │   │   ├── index.ts
 │   │   │   ├── landingPage.ts
-│   │   │   ├── missionExperiencePage.ts
 │   │   │   └── navbar.ts
 │   │   ├── env.ts
 │   │   └── structure.ts
@@ -258,6 +249,11 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/mission-experience",
+        destination: "/#experience",
+        permanent: true,
+      },
       { source: "/themes", destination: "/#story", permanent: true },
       { source: "/cast", destination: "/#experience", permanent: true },
       { source: "/contact", destination: "/#contact", permanent: true },
@@ -1693,7 +1689,7 @@ FILE: sanity-mirror\documents\landingPage.json
     },
     "experience": {
       "ctaLabel": "Mission Experience",
-      "ctaLink": "/mission-experience",
+      "ctaLink": "#mission-experience",
       "eyebrowLabel": "The Experience",
       "sectionSubtitle": "Unlock the codes, solve the mission, and reveal the secret together",
       "sectionTitle": "Step Into A True Spy Story ",
@@ -1863,7 +1859,94 @@ FILE: sanity-mirror\documents\landingPage.json
             }
           }
         }
-      ]
+      ],
+      "missionExperience": {
+        "hero": {
+          "backgroundImage": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-79132de350e04bbbc6b7ef367748d4040a5393d3-1375x768-jpg"
+            }
+          },
+          "subtitle": "An immersive social experience where guests become part of a sophisticated espionage mission set on the shores of Lake Como.",
+          "title": "The Spies of Style Mission Experience"
+        },
+        "setup": {
+          "description": "Through a series of clues, maps, and coded transmissions, guests work together throughout the evening to uncover the identity and mission of a secret agent connected to real wartime intrigue on Lake Como.\n\nThe experience unfolds organically during the event, encouraging interaction, collaboration, and discovery.",
+          "title": "The Setup"
+        },
+        "phases": [
+          {
+            "_key": "phase-1",
+            "description": "At the beginning of the event, guests receive their first intelligence briefing. Using a custom illustrated map of Lake Como, participants follow embedded clues to uncover the secret codename of the evening's central spy.\n\nClues are hidden across key locations around the lake, encouraging guests to examine the map closely while working together to solve the puzzle.\n\nAccess the Mission Through:\n• Interactive mobile app experience\n• Printed intelligence dossier and map\n• Physical clues embedded in the event program\n\nOnce the clues are solved, guests reveal the agent's secret codename and move to the next phase of the mission.",
+            "icon": "lock",
+            "images": [
+              {
+                "_key": "22ed3be76699",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-ebf26646916f92eab7f54cda065601216b050ff5-1375x768-jpg"
+                }
+              },
+              {
+                "_key": "1d1297251e07",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-5500f0cf417e77a3d6f2869debb8c431169c4d6a-746x297-png"
+                }
+              }
+            ],
+            "order": 1,
+            "title": "Unlock the Spy Identity"
+          },
+          {
+            "_key": "phase-2",
+            "description": "Once the spy identity is revealed, guests unlock the classified mission statement. This transmission reveals the purpose of the operation and introduces the story behind the espionage activity that once took place on Lake Como during the war.\n\nParticipants receive a coded message that must be deciphered collectively during the dinner or cocktail reception.",
+            "icon": "file-text",
+            "images": [
+              {
+                "_key": "746a8309c766",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-7bce0bd30fcf9024e6d5ebf56034daac4156893b-758x317-png"
+                }
+              },
+              {
+                "_key": "28ec4f8f5a18",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-79132de350e04bbbc6b7ef367748d4040a5393d3-1375x768-jpg"
+                }
+              }
+            ],
+            "order": 2,
+            "title": "The Mission Briefing"
+          },
+          {
+            "_key": "phase-3",
+            "description": "Throughout the evening, guests work together to decode the mission. The experience is intentionally designed to encourage conversation and interaction between guests.\n\nAs clues are discussed and theories emerge, the room becomes part of the investigation.\n\nBy the end of the evening, the group successfully completes the mission and reveals the final intelligence transmission.",
+            "icon": "users",
+            "images": [
+              {
+                "_key": "d6c16d2f93c3",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-ba5f6dfd964460ab3b21b84df27888022854c06e-799x760-png"
+                }
+              },
+              {
+                "_key": "651fd4f1a0cd",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-5e582f3fcc1fe6fdd946cf565d7585b6f6546fef-740x698-png"
+                }
+              }
+            ],
+            "order": 3,
+            "title": "Collaborative Code Breaking"
+          }
+        ]
+      }
     },
     "hero": {
       "mainHeading": "An Immersive Spy-Themed Dinner on Lake Como",
@@ -1995,113 +2078,6 @@ FILE: sanity-mirror\documents\landingPage.json
       "subheadline": "Step into the true mission of Cecil Richard Mallaby — a WWII spy whose daring story inspired James Bond — through an immersive dinner or cocktail experience on Lake Como."
     },
     "title": "Spies of Style — Landing Page"
-  }
-]
-
-
-================================================================================
-FILE: sanity-mirror\documents\missionExperiencePage.json
-================================================================================
-
-[
-  {
-    "_createdAt": "2026-03-16T19:09:51Z",
-    "_id": "missionExperiencePage",
-    "_rev": "4DZXQ06MV0KUYSdqrPJlzu",
-    "_system": {
-      "base": {
-        "id": "missionExperiencePage",
-        "rev": "MjdSXFelIF5IivE6510Gnc"
-      }
-    },
-    "_type": "missionExperiencePage",
-    "_updatedAt": "2026-03-16T20:20:58Z",
-    "hero": {
-      "backgroundImage": {
-        "_type": "image",
-        "asset": {
-          "_ref": "image-79132de350e04bbbc6b7ef367748d4040a5393d3-1375x768-jpg"
-        }
-      },
-      "subtitle": "An immersive social experience where guests become part of a sophisticated espionage mission set on the shores of Lake Como.",
-      "title": "The Spies of Style Mission Experience"
-    },
-    "phases": [
-      {
-        "_key": "phase-1",
-        "description": "At the beginning of the event, guests receive their first intelligence briefing. Using a custom illustrated map of Lake Como, participants follow embedded clues to uncover the secret codename of the evening's central spy.\n\nClues are hidden across key locations around the lake, encouraging guests to examine the map closely while working together to solve the puzzle.\n\nAccess the Mission Through:\n• Interactive mobile app experience\n• Printed intelligence dossier and map\n• Physical clues embedded in the event program\n\nOnce the clues are solved, guests reveal the agent's secret codename and move to the next phase of the mission.",
-        "icon": "lock",
-        "images": [
-          {
-            "_key": "22ed3be76699",
-            "_type": "image",
-            "asset": {
-              "_ref": "image-ebf26646916f92eab7f54cda065601216b050ff5-1375x768-jpg"
-            }
-          },
-          {
-            "_key": "1d1297251e07",
-            "_type": "image",
-            "asset": {
-              "_ref": "image-5500f0cf417e77a3d6f2869debb8c431169c4d6a-746x297-png"
-            }
-          }
-        ],
-        "order": 1,
-        "title": "Unlock the Spy Identity"
-      },
-      {
-        "_key": "phase-2",
-        "description": "Once the spy identity is revealed, guests unlock the classified mission statement. This transmission reveals the purpose of the operation and introduces the story behind the espionage activity that once took place on Lake Como during the war.\n\nParticipants receive a coded message that must be deciphered collectively during the dinner or cocktail reception.",
-        "icon": "file-text",
-        "images": [
-          {
-            "_key": "746a8309c766",
-            "_type": "image",
-            "asset": {
-              "_ref": "image-7bce0bd30fcf9024e6d5ebf56034daac4156893b-758x317-png"
-            }
-          },
-          {
-            "_key": "28ec4f8f5a18",
-            "_type": "image",
-            "asset": {
-              "_ref": "image-79132de350e04bbbc6b7ef367748d4040a5393d3-1375x768-jpg"
-            }
-          }
-        ],
-        "order": 2,
-        "title": "The Mission Briefing"
-      },
-      {
-        "_key": "phase-3",
-        "description": "Throughout the evening, guests work together to decode the mission. The experience is intentionally designed to encourage conversation and interaction between guests.\n\nAs clues are discussed and theories emerge, the room becomes part of the investigation.\n\nBy the end of the evening, the group successfully completes the mission and reveals the final intelligence transmission.",
-        "icon": "users",
-        "images": [
-          {
-            "_key": "d6c16d2f93c3",
-            "_type": "image",
-            "asset": {
-              "_ref": "image-ba5f6dfd964460ab3b21b84df27888022854c06e-799x760-png"
-            }
-          },
-          {
-            "_key": "651fd4f1a0cd",
-            "_type": "image",
-            "asset": {
-              "_ref": "image-5e582f3fcc1fe6fdd946cf565d7585b6f6546fef-740x698-png"
-            }
-          }
-        ],
-        "order": 3,
-        "title": "Collaborative Code Breaking"
-      }
-    ],
-    "setup": {
-      "description": "Through a series of clues, maps, and coded transmissions, guests work together throughout the evening to uncover the identity and mission of a secret agent connected to real wartime intrigue on Lake Como.\n\nThe experience unfolds organically during the event, encouraging interaction, collaboration, and discovery.",
-      "title": "The Setup"
-    },
-    "title": "Mission Experience Page"
   }
 ]
 
@@ -3492,123 +3468,21 @@ FILE: sanity-mirror\seed-report.json
 ================================================================================
 
 {
-  "seededAt": "2026-03-16T21:11:18.232Z",
+  "seededAt": "2026-03-16T23:54:45.008Z",
   "date": "2026-03-16",
   "dryRun": false,
-  "typeFilter": null,
+  "typeFilter": "landingPage",
   "summary": {
     "create": 0,
-    "update": 18,
+    "update": 1,
     "skip": 0,
     "failed": 0,
-    "total": 18
+    "total": 1
   },
   "results": [
     {
-      "_id": "aboutPage",
-      "_type": "aboutPage",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "brandSettings",
-      "_type": "brandSettings",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "castPage",
-      "_type": "castPage",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "contactPage",
-      "_type": "contactPage",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "3d2JLpUTPM5qppQf883Uxu",
-      "_type": "crewPage",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "event-corso-eleganza-2026",
-      "_type": "event",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "event-weekly-spies-of-style",
-      "_type": "event",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "faqPage",
-      "_type": "faqPage",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "footer",
-      "_type": "footer",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "galleryPage",
-      "_type": "galleryPage",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "homepage",
-      "_type": "homepage",
-      "action": "update",
-      "success": true
-    },
-    {
       "_id": "landingPage",
       "_type": "landingPage",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "missionExperiencePage",
-      "_type": "missionExperiencePage",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "moviePage",
-      "_type": "moviePage",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "navbar",
-      "_type": "navbar",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "processPage",
-      "_type": "processPage",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "themesPage",
-      "_type": "themesPage",
-      "action": "update",
-      "success": true
-    },
-    {
-      "_id": "3d2JLpUTPM5qppQf88BJIs",
-      "_type": "venuePage",
       "action": "update",
       "success": true
     }
@@ -4440,7 +4314,6 @@ export const KNOWN_TYPES = [
   "navbar",
   "footer",
   "event",
-  "missionExperiencePage",
 ] as const;
 
 // ---------------------------------------------------------------------------
@@ -7406,10 +7279,12 @@ FILE: src\app\(main)\sections\ExperienceSection.tsx
 "use client";
 
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { useLenis } from "@/components/providers/SmoothScroll";
 import CastCarousel from "@/components/shared/CastCarousel";
 import type { LandingPageData } from "@/sanity/lib/getLandingPage";
+import MissionHero from "@/components/sections/mission/MissionHero";
+import MissionSetup from "@/components/sections/mission/MissionSetup";
+import MissionPhases from "@/components/sections/mission/MissionPhases";
 
 export default function ExperienceSection({
   data,
@@ -7423,113 +7298,130 @@ export default function ExperienceSection({
     ctaLabel,
     ctaLink,
     showcaseImages,
+    missionExperience,
   } = data;
-  const router = useRouter();
   const { lenisRef } = useLenis();
 
   return (
-    <section id="experience" style={{ backgroundColor: "var(--bg-secondary)" }}>
-      <div
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-        style={{
-          paddingTop: "var(--section-py)",
-          paddingBottom: "var(--section-py)",
-        }}
+    <>
+      <section
+        id="experience"
+        style={{ backgroundColor: "var(--bg-secondary)" }}
       >
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-center mb-6"
+        <div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          style={{
+            paddingTop: "var(--section-py)",
+            paddingBottom: "var(--section-py)",
+          }}
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <span
-              className="h-px w-8"
-              style={{ backgroundColor: "var(--accent)" }}
-            />
-            <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
-              {eyebrowLabel ?? "The Experience"}
-            </span>
-            <span
-              className="h-px w-8"
-              style={{ backgroundColor: "var(--accent)" }}
-            />
-          </div>
-          <h2
-            className="font-bold"
-            style={{
-              fontFamily: "var(--font-limelight)",
-              fontSize: "var(--fs-h2)",
-              color: "var(--text-primary)",
-            }}
-          >
-            {sectionTitle}
-          </h2>
-          {sectionSubtitle && (
-            <p
-              className="mt-3 text-sm sm:text-base max-w-xl mx-auto"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              {sectionSubtitle}
-            </p>
-          )}
-        </motion.div>
-
-        {/* Carousel */}
-        {showcaseImages.length > 0 && (
+          {/* Section header */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="text-center mb-6"
           >
-            <CastCarousel images={showcaseImages} />
-          </motion.div>
-        )}
-
-        {/* Mission Experience CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="text-center mt-8"
-        >
-          <button
-            onClick={() => {
-              if (ctaLink?.startsWith("/")) {
-                router.push(ctaLink);
-              } else if (ctaLink?.startsWith("#")) {
-                const element = document.querySelector(ctaLink);
-                if (element && lenisRef.current) {
-                  lenisRef.current.scrollTo(element as HTMLElement, {
-                    offset: -48,
-                  });
-                }
-              }
-            }}
-            className="relative group"
-          >
-            <motion.span
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 0 30px rgba(201, 168, 76, 0.35)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block px-6 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-full cursor-pointer transition-shadow"
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <span
+                className="h-px w-8"
+                style={{ backgroundColor: "var(--accent)" }}
+              />
+              <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
+                {eyebrowLabel ?? "The Experience"}
+              </span>
+              <span
+                className="h-px w-8"
+                style={{ backgroundColor: "var(--accent)" }}
+              />
+            </div>
+            <h2
+              className="font-bold"
               style={{
-                background: "var(--accent-gradient)",
-                color: "var(--accent-text)",
+                fontFamily: "var(--font-limelight)",
+                fontSize: "var(--fs-h2)",
+                color: "var(--text-primary)",
               }}
             >
-              {ctaLabel ?? "Mission Experience"}
-            </motion.span>
-          </button>
-        </motion.div>
-      </div>
-    </section>
+              {sectionTitle}
+            </h2>
+            {sectionSubtitle && (
+              <p
+                className="mt-3 text-sm sm:text-base max-w-xl mx-auto"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                {sectionSubtitle}
+              </p>
+            )}
+          </motion.div>
+
+          {/* Carousel */}
+          {showcaseImages.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            >
+              <CastCarousel images={showcaseImages} />
+            </motion.div>
+          )}
+
+          {/* Mission Experience CTA — only shown when mission content exists */}
+          {missionExperience && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+              className="text-center mt-8"
+            >
+              <button
+                onClick={() => {
+                  const anchor = ctaLink?.startsWith("#")
+                    ? ctaLink
+                    : "#mission-experience";
+                  const element = document.querySelector(anchor);
+                  if (element && lenisRef.current) {
+                    lenisRef.current.scrollTo(element as HTMLElement, {
+                      offset: -48,
+                    });
+                  }
+                }}
+                className="relative group"
+              >
+                <motion.span
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 0 30px rgba(201, 168, 76, 0.35)",
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-block px-6 py-2.5 text-[11px] font-bold uppercase tracking-widest rounded-full cursor-pointer transition-shadow"
+                  style={{
+                    background: "var(--accent-gradient)",
+                    color: "var(--accent-text)",
+                  }}
+                >
+                  {ctaLabel ?? "Mission Experience"}
+                </motion.span>
+              </button>
+            </motion.div>
+          )}
+        </div>
+      </section>
+
+      {/* Mission Experience Sub-section — injected inline after the experience carousel */}
+      {missionExperience && (
+        <div id="mission-experience">
+          <MissionHero data={missionExperience.hero} />
+          <MissionSetup data={missionExperience.setup} />
+          {missionExperience.phases.length > 0 && (
+            <MissionPhases phases={missionExperience.phases} />
+          )}
+        </div>
+      )}
+    </>
   );
 }
 
@@ -10167,988 +10059,6 @@ export default async function RootLayout({
 
 
 ================================================================================
-FILE: src\app\mission-experience\components\PhaseCarousel.tsx
-================================================================================
-
-"use client";
-
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-
-interface PhaseCarouselProps {
-  images: string[];
-  altBase?: string;
-}
-
-export default function PhaseCarousel({ images, altBase }: PhaseCarouselProps) {
-  const [current, setCurrent] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [dragStartX, setDragStartX] = useState(0);
-
-  const count = images.length;
-  const isSingle = count <= 1;
-
-  const next = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % count);
-  }, [count]);
-
-  const prev = useCallback(() => {
-    setCurrent((p) => (p - 1 + count) % count);
-  }, [count]);
-
-  // Auto-play every 2 seconds
-  useEffect(() => {
-    if (isSingle || isPaused) return;
-    const interval = setInterval(next, 2000);
-    return () => clearInterval(interval);
-  }, [isSingle, isPaused, next]);
-
-  if (count === 0) return null;
-
-  return (
-    <div
-      className="relative w-full aspect-video rounded-lg overflow-hidden"
-      style={{
-        backgroundColor: "var(--bg-secondary)",
-        border: "1px solid var(--border-color)",
-      }}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={(e) => {
-        setIsPaused(true);
-        setDragStartX(e.touches[0].clientX);
-      }}
-      onTouchEnd={(e) => {
-        const diff = dragStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 50) {
-          if (diff > 0) {
-            next();
-          } else {
-            prev();
-          }
-        }
-        setIsPaused(false);
-      }}
-    >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={current}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={images[current]}
-            alt={`${altBase || "Mission phase"} image ${current + 1}`}
-            fill
-            className="object-contain"
-            sizes="(max-width: 768px) 100vw, 50vw"
-            loading="lazy"
-          />
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Dot indicators */}
-      {!isSingle && (
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10">
-          {images.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className="rounded-full transition-all duration-300"
-              style={{
-                width: i === current ? "20px" : "6px",
-                height: "6px",
-                background:
-                  i === current
-                    ? "var(--accent-gradient)"
-                    : "rgba(255,255,255,0.3)",
-              }}
-              aria-label={`Go to image ${i + 1}`}
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-
-================================================================================
-FILE: src\app\mission-experience\layout.tsx
-================================================================================
-
-import SmoothScroll from "@/components/providers/SmoothScroll";
-import { SanityLive } from "@/sanity/lib/live";
-import ErrorBoundary from "@/components/shared/ErrorBoundary";
-
-export default function MissionExperienceLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <ErrorBoundary>
-      <SmoothScroll>{children}</SmoothScroll>
-      <SanityLive />
-    </ErrorBoundary>
-  );
-}
-
-
-================================================================================
-FILE: src\app\mission-experience\loading.tsx
-================================================================================
-
-import PageLoading from "@/components/shared/PageLoading";
-
-export default function Loading() {
-  return <PageLoading title="Mission Experience" />;
-}
-
-
-================================================================================
-FILE: src\app\mission-experience\page.tsx
-================================================================================
-
-import type { Metadata } from "next";
-import { getMissionExperiencePageData } from "@/sanity/lib/getMissionExperiencePage";
-import MissionHero from "./sections/MissionHero";
-import MissionSetup from "./sections/MissionSetup";
-import MissionPhases from "./sections/MissionPhases";
-import MissionFooter from "./sections/MissionFooter";
-import MissionHeader from "./sections/MissionHeader";
-import { generateMetadata as createMetadata } from "@/lib/seo/generateMetadata";
-import JsonLd from "@/components/shared/JsonLd";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const data = await getMissionExperiencePageData();
-
-  return createMetadata({
-    title: data?.seo?.seoTitle || "Mission Experience | Spies of Style",
-    description:
-      data?.seo?.seoDescription ||
-      "An immersive espionage experience on Lake Como inspired by real WWII intelligence missions.",
-    canonical: data?.seo?.canonicalUrl || "/mission-experience",
-    openGraph: {
-      type: "website",
-      image: data?.seo?.seoImageUrl || undefined,
-    },
-    twitter: {
-      image: data?.seo?.seoImageUrl || undefined,
-    },
-  });
-}
-
-async function MissionContent() {
-  const data = await getMissionExperiencePageData();
-  if (!data) return null;
-
-  return (
-    <div
-      className="relative min-h-screen"
-      style={{ backgroundColor: "var(--bg-primary)" }}
-    >
-      <MissionHeader />
-      <MissionHero data={data.hero} />
-      <MissionSetup data={data.setup} />
-      <MissionPhases phases={data.phases} />
-      <MissionFooter />
-    </div>
-  );
-}
-
-export default async function MissionExperiencePage() {
-  const missionStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "TouristExperience",
-    name: "Mission Experience",
-    description:
-      "A cinematic mission-led tourist experience on Lake Como inspired by real WWII intelligence stories.",
-    provider: {
-      "@type": "Organization",
-      name: "Spies of Style",
-      url: "https://spiesofstyle.com",
-    },
-    url: "https://spiesofstyle.com/mission-experience",
-    areaServed: "Lake Como, Italy",
-  };
-
-  return (
-    <main
-      id="main-content"
-      className="min-h-screen"
-      style={{ backgroundColor: "var(--bg-primary)" }}
-    >
-      <JsonLd data={missionStructuredData} />
-      <MissionContent />
-    </main>
-  );
-}
-
-
-================================================================================
-FILE: src\app\mission-experience\sections\MissionFooter.tsx
-================================================================================
-
-"use client";
-
-import { motion } from "framer-motion";
-import Link from "next/link";
-
-export default function MissionFooter() {
-  return (
-    <footer
-      style={{
-        backgroundColor: "var(--bg-secondary)",
-        borderTop: "1px solid var(--border-color)",
-      }}
-    >
-      <div
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-        style={{
-          paddingTop: "var(--section-py)",
-          paddingBottom: "var(--section-py)",
-        }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-        >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <span
-              className="h-px w-12"
-              style={{ backgroundColor: "var(--border-color)" }}
-            />
-            <span
-              className="w-2 h-2 rotate-45"
-              style={{ backgroundColor: "var(--accent)" }}
-            />
-            <span
-              className="h-px w-12"
-              style={{ backgroundColor: "var(--border-color)" }}
-            />
-          </div>
-
-          <p
-            className="text-xs uppercase tracking-[0.4em] font-bold mb-2 gold-text"
-            style={{ fontFamily: "var(--font-courier)" }}
-          >
-            End of Transmission
-          </p>
-          <p
-            className="text-[10px] uppercase tracking-[0.25em] mb-8"
-            style={{
-              fontFamily: "var(--font-courier)",
-              color: "var(--text-muted)",
-            }}
-          >
-            Confidential Property &bull; Do Not Duplicate
-          </p>
-
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            <Link href="/#experience">
-              <motion.span
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-block px-6 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full cursor-pointer"
-                style={{
-                  background: "var(--accent-gradient)",
-                  color: "var(--accent-text)",
-                }}
-              >
-                Return to Base
-              </motion.span>
-            </Link>
-            <Link href="/#contact">
-              <span
-                className="inline-block px-6 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full border"
-                style={{
-                  borderColor: "var(--accent)",
-                  color: "var(--text-primary)",
-                }}
-              >
-                Contact Concierge
-              </span>
-            </Link>
-          </div>
-        </motion.div>
-      </div>
-    </footer>
-  );
-}
-
-
-================================================================================
-FILE: src\app\mission-experience\sections\MissionHeader.tsx
-================================================================================
-
-"use client";
-
-import { motion } from "framer-motion";
-import Link from "next/link";
-
-export default function MissionHeader() {
-  return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md"
-      style={{
-        backgroundColor: "var(--header-bg)",
-        borderBottom: "1px solid var(--border-color)",
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-xs uppercase tracking-[0.2em] font-medium transition-colors hover:opacity-80"
-          style={{
-            fontFamily: "var(--font-courier)",
-            color: "var(--text-secondary)",
-          }}
-        >
-          Project: Spies of Style
-        </Link>
-
-        <div
-          className="flex items-center gap-2 px-3 py-1 rounded-sm border"
-          style={{
-            borderColor: "var(--accent)",
-            backgroundColor: "rgba(201, 168, 76, 0.08)",
-          }}
-        >
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ backgroundColor: "var(--accent)" }}
-          />
-          <span className="text-[10px] uppercase tracking-[0.25em] font-bold gold-text">
-            Classified
-          </span>
-        </div>
-      </div>
-    </motion.header>
-  );
-}
-
-
-================================================================================
-FILE: src\app\mission-experience\sections\MissionHero.tsx
-================================================================================
-
-"use client";
-
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import type { MissionExperiencePageData } from "@/sanity/lib/getMissionExperiencePage";
-
-const textVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (delay: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, delay, ease: "easeOut" as const },
-  }),
-};
-
-export default function MissionHero({
-  data,
-}: {
-  data: MissionExperiencePageData["hero"];
-}) {
-  const { title, subtitle, backgroundImageUrl, backgroundVideoUrl } = data;
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  // Background drifts up at ~40% of scroll speed — classic parallax depth
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
-
-  // Text block fades out and floats upward as the hero leaves viewport
-  const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 0.6], ["0%", "-14%"]);
-
-  // Overlay deepens slightly on scroll for a "receding into darkness" feel
-  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.55, 0.82]);
-
-  const videoSrc = backgroundVideoUrl
-    ? backgroundVideoUrl.includes("#")
-      ? backgroundVideoUrl
-      : `${backgroundVideoUrl}#t=0.001`
-    : undefined;
-
-  return (
-    <section
-      ref={sectionRef}
-      className="relative w-full min-h-[80dvh] flex items-center justify-center overflow-hidden"
-    >
-      {/* ── Parallax background layer (scales up slightly so edges never show) ── */}
-      <motion.div
-        className="absolute inset-0 z-0"
-        style={{ y: bgY, scale: 1.15 }}
-      >
-        {videoSrc ? (
-          <video
-            src={videoSrc}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={backgroundImageUrl || undefined}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        ) : backgroundImageUrl ? (
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-          />
-        ) : (
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(135deg, var(--bg-primary) 0%, #1a1a2e 50%, var(--bg-primary) 100%)",
-            }}
-          />
-        )}
-      </motion.div>
-
-      {/* ── Cinematic overlay deepens on scroll ─────────────────────────────── */}
-      <motion.div
-        className="absolute inset-0 z-[1] bg-gradient-to-b from-black/80 via-black/50 to-black/80"
-        style={{ opacity: overlayOpacity }}
-      />
-
-      {/* ── Content — fades and lifts away as hero scrolls out ──────────────── */}
-      <motion.div
-        className="relative z-10 text-center px-4 sm:px-8 max-w-4xl mx-auto pt-20"
-        style={{ opacity: textOpacity, y: textY }}
-      >
-        <motion.div
-          custom={0.3}
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          className="inline-block -rotate-1 mb-6"
-        >
-          <div
-            className="border-2 px-5 py-2"
-            style={{
-              borderColor: "rgba(255,255,255,0.55)",
-              boxShadow:
-                "0 0 0 4px rgba(255,255,255,0.05), inset 0 0 12px rgba(255,255,255,0.03)",
-            }}
-          >
-            <p
-              className="text-[9px] sm:text-[10px] uppercase font-bold text-center"
-              style={{
-                fontFamily: "var(--font-courier)",
-                color: "rgba(255,255,255,0.8)",
-                letterSpacing: "5px",
-              }}
-            >
-              Mission Briefing
-            </p>
-          </div>
-        </motion.div>
-
-        <motion.h1
-          custom={0.5}
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          className="font-bold text-white leading-[1.15] tracking-tight mb-4 drop-shadow-2xl"
-          style={{
-            fontSize: "var(--fs-hero)",
-            fontFamily: "var(--font-limelight)",
-          }}
-        >
-          {title}
-        </motion.h1>
-
-        <motion.p
-          custom={0.7}
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-sm sm:text-base md:text-lg font-light tracking-wide italic drop-shadow-lg max-w-2xl mx-auto"
-          style={{ color: "var(--text-secondary)" }}
-        >
-          {subtitle}
-        </motion.p>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          className="mt-12"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-5 h-8 rounded-full border mx-auto flex items-start justify-center pt-1.5"
-            style={{ borderColor: "rgba(255,255,255,0.3)" }}
-          >
-            <div
-              className="w-1 h-1.5 rounded-full"
-              style={{ backgroundColor: "var(--accent)" }}
-            />
-          </motion.div>
-        </motion.div>
-      </motion.div>
-    </section>
-  );
-}
-
-
-================================================================================
-FILE: src\app\mission-experience\sections\MissionPhases.tsx
-================================================================================
-
-"use client";
-
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import {
-  Lock,
-  FileText,
-  Users,
-  Key,
-  Target,
-  type LucideIcon,
-} from "lucide-react";
-import type { MissionPhase } from "@/sanity/lib/getMissionExperiencePage";
-import PhaseCarousel from "../components/PhaseCarousel";
-
-const ICON_MAP: Record<string, LucideIcon> = {
-  lock: Lock,
-  "file-text": FileText,
-  users: Users,
-  key: Key,
-  target: Target,
-};
-
-function PhaseIcon({ icon }: { icon?: string }) {
-  const IconComponent = icon ? ICON_MAP[icon] : null;
-  if (!IconComponent) return null;
-  return (
-    <div
-      className="w-10 h-10 rounded-full flex items-center justify-center mb-4 border"
-      style={{
-        borderColor: "var(--accent)",
-        backgroundColor: "rgba(201, 168, 76, 0.08)",
-      }}
-    >
-      <IconComponent size={18} style={{ color: "var(--accent)" }} />
-    </div>
-  );
-}
-
-// ── Each phase row tracks its own scroll for independent parallax ────────────
-
-function PhaseRow({ phase, index }: { phase: MissionPhase; index: number }) {
-  const rowRef = useRef<HTMLDivElement>(null);
-  const isEven = index % 2 === 0;
-
-  const { scrollYProgress } = useScroll({
-    target: rowRef,
-    offset: ["start end", "end start"],
-  });
-
-  // Image column floats upward against the scroll direction
-  const imageY = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
-
-  // Text column slides in from its edge (left for even, right for odd)
-  const textX = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    [isEven ? "-5%" : "5%", "0%"],
-  );
-  const textOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
-
-  // Ghost phase number drifts at a slower rate — decorative depth layer
-  const ghostY = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
-  const ghostOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.7, 1],
-    [0, 0.07, 0.07, 0],
-  );
-
-  const paragraphs = phase.description ? phase.description.split("\n\n") : [];
-
-  return (
-    <div
-      ref={rowRef}
-      className={`relative flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} gap-8 lg:gap-12 items-center`}
-    >
-      {/* ── Ghost phase number — parallax depth element ─────────────────── */}
-      <motion.span
-        className="absolute pointer-events-none select-none font-bold leading-none"
-        style={{
-          fontFamily: "var(--font-limelight)",
-          fontSize: "clamp(6rem, 18vw, 14rem)",
-          color: "var(--text-primary)",
-          opacity: ghostOpacity,
-          y: ghostY,
-          left: isEven ? "-0.1em" : "auto",
-          right: isEven ? "auto" : "-0.1em",
-          top: "50%",
-          translateY: "-50%",
-          zIndex: 0,
-        }}
-        aria-hidden
-      >
-        0{phase.order}
-      </motion.span>
-
-      {/* ── Text column ────────────────────────────────────────────────────── */}
-      <motion.div
-        className="flex-1 min-w-0 relative z-10"
-        style={{ x: textX, opacity: textOpacity }}
-      >
-        {/* Phase label + growing divider line */}
-        <div className="flex items-center gap-3 mb-3">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5 }}
-            className="text-[10px] uppercase tracking-[0.3em] font-bold whitespace-nowrap"
-            style={{
-              fontFamily: "var(--font-courier)",
-              color: "var(--accent)",
-            }}
-          >
-            Phase {phase.order}
-          </motion.span>
-          <motion.span
-            className="h-px block"
-            initial={{ width: 0, opacity: 0 }}
-            whileInView={{ width: "100%", opacity: 1 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            style={{ backgroundColor: "var(--border-color)", minWidth: 0 }}
-          />
-        </div>
-
-        <PhaseIcon icon={phase.icon} />
-
-        {/* Title: blur-to-clear reveal */}
-        <motion.h3
-          initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
-          className="font-bold mb-4"
-          style={{
-            fontFamily: "var(--font-limelight)",
-            fontSize: "var(--fs-h3)",
-            color: "var(--text-primary)",
-          }}
-        >
-          {phase.title}
-        </motion.h3>
-
-        {/* Paragraphs stagger in */}
-        {paragraphs.length > 0 && (
-          <div className="space-y-3">
-            {paragraphs.map((paragraph, i) => (
-              <motion.p
-                key={i}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.12 + i * 0.1,
-                  ease: "easeOut",
-                }}
-                className="text-sm sm:text-base leading-relaxed whitespace-pre-line"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                {paragraph}
-              </motion.p>
-            ))}
-          </div>
-        )}
-      </motion.div>
-
-      {/* ── Image / Carousel column with vertical parallax ─────────────────── */}
-      <div className="flex-1 min-w-0 w-full max-w-lg lg:max-w-none relative z-10 overflow-hidden rounded-lg">
-        <motion.div style={{ y: imageY }}>
-          {phase.imageUrls.length > 0 ? (
-            <PhaseCarousel
-              images={phase.imageUrls}
-              altBase={phase.title || "Mission phase"}
-            />
-          ) : (
-            <div
-              className="w-full aspect-video rounded-lg border flex items-center justify-center"
-              style={{
-                borderColor: "var(--border-color)",
-                backgroundColor: "var(--bg-secondary)",
-              }}
-            >
-              <div className="text-center px-4">
-                <div
-                  className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center border"
-                  style={{
-                    borderColor: "var(--border-color)",
-                    backgroundColor: "rgba(255,255,255,0.04)",
-                  }}
-                >
-                  <PhaseIcon icon={phase.icon} />
-                </div>
-                <p
-                  className="text-xs uppercase tracking-[0.2em]"
-                  style={{
-                    fontFamily: "var(--font-courier)",
-                    color: "var(--text-muted)",
-                  }}
-                >
-                  Image pending upload
-                </p>
-              </div>
-            </div>
-          )}
-        </motion.div>
-      </div>
-    </div>
-  );
-}
-
-// ── Section wrapper with its own ambient parallax ────────────────────────────
-
-export default function MissionPhases({ phases }: { phases: MissionPhase[] }) {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  // Faint gold accent glow drifts upward through the section
-  const ambientY = useTransform(scrollYProgress, [0, 1], ["30%", "-30%"]);
-
-  return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden"
-      style={{ backgroundColor: "var(--bg-primary)" }}
-    >
-      {/* ── Ambient parallax glow ──────────────────────────────────────────── */}
-      <motion.div
-        className="absolute right-0 top-1/2 w-[700px] h-[700px] rounded-full pointer-events-none"
-        style={{
-          y: ambientY,
-          background:
-            "radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 65%)",
-          filter: "blur(60px)",
-          translateX: "30%",
-        }}
-        aria-hidden
-      />
-
-      <div
-        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-        style={{
-          paddingTop: "var(--section-py)",
-          paddingBottom: "var(--section-py)",
-        }}
-      >
-        {/* ── Section header ────────────────────────────────────────────────── */}
-        <div className="text-center mb-10">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <motion.span
-              className="h-px block"
-              initial={{ width: 0, opacity: 0 }}
-              whileInView={{ width: 32, opacity: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-              style={{ backgroundColor: "var(--accent)", minWidth: 0 }}
-            />
-            <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
-              Operation Phases
-            </span>
-            <motion.span
-              className="h-px block"
-              initial={{ width: 0, opacity: 0 }}
-              whileInView={{ width: 32, opacity: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-              style={{ backgroundColor: "var(--accent)", minWidth: 0 }}
-            />
-          </div>
-          <motion.h2
-            initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.75, delay: 0.15, ease: "easeOut" }}
-            className="font-bold"
-            style={{
-              fontFamily: "var(--font-limelight)",
-              fontSize: "var(--fs-h2)",
-              color: "var(--text-primary)",
-            }}
-          >
-            The Mission Unfolds
-          </motion.h2>
-        </div>
-
-        {/* ── Phase rows ────────────────────────────────────────────────────── */}
-        <div className="space-y-24 sm:space-y-28">
-          {phases.map((phase, index) => (
-            <PhaseRow key={phase.order} phase={phase} index={index} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-================================================================================
-FILE: src\app\mission-experience\sections\MissionSetup.tsx
-================================================================================
-
-"use client";
-
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import type { MissionExperiencePageData } from "@/sanity/lib/getMissionExperiencePage";
-
-export default function MissionSetup({
-  data,
-}: {
-  data: MissionExperiencePageData["setup"];
-}) {
-  const { title, description } = data;
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  // Decorative radial glow drifts upward as section passes through viewport
-  const glowY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
-
-  const paragraphs = description ? description.split("\n\n") : [];
-
-  return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden"
-      style={{ backgroundColor: "var(--bg-secondary)" }}
-    >
-      {/* ── Ambient glow that parallax-drifts through the section ──────────── */}
-      <motion.div
-        className="absolute left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{
-          y: glowY,
-          background:
-            "radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%)",
-          filter: "blur(40px)",
-        }}
-        aria-hidden
-      />
-
-      <div
-        className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-        style={{
-          paddingTop: "var(--section-py)",
-          paddingBottom: "var(--section-py)",
-        }}
-      >
-        {/* ── Header — eyebrow lines grow in, heading blurs clear ─────────── */}
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-6"
-        >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            {/* Left line grows from 0 */}
-            <motion.span
-              className="h-px block"
-              initial={{ width: 0, opacity: 0 }}
-              whileInView={{ width: 32, opacity: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-              style={{ backgroundColor: "var(--accent)", minWidth: 0 }}
-            />
-            <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
-              Intelligence Report
-            </span>
-            {/* Right line grows from 0 */}
-            <motion.span
-              className="h-px block"
-              initial={{ width: 0, opacity: 0 }}
-              whileInView={{ width: 32, opacity: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-              style={{ backgroundColor: "var(--accent)", minWidth: 0 }}
-            />
-          </div>
-
-          {/* Heading emerges through a blur — like a classified doc loading */}
-          <motion.h2
-            initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.75, delay: 0.15, ease: "easeOut" }}
-            className="font-bold"
-            style={{
-              fontFamily: "var(--font-limelight)",
-              fontSize: "var(--fs-h2)",
-              color: "var(--text-primary)",
-            }}
-          >
-            {title}
-          </motion.h2>
-        </motion.div>
-
-        {/* ── Paragraphs stagger in one by one ────────────────────────────── */}
-        {paragraphs.length > 0 && (
-          <div>
-            {paragraphs.map((paragraph, i) => (
-              <motion.p
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{
-                  duration: 0.65,
-                  delay: 0.1 + i * 0.12,
-                  ease: "easeOut",
-                }}
-                className="text-sm sm:text-base leading-relaxed mb-4 last:mb-0"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                {paragraph}
-              </motion.p>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
-  );
-}
-
-
-================================================================================
 FILE: src\app\not-found.tsx
 ================================================================================
 
@@ -11221,12 +10131,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
-    },
-    {
-      url: `${baseUrl}/mission-experience`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
     },
   ];
 
@@ -11677,6 +10581,719 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       {children}
     </LenisContext.Provider>
   )
+}
+
+
+================================================================================
+FILE: src\components\sections\mission\MissionHero.tsx
+================================================================================
+
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import type { MissionHeroData } from "@/sanity/lib/getLandingPage";
+
+const textVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay, ease: "easeOut" as const },
+  }),
+};
+
+export default function MissionHero({ data }: { data: MissionHeroData }) {
+  const { title, subtitle, backgroundImageUrl, backgroundVideoUrl } = data;
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Background drifts up at ~40% of scroll speed — classic parallax depth
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
+
+  // Text block fades out and floats upward as the hero leaves viewport
+  const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 0.6], ["0%", "-14%"]);
+
+  // Overlay deepens slightly on scroll for a "receding into darkness" feel
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.55, 0.82]);
+
+  const videoSrc = backgroundVideoUrl
+    ? backgroundVideoUrl.includes("#")
+      ? backgroundVideoUrl
+      : `${backgroundVideoUrl}#t=0.001`
+    : undefined;
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative w-full min-h-[80dvh] flex items-center justify-center overflow-hidden"
+    >
+      {/* ── Parallax background layer (scales up slightly so edges never show) ── */}
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{ y: bgY, scale: 1.15 }}
+      >
+        {videoSrc ? (
+          <video
+            src={videoSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={backgroundImageUrl || undefined}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : backgroundImageUrl ? (
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+          />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(135deg, var(--bg-primary) 0%, #1a1a2e 50%, var(--bg-primary) 100%)",
+            }}
+          />
+        )}
+      </motion.div>
+
+      {/* ── Cinematic overlay deepens on scroll ─────────────────────────────── */}
+      <motion.div
+        className="absolute inset-0 z-[1] bg-gradient-to-b from-black/80 via-black/50 to-black/80"
+        style={{ opacity: overlayOpacity }}
+      />
+
+      {/* ── Content — fades and lifts away as hero scrolls out ──────────────── */}
+      <motion.div
+        className="relative z-10 text-center px-4 sm:px-8 max-w-4xl mx-auto pt-20"
+        style={{ opacity: textOpacity, y: textY }}
+      >
+        <motion.div
+          custom={0.3}
+          variants={textVariants}
+          initial="hidden"
+          animate="visible"
+          className="inline-block -rotate-1 mb-6"
+        >
+          <div
+            className="border-2 px-5 py-2"
+            style={{
+              borderColor: "rgba(255,255,255,0.55)",
+              boxShadow:
+                "0 0 0 4px rgba(255,255,255,0.05), inset 0 0 12px rgba(255,255,255,0.03)",
+            }}
+          >
+            <p
+              className="text-[9px] sm:text-[10px] uppercase font-bold text-center"
+              style={{
+                fontFamily: "var(--font-courier)",
+                color: "rgba(255,255,255,0.8)",
+                letterSpacing: "5px",
+              }}
+            >
+              Mission Briefing
+            </p>
+          </div>
+        </motion.div>
+
+        <motion.h2
+          custom={0.5}
+          variants={textVariants}
+          initial="hidden"
+          animate="visible"
+          className="font-bold text-white leading-[1.15] tracking-tight mb-4 drop-shadow-2xl"
+          style={{
+            fontSize: "var(--fs-hero)",
+            fontFamily: "var(--font-limelight)",
+          }}
+        >
+          {title}
+        </motion.h2>
+
+        <motion.p
+          custom={0.7}
+          variants={textVariants}
+          initial="hidden"
+          animate="visible"
+          className="text-sm sm:text-base md:text-lg font-light tracking-wide italic drop-shadow-lg max-w-2xl mx-auto"
+          style={{ color: "var(--text-secondary)" }}
+        >
+          {subtitle}
+        </motion.p>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+          className="mt-12"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-5 h-8 rounded-full border mx-auto flex items-start justify-center pt-1.5"
+            style={{ borderColor: "rgba(255,255,255,0.3)" }}
+          >
+            <div
+              className="w-1 h-1.5 rounded-full"
+              style={{ backgroundColor: "var(--accent)" }}
+            />
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
+
+
+================================================================================
+FILE: src\components\sections\mission\MissionPhases.tsx
+================================================================================
+
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  Lock,
+  FileText,
+  Users,
+  Key,
+  Target,
+  type LucideIcon,
+} from "lucide-react";
+import type { MissionPhase } from "@/sanity/lib/getLandingPage";
+import PhaseCarousel from "./PhaseCarousel";
+
+const ICON_MAP: Record<string, LucideIcon> = {
+  lock: Lock,
+  "file-text": FileText,
+  users: Users,
+  key: Key,
+  target: Target,
+};
+
+function PhaseIcon({ icon }: { icon?: string }) {
+  const IconComponent = icon ? ICON_MAP[icon] : null;
+  if (!IconComponent) return null;
+  return (
+    <div
+      className="w-10 h-10 rounded-full flex items-center justify-center mb-4 border"
+      style={{
+        borderColor: "var(--accent)",
+        backgroundColor: "rgba(201, 168, 76, 0.08)",
+      }}
+    >
+      <IconComponent size={18} style={{ color: "var(--accent)" }} />
+    </div>
+  );
+}
+
+// ── Each phase row tracks its own scroll for independent parallax ────────────
+
+function PhaseRow({ phase, index }: { phase: MissionPhase; index: number }) {
+  const rowRef = useRef<HTMLDivElement>(null);
+  const isEven = index % 2 === 0;
+
+  const { scrollYProgress } = useScroll({
+    target: rowRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Image column floats upward against the scroll direction
+  const imageY = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
+
+  // Text column slides in from its edge (left for even, right for odd)
+  const textX = useTransform(
+    scrollYProgress,
+    [0, 0.4],
+    [isEven ? "-5%" : "5%", "0%"],
+  );
+  const textOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+
+  // Ghost phase number drifts at a slower rate — decorative depth layer
+  const ghostY = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
+  const ghostOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.7, 1],
+    [0, 0.07, 0.07, 0],
+  );
+
+  const paragraphs = phase.description ? phase.description.split("\n\n") : [];
+
+  return (
+    <div
+      ref={rowRef}
+      className={`relative flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} gap-8 lg:gap-12 items-center`}
+    >
+      {/* ── Ghost phase number — parallax depth element ─────────────────── */}
+      <motion.span
+        className="absolute pointer-events-none select-none font-bold leading-none"
+        style={{
+          fontFamily: "var(--font-limelight)",
+          fontSize: "clamp(6rem, 18vw, 14rem)",
+          color: "var(--text-primary)",
+          opacity: ghostOpacity,
+          y: ghostY,
+          left: isEven ? "-0.1em" : "auto",
+          right: isEven ? "auto" : "-0.1em",
+          top: "50%",
+          translateY: "-50%",
+          zIndex: 0,
+        }}
+        aria-hidden
+      >
+        0{phase.order}
+      </motion.span>
+
+      {/* ── Text column ────────────────────────────────────────────────────── */}
+      <motion.div
+        className="flex-1 min-w-0 relative z-10"
+        style={{ x: textX, opacity: textOpacity }}
+      >
+        {/* Phase label + growing divider line */}
+        <div className="flex items-center gap-3 mb-3">
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5 }}
+            className="text-[10px] uppercase tracking-[0.3em] font-bold whitespace-nowrap"
+            style={{
+              fontFamily: "var(--font-courier)",
+              color: "var(--accent)",
+            }}
+          >
+            Phase {phase.order}
+          </motion.span>
+          <motion.span
+            className="h-px block"
+            initial={{ width: 0, opacity: 0 }}
+            whileInView={{ width: "100%", opacity: 1 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+            style={{ backgroundColor: "var(--border-color)", minWidth: 0 }}
+          />
+        </div>
+
+        <PhaseIcon icon={phase.icon} />
+
+        {/* Title: blur-to-clear reveal */}
+        <motion.h3
+          initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.7, delay: 0.08, ease: "easeOut" }}
+          className="font-bold mb-4"
+          style={{
+            fontFamily: "var(--font-limelight)",
+            fontSize: "var(--fs-h3)",
+            color: "var(--text-primary)",
+          }}
+        >
+          {phase.title}
+        </motion.h3>
+
+        {/* Paragraphs stagger in */}
+        {paragraphs.length > 0 && (
+          <div className="space-y-3">
+            {paragraphs.map((paragraph, i) => (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.12 + i * 0.1,
+                  ease: "easeOut",
+                }}
+                className="text-sm sm:text-base leading-relaxed whitespace-pre-line"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                {paragraph}
+              </motion.p>
+            ))}
+          </div>
+        )}
+      </motion.div>
+
+      {/* ── Image / Carousel column with vertical parallax ─────────────────── */}
+      <div className="flex-1 min-w-0 w-full max-w-lg lg:max-w-none relative z-10 overflow-hidden rounded-lg">
+        <motion.div style={{ y: imageY }}>
+          {phase.imageUrls.length > 0 ? (
+            <PhaseCarousel
+              images={phase.imageUrls}
+              altBase={phase.title || "Mission phase"}
+            />
+          ) : (
+            <div
+              className="w-full aspect-video rounded-lg border flex items-center justify-center"
+              style={{
+                borderColor: "var(--border-color)",
+                backgroundColor: "var(--bg-secondary)",
+              }}
+            >
+              <div className="text-center px-4">
+                <div
+                  className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center border"
+                  style={{
+                    borderColor: "var(--border-color)",
+                    backgroundColor: "rgba(255,255,255,0.04)",
+                  }}
+                >
+                  <PhaseIcon icon={phase.icon} />
+                </div>
+                <p
+                  className="text-xs uppercase tracking-[0.2em]"
+                  style={{
+                    fontFamily: "var(--font-courier)",
+                    color: "var(--text-muted)",
+                  }}
+                >
+                  Image pending upload
+                </p>
+              </div>
+            </div>
+          )}
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+// ── Section wrapper with its own ambient parallax ────────────────────────────
+
+export default function MissionPhases({ phases }: { phases: MissionPhase[] }) {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Faint gold accent glow drifts upward through the section
+  const ambientY = useTransform(scrollYProgress, [0, 1], ["30%", "-30%"]);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden"
+      style={{ backgroundColor: "var(--bg-primary)" }}
+    >
+      {/* ── Ambient parallax glow ──────────────────────────────────────────── */}
+      <motion.div
+        className="absolute right-0 top-1/2 w-[700px] h-[700px] rounded-full pointer-events-none"
+        style={{
+          y: ambientY,
+          background:
+            "radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 65%)",
+          filter: "blur(60px)",
+          translateX: "30%",
+        }}
+        aria-hidden
+      />
+
+      <div
+        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        style={{
+          paddingTop: "var(--section-py)",
+          paddingBottom: "var(--section-py)",
+        }}
+      >
+        {/* ── Section header ────────────────────────────────────────────────── */}
+        <div className="text-center mb-10">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <motion.span
+              className="h-px block"
+              initial={{ width: 0, opacity: 0 }}
+              whileInView={{ width: 32, opacity: 1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              style={{ backgroundColor: "var(--accent)", minWidth: 0 }}
+            />
+            <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
+              Operation Phases
+            </span>
+            <motion.span
+              className="h-px block"
+              initial={{ width: 0, opacity: 0 }}
+              whileInView={{ width: 32, opacity: 1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              style={{ backgroundColor: "var(--accent)", minWidth: 0 }}
+            />
+          </div>
+          <motion.h2
+            initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.75, delay: 0.15, ease: "easeOut" }}
+            className="font-bold"
+            style={{
+              fontFamily: "var(--font-limelight)",
+              fontSize: "var(--fs-h2)",
+              color: "var(--text-primary)",
+            }}
+          >
+            The Mission Unfolds
+          </motion.h2>
+        </div>
+
+        {/* ── Phase rows ────────────────────────────────────────────────────── */}
+        <div className="space-y-24 sm:space-y-28">
+          {phases.map((phase, index) => (
+            <PhaseRow key={phase.order} phase={phase} index={index} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+================================================================================
+FILE: src\components\sections\mission\MissionSetup.tsx
+================================================================================
+
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import type { MissionSetupData } from "@/sanity/lib/getLandingPage";
+
+export default function MissionSetup({ data }: { data: MissionSetupData }) {
+  const { title, description } = data;
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Decorative radial glow drifts upward as section passes through viewport
+  const glowY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
+
+  const paragraphs = description ? description.split("\n\n") : [];
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden"
+      style={{ backgroundColor: "var(--bg-secondary)" }}
+    >
+      {/* ── Ambient glow that parallax-drifts through the section ──────────── */}
+      <motion.div
+        className="absolute left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          y: glowY,
+          background:
+            "radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%)",
+          filter: "blur(40px)",
+        }}
+        aria-hidden
+      />
+
+      <div
+        className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        style={{
+          paddingTop: "var(--section-py)",
+          paddingBottom: "var(--section-py)",
+        }}
+      >
+        {/* ── Header — eyebrow lines grow in, heading blurs clear ─────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="mb-6"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            {/* Left line grows from 0 */}
+            <motion.span
+              className="h-px block"
+              initial={{ width: 0, opacity: 0 }}
+              whileInView={{ width: 32, opacity: 1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              style={{ backgroundColor: "var(--accent)", minWidth: 0 }}
+            />
+            <span className="text-xs uppercase tracking-[0.3em] font-light gold-text">
+              Intelligence Report
+            </span>
+            {/* Right line grows from 0 */}
+            <motion.span
+              className="h-px block"
+              initial={{ width: 0, opacity: 0 }}
+              whileInView={{ width: 32, opacity: 1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              style={{ backgroundColor: "var(--accent)", minWidth: 0 }}
+            />
+          </div>
+
+          {/* Heading emerges through a blur — like a classified doc loading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.75, delay: 0.15, ease: "easeOut" }}
+            className="font-bold"
+            style={{
+              fontFamily: "var(--font-limelight)",
+              fontSize: "var(--fs-h2)",
+              color: "var(--text-primary)",
+            }}
+          >
+            {title}
+          </motion.h2>
+        </motion.div>
+
+        {/* ── Paragraphs stagger in one by one ────────────────────────────── */}
+        {paragraphs.length > 0 && (
+          <div>
+            {paragraphs.map((paragraph, i) => (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.65,
+                  delay: 0.1 + i * 0.12,
+                  ease: "easeOut",
+                }}
+                className="text-sm sm:text-base leading-relaxed mb-4 last:mb-0"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                {paragraph}
+              </motion.p>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+
+================================================================================
+FILE: src\components\sections\mission\PhaseCarousel.tsx
+================================================================================
+
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+
+interface PhaseCarouselProps {
+  images: string[];
+  altBase?: string;
+}
+
+export default function PhaseCarousel({ images, altBase }: PhaseCarouselProps) {
+  const [current, setCurrent] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [dragStartX, setDragStartX] = useState(0);
+
+  const count = images.length;
+  const isSingle = count <= 1;
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % count);
+  }, [count]);
+
+  const prev = useCallback(() => {
+    setCurrent((p) => (p - 1 + count) % count);
+  }, [count]);
+
+  // Auto-play every 2 seconds
+  useEffect(() => {
+    if (isSingle || isPaused) return;
+    const interval = setInterval(next, 2000);
+    return () => clearInterval(interval);
+  }, [isSingle, isPaused, next]);
+
+  if (count === 0) return null;
+
+  return (
+    <div
+      className="relative w-full aspect-video rounded-lg overflow-hidden"
+      style={{
+        backgroundColor: "var(--bg-secondary)",
+        border: "1px solid var(--border-color)",
+      }}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={(e) => {
+        setIsPaused(true);
+        setDragStartX(e.touches[0].clientX);
+      }}
+      onTouchEnd={(e) => {
+        const diff = dragStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            next();
+          } else {
+            prev();
+          }
+        }
+        setIsPaused(false);
+      }}
+    >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={images[current]}
+            alt={`${altBase || "Mission phase"} image ${current + 1}`}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            loading="lazy"
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Dot indicators */}
+      {!isSingle && (
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className="rounded-full transition-all duration-300"
+              style={{
+                width: i === current ? "20px" : "6px",
+                height: "6px",
+                background:
+                  i === current
+                    ? "var(--accent-gradient)"
+                    : "rgba(255,255,255,0.3)",
+              }}
+              aria-label={`Go to image ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 
@@ -12684,7 +12301,7 @@ export function getTouristExperienceJsonLd() {
         name: seoConfig.siteName,
         url: seoConfig.siteUrl,
       },
-      url: `${seoConfig.siteUrl}/mission-experience`,
+      url: `${seoConfig.siteUrl}/#mission-experience`,
       areaServed: "Lake Como, Italy",
     },
     {
@@ -12870,6 +12487,26 @@ import { urlFor } from "./image";
 
 // ─── TYPES ─────────────────────────────────────────────────────────────────────
 
+export interface MissionPhase {
+  title?: string;
+  description?: string;
+  icon?: string;
+  imageUrls: string[];
+  order: number;
+}
+
+export interface MissionHeroData {
+  title?: string;
+  subtitle?: string;
+  backgroundImageUrl?: string | null;
+  backgroundVideoUrl?: string | null;
+}
+
+export interface MissionSetupData {
+  title?: string;
+  description?: string;
+}
+
 export interface EventData {
   _id: string;
   title: string;
@@ -12931,6 +12568,11 @@ export interface LandingPageData {
     ctaLink?: string;
     showcaseImages: { url: string; title?: string; role?: string }[];
     paragraphs?: string[];
+    missionExperience?: {
+      hero: MissionHeroData;
+      setup: MissionSetupData;
+      phases: MissionPhase[];
+    };
   };
 
   assignment: {
@@ -13036,7 +12678,26 @@ const query = `
         title,
         role
       },
-      paragraphs
+      paragraphs,
+      missionExperience {
+        hero {
+          title,
+          subtitle,
+          backgroundImage { asset->{ url }, hotspot, crop },
+          backgroundVideo { asset->{ url } }
+        },
+        setup {
+          title,
+          description
+        },
+        "phases": phases[] | order(order asc) {
+          title,
+          description,
+          icon,
+          images[] { asset->{ url }, hotspot, crop },
+          order
+        }
+      }
     },
 
     assignment {
@@ -13197,7 +12858,7 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
         sectionSubtitle: raw.experience?.sectionSubtitle,
         eyebrowLabel: raw.experience?.eyebrowLabel ?? "The Experience",
         ctaLabel: raw.experience?.ctaLabel ?? "Mission Experience",
-        ctaLink: raw.experience?.ctaLink ?? "/mission-experience",
+        ctaLink: raw.experience?.ctaLink ?? "#mission-experience",
         showcaseImages: (raw.experience?.showcaseImages ?? [])
           .map(
             (item: {
@@ -13215,6 +12876,50 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           )
           .filter((img: { url: string }) => img.url),
         paragraphs: raw.experience?.paragraphs ?? [],
+        missionExperience: raw.experience?.missionExperience
+          ? {
+              hero: {
+                title: raw.experience.missionExperience.hero?.title,
+                subtitle: raw.experience.missionExperience.hero?.subtitle,
+                backgroundImageUrl:
+                  raw.experience.missionExperience.hero?.backgroundImage?.asset
+                    ?.url ??
+                  processImageToUrl(
+                    raw.experience.missionExperience.hero?.backgroundImage,
+                    1920,
+                  ) ??
+                  null,
+                backgroundVideoUrl:
+                  raw.experience.missionExperience.hero?.backgroundVideo?.asset
+                    ?.url ?? null,
+              },
+              setup: {
+                title: raw.experience.missionExperience.setup?.title,
+                description:
+                  raw.experience.missionExperience.setup?.description,
+              },
+              phases: (raw.experience.missionExperience.phases ?? []).map(
+                (phase: {
+                  title?: string;
+                  description?: string;
+                  icon?: string;
+                  images?: { asset?: { url?: string } }[];
+                  order?: number;
+                }): MissionPhase => ({
+                  title: phase.title,
+                  description: phase.description,
+                  icon: phase.icon,
+                  imageUrls: (phase.images ?? [])
+                    .map(
+                      (img) =>
+                        img.asset?.url ?? processImageToUrl(img, 900) ?? "",
+                    )
+                    .filter(Boolean),
+                  order: phase.order ?? 0,
+                }),
+              ),
+            }
+          : undefined,
       },
 
       assignment: {
@@ -13395,172 +13100,6 @@ export async function getLayoutData() {
   }
   return await cachedFetch();
 }
-
-================================================================================
-FILE: src\sanity\lib\getMissionExperiencePage.ts
-================================================================================
-
-import { client, DEFAULT_REVALIDATE } from "./client";
-import { unstable_cache } from "next/cache";
-import { urlFor } from "./image";
-
-// ─── TYPES ─────────────────────────────────────────────────────────────────────
-
-export interface MissionPhase {
-  title?: string;
-  description?: string;
-  icon?: string;
-  imageUrls: string[];
-  order: number;
-}
-
-export interface MissionExperiencePageData {
-  seo?: {
-    seoTitle?: string;
-    seoDescription?: string;
-    canonicalUrl?: string;
-    seoImageUrl?: string | null;
-  };
-
-  hero: {
-    title?: string;
-    subtitle?: string;
-    backgroundImageUrl?: string | null;
-    backgroundVideoUrl?: string | null;
-  };
-
-  setup: {
-    title?: string;
-    description?: string;
-  };
-
-  phases: MissionPhase[];
-}
-
-// ─── GROQ QUERY ────────────────────────────────────────────────────────────────
-
-const query = `
-  *[_type == "missionExperiencePage"][0] {
-    seoTitle,
-    seoDescription,
-    canonicalUrl,
-    seoImage,
-
-    hero {
-      title,
-      subtitle,
-      backgroundImage { asset->{ url }, hotspot, crop },
-      backgroundVideo { asset->{ url } }
-    },
-
-    setup {
-      title,
-      description
-    },
-
-    "phases": phases[] | order(order asc) {
-      title,
-      description,
-      icon,
-      images[] { asset->{ url }, hotspot, crop },
-      order
-    }
-  }
-`;
-
-// ─── DATA TRANSFORMATION ──────────────────────────────────────────────────────
-
-function processImageToUrl(
-  image: unknown,
-  width?: number,
-  quality = 85,
-): string | null {
-  if (!image) return null;
-  try {
-    let builder = urlFor(image).auto("format").quality(quality);
-    if (width) builder = builder.width(width);
-    return builder.url();
-  } catch {
-    return null;
-  }
-}
-
-const fetchMissionExperiencePageData =
-  async (): Promise<MissionExperiencePageData | null> => {
-    try {
-      const raw = await client.fetch(query);
-      if (!raw) return null;
-
-      const data: MissionExperiencePageData = {
-        seo: {
-          seoTitle: raw.seoTitle,
-          seoDescription: raw.seoDescription,
-          canonicalUrl: raw.canonicalUrl,
-          seoImageUrl:
-            raw.seoImage?.asset?.url ??
-            processImageToUrl(raw.seoImage, 1200) ??
-            null,
-        },
-
-        hero: {
-          title: raw.hero?.title,
-          subtitle: raw.hero?.subtitle,
-          backgroundImageUrl:
-            raw.hero?.backgroundImage?.asset?.url ??
-            processImageToUrl(raw.hero?.backgroundImage, 1920) ??
-            null,
-          backgroundVideoUrl: raw.hero?.backgroundVideo?.asset?.url ?? null,
-        },
-
-        setup: {
-          title: raw.setup?.title,
-          description: raw.setup?.description,
-        },
-
-        phases: (raw.phases ?? []).map(
-          (phase: {
-            title?: string;
-            description?: string;
-            icon?: string;
-            images?: { asset?: { url?: string } }[];
-            order?: number;
-          }): MissionPhase => ({
-            title: phase.title,
-            description: phase.description,
-            icon: phase.icon,
-            imageUrls: (phase.images ?? [])
-              .map((img) => img.asset?.url ?? processImageToUrl(img, 900) ?? "")
-              .filter(Boolean),
-            order: phase.order ?? 0,
-          }),
-        ),
-      };
-
-      return data;
-    } catch (error) {
-      console.error("Error fetching mission experience page data:", error);
-      return null;
-    }
-  };
-
-// ─── CACHED EXPORT ────────────────────────────────────────────────────────────
-
-const cachedFetch = unstable_cache(
-  fetchMissionExperiencePageData,
-  ["missionExperiencePage"],
-  {
-    revalidate: DEFAULT_REVALIDATE,
-    tags: ["missionExperiencePage", "content"],
-  },
-);
-
-export async function getMissionExperiencePageData(): Promise<MissionExperiencePageData | null> {
-  if (process.env.NODE_ENV === "development") {
-    return await fetchMissionExperiencePageData();
-  }
-  return await cachedFetch();
-}
-
 
 ================================================================================
 FILE: src\sanity\lib\image.ts
@@ -13935,10 +13474,9 @@ import landingPage from "./landingPage";
 import navbar from "./navbar";
 import footer from "./footer";
 import event from "./event";
-import missionExperiencePage from "./missionExperiencePage";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [landingPage, navbar, footer, event, missionExperiencePage],
+  types: [landingPage, navbar, footer, event],
 };
 
 
@@ -14160,8 +13698,8 @@ export default defineType({
           name: "ctaLink",
           title: "CTA Button Link",
           type: "string",
-          initialValue: "/mission-experience",
-          description: "Internal path or anchor, e.g. /mission-experience",
+          initialValue: "#mission-experience",
+          description: "Anchor that scrolls to mission content, e.g. #mission-experience",
         }),
         defineField({
           name: "showcaseImages",
@@ -14200,6 +13738,133 @@ export default defineType({
           title: "Body Paragraphs",
           type: "array",
           of: [{ type: "text", rows: 4 }],
+        }),
+
+        // ─── MISSION EXPERIENCE (embedded) ───────────────────────
+        defineField({
+          name: "missionExperience",
+          title: "Mission Experience",
+          type: "object",
+          description:
+            "Inline mission experience content — displayed as a sub-section after the experience carousel.",
+          options: { collapsible: true, collapsed: true },
+          fields: [
+            defineField({
+              name: "hero",
+              title: "Hero Section",
+              type: "object",
+              options: { collapsible: true, collapsed: false },
+              fields: [
+                defineField({
+                  name: "title",
+                  title: "Hero Title",
+                  type: "string",
+                  validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                  name: "subtitle",
+                  title: "Hero Subtitle",
+                  type: "text",
+                  rows: 3,
+                }),
+                defineField({
+                  name: "backgroundImage",
+                  title: "Background Image",
+                  type: "image",
+                  options: { hotspot: true },
+                  description: "Shown when no video is provided.",
+                }),
+                defineField({
+                  name: "backgroundVideo",
+                  title: "Background Video",
+                  type: "file",
+                  options: { accept: "video/mp4" },
+                  description:
+                    "Takes priority over background image when present.",
+                }),
+              ],
+            }),
+            defineField({
+              name: "setup",
+              title: "The Setup Section",
+              type: "object",
+              options: { collapsible: true, collapsed: false },
+              fields: [
+                defineField({
+                  name: "title",
+                  title: "Section Title",
+                  type: "string",
+                  validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                  name: "description",
+                  title: "Description",
+                  type: "text",
+                  rows: 6,
+                }),
+              ],
+            }),
+            defineField({
+              name: "phases",
+              title: "Mission Phases",
+              type: "array",
+              of: [
+                {
+                  type: "object",
+                  fields: [
+                    defineField({
+                      name: "title",
+                      title: "Phase Title",
+                      type: "string",
+                      validation: (Rule) => Rule.required(),
+                    }),
+                    defineField({
+                      name: "description",
+                      title: "Description",
+                      type: "text",
+                      rows: 8,
+                    }),
+                    defineField({
+                      name: "icon",
+                      title: "Icon Name",
+                      type: "string",
+                      description:
+                        "Lucide icon key: lock, file-text, users, key, target, etc.",
+                    }),
+                    defineField({
+                      name: "images",
+                      title: "Phase Images",
+                      type: "array",
+                      of: [{ type: "image", options: { hotspot: true } }],
+                      options: { layout: "grid" },
+                      description:
+                        "Upload one or more images. Multiple images display as an auto-playing carousel.",
+                    }),
+                    defineField({
+                      name: "order",
+                      title: "Phase Order",
+                      type: "number",
+                      validation: (Rule) => Rule.required().min(1),
+                    }),
+                  ],
+                  preview: {
+                    select: {
+                      title: "title",
+                      subtitle: "order",
+                      media: "images.0",
+                    },
+                    prepare({ title, subtitle, media }) {
+                      return {
+                        title: title || "Untitled Phase",
+                        subtitle: subtitle ? `Phase ${subtitle}` : "",
+                        media,
+                      };
+                    },
+                  },
+                },
+              ],
+            }),
+          ],
         }),
       ],
     }),
@@ -14564,185 +14229,6 @@ export default defineType({
 
 
 ================================================================================
-FILE: src\sanity\schemaTypes\missionExperiencePage.ts
-================================================================================
-
-import { defineField, defineType } from "sanity";
-
-export default defineType({
-  name: "missionExperiencePage",
-  title: "Mission Experience Page",
-  type: "document",
-  groups: [
-    { name: "seo", title: "SEO" },
-    { name: "hero", title: "Hero", default: true },
-    { name: "setup", title: "The Setup" },
-    { name: "phases", title: "Mission Phases" },
-  ],
-  fields: [
-    defineField({
-      name: "title",
-      title: "Internal Title",
-      type: "string",
-      group: "hero",
-    }),
-
-    defineField({
-      name: "seoTitle",
-      title: "SEO Title",
-      type: "string",
-      group: "seo",
-      validation: (Rule) => Rule.max(65),
-    }),
-    defineField({
-      name: "seoDescription",
-      title: "SEO Description",
-      type: "text",
-      rows: 3,
-      group: "seo",
-      validation: (Rule) => Rule.max(160),
-    }),
-    defineField({
-      name: "seoImage",
-      title: "SEO Image",
-      type: "image",
-      group: "seo",
-      options: { hotspot: true },
-    }),
-    defineField({
-      name: "canonicalUrl",
-      title: "Canonical URL",
-      type: "url",
-      group: "seo",
-    }),
-
-    // ─── HERO ────────────────────────────────────────────────────
-    defineField({
-      name: "hero",
-      title: "Hero Section",
-      type: "object",
-      group: "hero",
-      options: { collapsible: true, collapsed: false },
-      fields: [
-        defineField({
-          name: "title",
-          title: "Hero Title",
-          type: "string",
-          validation: (Rule) => Rule.required(),
-        }),
-        defineField({
-          name: "subtitle",
-          title: "Hero Subtitle",
-          type: "text",
-          rows: 3,
-        }),
-        defineField({
-          name: "backgroundImage",
-          title: "Background Image",
-          type: "image",
-          options: { hotspot: true },
-          description: "Shown when no video is provided.",
-        }),
-        defineField({
-          name: "backgroundVideo",
-          title: "Background Video",
-          type: "file",
-          options: { accept: "video/mp4" },
-          description: "Takes priority over background image when present.",
-        }),
-      ],
-    }),
-
-    // ─── SETUP ───────────────────────────────────────────────────
-    defineField({
-      name: "setup",
-      title: "The Setup Section",
-      type: "object",
-      group: "setup",
-      options: { collapsible: true, collapsed: false },
-      fields: [
-        defineField({
-          name: "title",
-          title: "Section Title",
-          type: "string",
-          validation: (Rule) => Rule.required(),
-        }),
-        defineField({
-          name: "description",
-          title: "Description",
-          type: "text",
-          rows: 6,
-        }),
-      ],
-    }),
-
-    // ─── PHASES ──────────────────────────────────────────────────
-    defineField({
-      name: "phases",
-      title: "Mission Phases",
-      type: "array",
-      group: "phases",
-      of: [
-        {
-          type: "object",
-          fields: [
-            defineField({
-              name: "title",
-              title: "Phase Title",
-              type: "string",
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: "description",
-              title: "Description",
-              type: "text",
-              rows: 8,
-            }),
-            defineField({
-              name: "icon",
-              title: "Icon Name",
-              type: "string",
-              description:
-                "Lucide icon key: lock, file-text, users, key, target, etc.",
-            }),
-            defineField({
-              name: "images",
-              title: "Phase Images",
-              type: "array",
-              of: [{ type: "image", options: { hotspot: true } }],
-              options: { layout: "grid" },
-              description:
-                "Upload one or more images. Multiple images will display as an auto-playing carousel.",
-            }),
-            defineField({
-              name: "order",
-              title: "Phase Order",
-              type: "number",
-              validation: (Rule) => Rule.required().min(1),
-            }),
-          ],
-          preview: {
-            select: {
-              title: "title",
-              subtitle: "order",
-              media: "images.0",
-            },
-            prepare({ title, subtitle, media }) {
-              return {
-                title: title || "Untitled Phase",
-                subtitle: subtitle ? `Phase ${subtitle}` : "",
-                media,
-              };
-            },
-          },
-        },
-      ],
-    }),
-  ],
-});
-
-
-================================================================================
 FILE: src\sanity\schemaTypes\navbar.ts
 ================================================================================
 
@@ -14809,11 +14295,6 @@ import type { StructureResolver } from "sanity/structure";
 // Opening a sidebar item goes directly to that document (no list view).
 const SINGLETONS: Array<{ type: string; title: string; id: string }> = [
   { type: "landingPage", title: "Landing Page", id: "landingPage" },
-  {
-    type: "missionExperiencePage",
-    title: "Mission Experience",
-    id: "missionExperiencePage",
-  },
   { type: "navbar", title: "Navbar", id: "navbar" },
   { type: "footer", title: "Footer", id: "footer" },
 ];
