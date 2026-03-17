@@ -4,11 +4,6 @@ import type { StructureResolver } from "sanity/structure";
 // Opening a sidebar item goes directly to that document (no list view).
 const SINGLETONS: Array<{ type: string; title: string; id: string }> = [
   { type: "landingPage", title: "Landing Page", id: "landingPage" },
-  {
-    type: "missionExperiencePage",
-    title: "Mission Experience",
-    id: "missionExperiencePage",
-  },
   { type: "navbar", title: "Navbar", id: "navbar" },
   { type: "footer", title: "Footer", id: "footer" },
 ];

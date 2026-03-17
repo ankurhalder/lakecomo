@@ -10,8 +10,8 @@ import {
   Target,
   type LucideIcon,
 } from "lucide-react";
-import type { MissionPhase } from "@/sanity/lib/getMissionExperiencePage";
-import PhaseCarousel from "../components/PhaseCarousel";
+import type { MissionPhase } from "@/sanity/lib/getLandingPage";
+import PhaseCarousel from "./PhaseCarousel";
 
 const ICON_MAP: Record<string, LucideIcon> = {
   lock: Lock,

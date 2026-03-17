@@ -212,8 +212,8 @@ export default defineType({
           name: "ctaLink",
           title: "CTA Button Link",
           type: "string",
-          initialValue: "/mission-experience",
-          description: "Internal path or anchor, e.g. /mission-experience",
+          initialValue: "#mission-experience",
+          description: "Anchor that scrolls to mission content, e.g. #mission-experience",
         }),
         defineField({
           name: "showcaseImages",
@@ -252,6 +252,133 @@ export default defineType({
           title: "Body Paragraphs",
           type: "array",
           of: [{ type: "text", rows: 4 }],
+        }),
+
+        // ─── MISSION EXPERIENCE (embedded) ───────────────────────
+        defineField({
+          name: "missionExperience",
+          title: "Mission Experience",
+          type: "object",
+          description:
+            "Inline mission experience content — displayed as a sub-section after the experience carousel.",
+          options: { collapsible: true, collapsed: true },
+          fields: [
+            defineField({
+              name: "hero",
+              title: "Hero Section",
+              type: "object",
+              options: { collapsible: true, collapsed: false },
+              fields: [
+                defineField({
+                  name: "title",
+                  title: "Hero Title",
+                  type: "string",
+                  validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                  name: "subtitle",
+                  title: "Hero Subtitle",
+                  type: "text",
+                  rows: 3,
+                }),
+                defineField({
+                  name: "backgroundImage",
+                  title: "Background Image",
+                  type: "image",
+                  options: { hotspot: true },
+                  description: "Shown when no video is provided.",
+                }),
+                defineField({
+                  name: "backgroundVideo",
+                  title: "Background Video",
+                  type: "file",
+                  options: { accept: "video/mp4" },
+                  description:
+                    "Takes priority over background image when present.",
+                }),
+              ],
+            }),
+            defineField({
+              name: "setup",
+              title: "The Setup Section",
+              type: "object",
+              options: { collapsible: true, collapsed: false },
+              fields: [
+                defineField({
+                  name: "title",
+                  title: "Section Title",
+                  type: "string",
+                  validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                  name: "description",
+                  title: "Description",
+                  type: "text",
+                  rows: 6,
+                }),
+              ],
+            }),
+            defineField({
+              name: "phases",
+              title: "Mission Phases",
+              type: "array",
+              of: [
+                {
+                  type: "object",
+                  fields: [
+                    defineField({
+                      name: "title",
+                      title: "Phase Title",
+                      type: "string",
+                      validation: (Rule) => Rule.required(),
+                    }),
+                    defineField({
+                      name: "description",
+                      title: "Description",
+                      type: "text",
+                      rows: 8,
+                    }),
+                    defineField({
+                      name: "icon",
+                      title: "Icon Name",
+                      type: "string",
+                      description:
+                        "Lucide icon key: lock, file-text, users, key, target, etc.",
+                    }),
+                    defineField({
+                      name: "images",
+                      title: "Phase Images",
+                      type: "array",
+                      of: [{ type: "image", options: { hotspot: true } }],
+                      options: { layout: "grid" },
+                      description:
+                        "Upload one or more images. Multiple images display as an auto-playing carousel.",
+                    }),
+                    defineField({
+                      name: "order",
+                      title: "Phase Order",
+                      type: "number",
+                      validation: (Rule) => Rule.required().min(1),
+                    }),
+                  ],
+                  preview: {
+                    select: {
+                      title: "title",
+                      subtitle: "order",
+                      media: "images.0",
+                    },
+                    prepare({ title, subtitle, media }) {
+                      return {
+                        title: title || "Untitled Phase",
+                        subtitle: subtitle ? `Phase ${subtitle}` : "",
+                        media,
+                      };
+                    },
+                  },
+                },
+              ],
+            }),
+          ],
         }),
       ],
     }),

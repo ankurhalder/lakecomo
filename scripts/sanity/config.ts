@@ -69,7 +69,6 @@ export const KNOWN_TYPES = [
   "navbar",
   "footer",
   "event",
-  "missionExperiencePage",
 ] as const;
 
 // ---------------------------------------------------------------------------

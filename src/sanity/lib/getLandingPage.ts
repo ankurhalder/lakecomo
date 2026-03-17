@@ -4,6 +4,26 @@ import { urlFor } from "./image";
 
 // ─── TYPES ─────────────────────────────────────────────────────────────────────
 
+export interface MissionPhase {
+  title?: string;
+  description?: string;
+  icon?: string;
+  imageUrls: string[];
+  order: number;
+}
+
+export interface MissionHeroData {
+  title?: string;
+  subtitle?: string;
+  backgroundImageUrl?: string | null;
+  backgroundVideoUrl?: string | null;
+}
+
+export interface MissionSetupData {
+  title?: string;
+  description?: string;
+}
+
 export interface EventData {
   _id: string;
   title: string;
@@ -65,6 +85,11 @@ export interface LandingPageData {
     ctaLink?: string;
     showcaseImages: { url: string; title?: string; role?: string }[];
     paragraphs?: string[];
+    missionExperience?: {
+      hero: MissionHeroData;
+      setup: MissionSetupData;
+      phases: MissionPhase[];
+    };
   };
 
   assignment: {
@@ -170,7 +195,26 @@ const query = `
         title,
         role
       },
-      paragraphs
+      paragraphs,
+      missionExperience {
+        hero {
+          title,
+          subtitle,
+          backgroundImage { asset->{ url }, hotspot, crop },
+          backgroundVideo { asset->{ url } }
+        },
+        setup {
+          title,
+          description
+        },
+        "phases": phases[] | order(order asc) {
+          title,
+          description,
+          icon,
+          images[] { asset->{ url }, hotspot, crop },
+          order
+        }
+      }
     },
 
     assignment {
@@ -331,7 +375,7 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
         sectionSubtitle: raw.experience?.sectionSubtitle,
         eyebrowLabel: raw.experience?.eyebrowLabel ?? "The Experience",
         ctaLabel: raw.experience?.ctaLabel ?? "Mission Experience",
-        ctaLink: raw.experience?.ctaLink ?? "/mission-experience",
+        ctaLink: raw.experience?.ctaLink ?? "#mission-experience",
         showcaseImages: (raw.experience?.showcaseImages ?? [])
           .map(
             (item: {
@@ -349,6 +393,50 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           )
           .filter((img: { url: string }) => img.url),
         paragraphs: raw.experience?.paragraphs ?? [],
+        missionExperience: raw.experience?.missionExperience
+          ? {
+              hero: {
+                title: raw.experience.missionExperience.hero?.title,
+                subtitle: raw.experience.missionExperience.hero?.subtitle,
+                backgroundImageUrl:
+                  raw.experience.missionExperience.hero?.backgroundImage?.asset
+                    ?.url ??
+                  processImageToUrl(
+                    raw.experience.missionExperience.hero?.backgroundImage,
+                    1920,
+                  ) ??
+                  null,
+                backgroundVideoUrl:
+                  raw.experience.missionExperience.hero?.backgroundVideo?.asset
+                    ?.url ?? null,
+              },
+              setup: {
+                title: raw.experience.missionExperience.setup?.title,
+                description:
+                  raw.experience.missionExperience.setup?.description,
+              },
+              phases: (raw.experience.missionExperience.phases ?? []).map(
+                (phase: {
+                  title?: string;
+                  description?: string;
+                  icon?: string;
+                  images?: { asset?: { url?: string } }[];
+                  order?: number;
+                }): MissionPhase => ({
+                  title: phase.title,
+                  description: phase.description,
+                  icon: phase.icon,
+                  imageUrls: (phase.images ?? [])
+                    .map(
+                      (img) =>
+                        img.asset?.url ?? processImageToUrl(img, 900) ?? "",
+                    )
+                    .filter(Boolean),
+                  order: phase.order ?? 0,
+                }),
+              ),
+            }
+          : undefined,
       },
 
       assignment: {

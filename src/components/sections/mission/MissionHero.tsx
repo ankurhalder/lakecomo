@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import type { MissionExperiencePageData } from "@/sanity/lib/getMissionExperiencePage";
+import type { MissionHeroData } from "@/sanity/lib/getLandingPage";
 
 const textVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -13,11 +13,7 @@ const textVariants = {
   }),
 };
 
-export default function MissionHero({
-  data,
-}: {
-  data: MissionExperiencePageData["hero"];
-}) {
+export default function MissionHero({ data }: { data: MissionHeroData }) {
   const { title, subtitle, backgroundImageUrl, backgroundVideoUrl } = data;
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -118,7 +114,7 @@ export default function MissionHero({
           </div>
         </motion.div>
 
-        <motion.h1
+        <motion.h2
           custom={0.5}
           variants={textVariants}
           initial="hidden"
@@ -130,7 +126,7 @@ export default function MissionHero({
           }}
         >
           {title}
-        </motion.h1>
+        </motion.h2>
 
         <motion.p
           custom={0.7}

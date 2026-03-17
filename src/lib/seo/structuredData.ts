@@ -88,7 +88,7 @@ export function getTouristExperienceJsonLd() {
         name: seoConfig.siteName,
         url: seoConfig.siteUrl,
       },
-      url: `${seoConfig.siteUrl}/mission-experience`,
+      url: `${seoConfig.siteUrl}/#mission-experience`,
       areaServed: "Lake Como, Italy",
     },
     {

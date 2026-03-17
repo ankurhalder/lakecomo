@@ -2,13 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import type { MissionExperiencePageData } from "@/sanity/lib/getMissionExperiencePage";
+import type { MissionSetupData } from "@/sanity/lib/getLandingPage";
 
-export default function MissionSetup({
-  data,
-}: {
-  data: MissionExperiencePageData["setup"];
-}) {
+export default function MissionSetup({ data }: { data: MissionSetupData }) {
   const { title, description } = data;
   const sectionRef = useRef<HTMLElement>(null);
 
