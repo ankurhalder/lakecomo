@@ -31,7 +31,7 @@
     "framer-motion": "^12.23.26",
     "lenis": "^1.3.17",
     "lucide-react": "^0.562.0",
-    "next": "^16.1.6",
+    "next": "^16.2.0",
     "next-sanity": "^11.6.12",
     "nodemailer": "^7.0.12",
     "react": "19.2.3",
