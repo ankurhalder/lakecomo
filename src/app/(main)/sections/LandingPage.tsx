@@ -20,7 +20,7 @@ export default function LandingPage({ data }: { data: LandingPageData }) {
       <ExperienceSection data={data.experience} />
       <AssignmentSection data={data.assignment} />
       <PrivateEventsSection data={data.privateEvents} />
-      <UpcomingEventsSection events={data.events} />
+      <UpcomingEventsSection events={data.events} videoMuteLabel={data.upcomingEventsSection?.videoMuteLabel} />
       <InquireSection data={data.inquire} />
     </div>
   );

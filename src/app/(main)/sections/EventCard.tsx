@@ -24,12 +24,14 @@ interface EventCardProps {
   event: EventData;
   index: number;
   onCtaClick: () => void;
+  muteLabel?: string;
 }
 
 export default function EventCard({
   event,
   index,
   onCtaClick,
+  muteLabel,
 }: EventCardProps) {
   const {
     title,
@@ -211,18 +213,31 @@ export default function EventCard({
 
         {/* Mute toggle — only for video cards */}
         {hasVideo && (
-          <button
-            onClick={toggleMute}
-            className="absolute bottom-2 right-2 z-10 w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm border transition-opacity duration-200 opacity-60 hover:opacity-100"
-            style={{
-              backgroundColor: "rgba(0,0,0,0.55)",
-              borderColor: "rgba(255,255,255,0.25)",
-              color: "rgba(255,255,255,0.9)",
-            }}
-            aria-label={isMuted ? "Unmute video" : "Mute video"}
-          >
-            {isMuted ? <VolumeX size={13} /> : <Volume2 size={13} />}
-          </button>
+          <div className="absolute bottom-2 right-2 z-10 flex items-center gap-1.5">
+            {muteLabel && (
+              <span
+                className="text-[10px] font-medium px-2 py-1 rounded-full whitespace-nowrap"
+                style={{
+                  backgroundColor: "rgba(0,0,0,0.55)",
+                  color: "rgba(255,255,255,0.9)",
+                }}
+              >
+                {muteLabel}
+              </span>
+            )}
+            <button
+              onClick={toggleMute}
+              className="w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-sm border transition-opacity duration-200 opacity-60 hover:opacity-100"
+              style={{
+                backgroundColor: "rgba(0,0,0,0.55)",
+                borderColor: "rgba(255,255,255,0.25)",
+                color: "rgba(255,255,255,0.9)",
+              }}
+              aria-label={isMuted ? "Unmute video" : "Mute video"}
+            >
+              {isMuted ? <VolumeX size={13} /> : <Volume2 size={13} />}
+            </button>
+          </div>
         )}
       </div>
 

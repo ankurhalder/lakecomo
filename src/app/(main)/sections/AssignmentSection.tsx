@@ -12,6 +12,7 @@ type AssignmentCard = NonNullable<
 const DEFAULT_CARDS: AssignmentCard[] = [
   {
     title: "Dinner Mission",
+    description: undefined,
     duration: "3-hour immersive experience",
     features: [
       "Multi-course themed dinner",
@@ -24,6 +25,7 @@ const DEFAULT_CARDS: AssignmentCard[] = [
   },
   {
     title: "Cocktail Mission",
+    description: undefined,
     duration: "90–120 minute experience",
     features: [
       "Curated cocktails & hors d'oeuvres",
@@ -36,18 +38,38 @@ const DEFAULT_CARDS: AssignmentCard[] = [
   },
 ];
 
+/** Returns the responsive grid class based on card count */
+function getGridClass(count: number): string {
+  if (count <= 1) return "grid grid-cols-1 gap-4 lg:gap-6";
+  if (count === 2) return "grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6";
+  if (count === 3) return "grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6";
+  if (count === 4) return "grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6";
+  return "grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6"; // 5+
+}
+
+/** Number of columns at md+ breakpoint for a given count */
+function getCols(count: number): number {
+  if (count <= 1) return 1;
+  if (count <= 3) return count;
+  if (count === 4) return 2;
+  return 3; // 5+
+}
+
 function MissionCard({
   card,
   fallback,
   index,
   onCtaClick,
+  compact,
 }: {
   card: AssignmentCard;
   fallback: AssignmentCard;
   index: number;
   onCtaClick: () => void;
+  compact: boolean;
 }) {
   const title = card.title || fallback.title;
+  const description = card.description ?? fallback.description;
   const duration = card.duration || fallback.duration;
   const features = card.features?.length
     ? card.features
@@ -71,7 +93,7 @@ function MissionCard({
     >
       {/* Image */}
       <div
-        className="relative h-[120px] sm:h-[150px] w-full overflow-hidden"
+        className={`relative w-full overflow-hidden ${compact ? "h-[100px]" : "h-[120px] sm:h-[150px]"}`}
         style={{ backgroundColor: "var(--surface-raised)" }}
       >
         {imageUrl ? (
@@ -80,7 +102,11 @@ function MissionCard({
             alt={title || "Mission"}
             fill
             className="object-cover object-top"
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes={
+              compact
+                ? "(max-width: 768px) 100vw, 33vw"
+                : "(max-width: 768px) 100vw, 50vw"
+            }
           />
         ) : (
           <div
@@ -98,7 +124,7 @@ function MissionCard({
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-5 sm:p-6 gap-4">
+      <div className={`flex flex-col flex-1 gap-4 ${compact ? "p-4" : "p-5 sm:p-6"}`}>
         <div>
           <p
             className="text-xs uppercase tracking-[0.25em] mb-1 font-light"
@@ -107,12 +133,21 @@ function MissionCard({
             Mission {String(index + 1).padStart(2, "0")}
           </p>
           <h3
-            className="text-xl sm:text-2xl font-bold leading-tight"
+            className={`font-bold leading-tight ${compact ? "text-lg" : "text-xl sm:text-2xl"}`}
             style={{ color: "var(--text-primary)" }}
           >
             {title}
           </h3>
         </div>
+
+        {description && (
+          <p
+            className={`italic ${compact ? "text-xs" : "text-sm"}`}
+            style={{ color: "var(--text-secondary)" }}
+          >
+            {description}
+          </p>
+        )}
 
         <div
           className="h-px"
@@ -121,7 +156,7 @@ function MissionCard({
 
         {duration && (
           <p
-            className="text-xs sm:text-sm"
+            className={compact ? "text-xs" : "text-xs sm:text-sm"}
             style={{ color: "var(--text-muted)" }}
           >
             {duration}
@@ -176,6 +211,14 @@ export default function AssignmentSection({
   const { lenisRef } = useLenis();
 
   const displayCards = cards && cards.length > 0 ? cards : DEFAULT_CARDS;
+  const count = displayCards.length;
+  const cols = getCols(count);
+  const compact = cols >= 3;
+
+  // Split into full rows + an incomplete last row (needs centering)
+  const remainder = count % cols;
+  const fullRowItems = remainder ? displayCards.slice(0, -remainder) : displayCards;
+  const lastRowItems = remainder ? displayCards.slice(-remainder) : [];
 
   const scrollToContact = () => {
     const el = document.querySelector("#contact");
@@ -226,18 +269,42 @@ export default function AssignmentSection({
           </h2>
         </motion.div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
-          {displayCards.map((card, i) => (
+        {/* Cards grid — full rows */}
+        <div className={getGridClass(count)}>
+          {fullRowItems.map((card, i) => (
             <MissionCard
               key={i}
               card={card}
               fallback={DEFAULT_CARDS[i] || DEFAULT_CARDS[0]}
               index={i}
               onCtaClick={scrollToContact}
+              compact={compact}
             />
           ))}
         </div>
+
+        {/* Centered last row (only when last row is incomplete) */}
+        {lastRowItems.length > 0 && (
+          <div className="flex justify-center gap-4 lg:gap-6 mt-4 lg:mt-6 flex-wrap">
+            {lastRowItems.map((card, i) => {
+              const globalIndex = fullRowItems.length + i;
+              return (
+                <div
+                  key={globalIndex}
+                  className="w-full md:w-[calc(33.333%-1rem)]"
+                >
+                  <MissionCard
+                    card={card}
+                    fallback={DEFAULT_CARDS[globalIndex] || DEFAULT_CARDS[0]}
+                    index={globalIndex}
+                    onCtaClick={scrollToContact}
+                    compact={compact}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );

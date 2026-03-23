@@ -91,6 +91,7 @@ export interface LandingPageData {
     sectionTitle?: string;
     cards?: {
       title?: string;
+      description?: string;
       duration?: string;
       features?: string[];
       ctaText?: string;
@@ -145,6 +146,10 @@ export interface LandingPageData {
   };
 
   events: EventData[];
+
+  upcomingEventsSection?: {
+    videoMuteLabel?: string;
+  };
 }
 
 // ─── GROQ QUERY — LANDING PAGE ────────────────────────────────────────────────
@@ -216,6 +221,7 @@ const query = `
       sectionTitle,
       "cards": cards[] {
         title,
+        description,
         duration,
         features,
         ctaText,
@@ -267,6 +273,10 @@ const query = `
         message,
         buttonText
       }
+    },
+
+    "upcomingEventsSection": upcomingEvents {
+      videoMuteLabel
     },
 
     "events": upcomingEvents.events[] | order(pinned desc, displayOrder asc) {
@@ -424,12 +434,14 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
         cards: (raw.assignment?.cards ?? []).map(
           (card: {
             title?: string;
+            description?: string;
             duration?: string;
             features?: string[];
             ctaText?: string;
             image?: { asset?: { url?: string } };
           }) => ({
             title: card.title,
+            description: card.description,
             duration: card.duration,
             features: card.features ?? [],
             ctaText: card.ctaText,
@@ -515,6 +527,10 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           displayOrder: ev.displayOrder,
         }),
       ),
+
+      upcomingEventsSection: {
+        videoMuteLabel: raw.upcomingEventsSection?.videoMuteLabel,
+      },
     };
 
     return data;

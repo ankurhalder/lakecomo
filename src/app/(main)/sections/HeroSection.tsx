@@ -66,7 +66,6 @@ export default function HeroSection({
   const [isMobile, setIsMobile] = useState(false);
   const [showPlayIndicator, setShowPlayIndicator] = useState(true);
   const [userInteracted, setUserInteracted] = useState(false);
-  const [heroVisible, setHeroVisible] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isMuted, setIsMuted] = useState(true);
@@ -86,16 +85,6 @@ export default function HeroSection({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setHeroVisible(entry.isIntersecting),
-      { threshold: 0.05 },
-    );
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -280,7 +269,7 @@ export default function HeroSection({
           </motion.p>
         </motion.div>
 
-        <div className="flex flex-col gap-2.5 items-center w-full max-w-xs mx-auto pb-12">
+        <div className="flex items-center justify-center gap-3 pb-12">
           <motion.button
             variants={buttonVariants}
             initial="hidden"
@@ -288,7 +277,7 @@ export default function HeroSection({
             whileHover="hover"
             whileTap="tap"
             onClick={scrollToStory}
-            className="w-full px-5 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full shadow-lg"
+            className="px-5 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full shadow-lg shrink-0"
             style={{
               background: "var(--accent-gradient)",
               color: "var(--accent-text)",
@@ -296,6 +285,81 @@ export default function HeroSection({
           >
             Discover the Mission
           </motion.button>
+
+          {/* Mute icon with glow rings + speech bubble below */}
+          <motion.div
+            className="relative shrink-0 flex items-center justify-center w-10 h-10"
+            initial={{ opacity: 0, y: 40, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6, delay: 1.45, ease: "easeOut" }}
+          >
+            <AnimatePresence>
+              {showPlayIndicator && !userInteracted && (
+                <>
+                  <motion.div
+                    className="absolute inset-0 rounded-full pointer-events-none"
+                    style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
+                    animate={{ scale: [1, 1.7, 1.7], opacity: [0.3, 0, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                  />
+                  <motion.div
+                    className="absolute inset-0 rounded-full pointer-events-none"
+                    style={{ backgroundColor: "rgba(255,255,255,0.12)" }}
+                    animate={{ scale: [1, 2.2, 2.2], opacity: [0.18, 0, 0.18] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
+                  />
+                </>
+              )}
+            </AnimatePresence>
+            <motion.button
+              onClick={toggleSound}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="relative w-10 h-10 rounded-full backdrop-blur-md border flex items-center justify-center"
+              style={{
+                backgroundColor: showPlayIndicator && !userInteracted ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.1)",
+                borderColor: showPlayIndicator && !userInteracted ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.25)",
+                color: "rgba(255,255,255,0.9)",
+              }}
+              aria-label={isMuted ? "Unmute video" : "Mute video"}
+            >
+              <motion.div
+                key={isMuted ? "muted" : "unmuted"}
+                initial={{ scale: 0, rotate: -90 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: "spring" as const, stiffness: 300 }}
+              >
+                {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+              </motion.div>
+            </motion.button>
+
+            {/* Speech bubble below the icon */}
+            <AnimatePresence>
+              {showPlayIndicator && !userInteracted && (
+                <motion.div
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 flex flex-col items-center pointer-events-none z-10"
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  {/* Arrow pointing up */}
+                  <div style={{
+                    width: 0, height: 0,
+                    borderLeft: "5px solid transparent",
+                    borderRight: "5px solid transparent",
+                    borderBottom: "5px solid rgba(255,255,255,0.93)",
+                  }} />
+                  <span
+                    className="whitespace-nowrap text-xs font-medium px-3 py-1.5 rounded-full shadow-lg"
+                    style={{ backgroundColor: "rgba(255,255,255,0.93)", color: "#0a0a0f" }}
+                  >
+                    {playIndicatorText || "hear the story"}
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </div>
 
@@ -352,109 +416,102 @@ export default function HeroSection({
             >
               {subHeading}
             </motion.p>
-            <motion.button
-              variants={buttonVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover="hover"
-              whileTap="tap"
-              onClick={scrollToStory}
-              className="px-5 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full shadow-lg"
-              style={{
-                background: "var(--accent-gradient)",
-                color: "var(--accent-text)",
-              }}
-            >
-              Discover the Mission
-            </motion.button>
+            {/* CTA + mute icon + label — same row */}
+            <div className="flex items-center gap-3">
+              <motion.button
+                variants={buttonVariants}
+                initial="hidden"
+                animate="visible"
+                whileHover="hover"
+                whileTap="tap"
+                onClick={scrollToStory}
+                className="px-5 py-2 text-[11px] font-bold uppercase tracking-widest rounded-full shadow-lg shrink-0"
+                style={{
+                  background: "var(--accent-gradient)",
+                  color: "var(--accent-text)",
+                }}
+              >
+                Discover the Mission
+              </motion.button>
+
+              {/* Mute icon with glow rings + speech bubble below */}
+              <motion.div
+                className="relative shrink-0 flex items-center justify-center w-10 h-10"
+                initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.6, delay: 1.45, ease: "easeOut" }}
+              >
+                <AnimatePresence>
+                  {showPlayIndicator && !userInteracted && (
+                    <>
+                      <motion.div
+                        className="absolute inset-0 rounded-full pointer-events-none"
+                        style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
+                        animate={{ scale: [1, 1.7, 1.7], opacity: [0.3, 0, 0.3] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                      />
+                      <motion.div
+                        className="absolute inset-0 rounded-full pointer-events-none"
+                        style={{ backgroundColor: "rgba(255,255,255,0.12)" }}
+                        animate={{ scale: [1, 2.2, 2.2], opacity: [0.18, 0, 0.18] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
+                      />
+                    </>
+                  )}
+                </AnimatePresence>
+                <motion.button
+                  onClick={toggleSound}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="relative w-10 h-10 rounded-full backdrop-blur-md border flex items-center justify-center"
+                  style={{
+                    backgroundColor: showPlayIndicator && !userInteracted ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.1)",
+                    borderColor: showPlayIndicator && !userInteracted ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.25)",
+                    color: "rgba(255,255,255,0.9)",
+                  }}
+                  aria-label={isMuted ? "Unmute video" : "Mute video"}
+                >
+                  <motion.div
+                    key={isMuted ? "muted" : "unmuted"}
+                    initial={{ scale: 0, rotate: -90 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ type: "spring" as const, stiffness: 300 }}
+                  >
+                    {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                  </motion.div>
+                </motion.button>
+
+                {/* Speech bubble below the icon */}
+                <AnimatePresence>
+                  {showPlayIndicator && !userInteracted && (
+                    <motion.div
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 flex flex-col items-center pointer-events-none z-10"
+                      initial={{ opacity: 0, y: -4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -4 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      {/* Arrow pointing up */}
+                      <div style={{
+                        width: 0, height: 0,
+                        borderLeft: "5px solid transparent",
+                        borderRight: "5px solid transparent",
+                        borderBottom: "5px solid rgba(255,255,255,0.93)",
+                      }} />
+                      <span
+                        className="whitespace-nowrap text-xs font-medium px-3 py-1.5 rounded-full shadow-lg"
+                        style={{ backgroundColor: "rgba(255,255,255,0.93)", color: "#0a0a0f" }}
+                      >
+                        {playIndicatorText || "hear the story"}
+                      </span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Mute toggle — only visible while hero is in view */}
-      {heroVisible && (
-      <div className="fixed bottom-8 md:bottom-10 right-4 md:right-6 z-50">
-        <AnimatePresence>
-          {showPlayIndicator && !userInteracted && (
-            <>
-              <motion.div
-                className="absolute inset-0 rounded-full"
-                style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
-                animate={{ scale: [1, 1.7, 1.7], opacity: [0.3, 0, 0.3] }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeOut",
-                }}
-              />
-              <motion.div
-                className="absolute inset-0 rounded-full"
-                style={{ backgroundColor: "rgba(255,255,255,0.12)" }}
-                animate={{ scale: [1, 2.2, 2.2], opacity: [0.18, 0, 0.18] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeOut",
-                  delay: 0.3,
-                }}
-              />
-              <motion.div
-                className="absolute -left-2 -translate-x-full top-1/2 -translate-y-1/2 whitespace-nowrap text-xs font-medium px-3 py-1.5 rounded-full shadow-lg"
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.93)",
-                  color: "#0a0a0f",
-                }}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ delay: 0.2 }}
-              >
-                {playIndicatorText || "Tap to see the magic"}
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
-        <motion.button
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{
-            opacity: 1,
-            scale: showPlayIndicator && !userInteracted ? [1, 1.1, 1] : 1,
-          }}
-          transition={{
-            opacity: { delay: 0.5 },
-            scale:
-              showPlayIndicator && !userInteracted
-                ? { duration: 0.8, repeat: Infinity, ease: "easeInOut" }
-                : { type: "spring", stiffness: 200 },
-          }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={toggleSound}
-          className="relative w-10 h-10 md:w-12 md:h-12 rounded-full backdrop-blur-md border flex items-center justify-center"
-          style={{
-            backgroundColor:
-              showPlayIndicator && !userInteracted
-                ? "rgba(255,255,255,0.18)"
-                : "rgba(255,255,255,0.1)",
-            borderColor:
-              showPlayIndicator && !userInteracted
-                ? "rgba(255,255,255,0.55)"
-                : "rgba(255,255,255,0.25)",
-            color: "rgba(255,255,255,0.9)",
-          }}
-          aria-label={isMuted ? "Unmute video" : "Mute video"}
-        >
-          <motion.div
-            key={isMuted ? "muted" : "unmuted"}
-            initial={{ scale: 0, rotate: -90 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: "spring" as const, stiffness: 300 }}
-          >
-            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-          </motion.div>
-        </motion.button>
-      </div>
-      )}
     </div>
   );
 }

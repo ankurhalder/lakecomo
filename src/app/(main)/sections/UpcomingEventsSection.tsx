@@ -42,8 +42,10 @@ const DEFAULT_EVENTS: EventData[] = [
 
 export default function UpcomingEventsSection({
   events,
+  videoMuteLabel,
 }: {
   events: LandingPageData["events"];
+  videoMuteLabel?: string;
 }) {
   const { lenisRef } = useLenis();
 
@@ -138,6 +140,7 @@ export default function UpcomingEventsSection({
               event={event}
               index={i}
               onCtaClick={scrollToContact}
+              muteLabel={videoMuteLabel}
             />
           ))}
         </div>

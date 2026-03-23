@@ -422,6 +422,13 @@ export default defineType({
                   validation: (Rule) => Rule.required(),
                 }),
                 defineField({
+                  name: "description",
+                  title: "Short Description",
+                  type: "text",
+                  rows: 2,
+                  description: "Shown between the mission name and duration.",
+                }),
+                defineField({
                   name: "duration",
                   title: "Duration",
                   type: "string",
@@ -454,7 +461,6 @@ export default defineType({
               },
             },
           ],
-          validation: (Rule) => Rule.max(2),
         }),
       ],
     }),
@@ -593,6 +599,14 @@ export default defineType({
         "Manage all events shown in the Upcoming Events section on the website.",
       options: { collapsible: true, collapsed: false },
       fields: [
+        defineField({
+          name: "videoMuteLabel",
+          title: "Video Mute Label",
+          type: "string",
+          initialValue: "hear the story",
+          description:
+            "Label shown next to the mute/unmute button on video event cards.",
+        }),
         defineField({
           name: "events",
           title: "Events",
