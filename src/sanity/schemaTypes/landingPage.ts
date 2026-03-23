@@ -698,7 +698,14 @@ export default defineType({
                   type: "string",
                   initialValue: "ENQUIRE NOW",
                   description:
-                    "Text on the call-to-action button (e.g. RSVP / DETAILS, VIEW SCHEDULE).",
+                    "Text on the call-to-action button (e.g. RSVP / DETAILS, GET TICKETS).",
+                }),
+                defineField({
+                  name: "ctaUrl",
+                  title: "Button Link (optional)",
+                  type: "url",
+                  description:
+                    "When set, the button opens this URL in a new tab (e.g. an Eventbrite link). Leave blank to scroll to the contact form instead.",
                 }),
                 defineField({
                   name: "pinned",

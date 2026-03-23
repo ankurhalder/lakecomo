@@ -34,6 +34,7 @@ export interface EventData {
   description?: string;
   location?: string;
   ctaLabel?: string;
+  ctaUrl?: string | null;
   imageUrl?: string | null;
   videoUrl?: string | null;
   pinned?: boolean;
@@ -278,6 +279,7 @@ const query = `
       description,
       location,
       ctaLabel,
+      ctaUrl,
       pinned,
       displayOrder,
       image { asset->{ url }, hotspot, crop },
@@ -483,6 +485,7 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
             description?: string;
             location?: string;
             ctaLabel?: string;
+            ctaUrl?: string;
             pinned?: boolean;
             displayOrder?: number;
             image?: { asset?: { url?: string } };
@@ -502,6 +505,7 @@ const fetchLandingPageData = async (): Promise<LandingPageData | null> => {
           description: ev.description,
           location: ev.location,
           ctaLabel: ev.ctaLabel,
+          ctaUrl: ev.ctaUrl ?? null,
           videoUrl: ev.videoFile?.asset?.url ?? null,
           imageUrl:
             ev.image?.asset?.url ??

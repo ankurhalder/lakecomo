@@ -19,7 +19,8 @@ const DEFAULT_EVENTS: EventData[] = [
     description:
       "Inaugurate the season in spectacular style at the renowned Corso Eleganza. Join us for an exclusive cocktail evening surrounded by classic automotive beauty and unparalleled Lake Como elegance.",
     location: "Terzo Crotto, Cernobbio",
-    ctaLabel: "RSVP / DETAILS",
+    ctaLabel: "GET TICKETS",
+    ctaUrl: "https://www.eventbrite.com/e/spies-of-style-a-bond-inspired-immersive-cocktail-party-tickets-1985643475086?aff=oddtdtcreator",
     imageUrl: null,
     pinned: true,
   },

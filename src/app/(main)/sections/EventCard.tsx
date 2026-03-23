@@ -40,6 +40,7 @@ export default function EventCard({
     description,
     location,
     ctaLabel,
+    ctaUrl,
     imageUrl,
     videoUrl,
   } = event;
@@ -324,23 +325,44 @@ export default function EventCard({
           )}
         </div>
 
-        {/* CTA button */}
-        <button
-          onClick={onCtaClick}
-          className="mt-auto w-full px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-full transition-opacity hover:opacity-90 cursor-pointer"
-          style={{
-            background: "var(--accent-gradient)",
-            color: "var(--accent-text)",
-          }}
-        >
-          <motion.span
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
-            className="block"
+        {/* CTA button — external link when ctaUrl is set, else scroll to contact */}
+        {ctaUrl ? (
+          <a
+            href={ctaUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-auto w-full px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-full transition-opacity hover:opacity-90 cursor-pointer text-center block"
+            style={{
+              background: "var(--accent-gradient)",
+              color: "var(--accent-text)",
+            }}
           >
-            {ctaLabel ?? "ENQUIRE NOW"}
-          </motion.span>
-        </button>
+            <motion.span
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              className="block"
+            >
+              {ctaLabel ?? "GET TICKETS"}
+            </motion.span>
+          </a>
+        ) : (
+          <button
+            onClick={onCtaClick}
+            className="mt-auto w-full px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-full transition-opacity hover:opacity-90 cursor-pointer"
+            style={{
+              background: "var(--accent-gradient)",
+              color: "var(--accent-text)",
+            }}
+          >
+            <motion.span
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              className="block"
+            >
+              {ctaLabel ?? "ENQUIRE NOW"}
+            </motion.span>
+          </button>
+        )}
       </div>
     </motion.div>
   );
