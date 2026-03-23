@@ -2,15 +2,15 @@
   {
     "_createdAt": "2026-03-13T13:18:59Z",
     "_id": "landingPage",
-    "_rev": "MjdSXFelIF5IivE6521Yv6",
+    "_rev": "R7520s7vHtbrU9r11muyEN",
     "_system": {
       "base": {
         "id": "landingPage",
-        "rev": "4DZXQ06MV0KUYSdqrP2ebw"
+        "rev": "oNWk1SXbyGbVYC4WgU4hdH"
       }
     },
     "_type": "landingPage",
-    "_updatedAt": "2026-03-17T00:24:17Z",
+    "_updatedAt": "2026-03-22T17:02:58Z",
     "assignment": {
       "cards": [
         {
@@ -72,7 +72,7 @@
         "phases": [
           {
             "_key": "phase-1",
-            "description": "At the beginning of the event, guests receive their first intelligence briefing. Using a custom illustrated map of Lake Como, participants follow embedded clues to uncover the secret codename of the evening's central spy.\n\nClues are hidden across key locations around the lake, encouraging guests to examine the map closely while working together to solve the puzzle.\n\nAccess the Mission Through:\n• Interactive mobile app experience\n• Printed intelligence dossier and map\n• Physical clues embedded in the event program\n\nOnce the clues are solved, guests reveal the agent's secret codename and move to the next phase of the mission.",
+            "description": "Your mission begins the moment you receive your intelligence briefing. Clues are hidden in our map of the lake, waiting for you to uncover your secret codename and agent mission. Work together, study the maps, and crack the codes—your spy skills will be put to the test.\n\nAccess the Mission Through:\n• Interactive mobile app experience\n• Printed intelligence dossier and map\n• Physical clues embedded in the event program\n\nBetween decoding messages, immerse yourself in the world of espionage: strike a pose with Bond-inspired backdrops and spy props, or dance to the thrilling spy soundtrack.",
             "icon": "lock",
             "images": [
               {
@@ -88,55 +88,41 @@
                 "asset": {
                   "_ref": "image-5500f0cf417e77a3d6f2869debb8c431169c4d6a-746x297-png"
                 }
+              },
+              {
+                "_key": "dc065b702127",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-ba5f6dfd964460ab3b21b84df27888022854c06e-799x760-png",
+                  "_type": "reference"
+                }
+              },
+              {
+                "_key": "4321c06aa486",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-b50e93b9be18cb54e41c774060ca7c0bf886b33b-564x379-png",
+                  "_type": "reference"
+                }
+              },
+              {
+                "_key": "c7e0d40920fb",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-79132de350e04bbbc6b7ef367748d4040a5393d3-1375x768-jpg",
+                  "_type": "reference"
+                }
+              },
+              {
+                "_key": "994df1bf7666",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-5e582f3fcc1fe6fdd946cf565d7585b6f6546fef-740x698-png",
+                  "_type": "reference"
+                }
               }
             ],
             "order": 1,
-            "title": "Unlock the Spy Identity"
-          },
-          {
-            "_key": "phase-2",
-            "description": "Once the spy identity is revealed, guests unlock the classified mission statement. This transmission reveals the purpose of the operation and introduces the story behind the espionage activity that once took place on Lake Como during the war.\n\nParticipants receive a coded message that must be deciphered collectively during the dinner or cocktail reception.",
-            "icon": "file-text",
-            "images": [
-              {
-                "_key": "746a8309c766",
-                "_type": "image",
-                "asset": {
-                  "_ref": "image-7bce0bd30fcf9024e6d5ebf56034daac4156893b-758x317-png"
-                }
-              },
-              {
-                "_key": "28ec4f8f5a18",
-                "_type": "image",
-                "asset": {
-                  "_ref": "image-79132de350e04bbbc6b7ef367748d4040a5393d3-1375x768-jpg"
-                }
-              }
-            ],
-            "order": 2,
-            "title": "The Mission Briefing"
-          },
-          {
-            "_key": "phase-3",
-            "description": "Throughout the evening, guests work together to decode the mission. The experience is intentionally designed to encourage conversation and interaction between guests.\n\nAs clues are discussed and theories emerge, the room becomes part of the investigation.\n\nBy the end of the evening, the group successfully completes the mission and reveals the final intelligence transmission.",
-            "icon": "users",
-            "images": [
-              {
-                "_key": "d6c16d2f93c3",
-                "_type": "image",
-                "asset": {
-                  "_ref": "image-ba5f6dfd964460ab3b21b84df27888022854c06e-799x760-png"
-                }
-              },
-              {
-                "_key": "651fd4f1a0cd",
-                "_type": "image",
-                "asset": {
-                  "_ref": "image-5e582f3fcc1fe6fdd946cf565d7585b6f6546fef-740x698-png"
-                }
-              }
-            ],
-            "order": 3,
             "title": "Collaborative Code Breaking"
           }
         ],
@@ -242,15 +228,6 @@
           }
         },
         {
-          "_key": "35817cf201cd",
-          "image": {
-            "_type": "image",
-            "asset": {
-              "_ref": "image-6d1ef85025398394ca2dd5d30064762f43fe9b5a-915x737-png"
-            }
-          }
-        },
-        {
           "_key": "b2ae18754f0f",
           "image": {
             "_type": "image",
@@ -310,6 +287,16 @@
             "_type": "image",
             "asset": {
               "_ref": "image-7b6ce535dc43c19c9716fd77679558f88a508057-795x502-jpg"
+            }
+          }
+        },
+        {
+          "_key": "0045b48eed73",
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": "image-b50e93b9be18cb54e41c774060ca7c0bf886b33b-564x379-png",
+              "_type": "reference"
             }
           }
         }
@@ -389,7 +376,7 @@
           "_key": "feat_2",
           "_type": "object",
           "icon": "martini",
-          "text": "Gourmet dining, cocktails, immersive storytelling"
+          "text": "Gourmet dining, cocktails, immersive storytelling with the option of a private  cooking class"
         },
         {
           "_key": "feat_3",
@@ -404,7 +391,7 @@
           "_ref": "image-e35fa47785930f581efceed9baffd9ca853abe1a-884x519-png"
         }
       },
-      "label": "LAKE COMO EXCLUSIVE",
+      "label": "EXCLUSIVE MISSION",
       "photographyHighlights": [
         "Professional images capturing the drama and elegance",
         "Guests interacting with spy kits, props, and backdrops",
@@ -427,20 +414,21 @@
       "headline": "Spies of Style",
       "real007": {
         "bullets": [
-          "Solve the type of codes used by Mallory",
+          "Solve the type of codes used by Mallaby",
           "Experience the suspense and strategy of a true spy mission",
           "Collaborate with teams in a cinematic setting",
-          "Walk in the footsteps of the spy who inspired James Bond"
+          "Walk in the footsteps of the spy who is said to have inspired James Bond"
         ],
-        "heading": "The Real-Life 007",
+        "heading": "Cecil Mallaby: The British Spy Who Helped Free Italy and Inspired James Bond",
         "image": {
           "_type": "image",
           "asset": {
-            "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png"
+            "_ref": "image-fc566380059f83b36baa588cd3c36b91e5f8e5b4-697x693-png",
+            "_type": "reference"
           }
         },
-        "paragraph1": "During World War II, intelligence operative Cecile Mallory arrived secretly in Cernobbio on Lake Como carrying a critical Allied mission. Her audacious operations, coded messages, and elegant style remain part of the region's wartime history.",
-        "paragraph2": "Historians believe Mallory's daring missions and sophistication inspired elements of Ian Fleming's James Bond, from secret communications to high-stakes espionage in glamorous locations."
+        "paragraph1": "During World War II, intelligence operative Cecil Mallaby, a British officer working for the key organization created by Winston Churchill to “set Europe ablaze” by sabotage, resistance coordination, and espionage, arrived secretly in Cernobbio on Lake Como carrying a critical Allied mission. His audacious operations, coded messages, and elegant style remain part of the region's wartime history. In the course of the Second World War, whereas armies clashed throughout Europe, a quieter, extra covert battle was being fought behind enemy traces. \n\nIn the summer of 1943, Mallaby undertook a mission that played an important role in shifting Italy’s position in the war and opening the door to the Allied liberation of the country. His operations, shrouded in secrecy for many years, remain some of the fascinating examples of Allied intelligence work in wartime Italy.",
+        "paragraph2": "Historians believe Mallaby's daring missions and sophistication inspired elements of Ian Fleming's James Bond, from secret communications to high-stakes espionage in glamorous locations."
       },
       "subheadline": "Step into the true mission of Cecil Richard Mallaby — a WWII spy whose daring story inspired James Bond — through an immersive dinner or cocktail experience on Lake Como."
     },
@@ -453,13 +441,13 @@
           "badge": "Season Premiere",
           "ctaLabel": "RSVP / DETAILS",
           "date": "2026-05-16",
-          "description": "Inaugurate the season in spectacular style at the renowned Corso Eleganza. Join us for an exclusive spy-themed cocktail event at Terzo Crotto with themed cocktails and savory bites in a vintage wine cellar.",
+          "description": "Inaugurate the season in spectacular style at the renowned Corso Eleganza. Join us for an exclusive spy-themed cocktail event at Terzo Crotto with themed cocktails and savory bites in a vintage wine cellar. \n",
           "displayOrder": 1,
           "eventType": "single_event",
           "location": "Terzo Crotto, Cernobbio",
           "pinned": true,
           "time": "5:00 PM – 8:00 PM",
-          "title": "Corso Eleganza 2026 Season Kick Off Cocktail Party",
+          "title": "Corso Eleganza May 16, 2026 Season Kick Off Cocktail Party",
           "videoFile": {
             "_type": "file",
             "asset": {
